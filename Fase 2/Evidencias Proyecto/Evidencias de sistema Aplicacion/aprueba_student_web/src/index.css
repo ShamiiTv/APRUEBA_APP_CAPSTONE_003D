@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap');
+
+:root {
+  --azul: #1A365D;
+  --oro: #F5B041;
+  --fondo: #F8FAFC;
+  --texto: #1E293B;
+  --exito: #10B981;
+  --error: #EF4444;
+  --bg: var(--fondo);
+  --panel: #ffffff;
+  --ink: var(--texto);
+  --muted: #64748B;
+  --line: #E2E8F0;
+  --soft: #F1F5F9;
+  --brand: var(--azul);
+  --cta: var(--oro);
+  --cta-ink: var(--azul);
+  --accent: var(--exito);
+  --danger: var(--error);
+  --chip: #EEF4FF;
+  --shadow: 0 8px 24px rgba(26, 54, 93, 0.08);
+  --side: #1A365D;
+  --side-ink: #E8EEF7;
+  --side-mut: rgba(232, 238, 247, 0.6);
+  --side-act: rgba(255, 255, 255, 0.12);
+  --bronze: #CD7F32;
+  --silver: #94A3B8;
+  --gold: #F5B041;
+  --diamond: #38BDF8;
+  --platinum: #A78BFA;
+}
+
+.dark {
+  --bg: #0B1220;
+  --panel: #131C2E;
+  --ink: #E2E8F0;
+  --muted: #94A3B8;
+  --line: #1E2D45;
+  --soft: #1A2540;
+  --brand: #2D5A9E;
+  --cta: #F5B041;
+  --cta-ink: #1A365D;
+  --accent: #34D399;
+  --danger: #F87171;
+  --chip: #1A2C4A;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --side: #0C1626;
+  --side-ink: #E2E8F0;
+  --side-mut: rgba(226, 232, 240, 0.55);
+  --side-act: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--bg);
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.5;
+  transition: background 0.25s;
+}
+
+h1, h2, h3, .h, .logo, .price, .brandfont {
+  font-family: 'Montserrat', sans-serif;
+}

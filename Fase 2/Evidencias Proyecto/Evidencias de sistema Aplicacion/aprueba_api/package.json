@@ -1,0 +1,37 @@
+{
+  "name": "aprueba_api",
+  "version": "1.0.0",
+  "description": "API REST y servicios backend para el ecosistema Aprueba PAES",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "seed:all": "node src/data/seedCatalogs.js && node src/data/seedData.js",
+    "seed:catalogs": "node src/data/seedCatalogs.js",
+    "seed:questions": "node src/data/seedData.js",
+    "emulators": "firebase emulators:start --import=./emulator_data --export-on-exit=./emulator_data"
+  },
+  "keywords": [
+    "paes",
+    "educacion",
+    "api",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "firebase-admin": "^14.5.0",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
