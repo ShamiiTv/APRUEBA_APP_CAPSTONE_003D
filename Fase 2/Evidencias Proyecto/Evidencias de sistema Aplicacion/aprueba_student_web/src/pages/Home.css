@@ -1,0 +1,24 @@
+.home-dashboard { max-width: 1200px; margin: auto; }
+.home-dashboard h1, .home-dashboard h2, .home-dashboard h3 { font-family: Montserrat, sans-serif; }
+.home-dashboard h1 { font-size: 26px; }
+.home-dashboard h2 { font-size: 17px; }
+.home-dashboard h3 { font-size: 16px; margin-bottom: 12px; }
+.home-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+.home-header p, .home-hint { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 16px; }
+.home-panel { padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+.home-value { color: var(--brand); font: 800 30px Montserrat, sans-serif; margin: 10px 0; }
+.home-section { margin: 24px 0; }
+.home-section > .home-hint { margin: 8px 0 16px; }
+.home-medals { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.home-medal{display:flex;align-items:center;gap:8px;flex:1 1 120px;padding:10px;background:var(--soft);border:1px solid var(--line);border-radius:12px;font-size:13px}
+.home-medal .medal-icon{width:34px;height:40px;flex-shrink:0}.home-medal strong{font-size:17px}
+.home-dashboard button { border: 1px solid var(--line); border-radius: 10px; padding: 10px 16px; background: var(--cta); color: var(--cta-ink); font-weight: 700; cursor: pointer; }
+.home-dashboard button:disabled { opacity: .55; cursor: default; }
+.home-dashboard button:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+.home-dashboard progress { width: 100%; height: 12px; accent-color: var(--brand); margin-top: 12px; }
+.home-banner { background: var(--brand); color: white; padding: 24px; border-radius: 16px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: center; }
+.home-banner p { margin-top: 8px; max-width: 65ch; }
+.home-recent { list-style: none; padding: 0; }
+.home-recent li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.home-recent time { color: var(--muted); font-size: 13px; }

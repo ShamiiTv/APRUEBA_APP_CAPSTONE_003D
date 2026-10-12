@@ -1,59 +1,66 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { apiFetch } from '../api/client';
-import { useAuth } from '../auth/AuthContext';
-import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../auth/useAuth';
+import { useTheme } from '../context/useTheme';
+import './Practice.css';
 
 export default function Practice() {
   const { user, updateUserState } = useAuth();
   const { t } = useTheme();
   const navigate = useNavigate();
 
-  const [testId, setTestId] = useState('m1');
+  const [params] = useSearchParams();
+  const requestedTest = params.get('testId');
+  const requestedDifficulty = params.get('difficulty');
+  const [testId, setTestId] = useState(['m1','m2','lectora','cien','hist'].includes(requestedTest) ? requestedTest : user?.selectedTests?.[0] || 'm1');
+  const [difficulty, setDifficulty] = useState(['d1','d2','d3'].includes(requestedDifficulty) ? requestedDifficulty : user?.difficulty || 'd2');
+  const [reload, setReload] = useState(0);
+  const startedAt = useRef(0);
+  const submission = useRef(false);
   const [question, setQuestion] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
   const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [allCompleted, setAllCompleted] = useState(false);
+  const [noQuestions, setNoQuestions] = useState(false);
   const [quotaExceeded, setQuotaExceeded] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchNextQuestion = async (subject = testId) => {
-    if (quotaExceeded) return;
-
+  const fetchNextQuestion = () => {
     setLoading(true);
     setError(null);
     setResult(null);
     setSelectedOption(null);
     setAllCompleted(false);
-
-    try {
-      const res = await apiFetch(`/practice/next?testId=${subject}`);
-      if (res.data?.allCompleted) {
-        setAllCompleted(true);
-        setQuestion(null);
-      } else {
-        setQuestion(res.data?.question || null);
-      }
-    } catch (err) {
-      const msg = err.message?.toLowerCase() || '';
-      if (msg.includes('cuota') || msg.includes('límite') || msg.includes('quota') || msg.includes('403')) {
-        setQuotaExceeded(true);
-      } else {
-        setError(err.message);
-      }
-    } finally {
-      setLoading(false);
-    }
+    setNoQuestions(false);
+    setQuotaExceeded(false);
+    setQuestion(null);
+    setReload(value => value + 1);
   };
 
   useEffect(() => {
-    fetchNextQuestion(testId);
-  }, [testId]);
+    const controller = new AbortController();
+    apiFetch(`/practice/next?testId=${testId}&difficulty=${difficulty}`, { signal: controller.signal })
+      .then(res => {
+        if (controller.signal.aborted) return;
+        setAllCompleted(res.data?.allCompleted === true);
+        setNoQuestions(res.data?.noQuestions === true);
+        setQuestion(res.data?.question || null);
+        if (res.data?.user) updateUserState(res.data.user);
+        startedAt.current = Date.now();
+      }).catch(err => {
+        if (controller.signal.aborted) return;
+        if (err.code === 'QUOTA_EXCEEDED') setQuotaExceeded(true);
+        else setError(err.message);
+      }).finally(() => { if (!controller.signal.aborted) setLoading(false); });
+    return () => controller.abort();
+  }, [testId, difficulty, reload, updateUserState]);
 
   const handleSubmit = async () => {
-    if (!selectedOption || submitting || !question) return;
+    if (!selectedOption || submission.current || !question || result) return;
+    submission.current = true;
     setSubmitting(true);
     setError(null);
 
@@ -63,10 +70,12 @@ export default function Practice() {
         body: JSON.stringify({
           questionId: question.id,
           selectedOption,
+          elapsedMs: Math.min(3600000, Math.max(0, Date.now() - startedAt.current)),
         }),
       });
 
       setResult(res.data);
+      setSelectedOption(res.data.selectedOption);
       if (res.data?.user) {
         updateUserState(res.data.user);
         const curQuota = res.data.user.quota;
@@ -75,13 +84,13 @@ export default function Practice() {
         }
       }
     } catch (err) {
-      const msg = err.message?.toLowerCase() || '';
-      if (msg.includes('cuota') || msg.includes('límite') || msg.includes('quota')) {
+      if (err.code === 'QUOTA_EXCEEDED') {
         setQuotaExceeded(true);
       } else {
         setError(err.message);
       }
     } finally {
+      submission.current = false;
       setSubmitting(false);
     }
   };
@@ -108,8 +117,8 @@ export default function Practice() {
 
         <select
           value={testId}
-          disabled={quotaExceeded}
-          onChange={(e) => setTestId(e.target.value)}
+          disabled={submitting}
+          onChange={(e) => { setTestId(e.target.value); fetchNextQuestion(); }}
           style={{
             padding: '10px 16px',
             borderRadius: '10px',
@@ -129,6 +138,9 @@ export default function Practice() {
           <option value="cien">{t.practice.selectCiencias}</option>
           <option value="hist">{t.practice.selectHistoria}</option>
         </select>
+        <select aria-label="Dificultad" value={difficulty} disabled={submitting} onChange={e => { setDifficulty(e.target.value); fetchNextQuestion(); }} style={{ padding: '10px', borderRadius: '10px', color: 'var(--ink)', background: 'var(--panel)', border: '1px solid var(--line)' }}>
+          <option value="d1">Básica</option><option value="d2">Intermedia</option><option value="d3">Avanzada</option>
+        </select>
       </div>
 
       {error && !quotaExceeded && (
@@ -142,11 +154,12 @@ export default function Practice() {
           marginBottom: '20px'
         }}>
           {error}
+          <button onClick={fetchNextQuestion} disabled={submitting} style={{ display: 'block', marginTop: '12px', padding: '8px 12px', borderRadius: '8px', cursor: 'pointer' }}>Reintentar</button>
         </div>
       )}
 
       {/* Modal de Cuota Agotada */}
-      {quotaExceeded ? (
+      {quotaExceeded && !result ? (
         <div style={{
           backgroundColor: 'var(--panel)',
           borderRadius: '20px',
@@ -241,6 +254,8 @@ export default function Practice() {
         }}>
           {t.practice.loadingQuestions}
         </div>
+      ) : noQuestions ? (
+        <div style={{ padding: '32px', background: 'var(--panel)', borderRadius: '16px', border: '1px solid var(--line)', color: 'var(--muted)' }}>Todavía no hay preguntas disponibles para esta prueba y dificultad. Selecciona otra opción.</div>
       ) : allCompleted ? (
         <div style={{
           backgroundColor: 'var(--panel)',
@@ -315,7 +330,7 @@ export default function Practice() {
               return (
                 <button
                   key={opt.id}
-                  disabled={Boolean(result)}
+                  disabled={Boolean(result) || submitting}
                   onClick={() => setSelectedOption(opt.id)}
                   style={{
                     display: 'flex',
@@ -368,7 +383,7 @@ export default function Practice() {
                 color: result.isCorrect ? 'var(--accent)' : 'var(--danger)',
                 marginBottom: '8px'
               }}>
-                {result.isCorrect ? t.practice.correctFeedback : t.practice.incorrectFeedback}
+                {result.alreadyAnswered ? 'Esta pregunta ya estaba respondida; se muestra tu intento anterior.' : result.isCorrect ? t.practice.correctFeedback : t.practice.incorrectFeedback}
               </div>
               <p style={{ fontSize: '13px', color: 'var(--ink)', lineHeight: 1.5, margin: '0 0 10px 0' }}>
                 {result.explanation}
@@ -389,7 +404,8 @@ export default function Practice() {
           )}
 
           {/* Acciones */}
-          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', flexWrap: 'wrap', gap: '12px' }}>
+            {result && <div className="practice-share-actions"><button className="practice-share-button" onClick={() => navigate(`/grupos?questionId=${encodeURIComponent(question.id)}&testId=${encodeURIComponent(testId)}`)}><span className="practice-share-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5v1"/></svg></span>Compartir al grupo<svg className="practice-share-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><button className="practice-share-button practice-share-button--community" onClick={() => navigate(`/comunidad?questionId=${encodeURIComponent(question.id)}`)}><span className="practice-share-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H5l-3 2V11.5a9.5 9.5 0 0 1 19 0Z"/><path d="M7 11h10m-10 4h6"/></svg></span>Compartir a la comunidad<svg className="practice-share-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>}
             {!result ? (
               <button
                 onClick={handleSubmit}
@@ -411,7 +427,7 @@ export default function Practice() {
               </button>
             ) : (
               <button
-                onClick={() => fetchNextQuestion(testId)}
+                onClick={fetchNextQuestion}
                 style={{
                   backgroundColor: 'var(--cta)',
                   color: 'var(--cta-ink)',
@@ -424,7 +440,7 @@ export default function Practice() {
                   cursor: 'pointer'
                 }}
               >
-                {t.practice.nextQuestion}
+                {quotaExceeded ? 'Ver cuota diaria' : t.practice.nextQuestion}
               </button>
             )}
           </div>

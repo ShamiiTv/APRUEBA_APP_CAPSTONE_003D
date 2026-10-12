@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './auth/AuthContext';
+import { AuthProvider } from './auth/AuthContext';
+import { useAuth } from './auth/useAuth';
 import PrivateRoute from './components/PrivateRoute';
 import Layout from './components/Layout';
 
 // Vistas Públicas
 import Login from './pages/Login';
 import Register from './pages/Register';
+import PasswordRecovery from './pages/PasswordRecovery';
 
 // Vistas Privadas
 import Onboarding from './pages/Onboarding';
@@ -16,6 +18,7 @@ import Groups from './pages/Groups';
 import Tutors from './pages/Tutors';
 import Community from './pages/Community';
 import Plan from './pages/Plan';
+import StudyPlan from './pages/StudyPlan';
 import Settings from './pages/Settings';
 
 // Protege /login y /register: si ya hay sesión activa, redirige
@@ -42,7 +45,7 @@ function PublicOnlyRoute({ children }) {
 
   // Si ya tenemos el objeto de usuario o hay un token válido
   if (user) {
-    if (user.onboardingCompleted === false) {
+    if (user.onboardingCompleted !== true) {
       return <Navigate to="/onboarding" replace />;
     }
     return <Navigate to="/" replace />;
@@ -56,6 +59,8 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
+          <Route path="/recuperar-contrasena" element={<PasswordRecovery />} />
+          <Route path="/restablecer-contrasena" element={<PasswordRecovery reset />} />
           {/* Rutas Públicas */}
           <Route
             path="/login"
@@ -78,7 +83,7 @@ export default function App() {
           <Route
             path="/onboarding"
             element={
-              <PrivateRoute>
+              <PrivateRoute onboarding>
                 <Onboarding />
               </PrivateRoute>
             }
@@ -100,6 +105,7 @@ export default function App() {
             <Route path="tutores" element={<Tutors />} />
             <Route path="comunidad" element={<Community />} />
             <Route path="plan" element={<Plan />} />
+            <Route path="plan-estudio" element={<StudyPlan />} />
             <Route path="ajustes" element={<Settings />} />
           </Route>
 

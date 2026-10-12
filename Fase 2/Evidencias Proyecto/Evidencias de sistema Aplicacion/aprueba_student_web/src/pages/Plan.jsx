@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { apiFetch } from '../api/client';
-import { useAuth } from '../auth/AuthContext';
-import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../auth/useAuth';
+import { useTheme } from '../context/useTheme';
 
 export default function Plan() {
   const { user, updateUserState } = useAuth();

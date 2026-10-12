@@ -70,3 +70,19 @@ body {
 h1, h2, h3, .h, .logo, .price, .brandfont {
   font-family: 'Montserrat', sans-serif;
 }
+
+.auth-screen { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+.auth-card { width: 100%; max-width: 460px; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 32px; box-shadow: var(--shadow); }
+.auth-brand { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 800; color: var(--brand); margin-bottom: 24px; }
+.auth-card h1 { font-size: 22px; }
+.auth-description { color: var(--muted); margin: 10px 0 20px; }
+.auth-form { display: flex; flex-direction: column; gap: 10px; }
+.auth-form label { font-weight: 700; }
+.auth-form input { width: 100%; padding: 12px; color: var(--ink); background: var(--soft); border: 1px solid var(--line); border-radius: 10px; font: inherit; }
+.auth-form input:focus { outline: 2px solid var(--brand); outline-offset: 2px; }
+.auth-button { width: 100%; margin-top: 12px; padding: 12px; border: 0; border-radius: 10px; background: var(--cta); color: var(--cta-ink); font: inherit; font-weight: 800; cursor: pointer; }
+.auth-button:disabled { opacity: .6; cursor: wait; }
+.auth-button.secondary { background: var(--soft); color: var(--ink); }
+.auth-error { color: var(--danger); margin-bottom: 16px; }
+.auth-success { color: var(--accent); margin-bottom: 16px; }
+.auth-back { display: block; margin-top: 24px; color: var(--brand); font-weight: 700; }

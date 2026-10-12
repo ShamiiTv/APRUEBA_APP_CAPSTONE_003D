@@ -28,7 +28,7 @@ export const translations = {
     },
     practice: {
       title: 'Módulo de Entrenamiento PAES',
-      subtitle: 'Banco oficial DEMRE sincronizado con Cloud Firestore.',
+      subtitle: 'Practica con el banco de preguntas de Aprueba.',
       selectM1: 'Matemática 1 (M1)',
       selectM2: 'Matemática 2 (M2)',
       selectLectora: 'Competencia Lectora',
@@ -170,7 +170,7 @@ export const translations = {
     },
     practice: {
       title: 'PAES Training Module',
-      subtitle: 'Official DEMRE question bank synchronized with Cloud Firestore.',
+      subtitle: 'Practice with the Aprueba question bank.',
       selectM1: 'Mathematics 1 (M1)',
       selectM2: 'Mathematics 2 (M2)',
       selectLectora: 'Reading Comprehension',

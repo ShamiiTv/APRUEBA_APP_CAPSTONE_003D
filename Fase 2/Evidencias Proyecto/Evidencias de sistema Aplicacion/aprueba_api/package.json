@@ -5,6 +5,13 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
+    "test": "node --test test/auth.test.js test/practice.test.js test/progress.test.js test/studyPlan.test.js test/profileSettings.test.js test/social.test.js test/bankCache.test.js test/authRateLimiters.test.js",
+    "test:emulator": "node --test test/auth.emulator.test.js",
+    "test:practice": "node --test test/practice.test.js",
+    "test:practice:emulator": "node --test test/practice.emulator.test.js",
+    "test:medals:emulator": "node --test test/medals.emulator.test.js",
+    "test:social:emulator": "node --test test/social.emulator.test.js",
+    "questions:check": "node src/data/seedData.js --check",
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
     "seed:all": "node src/data/seedCatalogs.js && node src/data/seedData.js",

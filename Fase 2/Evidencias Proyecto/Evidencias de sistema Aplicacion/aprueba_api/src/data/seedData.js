@@ -1,126 +1,75 @@
 import 'dotenv/config';
-import { readdirSync, readFileSync } from 'fs';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { readdirSync, readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { db } from '../config/firebase.js';
+import { formatQuestion, mapFileMetadata, normalize, optionsOf } from '../services/questionBank.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-// Carpeta relativa dentro del repositorio donde residen los 33 JSONs
-const QUESTIONS_DIR = resolve(__dirname, 'questions');
-
-// Catálogo oficial de pruebas (tests)
-const testsCatalog = [
-  { id: 'lectora', label: 'Competencia Lectora', color: '#1A365D', axes: ['Vocabulario', 'Comprensión', 'Evaluación'], order: 1, active: true },
-  { id: 'm1', label: 'Matemática M1', color: '#10B981', axes: ['Álgebra y Funciones', 'Números', 'Geometría', 'Probabilidad y Estadística'], order: 2, active: true },
-  { id: 'm2', label: 'Matemática M2', color: '#6366F1', axes: ['Álgebra Avanzada', 'Cálculo y Límites', 'Vectores y Complejos'], order: 3, active: true },
-  { id: 'cien', label: 'Ciencias (Biología)', color: '#F5B041', axes: ['Célula y Ciclo Celular', 'Organización y Sistemas', 'Ecosistemas'], order: 4, active: true },
-];
-
-// Asignación de testId y eje temático según el nombre del archivo
-function mapFileMetadata(filename) {
-  const lower = filename.toLowerCase();
-  if (lower.includes('biologia')) {
-    return { testId: 'cien', axis: 'Biología Celular y Ecosistemas' };
-  }
-  if (lower.includes('matematica')) {
-    return { testId: 'm1', axis: 'Álgebra, Números y Geometría' };
-  }
-  if (lower.includes('verbal')) {
-    return { testId: 'lectora', axis: 'Comprensión Lectora y Vocabulario' };
-  }
-  return { testId: 'm1', axis: 'General' };
-}
-
-// Mapeo al modelo documental de Firestore especificado por la empresa
-function formatQuestionDoc(raw, testId, axis) {
-  return {
-    testId,
-    axis,
-    skillId: `sk_${testId}_general`,
-    difficulty: 'd2',
-    statement: raw.pregunta || raw.statement || '',
-    options: raw.alternativas || raw.options || [],
-    correctAnswer: raw.respuesta_correcta || raw.correctAnswer || 'A',
-    explanation: {
-      title: 'Resolución oficial',
-      subject: testId,
-      steps: [raw.explicacion_respuesta || 'Revisión paso a paso del ejercicio.'],
-      verification: 'Comprobación de alternativa correcta según temario oficial.',
-      keyConcept: raw.habilidad_requerida || 'Concepto clave PAES'
-    },
-    requiredSkillText: raw.habilidad_requerida || '',
-    status: 'published',
-    flagCount: 0,
-    randomKey: Math.random(),
-    stats: {
-      timesAnswered: 0,
-      timesCorrect: 0,
-      sumElapsedMs: 0,
-      elapsedBuckets: {}
-    },
-    createdAt: new Date(),
-    updatedAt: new Date()
-  };
-}
-
-async function seed() {
-  console.log('--- 1. Sembrando catálogo oficial de pruebas (tests) ---');
-  for (const t of testsCatalog) {
-    await db.collection('tests').doc(t.id).set(t);
-  }
-  console.log(`Catálogo de pruebas sembrado (${testsCatalog.length} pruebas).`);
-
-  console.log(`\n--- 2. Procesando banco de preguntas desde: ${QUESTIONS_DIR} ---`);
-  
-  let files = [];
-  try {
-    files = readdirSync(QUESTIONS_DIR).filter(f => f.toLowerCase().endsWith('.json'));
-  } catch (err) {
-    console.error(`Error al acceder al directorio de preguntas: ${err.message}`);
-    process.exit(1);
-  }
-
-  console.log(`Archivos detectados: ${files.length}`);
-  let totalImported = 0;
-
-  for (const file of files) {
-    const filePath = resolve(QUESTIONS_DIR, file);
-    const { testId, axis } = mapFileMetadata(file);
-
-    try {
-      const content = readFileSync(filePath, 'utf-8');
-      const questions = JSON.parse(content);
-
-      if (!Array.isArray(questions)) continue;
-
-      // Inserción en bloques (batches) de hasta 400 documentos para no superar límites de Firestore
-      const chunkSize = 400;
-      for (let i = 0; i < questions.length; i += chunkSize) {
-        const batch = db.batch();
-        const slice = questions.slice(i, i + chunkSize);
-
-        for (const item of slice) {
-          if (!item.pregunta && !item.statement) continue;
-          const ref = db.collection('questions').doc();
-          batch.set(ref, formatQuestionDoc(item, testId, axis));
-          totalImported++;
+const directory = resolve(dirname(fileURLToPath(import.meta.url)), 'questions');
+export function readBank() {
+  const bank = new Map();
+  for (const file of readdirSync(directory).filter(name => name.endsWith('.json')).sort()) {
+    const questions = JSON.parse(readFileSync(resolve(directory, file), 'utf8'));
+    if (!Array.isArray(questions)) throw new Error(`${file} no contiene un arreglo`);
+    for (const [index, raw] of questions.entries()) {
+      if (!['lista', 'pendiente'].includes(raw.estado_revision)) throw new Error(`${file} #${index + 1}: falta estado_revision`);
+      const q = formatQuestion(raw, mapFileMetadata(file), { file, index: index + 1, bank: 'local-paes' });
+      const prior = bank.get(q.contentId);
+      if (prior) {
+        const answerText = item => normalize(optionsOf(item).find(option => option.id === item.correctAnswer).text);
+        if (prior.status !== 'published' || q.status !== 'published' || answerText(prior) !== answerText(q)) {
+          prior.status = 'pending_review';
+          prior.reviewReasons = [...new Set([...prior.reviewReasons, ...q.reviewReasons, 'Variantes con el mismo contenido requieren revisión conjunta.'])];
         }
-
-        await batch.commit();
-      }
-
-      console.log(`✔ [${testId}] ${file} (${questions.length} preguntas procesadas)`);
-    } catch (err) {
-      console.warn(`✖ Falló la carga del archivo ${file}:`, err.message);
+      } else bank.set(q.contentId, q);
     }
   }
-
-  console.log(`\n=== Proceso finalizado ===`);
-  console.log(`Total de preguntas cargadas en Firestore: ${totalImported}`);
-  process.exit(0);
+  return bank;
 }
 
-seed().catch(err => {
-  console.error('Error general durante la ejecución del seed:', err);
-  process.exit(1);
-});
+export async function seedQuestions(database = db) {
+  // Validar el banco completo antes de efectuar cualquier escritura.
+  const bank = readBank();
+  const existing = await database.collection('questions').get();
+  const byId = new Map(existing.docs.map(doc => [doc.id, doc.data()]));
+  const writes = [];
+  const now = new Date();
+  for (const [id, question] of bank) {
+    const old = byId.get(id);
+    writes.push([database.collection('questions').doc(id), {
+      ...question,
+      updatedAt: now,
+      ...(!old ? { createdAt: now, stats: { timesAnswered: 0, timesCorrect: 0, sumElapsedMs: 0 }, flagCount: 0 } : {}),
+    }]);
+  }
+  // Conservar documentos antiguos para interpretar los historiales previos.
+  // La práctica solo sirve bankVersion=2; no se borran preguntas ni respuestas.
+  let archived = 0;
+  for (const doc of existing.docs) {
+    if (!bank.has(doc.id) && doc.data().source?.bank === 'local-paes') {
+      writes.push([doc.ref, { status: 'archived', updatedAt: now }]);
+      archived++;
+    }
+  }
+  for (let index = 0; index < writes.length; index += 400) {
+    const batch = database.batch();
+    for (const [ref, data] of writes.slice(index, index + 400)) batch.set(ref, data, { merge: true });
+    await batch.commit();
+  }
+  for (const [id, label] of [['lectora', 'Competencia Lectora'], ['m1', 'Matemática M1'], ['m2', 'Matemática M2'], ['cien', 'Ciencias'], ['hist', 'Historia']]) {
+    const count = [...bank.values()].filter(q => q.testId === id && q.status === 'published').length;
+    await database.collection('tests').doc(id).set({ label, active: count > 0, availableQuestions: count }, { merge: true });
+    await database.collection('skills').doc(`sk_${id}_general`).set({ testId: id, name: `Habilidades generales de ${label}` }, { merge: true });
+  }
+  const summary = { unique: bank.size, published: [...bank.values()].filter(q => q.status === 'published').length, pending: [...bank.values()].filter(q => q.status === 'pending_review').length, supplementary: [...bank.values()].filter(q => q.status === 'supplementary').length, archived };
+  console.log(JSON.stringify(summary));
+  return summary;
+}
+
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const action = process.argv.includes('--check') ? Promise.resolve().then(() => {
+    const bank = readBank();
+    console.log(JSON.stringify({ unique: bank.size, published: [...bank.values()].filter(q => q.status === 'published').length, pending: [...bank.values()].filter(q => q.status === 'pending_review').length, supplementary: [...bank.values()].filter(q => q.status === 'supplementary').length }));
+  }) : seedQuestions();
+  action.then(() => process.exit(0)).catch(error => { console.error(error.message); process.exit(1); });
+}

@@ -1,0 +1,3381 @@
+{
+  "archivos": [
+    {
+      "archivo": "preguntas PAES chile biologia 1.json",
+      "preguntas": 26,
+      "respuestas": {
+        "E": 2,
+        "C": 12,
+        "D": 4,
+        "A": 2,
+        "B": 6
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile biologia 2.json",
+      "preguntas": 47,
+      "respuestas": {
+        "C": 19,
+        "B": 18,
+        "D": 6,
+        "A": 3,
+        "E": 1
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile biologia 3.json",
+      "preguntas": 50,
+      "respuestas": {
+        "A": 7,
+        "D": 8,
+        "E": 4,
+        "C": 13,
+        "B": 18
+      }
+    },
+    {
+      "archivo": "preguntas PAES Chile matematica 1.json",
+      "preguntas": 30,
+      "respuestas": {
+        "B": 9,
+        "A": 19,
+        "C": 2
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "preguntas": 61,
+      "respuestas": {
+        "A": 61
+      }
+    },
+    {
+      "archivo": "preguntas PAES Chile matematica 3.json",
+      "preguntas": 46,
+      "respuestas": {
+        "C": 3,
+        "A": 42,
+        "D": 1
+      }
+    },
+    {
+      "archivo": "preguntas paes chile matematica 5.json",
+      "preguntas": 50,
+      "respuestas": {
+        "B": 2,
+        "A": 48
+      }
+    },
+    {
+      "archivo": "preguntas paes chile matematica 6.json",
+      "preguntas": 48,
+      "respuestas": {
+        "A": 45,
+        "C": 1,
+        "B": 2
+      }
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 10.json",
+      "preguntas": 54,
+      "respuestas": {
+        "A": 54
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "preguntas": 60,
+      "respuestas": {
+        "E": 1,
+        "A": 57,
+        "C": 1,
+        "B": 1
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "preguntas": 62,
+      "respuestas": {
+        "A": 60,
+        "B": 1,
+        "C": 1
+      }
+    },
+    {
+      "archivo": "Preguntas PAES Chile matematicas 2.json",
+      "preguntas": 51,
+      "respuestas": {
+        "C": 2,
+        "A": 47,
+        "B": 2
+      }
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 4.json",
+      "preguntas": 54,
+      "respuestas": {
+        "A": 54
+      }
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 7.json",
+      "preguntas": 53,
+      "respuestas": {
+        "A": 51,
+        "C": 1,
+        "D": 1
+      }
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 8.json",
+      "preguntas": 54,
+      "respuestas": {
+        "A": 53,
+        "B": 1
+      }
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "preguntas": 60,
+      "respuestas": {
+        "A": 56,
+        "B": 3,
+        "E": 1
+      }
+    },
+    {
+      "archivo": "preguntas paes chile verbal 1.json",
+      "preguntas": 30,
+      "respuestas": {
+        "B": 6,
+        "A": 16,
+        "C": 6,
+        "D": 1,
+        "E": 1
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 11.json",
+      "preguntas": 31,
+      "respuestas": {
+        "A": 23,
+        "B": 3,
+        "C": 3,
+        "D": 2
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 12.json",
+      "preguntas": 31,
+      "respuestas": {
+        "A": 23,
+        "B": 5,
+        "C": 3
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 13.json",
+      "preguntas": 48,
+      "respuestas": {
+        "A": 34,
+        "D": 3,
+        "B": 6,
+        "C": 4,
+        "E": 1
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 14.json",
+      "preguntas": 53,
+      "respuestas": {
+        "A": 40,
+        "C": 5,
+        "B": 6,
+        "E": 1,
+        "D": 1
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 15 .json",
+      "preguntas": 57,
+      "respuestas": {
+        "A": 42,
+        "B": 8,
+        "C": 4,
+        "D": 2,
+        "E": 1
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 16.json",
+      "preguntas": 47,
+      "respuestas": {
+        "A": 36,
+        "D": 1,
+        "C": 1,
+        "B": 9
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 17.json",
+      "preguntas": 45,
+      "respuestas": {
+        "A": 31,
+        "B": 11,
+        "E": 1,
+        "C": 2
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 2.json",
+      "preguntas": 30,
+      "respuestas": {
+        "B": 6,
+        "A": 16,
+        "D": 1,
+        "C": 5,
+        "E": 2
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 3.json",
+      "preguntas": 30,
+      "respuestas": {
+        "A": 17,
+        "B": 5,
+        "C": 4,
+        "E": 3,
+        "D": 1
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 4.json",
+      "preguntas": 30,
+      "respuestas": {
+        "B": 1,
+        "A": 22,
+        "D": 2,
+        "C": 3,
+        "E": 2
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 5.json",
+      "preguntas": 31,
+      "respuestas": {
+        "A": 23,
+        "D": 4,
+        "E": 1,
+        "C": 3
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 6.json",
+      "preguntas": 30,
+      "respuestas": {
+        "B": 3,
+        "A": 19,
+        "D": 1,
+        "C": 5,
+        "E": 2
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 7.json",
+      "preguntas": 33,
+      "respuestas": {
+        "A": 23,
+        "E": 2,
+        "D": 2,
+        "B": 2,
+        "C": 4
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 8.json",
+      "preguntas": 31,
+      "respuestas": {
+        "A": 22,
+        "D": 3,
+        "C": 5,
+        "B": 1
+      }
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 9.json",
+      "preguntas": 31,
+      "respuestas": {
+        "A": 20,
+        "D": 4,
+        "B": 3,
+        "E": 2,
+        "C": 2
+      }
+    },
+    {
+      "archivo": "preguntas PAES verbal Chile 10.json",
+      "preguntas": 32,
+      "respuestas": {
+        "A": 25,
+        "D": 2,
+        "B": 5
+      }
+    }
+  ],
+  "total_preguntas": 1426,
+  "archivos_identicos": [],
+  "problemas_estructura": [
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "pregunta_numero": 4,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "(4x+3)/(2x²+3x)",
+        "(4x+3)/(2x²+3x)",
+        "(2x+3)/(2x²+3x)",
+        "4x/(2x²+3x)",
+        "1/(2x²+3x)"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "pregunta_numero": 15,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "2x cos(x²)",
+        "2x cos(x²)",
+        "cos(x²)",
+        "2x sen(x²)",
+        "x² cos(x²)"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "pregunta_numero": 21,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "2/(1+(2x+1)²)",
+        "2/(1+(2x+1)²)",
+        "1/(1+(2x+1)²)",
+        "2/(1+2x+1)",
+        "2/(4x²+4x+2)"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "pregunta_numero": 22,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "(2/3)(x²+3x)^{3/2} + C",
+        "(2/3)(x²+3x)^{3/2} + C",
+        "(1/3)(x²+3x)^{3/2} + C",
+        "2(x²+3x)^{1/2} + C",
+        "(x²+3x)^{3/2} + C"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "pregunta_numero": 27,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "3^x (1 + x ln 3)",
+        "3^x (1 + x ln 3)",
+        "3^x (ln 3 + x)",
+        "x·3^x ln 3",
+        "3^x (1 + x)"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "pregunta_numero": 28,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "(1/2)e^{2x} - e^{-x} + C",
+        "(1/2)e^{2x} - e^{-x} + C",
+        "2e^{2x} - e^{-x} + C",
+        "e^{2x} - e^{-x} + C",
+        "(1/2)e^{2x} + e^{-x} + C"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "pregunta_numero": 33,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x² - y²",
+        "x² + y²",
+        "x² - y²",
+        "x² + y²",
+        "x⁴ - y⁴"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "pregunta_numero": 36,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "-4 cos(2x) sen(2x)",
+        "-4 cos(2x) sen(2x)",
+        "-2 cos(2x) sen(2x)",
+        "-4 sen(4x)",
+        "-2 sen(4x)"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "pregunta_numero": 44,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "2/(2x+1) + 3e^{3x}",
+        "2/(2x+1) + 3e^{3x}",
+        "1/(2x+1) + e^{3x}",
+        "2/(2x+1) + e^{3x}",
+        "2/(2x+1) + 3e^{3x}"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "pregunta_numero": 45,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x⁴/4 - x² + C",
+        "x⁴/4 - x² + C",
+        "3x⁴ - 2x² + C",
+        "x⁴/4 - x²/2 + C",
+        "x⁴/4 - 2x² + C"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "pregunta_numero": 47,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "[2, 4]",
+        "(-∞, 2] ∪ [4, ∞)",
+        "(2, 4)",
+        "[2, 4]",
+        "[-1, 1]"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "pregunta_numero": 48,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x - 1",
+        "x + 1",
+        "x² - 1",
+        "x² + 1",
+        "x - 1"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "pregunta_numero": 51,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "e^{2x}(2 ln x + 1/x)",
+        "e^{2x}(2 ln x + 1/x)",
+        "2e^{2x} ln x",
+        "e^{2x}(2 ln x + 1)",
+        "e^{2x}(ln x + 1/x)"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "pregunta_numero": 60,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "5/(2√(5x+3))",
+        "5/(2√(5x+3))",
+        "1/(2√(5x+3))",
+        "5/√(5x+3)",
+        "5/(2√(5x+3))"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematica 12.json",
+      "pregunta_numero": 61,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x³/3 - 2x² + 4x + C",
+        "x³/3 - 2x² + 4x + C",
+        "x³/3 - 4x² + 4x + C",
+        "x³/3 - 2x² + C",
+        "x³/3 - 2x² + 4x + C"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES Chile matematica 3.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES Chile matematica 3.json",
+      "pregunta_numero": 2,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "B",
+          "valor_final": "A",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Sea ancho = x, entonces largo = x+4. Paso 2: Área = largo × ancho = x(x+4) = 56. Paso 3: Expandir: x² + 4x = 56 → x² + 4x - 56 = 0. Paso 4: Resolver cuadrática: discriminante = 16 + 224 = 240, raíz no exacta; factorizar: (x+?)(x-?) → mejor usar fórmula general: x = [-4 ± √(16+224)]/2 = [-4 ± √240]/2 ≈ [-4 ± 15.49]/2, solución positiva: (11.49)/2 ≈ 5.745. Ninguna alternativa? Revisamos: El enunciado dice área 56, largo 4 más que ancho. Buscamos enteros: 7×? 7×11=77; 6×10=60; 5×9=45; 8×12=96; 4×8=32. Ninguno da 56. Quizá error en datos. Alternativa más cercana: ancho 7 daría largo 11 → área 77; ancho 8 → largo 12 → 96; ancho 6 → 10 → 60. La respuesta correcta según la ecuación es x= -2+√60 ≈ 5.74, no está en opciones. Revisemos: Supongamos que el área es 60 (error de tipeo) entonces x(x+4)=60 → x²+4x-60=0 → x=6 (positiva). Como 60 no está, pero 56 sí, puede que la intención sea 56 con ancho 7 y largo 8? 7×8=56, diferencia 1, no 4. Replanteo: El enunciado correcto debiera ser largo 2 más que ancho. Para 56: 7 y 8 diferencia 1. Para 6 y 10 diferencia 4 da 60. Por tanto, asumimos error en el problema original. Pero según opciones, la única que satisface área 56 con diferencia 4 sería ancho ≈5.74, no entera. Elijo la que cumple x(x+4)=56 con x=7 → 7×11=77; x=6→60; x=8→96; x=5→45; x=9→117. Ninguna. Entonces probablemente la pregunta espera ancho=7 y largo=11 (área 77) pero no coincide. Mejor modificar para coherencia: Cambiaré la pregunta en el siguiente lote. Por ahora, asumiré que el área es 60 y ancho=6, pero las alternativas tienen 7 como correcta si el área fuese 56 con largo=8? No. Corrijo: Reescribiré la pregunta para que tenga sentido: 'Si el área es 60 m² y el largo es 4 m mayor que el ancho, ¿cuál es el ancho?' Entonces x(x+4)=60 → x²+4x-60=0 → (x+10)(x-6)=0 → x=6. Alternativa correcta 6 m, pero no está. En las opciones, 6 es A. Corregido. Por tanto respuesta correcta A, explicación paso a paso con área 60.",
+          "valor_final": "Paso a paso (con área 60): Sea ancho = x, largo = x+4. Área = x(x+4)=60 → x²+4x-60=0. Factorizamos: (x+10)(x-6)=0 → x = -10 (no válido) o x=6. Por lo tanto el ancho mide 6 m.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES Chile matematica 3.json",
+      "pregunta_numero": 3,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "C",
+          "valor_final": "D",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Escribir ambas potencias con la misma base. 4 = 2², 8 = 2³. Entonces (2²)^{x+1} = (2³)^{x-2}. Paso 2: Aplicar potencia de potencia: 2^{2(x+1)} = 2^{3(x-2)}. Paso 3: Igualar exponentes: 2(x+1) = 3(x-2) → 2x+2 = 3x-6. Paso 4: Despejar: 2+6 = 3x-2x → 8 = x → x=8. Pero la opción C es 7. Revisemos: si x=8, 4^9 = 262144, 8^6 = 262144, correcto. Las alternativas tienen 7? 7 no cumple. Posible error en opciones: la correcta es 8, que es la alternativa D. Por lo tanto respuesta correcta D.",
+          "valor_final": "Paso a paso: 4=2², 8=2³. Entonces (2²)^(x+1) = (2³)^(x-2) → 2^(2x+2) = 2^(3x-6). Igualamos exponentes: 2x+2 = 3x-6 → 2+6 = 3x-2x → x=8.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES Chile matematica 3.json",
+      "pregunta_numero": 14,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "C",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Suma actual = 5+6+7+8+9 = 35. Paso 2: Promedio deseado = (suma total)/6 = 7,5 → suma total = 7,5*6 = 45. Paso 3: Nota sexta = 45 - 35 = 10. (La alternativa correcta sería 10, pero no está entre las opciones. Revisemos: si saca 10, promedio=45/6=7,5. En opciones, 10 es C. Pero el enunciado dice 'cuánto debe sacar' y la respuesta es 10. Por tanto la alternativa correcta es C, no A. Ajusto: respuesta correcta C.",
+          "valor_final": "Paso a paso: Suma parcial=35. Promedio deseado 7,5 con 6 notas → suma total=45. Nota faltante=45-35=10.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES Chile matematica 3.json",
+      "pregunta_numero": 43,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "B",
+          "valor_final": "A",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Velocidad efectiva = velocidad avión + viento = 500+40=540 km/h. Paso 2: Tiempo = distancia/velocidad = 1080/540 = 2 horas. Opción A. Pero dicen 2,16? Revisemos: si fuera viento en contra sería 500-40=460, 1080/460≈2,3478. Si el viento es a favor, es 2 h. Las opciones tienen 2 h? Sí, A es 2 h. Entonces respuesta correcta A. Ajustaré: respuesta A.",
+          "valor_final": "Paso a paso: velocidad resultante = 500+40=540 km/h. t = d/v = 1080/540 = 2 horas.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES Chile matematica 3.json",
+      "pregunta_numero": 44,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "A",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Sea α = arcsen(0.6), entonces senα=0.6, cosα=0.8 (porque 0.6²+0.8²=1). Paso 2: β = arccos(0.8), entonces cosβ=0.8, senβ=0.6. Paso 3: sen(α+β) = senα cosβ + cosα senβ = (0.6)(0.8)+(0.8)(0.6)=0.48+0.48=0.96. No coincide con 1. Revisemos: si α y β son ángulos complementarios? arcsen(0.6)+arccos(0.6)=π/2, pero aquí es arccos(0.8). Notar que arccos(0.8) ≈ 36.87°, arcsen(0.6)≈36.87°, entonces suman ≈73.74°, sen=0.96. Sin embargo, si fuera arcsen(0.6)+arccos(0.6) sería 90°, sen=1. Pero con 0.8, no. Entonces la respuesta correcta no es 1. Calculamos exacto: senα=0.6, cosα=√(1-0.36)=0.8; cosβ=0.8, senβ=0.6. entonces sen(α+β)=0.6*0.8+0.8*0.6=0.96. Opciones: 0,96 no está, pero 1 sí. Tal vez el problema espera que notes que α+β=π/2? Solo si 0.6 y 0.8 son complementarios (arcsen(0.6)+arccos(0.8)=? arccos(0.8)=arcsen(0.6) porque cosβ=0.8 → senβ=0.6, entonces β=arcsen(0.6). Por lo tanto α=β, entonces α+β=2α, no 90°. Por tanto sen(2α)=2*0.6*0.8=0.96. No está. Quizás el enunciado es arcsen(0.6)+arccos(0.6)=π/2 → sen=1. Asumamos que es 0.8 y 0.6 intercambiados. Como las alternativas tienen 1, probablemente esperan 1. Pero por coherencia, corregiré: mejor cambiar la pregunta a arcsen(0.6)+arccos(0.6) para que dé 1. En este lote, dejaremos la respuesta como 0.96, pero no está. Por tanto, modificaré la pregunta: 'sen(arcsen(0.6) + arccos(0.6))' entonces respuesta 1. Opción A.",
+          "valor_final": "Paso 1: arcsen(0.6)+arccos(0.6)=π/2 porque son complementarios. Paso 2: sen(π/2)=1.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematica 5.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematica 5.json",
+      "pregunta_numero": 1,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "B",
+          "valor_final": "B",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Multiplicamos por el mcm (6): 6*(x-3)/2 + 6*(x+1)/3 = 6*4 → 3(x-3) + 2(x+1) = 24. Paso 2: 3x-9+2x+2=24 → 5x -7 = 24 → 5x = 31 → x = 31/5 = 6,2. Pero 6,2 no está en opciones. Revisemos: si el término derecho fuese 5 en lugar de 4, daría x=6. Corrijo el problema para que dé exacto: (x-3)/2 + (x+1)/3 = 5 → mcm6: 3x-9+2x+2=30 → 5x-7=30 → 5x=37 → x=7,4. No. Mejor usar otra ecuación: (x-1)/3 + (x+2)/4 = 3. Multiplicar por 12: 4(x-1)+3(x+2)=36 → 4x-4+3x+6=36 → 7x+2=36 → 7x=34 → x≈4,857. Para evitar decimales, usaré (x+2)/5 + (x-1)/2 = 2. Multiplicar por 10: 2(x+2)+5(x-1)=20 → 2x+4+5x-5=20 → 7x-1=20 → 7x=21 → x=3. Opción no disponible. Asumamos que las alternativas esperan x=5. Entonces construiré una ecuación que dé x=5: (x+1)/3 + (x-2)/4 = 2. MCM12: 4(x+1)+3(x-2)=24 → 4x+4+3x-6=24 → 7x-2=24 → 7x=26 → x≈3.71. No. Mejor usar esta: (x-1)/2 + (x+3)/3 = 5. MCM6: 3(x-1)+2(x+3)=30 → 3x-3+2x+6=30 → 5x+3=30 → 5x=27 → x=5,4. Sigo sin entero. Definamos una ecuación simple: (2x-1)/3 - (x-3)/2 = 1. MCM6: 2(2x-1)-3(x-3)=6 → 4x-2-3x+9=6 → x+7=6 → x=-1. No. Para no complicar, usaré la ecuación original con resultado exacto 6,2 y ajustaré alternativas para incluir 6,2? No, las alternativas son enteras. Entonces cambio la pregunta a: 'Resuelve: (x-2)/4 + (x+1)/3 = 3' → MCM12: 3(x-2)+4(x+1)=36 → 3x-6+4x+4=36 → 7x-2=36 → 7x=38 → x=38/7≈5,428. Tampoco. Mejor usar una ecuación lineal simple sin fracciones: 3x - 5 = 2x + 1 → x=6. Alternativa B. Por tanto, reformulo la pregunta como 'Resuelve 3x - 5 = 2x + 1'.",
+          "valor_final": "Paso a paso: 3x - 5 = 2x + 1 → restar 2x: x - 5 = 1 → sumar 5: x = 6.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematica 5.json",
+      "pregunta_numero": 27,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "B",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: 27=3³, entonces 3^{x+1} = (3³)^{x-2} = 3^{3x-6}. Paso 2: Igualamos exponentes: x+1 = 3x-6 → 1+6 = 3x-x → 7=2x → x=3,5? No es entero. Opciones son enteras. Revisemos: si fuera 3^{x-1}=27^{x-2}, daría x-1=3x-6 → 5=2x → x=2,5. No. Para que dé entero, usaré 3^{x+2}=27^{x-1} → x+2=3x-3 → 5=2x → x=2,5. Sigo sin entero. Mejor cambio: 3^{2x-1}=27^{x+1} → 2x-1=3x+3 → -4=x → x=-4. No. Para obtener x=5: 3^{x-2}=27^{x-7} → x-2=3x-21 → 19=2x → x=9,5. Mejor usar una ecuación simple: 2^{x-1}=8^{x+2} → 2^{x-1}=2^{3x+6} → x-1=3x+6 → -7=2x → x=-3,5. No. Para no complicar, usaré una que dé exacto: 5^{2x-3}=125^{x-2} → 5^{2x-3}=5^{3x-6} → 2x-3=3x-6 → 3=x → x=3. Opción B. Entonces respuesta B.",
+          "valor_final": "Paso a paso: 5^{2x-3} = 125^{x-2}; 125=5³ → 5^{2x-3}=5^{3x-6} → 2x-3=3x-6 → x=3.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematica 5.json",
+      "pregunta_numero": 32,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "(6x+2)/(3x²+2x)",
+        "(6x+2)/(3x²+2x)",
+        "1/(3x²+2x)",
+        "(6x+2)/(3x²+2x)",
+        "(3x²+2x)/(6x+2)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematica 5.json",
+      "pregunta_numero": 43,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "(x-4)/(x+4)",
+        "(x+4)/(x-4)",
+        "(x-4)/(x+4)",
+        "(x+4)/(x-4)",
+        "1"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematica 5.json",
+      "pregunta_numero": 45,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "2 sec(2x) tan(2x)",
+        "sec(2x) tan(2x)",
+        "2 sec(2x) tan(2x)",
+        "2 tan(2x)",
+        "2 sec²(2x)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematica 6.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematica 6.json",
+      "pregunta_numero": 6,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "C",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Antiderivada: ∫3x² dx = x³; ∫-4x dx = -2x²; ∫1 dx = x. Entonces F(x) = x³ - 2x² + x. Paso 2: Evaluar F(2)-F(0) = (8 - 8 + 2) - (0) = 2. La respuesta correcta es 2? Pero 2 es alternativa C. Revisemos: 2 no es 6. Entonces alternativa C. Ajusto: respuesta C.",
+          "valor_final": "Paso a paso: ∫(3x²-4x+1)dx = x³ -2x² + x. Evaluado entre 0 y 2: (8 - 8 + 2) - 0 = 2.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematica 6.json",
+      "pregunta_numero": 8,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "B",
+          "valor_final": "B",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Sumamos la primera y segunda: (x+y+z)+(2x-y+z)=6+3 → 3x+2z=9 (ecuación 4). Paso 2: Sumamos la primera y tercera: (x+y+z)+(x+2y-z)=6+3 → 2x+3y=9 (ecuación 5). Paso 3: De la primera: z=6-x-y. Sustituir en ecuación 4: 3x+2(6-x-y)=9 → 3x+12-2x-2y=9 → x-2y=-3 → x=2y-3. Sustituir en ecuación 5: 2(2y-3)+3y=9 → 4y-6+3y=9 → 7y=15 → y=15/7, no entero. Mejor método: eliminar z: Primera menos segunda: (x+y+z)-(2x-y+z)=6-3 → -x+2y=3 → x=2y-3. Primera menos tercera: (x+y+z)-(x+2y-z)=6-3 → -y+2z=3 → 2z=3+y → z=(3+y)/2. Sustituir en primera: (2y-3)+y+(3+y)/2=6 → Multiplicar por 2: 4y-6+2y+3+y=12 → 7y-3=12 → 7y=15 → y=15/7, x=30/7-3=30/7-21/7=9/7, no entero. Parece que las opciones son enteras, quizás el sistema tiene solución entera si modificamos coeficientes. Asumiremos un sistema con solución entera típico: x+y+z=6, x-y+z=2, x+y-z=0 → resolver: sumando primera y segunda: 2x+2z=8 → x+z=4; primera menos tercera: 2z=6 → z=3, entonces x=1, y=2. Así x=1. Corrijo la pregunta internamente para que dé x=1. Pero para no confundir, usaré otro sistema: x+y=5, x+z=6, y+z=7 → sumando todo: 2(x+y+z)=18 → x+y+z=9, entonces x= (x+y+z)-(y+z)=9-7=2. Así x=2. Opción B. Explicación paso a paso con ese sistema.",
+          "valor_final": "Paso a paso (sistema: x+y=5, x+z=6, y+z=7): Sumamos las tres ecuaciones: 2(x+y+z)=18 → x+y+z=9. Luego x = (x+y+z) - (y+z) = 9-7=2.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematica 6.json",
+      "pregunta_numero": 19,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "B",
+          "valor_final": "B",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Simplificar el integrando: (x²+2x)/x = x + 2. Paso 2: ∫ (x+2) dx = x²/2 + 2x + C. Pero eso no es B. B dice x²/2+2 ln|x|+C. Revisemos: si fuera (x²+2)/x = x + 2/x, entonces integral = x²/2+2 ln|x|+C. El enunciado dice (x²+2x)/x = x+2, integral = x²/2+2x+C, que no está en opciones. Corrijo la pregunta a (x²+2)/x. Así tendrá sentido. Entonces nueva pregunta: ∫ (x²+2)/x dx. Paso a paso: = ∫ (x + 2/x) dx = x²/2 + 2 ln|x| + C. Alternativa B.",
+          "valor_final": "Paso 1: Escribir (x²+2)/x = x + 2/x. Paso 2: Integrar término a término: ∫ x dx = x²/2; ∫ 2/x dx = 2 ln|x|. Paso 3: Sumar constante C.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematica 6.json",
+      "pregunta_numero": 24,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "1/(2√x (1+x))",
+        "1/(2√x (1+x))",
+        "1/(2√x (1+x))",
+        "1/(1+x)",
+        "√x/(1+x)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematica 6.json",
+      "pregunta_numero": 46,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "4-10-6=-12",
+        "4-10+6=0",
+        "4+10-6=8",
+        "4-10-6=-12",
+        "4+10+6=20"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 10.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 10.json",
+      "pregunta_numero": 1,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "A",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Distribuir: 8x -12 +5 = 9x +6 -8 → 8x -7 = 9x -2. Paso 2: Restar 8x: -7 = x -2. Paso 3: Sumar 2: -5 = x. El resultado es x = -5, pero no está en opciones. Reviso: quizás error en el planteamiento. Corrijo la ecuación para que dé entero positivo: 4(2x-3)+5=3(3x+2)-1 → 8x-12+5=9x+6-1 → 8x-7=9x+5 → -12=x. No. Mejor usar 4(2x-3)+5=3(3x+2)-10 → 8x-7=9x+6-10 → 8x-7=9x-4 → -7+4=9x-8x → -3=x. Sigue negativo. Para obtener x=7, planteo: 4(2x-3)+5=3(3x+2)-8? Ya lo hicimos y dio -5. Cambio: 4(2x-3)+5=3(3x-2)-10 → 8x-12+5=9x-6-10 → 8x-7=9x-16 → 9=x. No. Asumiré que la ecuación original estaba mal escrita y la respuesta esperada es 7. Para cumplir, usaré: 5(2x-1)=3(3x+2) → 10x-5=9x+6 → x=11. Opción D. En fin, ajustaré la pregunta a una que dé x=7: 3(2x+1)=5(x+2) → 6x+3=5x+10 → x=7. Entonces la pregunta correcta es esa.",
+          "valor_final": "Paso a paso: 3(2x+1)=5(x+2) → 6x+3=5x+10 → 6x-5x=10-3 → x=7.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 10.json",
+      "pregunta_numero": 8,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "2x/(x²+1)",
+        "2x/(x²+1)",
+        "1/(x²+1)",
+        "2x",
+        "2/(x²+1)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 10.json",
+      "pregunta_numero": 12,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x⁴/(3y)",
+        "3x⁴/y",
+        "x⁴/(3y)",
+        "3x⁴y",
+        "x⁴y/3"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 10.json",
+      "pregunta_numero": 14,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "A",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: 9=3², entonces 3^{2x-1} = (3²)^{x+2}=3^{2x+4}. Igualar exponentes: 2x-1 = 2x+4 → -1=4, imposible. No tiene solución. Pero las alternativas tienen números. Reviso: si fuera 3^{2x-1}=9^{x-2} → 2x-1=2x-4 → -1=-4, también imposible. Para que tenga solución, cambio a 3^{2x-1}=27^{x+2} → 3^{2x-1}=3^{3x+6} → 2x-1=3x+6 → -7=x. No está. Mejor usar 3^{x+2}=9^{2x-1} → 3^{x+2}=3^{4x-2} → x+2=4x-2 → 4=3x → x=4/3. Tampoco entero. Para dar x=-5, planteo 3^{x+3}=9^{x-1} → 3^{x+3}=3^{2x-2} → x+3=2x-2 → 5=x. No. Entonces asumiré que la ecuación correcta es 3^{x-1}=9^{x+2} → 3^{x-1}=3^{2x+4} → x-1=2x+4 → -5=x. Respuesta A.",
+          "valor_final": "Paso a paso: 3^{x-1} = 9^{x+2} → 3^{x-1} = (3²)^{x+2}=3^{2x+4} → x-1=2x+4 → x=-5.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 10.json",
+      "pregunta_numero": 18,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "3 sec(3x) tan(3x)",
+        "3 sec(3x) tan(3x)",
+        "sec(3x) tan(3x)",
+        "3 tan²(3x)",
+        "3 sec²(3x)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 10.json",
+      "pregunta_numero": 27,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "e^{x²}(2x ln x + 1/x)",
+        "e^{x²}(2x ln x + 1/x)",
+        "e^{x²}(2x ln x)",
+        "2x e^{x²} ln x",
+        "e^{x²}/x"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 10.json",
+      "pregunta_numero": 28,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "(x+1)³/3 + C",
+        "(x+1)³/3 + C",
+        "3(x+1)³ + C",
+        "(x+1)³ + C",
+        "(x²+2x+1) dx"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 10.json",
+      "pregunta_numero": 32,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "225°",
+        "135°",
+        "315°",
+        "45°",
+        "225°"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 10.json",
+      "pregunta_numero": 33,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "2x/√(1-x⁴)",
+        "2x/√(1-x⁴)",
+        "1/√(1-x⁴)",
+        "2x/√(1-x²)",
+        "2x/√(1-x⁴)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 10.json",
+      "pregunta_numero": 44,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "- (2x-3) sen(x²-3x)",
+        "- (2x-3) sen(x²-3x)",
+        "2x sen(x²-3x)",
+        "(2x-3) sen(x²-3x)",
+        "-2x sen(x²-3x)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 10.json",
+      "pregunta_numero": 45,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "(1/2) ln(x²+4) + C",
+        "(1/2) ln(x²+4) + C",
+        "ln(x²+4) + C",
+        "arctan(x/2) + C",
+        "1/2 arctan(x/2) + C"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 10.json",
+      "pregunta_numero": 52,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "-tan x",
+        "-tan x",
+        "cot x",
+        "-cot x",
+        "tan x"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 1,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "E",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Distribuir: 6x - 2 - 5 = 6x + 3 - 7 → 6x - 7 = 6x - 4. Paso 2: Restar 6x: -7 = -4, falso. Por lo tanto no tiene solución. Opción E.",
+          "valor_final": "Paso a paso: 6x-7=6x-4 → -7=-4, contradicción. No existe solución.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 5,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "4 ln|x| + C",
+        "4 ln|x| + C",
+        "ln|x⁴| + C",
+        "4/x² + C",
+        "4 ln x + C"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 9,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x²y",
+        "x²y",
+        "xy²",
+        "x⁶y³",
+        "x²/y"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 15,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "C",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: cos(π/2 - x) = sen x (identidad). Derivada = cos x. Pero en las alternativas no está cos x? Reviso: cos(π/2 - x) = sen x, derivada = cos x. Entre las opciones, no aparece cos x. Hay sen x, -sen x, cos x? Sí, cos x está como C. Entonces respuesta C.",
+          "valor_final": "Paso a paso: cos(π/2 - x) = sen x, entonces f'(x) = cos x.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 17,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "9/64",
+        "25/64",
+        "15/64",
+        "9/64",
+        "3/8"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 21,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "1/(2√x (1+x))",
+        "1/(2√x (1+x))",
+        "1/(1+x)",
+        "1/(2√x (1-x))",
+        "1/(2√x)"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 27,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "2^x (1 + x ln 2)",
+        "2^x (1 + x ln 2)",
+        "2^x (ln 2 + x)",
+        "x·2^x ln 2",
+        "2^x (1 + x)"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 28,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "(1/2) ln|x²+2x| + C",
+        "(1/2) ln|x²+2x| + C",
+        "ln|x²+2x| + C",
+        "2 ln|x²+2x| + C",
+        "1/(x²+2x) + C"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 32,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "A",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Velocidad inicial = 240/3 = 80 km/h. Nueva velocidad = 90 km/h. Tiempo = 240/90 = 2,666... ≈ 2,67 h. La opción más cercana es 2,4? No. Calculemos exacto: 240/90 = 8/3 = 2,6667 h = 2h 40 min. Opción A dice 2,4 h = 2h24min, no es. Opción B 2,5 h = 2h30min. La correcta sería 2,6667, no está. Corrijo: si aumenta en 20 km/h, nueva velocidad 100 km/h → tiempo 2,4 h. Por tanto asumiré que el aumento es 20 km/h. Ajusto la pregunta: 'aumenta su velocidad en 20 km/h' → respuesta 2,4 h.",
+          "valor_final": "Paso a paso: Velocidad inicial 80 km/h, con aumento de 20 km/h → 100 km/h. Tiempo = 240/100 = 2,4 h.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 35,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x/√(x²+4)",
+        "x/√(x²+4)",
+        "2x/√(x²+4)",
+        "1/(2√(x²+4))",
+        "2x"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 43,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "e^{sen x} cos x",
+        "e^{sen x} cos x",
+        "e^{sen x}",
+        "e^{sen x} sen x",
+        "e^{cos x} cos x"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 45,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "B",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Impares: 1,3,5 (3). Primos: 2,3,5 (3). Intersección: 3,5 (2). Unión: 3+3-2=4. Probabilidad = 4/6=2/3. Opción B. En las alternativas, 2/3 está como B. Respuesta B.",
+          "valor_final": "Paso a paso: Impares ∪ Primos = {1,2,3,5} (4 elementos) de 6 → 4/6=2/3.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 46,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "-3 < x < 1",
+        "-3 < x < 1",
+        "x < -3 o x > 1",
+        "-1 < x < 3",
+        "x < -1"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 50,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "4x/(2x²+1)",
+        "4x/(2x²+1)",
+        "2x/(2x²+1)",
+        "1/(2x²+1)",
+        "4x"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 51,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "(3x+2)⁴/12 + C",
+        "(3x+2)⁴/12 + C",
+        "(3x+2)⁴/3 + C",
+        "(3x+2)⁴/4 + C",
+        "3(3x+2)⁴/4 + C"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 55,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "√(12²+8²)=√208",
+        "√(12²+8²)=√208",
+        "√(20²+8²)=√464",
+        "√(10²+8²)=√164",
+        "√(14²+8²)=√260"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 59,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "2x ln x + x",
+        "2x ln x + x",
+        "2x ln x",
+        "x(2 ln x + 1)",
+        "x²/x"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 11.json",
+      "pregunta_numero": 60,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x³/3 + x² - x + C",
+        "x³/3 + x² - x + C",
+        "x³/3 + x² + C",
+        "x³/3 + 2x² - x + C",
+        "x³/3 + x² - 1 + C"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 5,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "-3/x + C",
+        "-3/x + C",
+        "3/x + C",
+        "-3x⁻¹ + C",
+        "3 ln|x| + C"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 9,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x²y²",
+        "x²y²",
+        "x⁶y⁵",
+        "x⁸y⁴",
+        "xy"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 15,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "B",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: cos(π - x) = -cos x (identidad). Derivada = -(-sen x) = sen x. Pero también directamente: derivada de cos(π-x) = -(-1) sen(π-x)= sen(π-x)= sen x. Opción A dice -sen x? Reviso: cos(π-x) = -cos x, derivada = sen x. La opción con sen x es B. Entonces respuesta B.",
+          "valor_final": "Paso a paso: cos(π-x) = -cos x, f'(x)= -(-sen x)= sen x. También por regla de la cadena: u=π-x, u'=-1, f' = -sen(π-x)·(-1)= sen(π-x)= sen x.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 17,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "4/25",
+        "6/25",
+        "2/5",
+        "16/100",
+        "2/5"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 21,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "3/√(1-9x²)",
+        "3/√(1-9x²)",
+        "1/√(1-9x²)",
+        "3/√(1-3x²)",
+        "3/√(1-9x²)"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 22,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "(1/2) ln|x²+2x| + C",
+        "ln|x²+2x| + C",
+        "(1/2) ln|x²+2x| + C",
+        "2 ln|x²+2x| + C",
+        "1/(x²+2x) + C"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 29,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "C",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Velocidad inicial = 300/4 = 75 km/h. Nueva velocidad = 60 km/h. Tiempo = 300/60 = 5 h. Opción 5 h es C. Pero 5 h = 300 min. En alternativas, 5 h está como C. Respuesta C.",
+          "valor_final": "Paso a paso: velocidad inicial 75 km/h, nueva 60 km/h, tiempo=300/60=5 horas.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 30,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "a²b³",
+        "a²b³",
+        "ab³",
+        "a²b⁴",
+        "a³b²"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 32,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "2 sec²(2x) - 2 csc²(2x)",
+        "2 sec²(2x) - 2 csc²(2x)",
+        "2 sec²(2x) + 2 csc²(2x)",
+        "2 sec²(2x) - 2 csc²(2x)",
+        "2 sec²(2x) + 2 csc²(2x)"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 36,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "xe^{x}(x+2)",
+        "xe^{x}(x+2)",
+        "2xe^{x}",
+        "x²e^{x}(1+2x)",
+        "e^{x}(x²+2x)"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 43,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "A",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Perímetro = 2(largo+6)=32 → largo+6=16 → largo=10. Diagonal = √(10²+6²)=√136=2√34≈11,66. Ninguna opción? Reviso: √136 no da 10. Si largo=10, ancho=6, diagonal=√136≈11,66, no está. Si perímetro 32 y ancho 6, largo=10, diagonal≈11,66. Si fuera ancho=6 y diagonal=10, entonces largo=√(100-36)=8, perímetro=2(8+6)=28. No coincide. Corrijo: Para que diagonal sea 10, con ancho 6, largo=8, perímetro=28. Entonces probablemente el perímetro es 28. Pero en el problema dice 32. Asumiré que el perímetro es 28 y la respuesta 10. Por tanto, ajusto: 'perímetro 28 cm' -> respuesta 10 cm.",
+          "valor_final": "Paso a paso: Perímetro=28 → 2(largo+6)=28 → largo+6=14 → largo=8. Diagonal = √(8²+6²)=√100=10 cm.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 47,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x - 1",
+        "x + 1",
+        "x - 1",
+        "x + 1",
+        "1"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 49,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "π/4, 3π/4",
+        "π/4, 5π/4",
+        "π/4, 7π/4",
+        "3π/4, 5π/4",
+        "π/4, 3π/4"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 50,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "2x/(x²+4)",
+        "2x/(x²+4)",
+        "1/(x²+4)",
+        "2x/(x²+4)",
+        "2x/(x²+4)"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 51,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "ln|x+1| + C",
+        "ln|x+1| + C",
+        "1/(x+1) + C",
+        "ln|x²+2x+1| + C",
+        "arctan(x+1) + C"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 59,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x/√(x²+1)",
+        "x/√(x²+1)",
+        "2x/√(x²+1)",
+        "1/(2√(x²+1))",
+        "2x"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile matematicas 13.json",
+      "pregunta_numero": 62,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x < 2 o x > 6",
+        "2 < x < 6",
+        "x < 2 o x > 6",
+        "x ≤ 2 o x ≥ 6",
+        "x > 6"
+      ]
+    },
+    {
+      "archivo": "Preguntas PAES Chile matematicas 2.json",
+      "pregunta_numero": 8,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "153,86 cm²",
+        "43,96 cm²",
+        "21,98 cm²",
+        "49 cm²",
+        "153,86 cm²"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 4.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 4.json",
+      "pregunta_numero": 3,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x²(3 ln x + 1)",
+        "x²(3 ln x + 1)",
+        "3x² ln x",
+        "x²(ln x + 3)",
+        "x²(3 ln x - 1)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 4.json",
+      "pregunta_numero": 12,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "A",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: De x-y=3 → x = y+3. Sustituir: (y+3)² + y² = 25 → y²+6y+9+y²=25 → 2y²+6y-16=0 → y²+3y-8=0 → y = [-3 ± √(9+32)]/2 = (-3 ± √41)/2. No da enteros. Parece que las opciones son enteras, pero el discriminante no es cuadrado perfecto. Cambio el problema a x²+y²=29 para que dé enteros. Entonces: y²+6y+9+y²=29 → 2y²+6y-20=0 → y²+3y-10=0 → (y+5)(y-2)=0 → y=2 o y=-5. Luego x=5 o x=-2. Soluciones (5,2) y (-2,-5).",
+          "valor_final": "Paso a paso con x²+y²=29: x=y+3 → (y+3)²+y²=29 → 2y²+6y+9=29 → 2y²+6y-20=0 → y²+3y-10=0 → y=2 o y=-5 → soluciones (5,2) y (-2,-5).",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 4.json",
+      "pregunta_numero": 20,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "3 ln|x| + C",
+        "3 ln|x| + C",
+        "ln|x³| + C",
+        "3 ln x + C",
+        "3/x² + C"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 4.json",
+      "pregunta_numero": 34,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "A",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Antiderivada: x³/3 + (3/2)x² + 2x. Paso 2: Evaluar en 2: (8/3)+(3/2·4)+4 = 8/3+6+4 = 8/3+10 = (8+30)/3=38/3. En 0:0. Resultado 38/3 ≈12,666. No coincide con 26/3. Revisemos: si el integrando fuera x²+3x+1, daría 8/3+6+2=8/3+8=32/3≈10,666. Para que dé 26/3, debe ser x²+3x+? calculamos: 2³/3=8/3; 3·2²/2=3·4/2=6; 2·C. Suma 8/3+6+2C = 26/3 → 8/3+18/3+2C=26/3 → 26/3+2C=26/3 → 2C=0 → C=0. Entonces el término lineal es 3x, constante 0. Corrijo la pregunta a ∫₀² (x²+3x) dx = (8/3+6)=8/3+18/3=26/3. Alternativa A.",
+          "valor_final": "Paso a paso: ∫(x²+3x)dx = x³/3 + (3/2)x². Evaluar de 0 a 2: (8/3) + (3/2·4)=8/3+6=8/3+18/3=26/3.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 4.json",
+      "pregunta_numero": 43,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "0, π/3, 5π/3",
+        "0, π/3, 5π/3",
+        "π/6, π/3, 5π/3",
+        "π/3, 5π/3",
+        "0, 2π/3, 4π/3"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 4.json",
+      "pregunta_numero": 46,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "3/(1+9x²)",
+        "1/(1+9x²)",
+        "3/(1+3x²)",
+        "3/(1+9x²)",
+        "1/(1+3x²)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 7.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 7.json",
+      "pregunta_numero": 9,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "(1/2) sen 2x + C",
+        "2 sen 2x + C",
+        "sen 2x + C",
+        "(1/2) sen 2x + C",
+        "-1/2 cos 2x + C"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 7.json",
+      "pregunta_numero": 18,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "C",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Resolver sistema: de la segunda, y=2-3x. Sustituir en primera: 5x -2(2-3x)=7 → 5x-4+6x=7 → 11x=11 → x=1, y=2-3=-1. Paso 2: 2x - y = 2(1) - (-1)=2+1=3. La alternativa correcta es 3. Opción C. Ajusto respuesta: C.",
+          "valor_final": "Paso a paso: x=1, y=-1, luego 2(1)-(-1)=2+1=3.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 7.json",
+      "pregunta_numero": 19,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "-x/√(1-x²)",
+        "x/√(1-x²)",
+        "-x/√(1-x²)",
+        "-2x/√(1-x²)",
+        "1/(2√(1-x²))"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 7.json",
+      "pregunta_numero": 23,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "-1 < x < 5",
+        "x < -1 o x > 5",
+        "x < -1 o x > 5",
+        "-5 < x < 1",
+        "x ≤ -1 o x ≥ 5"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 7.json",
+      "pregunta_numero": 26,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "-2 csc²(2x)",
+        "2 csc²(2x)",
+        "-2 csc²(2x)",
+        "2 sec²(2x)",
+        "-2 sec²(2x)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 7.json",
+      "pregunta_numero": 34,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "(x-2)/(x+2)",
+        "(x+2)/(x-2)",
+        "(x-2)/(x+2)",
+        "(x-2)²/(x-2)(x+2)",
+        "1"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 7.json",
+      "pregunta_numero": 36,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "e^x/(1+e^x)",
+        "1/(1+e^x)",
+        "e^x/(1+e^x)",
+        "1/(e^x+1)",
+        "e^x/(1+e^x)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 7.json",
+      "pregunta_numero": 38,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "D",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Para cualquier primera carta, quedan 12 cartas del mismo palo de 51 restantes. P = 12/51 = 4/17 ≈ 0,2353. La alternativa 12/51 simplificada es 4/17. En las opciones, 4/17 está como D. Por tanto respuesta D.",
+          "valor_final": "Paso a paso: La primera carta puede ser cualquier palo. La segunda debe ser del mismo palo: quedan 12 del mismo palo de 51. Probabilidad = 12/51 = 4/17.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 8.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 8.json",
+      "pregunta_numero": 5,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x²/2 + ln|x| + C",
+        "x²/2 + ln|x| + C",
+        "x²/2 + x + C",
+        "x³/3 + x + C",
+        "x + 1/x + C"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 8.json",
+      "pregunta_numero": 12,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "2/(2x+1)",
+        "1/(2x+1)",
+        "2x/(2x+1)",
+        "2/(2x+1)",
+        "1/(2x+1)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 8.json",
+      "pregunta_numero": 16,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "B",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: cos²α = 1 - sen²α = 1 - 0,36 = 0,64 → cosα = ±0,8. cos(2α) = cos²α - sen²α = 0,64 - 0,36 = 0,28. También puede ser -0,28 si usamos signos? La fórmula directa da 0,28 independiente del signo de cosα porque está al cuadrado. Sin embargo, cos(2α) = 1 - 2 sen²α = 1 - 0,72 = 0,28. Por lo tanto 0,28. Opción B. Ajusto respuesta: B.",
+          "valor_final": "Paso a paso: cos(2α) = 1 - 2 sen²α = 1 - 2(0,36)=1-0,72=0,28.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 8.json",
+      "pregunta_numero": 21,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "6 sen(3x) cos(3x)",
+        "2 sen(3x) cos(3x)",
+        "6 sen(3x) cos(3x)",
+        "3 sen(6x)",
+        "6 cos(3x)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 8.json",
+      "pregunta_numero": 22,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "(1/2)e^{2x} - (1/2)e^{-2x} + C",
+        "(1/2)e^{2x} + (1/2)e^{-2x} + C",
+        "2e^{2x} - 2e^{-2x} + C",
+        "e^{2x} - e^{-2x} + C",
+        "(1/2)e^{2x} - (1/2)e^{-2x} + C"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 8.json",
+      "pregunta_numero": 24,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x=1, y=2",
+        "x=2, y=1,5",
+        "x=1, y=2",
+        "x=2, y=1",
+        "x=0, y=2,5"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 8.json",
+      "pregunta_numero": 31,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "-sen(ln x)/x",
+        "sen(ln x)/x",
+        "-sen(ln x)",
+        "sen(ln x)/x",
+        "-sen(ln x)/x²"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 8.json",
+      "pregunta_numero": 34,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "-1 ≤ x ≤ 2",
+        "x ≤ -1 o x ≥ 2",
+        "-1 ≤ x ≤ 2",
+        "-2 ≤ x ≤ 1",
+        "x ≤ 1"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 8.json",
+      "pregunta_numero": 35,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x⁰y⁷",
+        "x⁰y⁷",
+        "x⁰y⁷",
+        "x²y²",
+        "x⁴y²"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 8.json",
+      "pregunta_numero": 41,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "ln(2x) + 1",
+        "ln(2x) + 1",
+        "ln(2x) + 1/2",
+        "ln(2x) + 1",
+        "2x"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 8.json",
+      "pregunta_numero": 52,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "3x²/(1+x⁶)",
+        "3x²/(1+x⁶)",
+        "x²/(1+x⁶)",
+        "3x²/(1+x⁹)",
+        "1/(1+x⁶)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 8.json",
+      "pregunta_numero": 53,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x²/2 - ln|x| + C",
+        "x²/2 + ln|x| + C",
+        "x²/2 - x + C",
+        "x² - ln|x| + C",
+        "x²/2 - ln|x| + C"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 4,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "10(2x+1)⁴",
+        "5(2x+1)⁴",
+        "10(2x+1)⁴",
+        "5(2x+1)⁴·2",
+        "2(2x+1)⁴"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 5,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x⁴ - 3x² + C",
+        "x⁴ - 3x² + C",
+        "4x⁴ - 6x² + C",
+        "x⁴ - 6x² + C",
+        "4x³ - 3x² + C"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 22,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "2e^{2x}/(1+e^{2x})",
+        "e^{2x}/(1+e^{2x})",
+        "2/(1+e^{2x})",
+        "2e^{2x}/(1+e^{2x})",
+        "1/(1+e^{2x})"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 23,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "(1/2) e^{x²} + C",
+        "2 e^{x²} + C",
+        "e^{x²} + C",
+        "x² e^{x²}/2 + C",
+        "(1/2) e^{x²} + C"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 24,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "[-3, 3]",
+        "(-∞, -3] ∪ [3, ∞)",
+        "(-3, 3)",
+        "(-∞, 3]",
+        "[-3, 3]"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 28,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "4 sen(2x) cos(2x)",
+        "2 sen(2x) cos(2x)",
+        "4 sen(2x) cos(2x)",
+        "2 cos(4x)",
+        "4 cos(2x)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 30,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "B",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Primos en 1-10: 2,3,5,7 (4). Impares: 1,3,5,7,9 (5). Intersección: primos impares: 3,5,7 (3). Unión: 4+5-3=6. Probabilidad=6/10=3/5. Opción B? 3/5 = 0,6. En alternativas, 3/5 está como B. La respuesta es B.",
+          "valor_final": "Paso a paso: Primos:2,3,5,7 (4); Impares:1,3,5,7,9 (5); comunes:3,5,7 (3); total favorables=4+5-3=6; probabilidad=6/10=3/5.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 33,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "√(x+1) + x/(2√(x+1))",
+        "√(x+1) + x/(2√(x+1))",
+        "(3x+2)/(2√(x+1))",
+        "(3x+2)/(2√(x+1))",
+        "√(x+1) + (x+1)/(2√(x+1))"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 35,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "B",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: 32=2⁵, entonces 2^{x+2} = (2⁵)^{x-1}=2^{5x-5}. Igualar exponentes: x+2 = 5x-5 → 2+5 = 5x-x → 7=4x → x=7/4=1,75. No está entero. Corrijo: 2^{x+2}=2^{5x-5} → x+2=5x-5 → 7=4x → x=1,75. Las alternativas son enteras. Cambio el 32 por 8 para que dé entero: 2^{x+2}=8^{x-1} → 2^{x+2}=2^{3x-3} → x+2=3x-3 → 5=2x → x=2,5. Sigue sin entero. Mejor usar 2^{x+1}=16^{x-2} → 2^{x+1}=2^{4x-8} → x+1=4x-8 → 9=3x → x=3. Opción B. Entonces respuesta B.",
+          "valor_final": "Paso a paso con ecuación corregida: 2^{x+1} = 16^{x-2} → 2^{x+1} = (2⁴)^{x-2}=2^{4x-8} → x+1=4x-8 → 9=3x → x=3.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 36,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "B",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: Sea ancho x, largo x+4. Área: x(x+4)=48 → x²+4x-48=0 → (x+12)(x-8)=0? 12·-4? Factor: (x+8)(x-6)=0 → x=6 (positivo). Ancho 6, largo 10. Perímetro=2(6+10)=32 cm. Opción B. Ajusto: respuesta B.",
+          "valor_final": "Paso a paso: x(x+4)=48 → x²+4x-48=0 → Discriminante 16+192=208 → √208≈14,42, solución positiva ( -4+14,42)/2=5,21, no da entero. Para que dé entero, el área debe ser 60: x²+4x-60=0 → (x+10)(x-6)=0 → x=6, largo=10, perímetro=32. Con área 48, las dimensiones no son enteras, pero la ecuación da x= (-4+√(16+192))/2 = (-4+√208)/2 ≈5,21, largo≈9,21, perímetro≈28,84, no 28. Corrijo área a 60 para que dé perímetro 32. En las opciones, 32 está. Usaré área 60.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 39,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "-2/√(1-4x²)",
+        "2/√(1-4x²)",
+        "-1/√(1-4x²)",
+        "-2/√(1-4x²)",
+        "2/√(4x²-1)"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 43,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "E",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Paso 1: f(2)=4-6=-2. f'(x)=2x-3, f'(2)=4-3=1. Recta: y+2=1(x-2) → y = x-4. Opción no está? y=x-4 es la E? E dice y=x-4? Sí, E. Entonces respuesta E.",
+          "valor_final": "Paso a paso: f(2)= -2, pendiente 1, ecuación y = x - 4.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 46,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "6 tan²(2x) sec²(2x)",
+        "3 tan²(2x) sec²(2x)",
+        "6 tan²(2x) sec²(2x)",
+        "2 tan²(2x) sec²(2x)",
+        "3 tan²(2x) sec²(2x)·2"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 52,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "x³ + y³",
+        "x³ - y³",
+        "(x²+y²)(x⁴+x²y²+y⁴)/(x³-y³)",
+        "x³ + y³",
+        "x³ + y³"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 53,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "6x(x²+1)²",
+        "3x(x²+1)²",
+        "6x(x²+1)²",
+        "2x(x²+1)²",
+        "3(x²+1)²"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 54,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "ln|x²+x| + C",
+        "2 ln|x²+x| + C",
+        "ln|x²+x| + C",
+        "1/2 ln|x²+x| + C",
+        "ln|2x+1| + C"
+      ]
+    },
+    {
+      "archivo": "preguntas paes chile matematicas 9.json",
+      "pregunta_numero": 59,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "(sen x cos x)/√(1+sen² x)",
+        "(2 sen x cos x)/√(1+sen² x)",
+        "(cos x)/√(1+sen² x)",
+        "(sen x cos x)/√(1+sen² x)",
+        "(sen x cos x)/√(1+sen² x)"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 11.json",
+      "pregunta_numero": 6,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "Vaso",
+        "Beso",
+        "Vaso",
+        "Beso",
+        "Vaso"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 12.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 12.json",
+      "pregunta_numero": 6,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "Ceniza",
+        "Seniza",
+        "Cenisa",
+        "Senisa",
+        "Ceniza"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 12.json",
+      "pregunta_numero": 13,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "C",
+          "valor_final": "C",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Después de 'tal vez' (duda) se puede usar indicativo o subjuntivo, pero es más formal el subjuntivo. 'Tal vez viene' es aceptable en algunos contextos, pero no es un error grave. Sin embargo, entre las opciones, la C puede ser la menos recomendable. En B y E están correctos. Busquemos otro: 'No creo que sea cierto' correcto. 'Espero que vengas' correcto. 'Quiero que te calles' correcto. La única con posibilidad de error es C porque muchos gramáticos recomiendan 'tal vez venga'. Elegimos C como la incorrecta según la norma más estricta.",
+          "valor_final": "Aunque 'tal vez' admite indicativo, la forma más académica es con subjuntivo ('tal vez venga'). En la opción C, 'viene' está en indicativo, lo cual es menos recomendable y puede considerarse incorrecto en un examen formal. Las otras opciones usan correctamente el subjuntivo donde corresponde.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 13.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 13.json",
+      "pregunta_numero": 29,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "A",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "En 'ciudad', la secuencia 'iu' es diptongo creciente: la 'i' es cerrada átona y la 'u' es cerrada? 'iu' tiene dos cerradas, pero se considera diptongo. Sin embargo, 'ciudad' no tiene tilde. 'Reír' tiene hiato (re-ír), 'país' hiato, 'día' hiato. 'Causa' es diptongo decreciente (au). La opción A es la que presenta un diptongo sin tilde, pero no necesariamente creciente. Definamos: diptongo creciente: vocal cerrada átona + vocal abierta tónica (ia, ie, io, ua, ue, uo). 'Ciudad' tiene 'iu' (ambas cerradas) es homogéneo. Entonces ninguna opción parece claramente creciente. Cambiaré la opción A por 'Pierna' (ie) que es creciente. Pero en la lista no está. Mantendré 'Ciudad' como la mejor opción, aclarando que 'iu' es diptongo homogéneo.",
+          "valor_final": "En 'ciudad', 'iu' forma un diptongo (ambas cerradas) y no lleva tilde. Las otras opciones tienen hiatos con tilde ('reír', 'país', 'día') o diptongo decreciente ('causa'). Se considera diptongo creciente cuando la vocal cerrada es átona y la abierta tónica, aunque 'iu' no es el mejor ejemplo, se acepta como diptongo.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 13.json",
+      "pregunta_numero": 36,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "E",
+          "valor_final": "D",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'También yo fui' es aceptable pero menos frecuente; lo correcto es 'Yo también fui'. No es un error grave. Sin embargo, la opción D 'No me gusta el frío, tampoco el calor' debería ser 'ni el calor' o 'tampoco me gusta el calor'. D es incorrecta porque 'tampoco' requiere verbo. Entonces D es el error. Elegiré D.",
+          "valor_final": "En 'No me gusta el frío, tampoco el calor', falta el verbo. Debería ser 'tampoco me gusta el calor' o 'ni el calor'. Es un error de construcción. Las otras opciones usan 'también' y 'tampoco' correctamente.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 13.json",
+      "pregunta_numero": 48,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "Baso",
+        "Vaso",
+        "Bazo",
+        "Vazo",
+        "Baso"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 15 .json",
+      "pregunta_numero": 21,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "Botar",
+        "Votar",
+        "Botar",
+        "Votar",
+        "Votar"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 16.json",
+      "pregunta_numero": 10,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "Juan, el médico, me atendió.",
+        "Juan el médico me atendió.",
+        "Juan, el médico me atendió.",
+        "Juan el médico, me atendió.",
+        "Juan, el médico me atendió."
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 17.json",
+      "pregunta_numero": 3,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "Callate",
+        "Cállate",
+        "Cal late",
+        "Calla te",
+        "Cállate"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 17.json",
+      "pregunta_numero": 6,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "Habil",
+        "Hábil",
+        "Ha bil",
+        "Habíl",
+        "Hábil"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 17.json",
+      "pregunta_numero": 14,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "Tambien",
+        "También",
+        "Tambíen",
+        "Tambiém",
+        "También"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 17.json",
+      "pregunta_numero": 25,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "Cortes",
+        "Cortés",
+        "Cortéz",
+        "Cortez",
+        "Cortes"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 17.json",
+      "pregunta_numero": 29,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "Facil",
+        "Fácil",
+        "Facíl",
+        "Fácil",
+        "Fàcil"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 17.json",
+      "pregunta_numero": 33,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "Cantaro",
+        "Cántaro",
+        "Cantaró",
+        "Cantáro",
+        "Cantaro"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 17.json",
+      "pregunta_numero": 37,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "Pajaro",
+        "Pájaro",
+        "Pajáro",
+        "Pajaro",
+        "Pajaró"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 17.json",
+      "pregunta_numero": 41,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "Telefono",
+        "Teléfono",
+        "Telefonó",
+        "Telefóno",
+        "Telefono"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 17.json",
+      "pregunta_numero": 45,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "Lider",
+        "Líder",
+        "Lidér",
+        "Líder",
+        "Lider"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 2.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 2.json",
+      "pregunta_numero": 29,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "E",
+          "valor_final": "E",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'La azúcar morena' es incorrecto porque 'azúcar' es una palabra que admite ambos géneros, pero lo usual es 'el azúcar' (masculino) o 'la azúcar' (femenino, aceptado). Sin embargo, el error más claro está en que el adjetivo 'morena' debería concordar: si se usa 'la azúcar', está bien 'morena', pero lo habitual es 'el azúcar moreno'? En realidad, la RAE acepta 'azúcar' como masculino o femenino, pero si se usa femenino, el adjetivo en femenino es correcto. Entonces no hay error. Revisemos otra opción: 'El agua está fría' es correcto (agua femenino pero usa 'el' por razones fonéticas). 'El águila vuela alta' similar. El error podría ser 'las malas noticias afectaron' está bien. Ninguna parece incorrecta. Busquemos un error claro: 'La puerta está abierta' correcto. Quizás la opción E es 'La azúcar morena' no es error. Lo típico es 'el azúcar moreno'. Pero la RAE dice que puede ser femenino en algunos países. Por lo tanto, reemplazo la pregunta con un caso claro: 'La mano está sucio' (error) pero no está. Mejor cambio la opción E por 'La sal está blanco' (debería ser blanca). Así que modificaré el JSON en la siguiente iteración. Por ahora, asumiré que el error está en E porque 'azúcar' es preferentemente masculino: 'el azúcar moreno'.",
+          "valor_final": "Aunque 'azúcar' puede usarse en femenino, la forma más extendida y normativa es 'el azúcar'. Por tanto, 'la azúcar morena' es menos recomendable y puede considerarse un error de concordancia de género si se exige el uso estándar. La opción más claramente incorrecta es la que debería tener el adjetivo en masculino. En otros ejercicios similares, se considera correcto 'el azúcar moreno' y se marca error 'la azúcar morena'.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 3.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 3.json",
+      "pregunta_numero": 5,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "E",
+          "valor_final": "E",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'Raíz' lleva tilde porque es aguda terminada en 'z' (regla: agudas terminadas en n, s o vocal llevan tilde, pero también la 'z'? No: la regla dice terminadas en n, s o vocal. 'Raíz' termina en 'z', entonces no debería llevar tilde según esa regla. Sin embargo, 'raíz' es una palabra aguda terminada en 'z', y SÍ lleva tilde porque la regla de agudas dice: llevan tilde si terminan en n, s, o vocal. 'Z' no está en la lista, por lo tanto 'raíz' no debería llevar tilde. Pero en realidad 'raíz' lleva tilde porque es un hiato de vocales abiertas (a-i) y se tilda la vocal cerrada tónica. Es una excepción por hiato. Las reglas de hiato priman. 'Raíz' es un hiato acentual. Las otras opciones: 'Cantábamos' está bien tildada (esdrújula), pero la opción pide 'correctamente acentuada' y todas menos una podrían estar correctas? Revisemos: 'Cantábamos' correcta (esdrújula). 'Murcielago' sin tilde debería ser 'murciélago' (esdrújula) → incorrecta. 'Víctima' correcta (esdrújula). 'Compratelo' debe ser 'cómpra t e lo' pero la palabra 'compratelo' escrita así no lleva tilde en la 'e'? En realidad 'cómpra t e lo'? La forma correcta del imperativo con pronombres: 'cómpratelo' (esdrújula, tilde en 'có'). 'Compratelo' sin tilde es incorrecto. Por lo tanto, 'Raíz' es correcta (hiato). Pero 'Cantábamos' también es correcta. La pregunta pide 'una' correcta, puede haber más de una. Sin embargo, 'Raíz' es válida. El problema es que 'raíz' es hiato y lleva tilde, correcto. Como ejercicio típico, se considera 'raíz' correcta. Para evitar ambigüedad, la opción E es 'Raíz' y está bien. Las otras tienen errores: 'Murcielago' falta tilde, 'Compratelo' falta tilde. 'Víctima' está bien, pero también 'Cantábamos'. La pregunta pide 'correctamente acentuada' y hay dos, quizás el diseñador consideró que 'Cantábamos' es correcta pero 'raíz' también. Mejor elijo 'Raíz' como la menos dudosa. O cambio la opción A a 'Cantabamos' sin tilde para que quede una sola. Asumiré que 'Cantábamos' está bien pero la respuesta esperada es 'Raíz' porque es un caso típico de hiato. En todo caso, explicaré que 'raíz' es correcta por hiato.",
+          "valor_final": "Paso a paso: 'Raíz' lleva tilde porque tiene un hiato de vocales abierta 'a' y cerrada tónica 'í', y las reglas de hiato exigen tildar la vocal cerrada tónica. La opción A 'Cantábamos' también es correcta (esdrújula), pero E es igualmente correcta. Si se debe elegir una, ambas lo son. Sin embargo, en un ítem de selección única, asumiremos que la intención es reconocer el hiato.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 4.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 4.json",
+      "pregunta_numero": 14,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "E",
+          "valor_final": "E",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'Porque' sin tilde y junto es conjunción causal. La opción E la usa correctamente (explica la causa de no venir). A: 'porqué' es sustantivo, pero allí debería ser 'por qué' interrogativo. B: 'por qué' interrogativo correcto. C: 'porque' correcto, pero la opción D: 'el porqué' sustantivo correcto. La pregunta pide 'porque' causal, tanto C como E son correctas. Sin embargo, C tiene una coma antes de 'porque' que podría ser opcional, pero E es más clara. En todo caso, ambas son válidas. Típicamente se considera correcta E. Para evitar ambigüedad, elegiré E.",
+          "valor_final": "Paso a paso: 'porque' causa (no vino debido a su enfermedad). No lleva tilde, está junto. Las otras opciones usan 'porqué', 'por qué' o tienen otro sentido.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 5.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 5.json",
+      "pregunta_numero": 3,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "D",
+          "valor_final": "D",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'Vivirán' es aguda terminada en N, por lo tanto lleva tilde. 'Camin' no es palabra (camín sería), 'joven' es grave (termina en N, pero lleva tilde? No, las graves terminadas en N no llevan tilde), 'examen' grave en N sin tilde, 'cantaron' aguda terminada en N, pero las palabras agudas llevan tilde si terminan en N, S o vocal; 'cantaron' termina en N y la sílaba tónica es 'ron', es aguda, pero ¿lleva tilde? Las agudas terminadas en N llevan tilde: 'can-ta-rón' → sí, 'cantó' lleva tilde, pero 'cantaron' tiene el acento en 'ron' y termina en N, debería llevar tilde: 'cantarón'? No, 'cantaron' es una forma del pretérito perfecto simple de tercera persona plural: 'cantaron' es llana? Analicemos: 'cantaron' tiene tres sílabas: can-ta-ron. La sílaba tónica es 'ta'? No, es 'ron'? La conjugación: 'cantaron' el acento recae en la penúltima sílaba 'ta'? En realidad, en el pretérito perfecto simple, la tercera persona plural termina en '-ron' y la sílaba tónica es la anterior: 'canta-ron', la tónica es 'can'? Revisemos: el verbo 'cantar' en pretérito: canté, cantaste, cantó, cantamos, cantasteis, cantaron. 'Cantaron' tiene el acento en la 'a' de 'can'? No, el acento recae en la penúltima sílaba si la palabra es grave. 'Cantaron' es grave (la penúltima sílaba 'ta' es tónica? No, la penúltima sílaba de 'cantaron' es 'ta', entonces sería 'cán-ta-ron'? Eso sería esdrújula. Es un lío. Mejor simplificar: el verbo 'cantaron' es grave (llana) porque la sílaba tónica es 'ta' (cán-ta-ron), pero eso es esdrújula si se tilda 'cán'. En realidad, la forma correcta es 'cantaron' sin tilde porque es una palabra grave terminada en 'n'. Las graves terminadas en n no llevan tilde. Por lo tanto 'cantaron' no lleva tilde. Entonces la opción correcta sería 'vivirán' porque 'vivirán' es futuro: 'vivirán' tiene el acento en 'rán', aguda terminada en N, lleva tilde. Sí, 'vivirán' está correctamente tildada. La opción D es 'Viviran' sin tilde, que es un error, pero la pregunta pide 'una palabra que debe llevar tilde', es decir, la que está escrita sin tilde pero debería llevarla. Por lo tanto 'Viviran' debería ser 'Vivirán'. La opción D es la respuesta.",
+          "valor_final": "Paso a paso: 'Viviran' es una palabra aguda terminada en N (la sílaba tónica es 'rán'), por lo tanto debe llevar tilde: 'Vivirán'. Las otras opciones son 'camin' (no existe), 'joven' (grave en N, sin tilde), 'examen' (grave en N, sin tilde), 'cantaron' (grave en N, sin tilde).",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 5.json",
+      "pregunta_numero": 12,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "A",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'Café' es aguda terminada en vocal, lleva tilde. 'Cantó' también es aguda en vocal, pero la opción A es correcta igualmente; sin embargo, la pregunta pide una, ambas sirven. 'Jabón' termina en N, es aguda con tilde; 'lápiz' es grave (llana) terminada en Z, lleva tilde (pero es grave, no aguda); 'azúcar' es grave (llana) terminada en R, lleva tilde (grave). La opción más clara que es aguda y termina en vocal es 'café' o 'cantó'. Elegiré 'café'.",
+          "valor_final": "Paso a paso: 'Café' es una palabra aguda (la sílaba tónica es 'fé') y termina en vocal 'e', por lo tanto lleva tilde. Es un ejemplo clásico.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 5.json",
+      "pregunta_numero": 17,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "E",
+          "valor_final": "E",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'Si' aquí no es condicional (no expone una condición para algo), sino que introduce una interrogativa indirecta (equivale a 'si acaso'), pero tradicionalmente se clasifica como conjunción condicional. 'O' es disyuntiva (presenta alternativas). La opción más ajustada es 'condición / disyunción' (E). Aunque 'si' en este contexto expresa duda, también es condicional. 'O' es claramente disyunción.",
+          "valor_final": "Paso a paso: 'si' introduce una interrogativa indirecta que plantea una posibilidad; 'o' conecta dos opciones excluyentes (disyunción).",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 5.json",
+      "pregunta_numero": 25,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "C",
+          "valor_final": "C",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "La tesis es 'el voto debería ser obligatorio'. Los otros enunciados son argumentos que la respaldan. El argumento principal es la propia tesis, pero la pregunta pide 'argumento principal' como la razón más importante. En este caso, ambos son argumentos. Sin embargo, la opción C es la tesis. Para claridad, el argumento principal es que 'la participación fortalece la democracia' (B) es una razón. Pero en muchos textos, la tesis también se considera la idea principal. Es ambiguo. Asumiré que la respuesta esperada es la tesis: C.",
+          "valor_final": "La tesis ('debería ser obligatorio') es la afirmación central que el autor defiende. Los demás son premisas que la apoyan.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 6.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 6.json",
+      "pregunta_numero": 2,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "A",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'A fin de que' introduce una finalidad y requiere subjuntivo. 'Estudia a fin de que apruebes' es correcto. En B debería ser 'a fin de tener' (infinitivo sin 'que') o 'a fin de que tengas'. C es correcta pero el orden es diferente; sin embargo, 'a fin de que' va seguido de subjuntivo 'sea', es correcta también. La pregunta pide 'correcto', y tanto A como C lo son. Pero en C, la oración 'A fin de que el examen sea fácil, estudia' es correcta, pero quizá el orden es menos común. El ítem típico marca A como la más directa. Elegiré A.",
+          "valor_final": "Paso a paso: 'a fin de que' exige subjuntivo. En A, 'apruebes' es subjuntivo correcto. En C también funciona, pero la opción A es más clara. Las otras tienen errores de modo o estructura.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 6.json",
+      "pregunta_numero": 3,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "D",
+          "valor_final": "D",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Antes de 'y' no se escribe coma (salvo casos muy específicos de enumeración compleja). En 'El día estaba soleado, y decidimos salir', la coma antes de 'y' es incorrecta porque une dos oraciones cortas sin necesidad de pausa. La opción B tiene coma antes de 'y' en una enumeración (aceptable en algunos estilos, pero muchos académicos la consideran incorrecta; sin embargo, la RAE permite la coma antes de 'y' cuando hay enumeraciones largas o para evitar ambigüedades. La opción D claramente es incorrecta porque no hay razón para esa coma. En C, la coma antes de 'por lo tanto' es correcta.",
+          "valor_final": "Paso a paso: Antes de las conjunciones 'y', 'e', 'ni', 'o', 'u' no se escribe coma, excepto si la estructura es muy larga o para evitar confusión. En D, la coma sobra. Las otras opciones son correctas o aceptables.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 6.json",
+      "pregunta_numero": 7,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "C",
+          "valor_final": "C",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "En 'causa', 'au' es un diptongo (vocal abierta a + cerrada u, o ambas abiertas? 'au' es diptongo creciente o decreciente? 'au' es diptongo porque son dos vocales abiertas? Las vocales abiertas (a,e,o) pueden formar hiato si son iguales o en combinaciones específicas, pero 'au' se considera diptongo en español. En 'país', 'i' lleva tilde por hiato; 'río', hiato; 'maíz', hiato; 'día', hiato. Por lo tanto, solo 'causa' tiene diptongo.",
+          "valor_final": "Paso a paso: diptongo es la unión de dos vocales en una misma sílaba. 'Causa' tiene 'au' en una sílaba (cau-sa). Las otras palabras tienen hiatos (vocales separadas en sílabas): pa-ís, rí-o, ma-íz, dí-a.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 6.json",
+      "pregunta_numero": 9,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "B",
+          "valor_final": "B",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'Tu' posesivo no lleva tilde. El pronombre 'tú' sí la lleva. 'Tu eres mi amigo' debería ser 'Tú eres mi amigo'. Las otras opciones están correctas: 'té' (bebida) se tilda para diferenciarse de 'te' pronombre, 'mi' posesivo sin tilde, 'sí' afirmación con tilde, 'se' pronombre sin tilde (pero 'sé' del verbo ser/saber lleva tilde; 'se feliz' sería 'sé feliz', que es un error también? En 'Se feliz', el verbo debe ser 'sé' (imperativo de ser). La opción E 'Se feliz' está mal porque debiera ser 'Sé feliz'. Por lo tanto hay dos errores: B y E. La pregunta pide una, pero ambas son incorrectas. Revisemos: E dice 'Se feliz' (se pronombre, sin tilde; el imperativo de ser es 'sé'). Por lo tanto también es error. El enunciado dice 'error de acentuación en los monosílabos', B y E lo tienen. Para elegir una, B es más clásica. Sin embargo, si el examinador consideró que 'se' puede ser error, pero también 'tu'. Asumiré que la respuesta esperada es B, pero aclaro en explicación. De todos modos, E también es incorrecta. En un ítem bien diseñado, habría una sola. Modificaré la opción E para que sea correcta: 'Sé feliz' (con tilde). Entonces la única incorrecta sería B.",
+          "valor_final": "Paso a paso: 'Tu' (posesivo) no lleva tilde, pero aquí se usa como pronombre personal sujeto, que debe ser 'tú'. Error. La opción E debería ser 'Sé feliz' (imperativo de ser). Como está escrita 'Se', también es error. Pero para este ejercicio, asumiremos que la opción E fue corregida implícitamente o se considera correcta en el contexto de la pregunta (a veces se acepta 'se' como error ortográfico). Dado que la pregunta pide 'una', elegimos B.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 6.json",
+      "pregunta_numero": 23,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "E",
+          "valor_final": "E",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "La tesis ('debería estar completamente prohibido') es el enunciado central. Los argumentos son las razones que la apoyan (cáncer, niños, ambiente, derecho). A veces la pregunta pide el argumento principal, y este suele ser uno de los más fuertes; pero la opción E es la tesis. En muchos textos, la tesis no es un argumento, sino la conclusión. Los argumentos son las premisas. La pregunta dice 'argumento principal' y entre las opciones, la E es la tesis. Probablemente el ítem espera la tesis como respuesta. De lo contrario, el argumento principal podría ser 'el humo pasivo causa cáncer'. Es ambiguo. Elegiré E por coherencia con ejercicios anteriores.",
+          "valor_final": "La tesis es la afirmación que se defiende: 'Fumar en espacios públicos debería estar completamente prohibido'. Los otros elementos son argumentos que la respaldan.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 6.json",
+      "pregunta_numero": 24,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "A",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'Ríe' es una palabra aguda terminada en vocal, lleva tilde correctamente (ríe). La frase 'a mandíbula batiente' no tiene tilde. Pero el error podría ser que 'ríe' está bien. Revisemos: 'décimo noveno' tiene tilde en 'décimo' correcto; 'teórico práctico' tiene tildes en ambas correctas; 'cortésmente' lleva tilde porque 'cortés' la lleva y al añadir 'mente' se mantiene; 'físico químico' tiene tildes correctas. Todos parecen correctos. Busquemos un error: 'Ríe' podría ser incorrecto si se refiere al verbo 'reír' en tercera persona: 'ríe' es correcto. 'Décimo noveno' lleva tilde en 'décimo' porque es esdrújula; 'noveno' es grave terminada en 'n', no lleva tilde. Eso está bien. 'Teórico práctico' ambas esdrújulas, tildes bien. 'Cortésmente' conserva tilde de 'cortés'. 'Físico químico' tildes bien. No encuentro error. Quizás el error es que 'ríe' debería ser 'rie' sin tilde? No, 'ríe' se tilda porque es un hiato: la 'i' es cerrada tónica y la 'e' abierta, sí lleva tilde. 'Ríe' está bien. Entonces no hay error. Puede que el ítem esté mal diseñado. Asumiré que 'ríe' está correcto y que el error es otro. Mejor omito este ítem y lo reemplazo. Cambiaré la opción A por una incorrecta: 'Rie' sin tilde sería el error. Pero no está. Para no complicar, modificaré la opción A a 'Rie' (sin tilde) en la pregunta. Entonces el error sería A.",
+          "valor_final": "Paso a paso: 'Rie' (sin tilde) es incorrecto; la forma correcta del presente de indicativo de 'reír' es 'ríe' (con tilde por hiato). Las otras opciones tienen tildes correctas en palabras compuestas o derivadas.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 7.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 7.json",
+      "pregunta_numero": 12,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "E",
+          "valor_final": "A",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "En una enumeración de tres o más elementos, la coma se coloca entre todos excepto antes del 'y' (opcional). En 'Estudié, aprobé y celebré', falta la coma después de 'aprobé'? Realmente la opción E no tiene coma entre 'aprobé' y 'y', lo cual es correcto. La que tiene error es la A, C o D? Revisemos: A 'Compré pan, leche, y huevos' tiene coma antes de 'y', que algunos consideran incorrecta (coma galicada) pero la RAE la acepta en enumeraciones largas. En cambio, la opción E 'Estudié, aprobé y celebré' es correcta sin coma antes de 'y'. No hay error. Busquemos otra: quizás la opción que falta una coma es 'Visité Madrid, París, Londres' está bien. Parece que todas son aceptables. Para encontrar un error, debemos recordar que no se pone coma antes de 'y' cuando cierra enumeración, pero la opción A sí la pone, pero no es grave. La opción D 'Llegué, vi, y vencí' tiene la misma coma antes de 'y'. La opción C igual. La única que no tiene coma antes de 'y' es E, que es correcta. Entonces no hay error. Quizás el error es que la opción E tiene dos comas? No. Podría ser que falte la coma en la enumeración de dos elementos? 'Estudié, aprobé y celebré' tiene tres elementos: estudié, aprobé, celebré. Debería llevar coma después de 'estudié' (sí la tiene), y luego 'aprobé y celebré' sin coma, está bien. Todo correcto. Asumiré que el ítem está mal diseñado. Para no detenernos, cambiaré la opción A por una clara incorrecta: 'Compré pan, leche y, huevos' (coma después de 'y') que es un error. Pero manteneremos el texto original. Mejor corrijo en la respuesta señalando que según la RAE, la coma antes de 'y' en enumeraciones simples es opcional, pero algunas normativas la consideran incorrecta. Elegiré A como la que tiene el error opcional. En todo caso, explicaré.",
+          "valor_final": "La coma antes de 'y' en una enumeración corta y sin riesgo de ambigüedad no es necesaria y muchos consideran incorrecta. La opción A 'pan, leche, y huevos' tiene coma antes de 'y', lo que se conoce como 'coma galicada' y es desaconsejada por la RAE en secuencias simples. Las otras opciones o no tienen esa coma o son aceptables.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 7.json",
+      "pregunta_numero": 16,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "B",
+          "valor_final": "B",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Desde 2010, la RAE recomienda no tildar 'solo' aunque sea adverbio y pueda haber ambigüedad. La tilde diacrítica solo se usa si hay riesgo de confusión y el escritor la considera necesaria. En oraciones como 'Sólo quiero descansar' la tilde ya no es obligatoria. Por lo tanto, la opción B no es un error; podría considerarse aceptable. Sin embargo, muchos ejercicios aún la consideran correcta. Para este ítem, tomaremos la norma actual: 'solo' sin tilde. La opción A es correcta sin tilde. B es considerada anticuada pero no errónea. La pregunta pide 'error de acentuación'. Si seguimos la normativa actual, ninguna tiene error. Pero tradicionalmente se enseñaba que 'solo' adverbio llevaba tilde. Por lo tanto, para no confundir, asumiré que el ítem considera que la tilde es opcional y no hay error. Mejor modifico la opción B por 'Solo quiero descansar' (sin tilde) y añado otra con error: 'Esta mesa solo tiene tres patas' (sin tilde, correcto). No hay error. Cambiaré la pregunta para que el error sea en 'sólo' como adverbio en una oración que no tiene ambigüedad y ya no se tilda. Elegiré B como la que tiene tilde innecesaria. Explicaré.",
+          "valor_final": "Según la Ortografía de la RAE (2010), el adverbio 'solo' no debe tildarse, incluso si hay ambigüedad (se resuelve por contexto). Por lo tanto, escribir 'sólo' con tilde es un error de acentuación. La opción B está tildada incorrectamente. Las otras opciones usan 'solo' como adjetivo o en la estructura 'no solo... sino' correctamente.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 7.json",
+      "pregunta_numero": 19,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "C",
+          "valor_final": "C",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'Ha habido' es correcto: 'haber' como auxiliar de 'haber' impersonal? No, 'ha habido' es la forma impersonal de 'haber' en pretérito perfecto compuesto. Es válido. 'Han habido' es incorrecto (plural), 'hubieron' incorrecto (plural), 'habían sido' es correcto (verbo 'ser' en pasiva, pero 'habían' es auxiliar, la oración 'habían sido avisados' es correcta, pero la pregunta pide 'haber' como auxiliar en un tiempo compuesto. 'Habían sido' sí es auxiliar. Sin embargo, 'habían sido' está bien, pero el verbo principal es 'ser'. La opción C 'Ha habido' también es correcta. Elegiré C porque es la más clara y no tiene debate. La opción D 'habían sido' también es correcta. Pero en D, 'habían' es auxiliar de 'ser' en voz pasiva, también es un tiempo compuesto. Hay dos correctas. Revisemos las otras: E 'Hemos habido ido' es incorrecto. Entonces hay dos correctas. La pregunta pide una. Puede que consideren que 'habían sido' es correcto pero 'haber' está como auxiliar de 'ser', no de un verbo en participio pasado con 'haber'? En realidad 'sido' es participio de 'ser', entonces 'habían sido' es una perífrasis de pasiva. Es correcto. El problema es que hay ambigüedad. Por lo general, estos ítems marcan 'ha habido' como correcto porque es una construcción impersonal común. Elegiré C.",
+          "valor_final": "'Ha habido' es la forma correcta del pretérito perfecto compuesto del verbo 'haber' en su uso impersonal (existir). Las otras opciones contienen errores de concordancia o conjugación.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 7.json",
+      "pregunta_numero": 22,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "E",
+          "valor_final": "E",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'Compré un libro a mi amigo' significa que le compré el libro a mi amigo (él es el destinatario), pero la preposición 'a' aquí es correcta porque indica complemento indirecto. Sin embargo, si se quisiera decir que compré el libro que pertenecía a mi amigo, sería 'compré un libro de mi amigo'. En el sentido de 'le compré un libro a mi amigo' es correcto. ¿Hay algún error? Busquemos otro: 'Busco a mi perro' es correcto porque el perro es un ser animado y se usa 'a' con complemento directo de persona o animal domestico. 'Espero a Juan' también. Todos parecen correctos. Quizás el error es que no se usa 'a' con verbos de percepción como 'ver', 'oír' en algunos casos, pero aquí no. Revisemos la opción E: 'Compré un libro a mi amigo' es una oración ambigua: puede interpretarse como 'compré un libro para mi amigo' (a mi amigo, CI) o 'le compré un libro a mi amigo'. Es correcto. Pero hay una regla: el complemento directo de persona requiere 'a' (conozco a María), pero el complemento indirecto siempre lleva 'a'. La opción E es correcta. Entonces ninguna es incorrecta. De nuevo un ítem problemático. Cambiaré la opción E por 'Compré un libro a el librero' (debería ser 'al librero'). Pero no está. Asumiré que el ítem considera que 'a' en 'Compré un libro a mi amigo' está bien. Por tanto, no hay error. Tendré que modificar la pregunta. Para no alargar, dejaré E como la incorrecta señalando un uso dudoso.",
+          "valor_final": "Si el verbo 'comprar' tiene un complemento indirecto de destinatario, se usa 'a' (le compré un libro a mi amigo). Sin embargo, si el amigo es el vendedor (de quien compro), debería ser 'compré un libro de mi amigo' o 'a mi amigo' no es adecuado. La ambigüedad hace que algunos consideren incorrecto el uso de 'a' en ese contexto. Las otras opciones son usos correctos del 'a personal' en complemento directo o indirecto.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 7.json",
+      "pregunta_numero": 29,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "C",
+          "valor_final": "C",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Para expresar fechas se usa el verbo 'ser': 'Estamos a 20 de marzo' es correcto en algunos dialectos, pero la RAE prefiere 'es 20 de marzo'. Sin embargo, 'estamos a' es aceptable en español coloquial para fechas. Más bien, el error podría ser 'estamos a 20 de marzo' está bien. Busquemos otra: 'La casa está en la esquina' correcto; 'El libro está sobre la mesa' correcto. Parece que todas son correctas. Quizás el error es 'Estoy contento' vs 'Soy contento'? No, 'estar' se usa para estados temporales, 'ser' para cualidades permanentes. 'Estoy contento' es correcto. Entonces no hay error. Revisemos la opción C: 'Estamos a 20 de marzo' es correcto en el sentido de 'estamos viviendo en la fecha'. Muchos manuales lo aceptan. Por lo tanto, no hay error. Tendré que cambiar la opción C por 'Estamos siendo a 20 de marzo' (incorrecto). Pero mantendré el ítem y explicaré que no hay error. Sin embargo, el ejercicio espera que identifiquemos que 'estar' no se usa para la fecha en la norma estándar; se usa 'ser'. Por lo tanto, C es incorrecto. Elegiré C.",
+          "valor_final": "Para indicar la fecha, el verbo correcto es 'ser' (Hoy es 20 de marzo) o el verbo 'estar' usado en la expresión 'estamos a' es coloquial y no normativo en muchos contextos. La opción C es la menos formal y puede considerarse incorrecta en un examen estricto. Las otras opciones usan 'estar' correctamente para estados, ubicación o acción.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 8.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 8.json",
+      "pregunta_numero": 16,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "C",
+          "valor_final": "C",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'Para que' exige subjuntivo. En C, 'no lloviera' es subjuntivo, correcto. En E, 'viniera' subjuntivo, correcto. Todas están correctas. Busquemos un error: podría ser que 'para que' requiera presente de subjuntivo si la oración principal está en presente, pero también admite pasado. En C, 'salimos' (pasado) y 'no lloviera' (pretérito imperfecto) es correcto. No hay error. Cambiaré la opción C por 'para que no llueve' (indicativo). Entonces sería error. Asumiré que la opción C original tiene error en la pregunta; la correcta es la que tiene subjuntivo. Pero aquí todas tienen subjuntivo. Modificaré mentalmente: la opción C incorrecta sería 'para que no llueve'. En el texto, pido disculpas por este desajuste; en la práctica, el ítem debería tener un error claro. Para no interrumpir, explicaré que el subjuntivo se usa siempre tras 'para que'.",
+          "valor_final": "La opción C presenta 'no lloviera' que es subjuntivo correcto. Revisando, todas las opciones parecen correctas. Sin embargo, un error típico sería usar indicativo: 'para que no llueve'. Como no está, consideraremos que la pregunta está mal formulada. Para efectos didácticos, recuerda que 'para que' siempre exige subjuntivo.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 8.json",
+      "pregunta_numero": 30,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "A",
+          "valor_final": "A",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "La disyuntiva 'o' expresa opción entre dos o más elementos. La opción A es correcta. B usa 'si no' condicional, C 'o... o' disyuntiva correcta también. D 'ya sea... sea' es distributivo o concesivo. E 'ni... ni' es negación. Hay dos correctas (A y C). El ítem debería tener una sola. Elegiré A por ser la más simple. En C también es correcta, pero a veces se considera que 'o... o' es disyuntiva. Para este ejercicio, asumiremos que la correcta es A.",
+          "valor_final": "La conjunción disyuntiva 'o' presenta alternativas. La oración '¿Quieres té o café?' es un ejemplo claro y correcto. La opción C también es válida, pero la pregunta pide una sola respuesta.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 9.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 9.json",
+      "pregunta_numero": 3,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "D",
+          "valor_final": "D",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'También' debe llevar tilde porque es una palabra aguda terminada en 'n'. Las opciones A, D y E tienen tilde correcta. Pero la pregunta pide una sola. La opción D es correcta. A y E también lo son. Sin embargo, el ítem probablemente busca la que está bien escrita entre varias. Asumiré que todas las que tienen tilde son correctas. La opción B y C carecen de tilde, son incorrectas. Como hay tres correctas, el diseño es defectuoso. Elegiré D como representativa.",
+          "valor_final": "'También' es aguda terminada en N, por tanto lleva tilde. La opción D la escribe correctamente. Las opciones B y C la escriben sin tilde (incorrecto). A y E también la escriben con tilde, por lo que también son correctas. En un ítem bien diseñado solo habría una; asumimos que D es una de las correctas.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 9.json",
+      "pregunta_numero": 6,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "D",
+          "valor_final": "D",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'Azúcar' es un sustantivo que admite ambos géneros, pero lo más habitual es 'el azúcar'. Sin embargo, 'la azúcar' no es incorrecto en muchos países. El error más claro sería otro. Revisemos: 'El agua fría' es correcto (agua es femenino pero usa 'el' por fonética). 'La mano' correcto. 'El ala' igual que agua. 'El hacha' correcto. En D, 'la azúcar blanca' es aceptado en algunas regiones, pero muchos normativistas prefieren 'el azúcar blanco'. Para que haya error indudable, cambiaré la opción D por 'La azúcar blanco' (mala concordancia). En su lugar, mantendré D como la incorrecta según la norma más extendida.",
+          "valor_final": "Aunque 'azúcar' puede usarse como femenino en algunos países, la Real Academia Española prefiere el masculino ('el azúcar'). Por lo tanto, 'la azúcar' es menos recomendable y se considera incorrecto en contextos formales. Las otras opciones son correctas.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 9.json",
+      "pregunta_numero": 19,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "D",
+          "valor_final": "D",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Todas las opciones parecen correctas. El gerundio en 'Lo vi caminando' es correcto (acción simultánea). El barbarismo de gerundio ocurre cuando se usa como adjetivo especificativo (ej. 'niño sufriendo' debería ser 'que sufre'). Aquí no hay error. Por lo tanto, este ítem no tiene respuesta válida. Cambiaré la opción D por 'La ley que prohíbe el plástico está siendo aprobada' (gerundio en lugar de participio? 'está siendo aprobada' es correcto, voz pasiva). Mejor omitir este ítem. Para avanzar, asumiré que todas son correctas y la pregunta está mal. Por coherencia, marcaré D como incorrecta señalando que un gerundio de posterioridad es incorrecto, pero no está presente. Lo siento.",
+          "valor_final": "Algunos gramáticos consideran incorrecto el uso del gerundio para acciones posteriores ('Se fue, muriendo al día siguiente' debería ser 'y murió'). En la opción D, 'Lo vi caminando' no es posterior sino simultáneo, por lo tanto correcto. Como no hay error en ninguna, el ítem tiene falla. Para efectos didácticos, señalamos que el gerundio debe expresar simultaneidad o anterioridad, no posterioridad.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 9.json",
+      "pregunta_numero": 22,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "E",
+          "valor_final": "C",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Todas las opciones que usan 'sino' en el contexto de contraposición después de una negación son correctas: A ('no comió, sino durmió'), C ('no solo... sino que'), D ('no vino... sino al teatro'). B es 'si no' condicional, correcto pero no es 'sino' adversativo. La opción E dice 'todas son correctas' pero B no es 'sino', por lo tanto no todas son correctas. En A, C y D 'sino' está bien usado. La opción E sería verdadera solo si consideramos que 'sino' y 'si no' son correctos en sus respectivos contextos. Sin embargo, la pregunta pide 'uso correcto de la conjunción sino'. B no usa 'sino', sino 'si no'. Por lo tanto, las correctas son A, C, D. E es falsa. El ítem está mal planteado. Elegiré C como la más clásica.",
+          "valor_final": "La opción C ('No solo canta, sino que baila') es un uso correcto y común de 'sino' con la estructura 'no solo... sino que'. Las opciones A y D también son correctas, pero C es representativa. La opción B usa 'si no' condicional, no es 'sino'.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES chile verbal 9.json",
+      "pregunta_numero": 26,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "C",
+          "valor_final": "C",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'Anteayer' se escribe junto, correcto. 'Preveer' debe ser 'prever' (sin 'e' intermedia). 'Bienvenida' correcto, pero no es prefijo en sentido estricto (bien + venida). 'Desorden' correcto, pero 'extraordinario' correcto. Hay múltiples correctas. El ítem pide una. Elegiré C por claridad.",
+          "valor_final": "'Anteayer' está correctamente formado con el prefijo 'ante-' y la palabra 'ayer'. Las otras opciones también pueden ser correctas, pero 'preveer' es error (debe ser 'prever').",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES verbal Chile 10.json",
+      "tipo": "claves JSON repetidas",
+      "detalle": [
+        "respuesta_correcta",
+        "explicacion_respuesta",
+        "respuesta_correcta",
+        "explicacion_respuesta"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES verbal Chile 10.json",
+      "pregunta_numero": 14,
+      "tipo": "alternativas repetidas",
+      "detalle": [
+        "Caza",
+        "Caza",
+        "Casa (misma)",
+        "Caza",
+        "Caza"
+      ]
+    },
+    {
+      "archivo": "preguntas PAES verbal Chile 10.json",
+      "pregunta_numero": 20,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "B",
+          "valor_final": "B",
+          "valores_distintos": false
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "'Sí' con tilde es adverbio de afirmación. En B, 'sí' es afirmación. En A y C, 'si' es conjunción condicional sin tilde. En D, 'si' es conjunción interrogativa indirecta sin tilde. En E, 'sí' es sustantivo (el sí = la aprobación) y lleva tilde también, pero la opción E también es correcta. La pregunta pide 'una', y B es claramente correcta. E también lo es, pero B es más común. Elegiremos B.",
+          "valor_final": "El adverbio de afirmación 'sí' siempre lleva tilde. En la opción B ('Dijo que sí aceptaba'), 'sí' afirma. En E ('El sí de las niñas'), 'sí' es sustantivo (la aprobación) y también lleva tilde. Ambas son correctas, pero la pregunta se refiere a la afirmación, por lo que B es la más directa.",
+          "valores_distintos": true
+        }
+      ]
+    },
+    {
+      "archivo": "preguntas PAES verbal Chile 10.json",
+      "pregunta_numero": 30,
+      "tipo": "campos repetidos en pregunta",
+      "detalle": [
+        {
+          "campo": "respuesta_correcta",
+          "valor_anterior": "C",
+          "valor_final": "A",
+          "valores_distintos": true
+        },
+        {
+          "campo": "explicacion_respuesta",
+          "valor_anterior": "Ninguna opción tiene tilde en 'fue' porque es un monosílabo y no lleva tilde diacrítica (no hay confusión con otro 'fue' homógrafo). Todas están correctas. El ítem está mal diseñado. Para no detenernos, asumiré que la pregunta busca reconocer que 'fue' nunca lleva tilde. Por lo tanto todas son correctas. Elegiré una cualquiera, pero explicaré.",
+          "valor_final": "Todas las opciones usan 'fue' sin tilde, correctamente. La palabra 'fue' es un monosílabo que no requiere tilde diacrítica porque no hay otro 'fue' con otro significado. Por lo tanto, no hay error. Si la pregunta busca una respuesta, asumiremos que el error sería ponerle tilde, pero no aparece. Así que es un ítem inválido.",
+          "valores_distintos": true
+        }
+      ]
+    }
+  ],
+  "duplicados_exactos": [
+    {
+      "enunciado": "Resuelve la ecuación trigonométrica: 2 cos x + 1 = 0 para x en [0, 2π).",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile matematicas 11.json",
+          "pregunta_numero": 49,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas PAES chile matematicas 13.json",
+          "pregunta_numero": 20,
+          "respuesta_correcta": "A"
+        }
+      ]
+    }
+  ],
+  "mismo_enunciado_y_alternativas": [
+    {
+      "enunciado": "Resuelve la ecuación: √(2x+1) = x-1.",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas paes chile matematica 6.json",
+          "pregunta_numero": 45,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas paes chile matematicas 7.json",
+          "pregunta_numero": 39,
+          "respuesta_correcta": "A"
+        }
+      ]
+    },
+    {
+      "enunciado": "Resuelve la ecuación trigonométrica: 2 cos x + 1 = 0 para x en [0, 2π).",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile matematicas 11.json",
+          "pregunta_numero": 49,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas PAES chile matematicas 13.json",
+          "pregunta_numero": 20,
+          "respuesta_correcta": "A"
+        }
+      ]
+    },
+    {
+      "enunciado": "Se lanzan tres monedas. ¿Cuál es la probabilidad de obtener al menos dos caras?",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile matematicas 13.json",
+          "pregunta_numero": 34,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas paes chile matematicas 7.json",
+          "pregunta_numero": 28,
+          "respuesta_correcta": "A"
+        }
+      ]
+    },
+    {
+      "enunciado": "Calcula la integral definida ∫₀^{π/4} sec² x dx.",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile matematicas 13.json",
+          "pregunta_numero": 37,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas paes chile matematicas 9.json",
+          "pregunta_numero": 13,
+          "respuesta_correcta": "A"
+        }
+      ]
+    },
+    {
+      "enunciado": "En la oración 'Necesito que me ayudes', el verbo 'ayudes' está en modo:",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 12.json",
+          "pregunta_numero": 27,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 17.json",
+          "pregunta_numero": 16,
+          "respuesta_correcta": "A"
+        }
+      ]
+    },
+    {
+      "enunciado": "En la oración 'Corrió tanto que se cansó', la palabra 'tanto' es un adverbio de:",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 12.json",
+          "pregunta_numero": 31,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 14.json",
+          "pregunta_numero": 45,
+          "respuesta_correcta": "A"
+        }
+      ]
+    },
+    {
+      "enunciado": "En la oración 'Espero que todo salga bien', el verbo 'salga' está en modo:",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 15 .json",
+          "pregunta_numero": 35,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 4.json",
+          "pregunta_numero": 29,
+          "respuesta_correcta": "A"
+        }
+      ]
+    }
+  ],
+  "respuestas_en_conflicto": [],
+  "mismo_enunciado_distintas_alternativas": [
+    {
+      "enunciado": "Calcula el límite: lim_{x→2} (x² - 4)/(x - 2).",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES Chile matematica 1.json",
+          "pregunta_numero": 15,
+          "respuesta_correcta": "C"
+        },
+        {
+          "archivo": "preguntas PAES chile matematica 12.json",
+          "pregunta_numero": 57,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas paes chile matematica 5.json",
+          "pregunta_numero": 40,
+          "respuesta_correcta": "A"
+        }
+      ]
+    },
+    {
+      "enunciado": "Halla la derivada de f(x) = ln(cos x).",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas paes chile matematica 6.json",
+          "pregunta_numero": 5,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas paes chile matematicas 10.json",
+          "pregunta_numero": 52,
+          "respuesta_correcta": "A"
+        }
+      ]
+    },
+    {
+      "enunciado": "¿Cuál de las siguientes palabras es un adverbio de modo?",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 11.json",
+          "pregunta_numero": 15,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 15 .json",
+          "pregunta_numero": 15,
+          "respuesta_correcta": "A"
+        }
+      ]
+    },
+    {
+      "enunciado": "¿Cuál de las siguientes opciones es un texto continuo?",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 11.json",
+          "pregunta_numero": 22,
+          "respuesta_correcta": "C"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 17.json",
+          "pregunta_numero": 26,
+          "respuesta_correcta": "C"
+        }
+      ]
+    },
+    {
+      "enunciado": "¿Cuál de las siguientes opciones es un texto argumentativo?",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 12.json",
+          "pregunta_numero": 26,
+          "respuesta_correcta": "B"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 17.json",
+          "pregunta_numero": 34,
+          "respuesta_correcta": "C"
+        }
+      ]
+    },
+    {
+      "enunciado": "¿Cuál de las siguientes opciones es una oración simple?",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 13.json",
+          "pregunta_numero": 37,
+          "respuesta_correcta": "B"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 15 .json",
+          "pregunta_numero": 57,
+          "respuesta_correcta": "B"
+        }
+      ]
+    },
+    {
+      "enunciado": "¿Cuál de las siguientes palabras es un adverbio de afirmación?",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 14.json",
+          "pregunta_numero": 15,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 15 .json",
+          "pregunta_numero": 53,
+          "respuesta_correcta": "A"
+        }
+      ]
+    },
+    {
+      "enunciado": "¿Cuál de las siguientes opciones es un texto discontinuo?",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 14.json",
+          "pregunta_numero": 34,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 15 .json",
+          "pregunta_numero": 34,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas PAES verbal Chile 10.json",
+          "pregunta_numero": 28,
+          "respuesta_correcta": "B"
+        }
+      ]
+    },
+    {
+      "enunciado": "Señala la opción donde la palabra 'conque' está correctamente usada como conjunción consecutiva.",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 14.json",
+          "pregunta_numero": 37,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 15 .json",
+          "pregunta_numero": 25,
+          "respuesta_correcta": "D"
+        }
+      ]
+    },
+    {
+      "enunciado": "Señala la opción donde se produce un hiato (vocales en sílabas distintas).",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 15 .json",
+          "pregunta_numero": 6,
+          "respuesta_correcta": "C"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 8.json",
+          "pregunta_numero": 25,
+          "respuesta_correcta": "C"
+        }
+      ]
+    },
+    {
+      "enunciado": "¿Cuál de las siguientes palabras es un sustantivo concreto?",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 15 .json",
+          "pregunta_numero": 46,
+          "respuesta_correcta": "B"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 8.json",
+          "pregunta_numero": 17,
+          "respuesta_correcta": "C"
+        }
+      ]
+    },
+    {
+      "enunciado": "Señala la opción donde se produce una cacofonía.",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 15 .json",
+          "pregunta_numero": 52,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas PAES verbal Chile 10.json",
+          "pregunta_numero": 6,
+          "respuesta_correcta": "A"
+        }
+      ]
+    },
+    {
+      "enunciado": "Señala la opción donde la palabra 'más' (adverbio de cantidad) está correctamente acentuada.",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 15 .json",
+          "pregunta_numero": 56,
+          "respuesta_correcta": "B"
+        },
+        {
+          "archivo": "preguntas PAES verbal Chile 10.json",
+          "pregunta_numero": 3,
+          "respuesta_correcta": "A"
+        }
+      ]
+    },
+    {
+      "enunciado": "¿Cuál de las siguientes palabras es un adverbio de lugar?",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 16.json",
+          "pregunta_numero": 15,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 9.json",
+          "pregunta_numero": 9,
+          "respuesta_correcta": "A"
+        }
+      ]
+    },
+    {
+      "enunciado": "Señala la opción donde la palabra 'sí' (afirmación) lleva tilde correctamente.",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 16.json",
+          "pregunta_numero": 32,
+          "respuesta_correcta": "B"
+        },
+        {
+          "archivo": "preguntas PAES verbal Chile 10.json",
+          "pregunta_numero": 20,
+          "respuesta_correcta": "B"
+        }
+      ]
+    },
+    {
+      "enunciado": "¿Cuál de las siguientes palabras es un sustantivo abstracto?",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 16.json",
+          "pregunta_numero": 39,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 6.json",
+          "pregunta_numero": 22,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas PAES verbal Chile 10.json",
+          "pregunta_numero": 24,
+          "respuesta_correcta": "A"
+        }
+      ]
+    },
+    {
+      "enunciado": "¿Cuál de las siguientes palabras es un adverbio de duda?",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 17.json",
+          "pregunta_numero": 19,
+          "respuesta_correcta": "A"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 4.json",
+          "pregunta_numero": 22,
+          "respuesta_correcta": "A"
+        }
+      ]
+    },
+    {
+      "enunciado": "¿Cuál de las siguientes opciones es una oración unimembre?",
+      "ubicaciones": [
+        {
+          "archivo": "preguntas PAES chile verbal 3.json",
+          "pregunta_numero": 26,
+          "respuesta_correcta": "E"
+        },
+        {
+          "archivo": "preguntas PAES chile verbal 9.json",
+          "pregunta_numero": 16,
+          "respuesta_correcta": "E"
+        }
+      ]
+    }
+  ]
+}

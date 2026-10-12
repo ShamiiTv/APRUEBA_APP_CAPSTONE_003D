@@ -1,0 +1,1488 @@
+{
+  "alcance": "Comprobación auxiliar en región x>0 y b>0; no demuestra dominios completos ni reemplaza revisión manual. Notación no reconocida se informa.",
+  "verificadas": 118,
+  "no_verificables": 13,
+  "resultados": [
+    {
+      "id": "m1:10",
+      "tipo": null,
+      "no_verificable": "unsupported characters"
+    },
+    {
+      "id": "m1:28",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x**2 - 9)/(x - 3)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m12:4",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(4*x + 3)/(2*x**2 + 3*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m12:9",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "D"
+      ],
+      "clave": "D",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "7*sqrt(2)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m12:15",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2*x*cos(x**2)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m12:21",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2/((2*x + 1)**2 + 1)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m12:22",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(2*x + 3)*sqrt(x**2 + 3*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m12:27",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "3**x*x*log(3) + 3**x",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m12:28",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "exp(2*x) + exp(-x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m12:33",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x**4 - y**4)/(x**2 + y**2)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m12:36",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "-4*sin(2*x)*cos(2*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m12:44",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "3*exp(3*x) + 2/(2*x + 1)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m12:45",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "x**3 - 2*x",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m12:48",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x**3 - 1)/(x**2 + x + 1)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m12:51",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2*exp(2*x)*log(x) + exp(2*x)/x",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m12:60",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "5/(2*sqrt(5*x + 3))",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m12:61",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "x**2 - 4*x + 4",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m3:8",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "10*x/(5*x**2 + 3)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m3:26",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "x**2/y**3",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m3:28",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m3:33",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(sin(x)**2 + cos(x)**2)/(-cot(x)**2 + csc(x)**2)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m3:41",
+      "tipo": null,
+      "no_verificable": "unsupported characters"
+    },
+    {
+      "id": "m5:6",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "6*sqrt(2)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m5:12",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "24*x*(3*x**2 + 1)**3",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m5:13",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "6*x**2 - 4*x + 3",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m5:24",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "1/(a**5*b**2)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m5:32",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(6*x + 2)/(3*x**2 + 2*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m5:43",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x**2 - 16)/(x**2 + 8*x + 16)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m5:45",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2*tan(2*x)*sec(2*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m6:3",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "x**5",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m6:5",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "-sin(x)/cos(x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m6:18",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2*x*exp(2*x) + exp(2*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m6:19",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x**2 + 2*x)/x",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m6:24",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "1/(2*sqrt(x)*(x + 1))",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m6:40",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "1/(x**3*y**2)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m6:43",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2*x*exp(x**2)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m10:8",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2*x/(x**2 + 1)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m10:9",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "3*x**2 - 2",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m10:12",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "x**4/(3*y)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m10:18",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "3*tan(3*x)*sec(3*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m10:23",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "5*sqrt(2)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m10:27",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2*x*exp(x**2)*log(x) + exp(x**2)/x",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m10:28",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x + 1)**2",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m10:33",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2*x/sqrt(1 - x**4)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m10:34",
+      "tipo": null,
+      "no_verificable": "unsupported characters"
+    },
+    {
+      "id": "m10:43",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "cos(x)/(sin(x) + 1) + cos(x)/(1 - sin(x))",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m10:44",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "-(2*x - 3)*sin(x**2 - 3*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m10:45",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "x/(x**2 + 4)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m10:52",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "-sin(x)/cos(x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m11:4",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "1/x",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m11:9",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "x**2*y",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m11:15",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "C"
+      ],
+      "clave": "C",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "cos(x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m11:21",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "1/(2*sqrt(x)*(x + 1))",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m11:22",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x + 1)*sqrt(x**2 + 2*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m11:27",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2**x*x*log(2) + 2**x",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m11:28",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x + 1)/(x**2 + 2*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m11:33",
+      "tipo": null,
+      "no_verificable": "unsupported names"
+    },
+    {
+      "id": "m11:35",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "x/sqrt(x**2 + 4)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m11:36",
+      "tipo": null,
+      "no_verificable": "unsupported characters"
+    },
+    {
+      "id": "m11:43",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "exp(sin(x))*cos(x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m11:47",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x**3 - 27)/(x - 3)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m11:50",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "4*x/(2*x**2 + 1)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m11:51",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(3*x + 2)**3",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m11:59",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2*x*log(x) + x",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m11:60",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "x**2 + 2*x - 1",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m13:4",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "1/x",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m13:9",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "x**2*y**2",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m13:15",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "B"
+      ],
+      "clave": "B",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "sin(x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m13:20",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "3/sqrt(1 - 9*x**2)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m13:21",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x + 1)/(x**2 + 2*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m13:24",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x**2 - 4)/(x**2 - 2*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m13:29",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "a**2*b**3",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m13:31",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2*tan(2*x)**2 - 2*cot(2*x)**2",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m13:32",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(exp(x) + exp(-x))**2",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m13:35",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "x**2*exp(x) + 2*x*exp(x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m13:46",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x**2 - 2*x + 1)/(x - 1)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m13:49",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2*x/(x**2 + 4)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m13:50",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x + 1)/(x**2 + 2*x + 1)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m13:58",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "x/sqrt(x**2 + 1)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m2:10",
+      "tipo": null,
+      "no_verificable": "unsupported characters"
+    },
+    {
+      "id": "m2:17",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "3*x**2 + 2*x",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m2:27",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x**2 - 4)/(x**2 + 2*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m2:32",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2*cos(2*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m2:33",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "cos(3*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m2:46",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x**3 - 8)/(x - 2)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m2:50",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "3*exp(3*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m2:51",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "exp(2*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m4:3",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "3*x**2*log(x) + x**2",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m4:19",
+      "tipo": null,
+      "no_verificable": "unsupported characters"
+    },
+    {
+      "id": "m4:20",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "3/x",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m4:33",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "4*exp(4*x)*sin(x) + exp(4*x)*cos(x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m4:39",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "y**8/x**2",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m4:46",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "3/(9*x**2 + 1)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m4:47",
+      "tipo": null,
+      "no_verificable": "unsupported characters"
+    },
+    {
+      "id": "m7:8",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "log(x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m7:9",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "cos(2*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m7:14",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "y**2/(9*x**4)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m7:19",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "-x/sqrt(1 - x**2)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m7:26",
+      "tipo": null,
+      "no_verificable": "unsupported characters"
+    },
+    {
+      "id": "m7:33",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x**2 - 4*x + 4)/(x**2 - 4)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m7:35",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "exp(x)/(exp(x) + 1)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m7:36",
+      "tipo": null,
+      "no_verificable": "unsupported characters"
+    },
+    {
+      "id": "m7:42",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "x/sqrt(1 - x**2) + asin(x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m7:47",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "a**4*b**3",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m8:4",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "3*x**2*exp(3*x) + 2*x*exp(3*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m8:11",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x**4 - 1)/(x**2 - 1)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m8:12",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2/(2*x + 1)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m8:13",
+      "tipo": null,
+      "no_verificable": "unsupported characters"
+    },
+    {
+      "id": "m8:21",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "6*sin(3*x)*cos(3*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m8:22",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "exp(2*x) + exp(-2*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m8:31",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "-sin(log(x))/x",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m8:32",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(2*x + 1)**3",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m8:35",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "y**7",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m8:41",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "log(2*x) + 1",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m8:42",
+      "tipo": null,
+      "no_verificable": "unsupported characters"
+    },
+    {
+      "id": "m8:52",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "3*x**2/(x**6 + 1)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m8:53",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x**2 - 1)/x",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m9:4",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "10*(2*x + 1)**4",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m9:12",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "-exp(2*x)*sin(x) + 2*exp(2*x)*cos(x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m9:17",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "3*sqrt(3)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m9:21",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "2*exp(2*x)/(exp(2*x) + 1)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m9:22",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "x*exp(x**2)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m9:27",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "4*sin(2*x)*cos(2*x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m9:32",
+      "tipo": null,
+      "no_verificable": "unsupported names"
+    },
+    {
+      "id": "m9:38",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "-2/sqrt(1 - 4*x**2)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m9:39",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "x**2*log(x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m9:45",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(6*tan(2*x)**2 + 6)*tan(2*x)**2",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m9:51",
+      "tipo": "simplificación",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(x**6 - y**6)/(x**3 - y**3)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m9:52",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "6*x*(x**2 + 1)**2",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m9:53",
+      "tipo": "integral_indefinida",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "(2*x + 1)/(x**2 + x)",
+      "alternativas_equivalentes": []
+    },
+    {
+      "id": "m9:58",
+      "tipo": "derivada",
+      "respuestas_validas": [
+        "A"
+      ],
+      "clave": "A",
+      "correcta": true,
+      "respuesta_unica": true,
+      "objetivo": "sin(x)*cos(x)/sqrt(sin(x)**2 + 1)",
+      "alternativas_equivalentes": []
+    }
+  ]
+}

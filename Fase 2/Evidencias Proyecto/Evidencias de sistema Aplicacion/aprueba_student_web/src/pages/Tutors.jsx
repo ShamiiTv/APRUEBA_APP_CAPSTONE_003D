@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { apiFetch } from '../api/client';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../context/useTheme';
 
 export default function Tutors() {
   const { t } = useTheme();
@@ -13,20 +13,17 @@ export default function Tutors() {
   const [submitting, setSubmitting] = useState(false);
   const [feedback, setFeedback] = useState(null);
 
-  const fetchTutors = async (testId) => {
-    try {
-      const endpoint = testId && testId !== 'all' ? `/tutors?testId=${testId}` : '/tutors';
-      const res = await apiFetch(endpoint);
-      setTutors(res.data || []);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchTutors(filterTest);
+    const controller = new AbortController();
+    const endpoint = filterTest !== 'all' ? `/tutors?testId=${filterTest}` : '/tutors';
+    apiFetch(endpoint, { signal: controller.signal }).then(response => {
+      if (!controller.signal.aborted) setTutors(response.data || []);
+    }).catch(error => {
+      if (!controller.signal.aborted) setFeedback({ type:'err',text:error.message });
+    }).finally(() => {
+      if (!controller.signal.aborted) setLoading(false);
+    });
+    return () => controller.abort();
   }, [filterTest]);
 
   const handleSendRequest = async (e) => {
@@ -82,7 +79,7 @@ export default function Tutors() {
           ].map((f) => (
             <button
               key={f.id}
-              onClick={() => setFilterTest(f.id)}
+              onClick={() => { if (filterTest !== f.id) { setLoading(true); setFilterTest(f.id); } }}
               style={{
                 padding: '7px 14px',
                 borderRadius: '8px',

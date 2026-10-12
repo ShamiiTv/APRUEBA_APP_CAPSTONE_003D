@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../auth/AuthContext';
+import { useAuth } from '../auth/useAuth';
 
 export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmation, setConfirmation] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -14,7 +15,9 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return;
     setError(null);
+    if (password !== confirmation) { setError('Las contraseñas no coinciden.'); return; }
     setLoading(true);
 
     try {
@@ -93,6 +96,8 @@ export default function Register() {
             <input
               type="text"
               required
+              maxLength={120}
+              autoComplete="name"
               placeholder="Ej: Sofía Morales"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -116,6 +121,8 @@ export default function Register() {
             <input
               type="email"
               required
+              maxLength={254}
+              autoComplete="email"
               placeholder="tu.correo@ejemplo.cl"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -139,7 +146,10 @@ export default function Register() {
             <input
               type="password"
               required
-              placeholder="Mínimo 6 caracteres"
+              minLength={8}
+              maxLength={128}
+              autoComplete="new-password"
+              placeholder="Mínimo 8 caracteres"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               style={{
@@ -155,6 +165,10 @@ export default function Register() {
             />
           </div>
 
+          <div>
+            <label htmlFor="register-confirmation" style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '6px' }}>Repite tu contraseña</label>
+            <input id="register-confirmation" type="password" required minLength={8} maxLength={128} autoComplete="new-password" value={confirmation} onChange={e => setConfirmation(e.target.value)} style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', border: '1px solid var(--line)', backgroundColor: 'var(--soft)', color: 'var(--ink)', fontSize: '13px' }} />
+          </div>
           <button
             type="submit"
             disabled={loading}

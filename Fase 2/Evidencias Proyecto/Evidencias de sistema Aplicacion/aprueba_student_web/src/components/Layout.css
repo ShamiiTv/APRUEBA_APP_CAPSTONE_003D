@@ -1,0 +1,8 @@
+@media (max-width: 720px) {
+  .student-layout { flex-direction: column; }
+  .student-layout > aside { width: 100% !important; height: auto !important; position: static !important; }
+  .student-layout > aside > nav { display: flex; flex-wrap: wrap; gap: 4px; }
+  .student-layout > aside > nav > div { width: 100%; }
+  .student-layout > div > header { height: auto !important; min-height: 64px; padding: 12px 16px !important; flex-wrap: wrap; gap: 12px; }
+  .student-layout > div > main { padding: 20px 16px !important; }
+}

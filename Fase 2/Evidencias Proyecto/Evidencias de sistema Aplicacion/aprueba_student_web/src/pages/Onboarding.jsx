@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiFetch } from '../api/client';
-import { useAuth } from '../auth/AuthContext';
+import { useAuth } from '../auth/useAuth';
 
 const AVAILABLE_TESTS = [
   { id: 'm1', label: 'Competencia Matemática 1 (M1)', obligatory: true },
@@ -19,8 +19,8 @@ export default function Onboarding() {
   const [school, setSchool] = useState(user?.school || '');
   const [region, setRegion] = useState(user?.region || 'Metropolitana de Santiago');
   const [selectedTests, setSelectedTests] = useState(user?.selectedTests || ['lectora', 'm1']);
-  const [difficulty, setDifficulty] = useState('d2');
-  const [practiceFormat, setPracticeFormat] = useState('random');
+  const difficulty = 'd2';
+  const practiceFormat = 'random';
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -34,6 +34,7 @@ export default function Onboarding() {
   };
 
   const handleFinish = async () => {
+    if (loading) return;
     setLoading(true);
     setError(null);
 

@@ -1,0 +1,14 @@
+.social-page{max-width:960px;margin:auto;color:var(--ink)}
+.social-page p,.social-page time{color:var(--muted)}
+.social-page button{padding:9px 14px;border:1px solid var(--line);border-radius:8px;background:var(--cta);color:var(--cta-ink);cursor:pointer}
+.social-page button:disabled{opacity:.5;cursor:not-allowed}
+.social-page input:not([type=checkbox]),.social-page select,.social-page textarea{width:100%;max-width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--soft);color:var(--ink);font:inherit}
+.social-page label{display:block;margin:10px 0 6px;font-weight:600}
+.social-page .social-check{display:flex;gap:8px;align-items:center}
+.social-page section,.social-page article,.social-page form{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--panel);margin:16px 0;overflow-wrap:anywhere}
+.social-page .social-actions{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.social-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px}
+.social-text{white-space:pre-wrap;overflow-wrap:anywhere}
+.social-page time{font-size:12px}
+.social-page table{width:100%;border-collapse:collapse}.social-page th,.social-page td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}
+.social-page .social-table{overflow-x:auto}

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../auth/AuthContext';
+import { useAuth } from '../auth/useAuth';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -13,12 +13,13 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return;
     setError(null);
     setLoading(true);
 
     try {
-      await loginUser(email, password);
-      navigate('/');
+      const data = await loginUser(email, password);
+      navigate(data.user.onboardingCompleted === true ? '/' : '/onboarding', { replace: true });
     } catch (err) {
       setError(err.message || 'Credenciales inválidas');
     } finally {
@@ -92,6 +93,8 @@ export default function Login() {
             <input
               type="email"
               required
+              maxLength={254}
+              autoComplete="email"
               placeholder="tu.correo@ejemplo.cl"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -115,6 +118,8 @@ export default function Login() {
             <input
               type="password"
               required
+              maxLength={128}
+              autoComplete="current-password"
               placeholder="Tu contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -152,6 +157,7 @@ export default function Login() {
           </button>
         </form>
 
+        <p style={{ marginTop: '16px', textAlign: 'center' }}><Link to="/recuperar-contrasena" style={{ color: 'var(--brand)', fontWeight: 700 }}>¿Olvidaste tu contraseña?</Link></p>
         <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '13px', color: 'var(--muted)' }}>
           ¿No tienes cuenta?{' '}
           <Link to="/register" style={{ color: 'var(--cta)', fontWeight: 700, textDecoration: 'none' }}>

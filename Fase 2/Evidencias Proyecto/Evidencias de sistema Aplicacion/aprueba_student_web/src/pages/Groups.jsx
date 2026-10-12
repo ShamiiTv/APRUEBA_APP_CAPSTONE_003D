@@ -1,360 +1,132 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { apiFetch } from '../api/client';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../context/useTheme';
+import { useSocialMutation } from '../hooks/useSocialMutation';
+import SocialFeed from '../components/SocialFeed';
+import '../components/Social.css';
+
+const SUBJECTS = [['m1','Matemática M1'],['m2','Matemática M2'],['lectora','Competencia Lectora'],['cien','Ciencias'],['hist','Historia']];
+const accuracy = value => value === null || value === undefined ? 'Sin práctica registrada' : `${value}%`;
+
+function GroupDetails({ id, questionId, onBack, onLeft }) {
+  const [group,setGroup] = useState(null);
+  const [error,setError] = useState('');
+  const [revision,setRevision] = useState(0);
+  const [message,setMessage] = useState('');
+  const [confirmLeave,setConfirmLeave] = useState(false);
+  const [busy,setBusy] = useState(false);
+  const guard = useRef(false);
+  useEffect(() => {
+    const controller = new AbortController();
+    apiFetch(`/groups/${encodeURIComponent(id)}`, { signal: controller.signal }).then(response => {
+      if (!controller.signal.aborted) {setGroup(response.data);setError('');}
+    }).catch(cause => {if (!controller.signal.aborted) setError(cause.message);});
+    return () => controller.abort();
+  },[id,revision]);
+  const leave = async () => {
+    if (guard.current) return;
+    guard.current = true;setBusy(true);setMessage('');
+    try {
+      await apiFetch(`/groups/${id}/leave`, {method:'POST',body:JSON.stringify({})});
+      onLeft();
+    } catch (cause) {setMessage(cause.message);}
+    finally {guard.current = false;setBusy(false);}
+  };
+  const copy = async () => {
+    try {await navigator.clipboard.writeText(id);setMessage('Código de invitación copiado.');}
+    catch {setMessage('No se pudo copiar. Selecciona el código completo que aparece debajo.');}
+  };
+  return <div>
+    <button onClick={onBack}>Volver a mis grupos</button>
+    {error && <p role="alert">{error}</p>}
+    <button disabled={busy} onClick={()=>setRevision(value=>value+1)}>Actualizar estadísticas del grupo</button>
+    {message && <p role="status">{message}</p>}
+    {!group && !error && <p>Cargando grupo...</p>}
+    {group && !error && <>
+      <h2>{group.name}</h2><p>{SUBJECTS.find(([test])=>test===group.subjectTestId)?.[1]} · {group.memberCount} miembros</p>
+      <section><h3>Invitar miembros</h3><p>Comparte este código completo con quien quieras invitar. El código permite solicitar el ingreso al grupo.</p><code>{id}</code><div className="social-actions"><button onClick={copy}>Copiar código completo</button><button disabled={busy} onClick={()=>setConfirmLeave(true)}>Salir del grupo</button></div>
+        {confirmLeave && <div role="group" aria-label="Confirmar salida"><p>¿Salir del grupo? Si eres líder, el primer miembro restante será el nuevo líder. Si no quedan miembros, el grupo se cerrará.</p><button disabled={busy} onClick={leave}>Confirmar salida</button> <button disabled={busy} onClick={()=>setConfirmLeave(false)}>Cancelar salida</button></div>}
+      </section>
+      <section><h3>Estadísticas de práctica</h3>
+        <p>Respuestas correctas del grupo: <strong>{accuracy(group.statistics.accuracy)}</strong> · Tu resultado: <strong>{accuracy(group.statistics.myAccuracy)}</strong></p>
+        <p>{group.statistics.correct} correctas de {group.statistics.answered} primeras respuestas en la materia. Incluye práctica anterior al ingreso al grupo; no representa un puntaje PAES.</p>
+        <div className="social-table"><table><thead><tr><th>Miembro</th><th>Rol</th><th>Respuestas</th><th>Correctas</th></tr></thead><tbody>{group.members.map(member=><tr key={member.uid}><td>{member.name}</td><td>{member.role==='owner'?'Líder':'Miembro'}</td><td>{member.answered}</td><td>{accuracy(member.accuracy)}</td></tr>)}</tbody></table></div>
+      </section>
+      <h3>Preguntas compartidas y conversación</h3>
+      <SocialFeed key={id} groupId={id} questionId={questionId} />
+    </>}
+  </div>;
+}
 
 export default function Groups() {
   const { t } = useTheme();
-  const [groups, setGroups] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [showCreateModal, setShowCreateModal] = useState(false);
-  const [showJoinModal, setShowJoinModal] = useState(false);
-  const [newGroupName, setNewGroupName] = useState('');
-  const [subjectTestId, setSubjectTestId] = useState('m1');
-  const [joinGroupId, setJoinGroupId] = useState('');
-  const [actionLoading, setActionLoading] = useState(false);
-  const [msg, setMsg] = useState(null);
-
-  const fetchGroups = async () => {
+  const [params,setParams] = useSearchParams();
+  const selected = params.get('groupId');
+  const questionId = params.get('questionId');
+  const requestedTest = params.get('testId');
+  const [groups,setGroups] = useState(null);
+  const [limit,setLimit] = useState(null);
+  const [error,setError] = useState('');
+  const [message,setMessage] = useState('');
+  const [panel,setPanel] = useState('');
+  const [name,setName] = useState('');
+  const [test,setTest] = useState(SUBJECTS.some(([id])=>id===requestedTest)?requestedTest:'m1');
+  const [code,setCode] = useState('');
+  const [joining,setJoining] = useState(false);
+  const guard = useRef(false);
+  const create = useSocialMutation('/groups','create-group');
+  const alive = useRef(false);
+  const load = useCallback(async () => {
     try {
-      const res = await apiFetch('/groups');
-      setGroups(res.data || []);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
+      const response = await apiFetch('/groups');
+      if (!alive.current) return;
+      setGroups(response.data);setLimit(response.meta?.groupLimit ?? null);setError('');
+    } catch (cause) {if (alive.current) setError(cause.message);}
+  },[]);
+  useEffect(()=>{
+    alive.current=true;
+    queueMicrotask(()=>{if(alive.current)load();});
+    return ()=>{alive.current=false;};
+  },[load]);
+  const open = id => {
+    const next = new URLSearchParams(params);
+    if(id)next.set('groupId',id);else next.delete('groupId');
+    setParams(next);
   };
-
-  useEffect(() => {
-    fetchGroups();
-  }, []);
-
-  const handleCreate = async (e) => {
-    e.preventDefault();
-    if (!newGroupName.trim()) return;
-    setActionLoading(true);
-    setMsg(null);
-
+  const createGroup = async event => {
+    event.preventDefault();
+    const response = await create.run({name,subjectTestId:test});
+    if(!response)return;
+    setName('');setPanel('');setMessage('Grupo creado. Comparte el código completo para invitar miembros.');
+    await load();open(response.data.id);
+  };
+  const join = async event => {
+    event.preventDefault();
+    if(guard.current)return;
+    guard.current=true;setJoining(true);setMessage('');
     try {
-      await apiFetch('/groups', {
-        method: 'POST',
-        body: JSON.stringify({ name: newGroupName, subjectTestId })
-      });
-      setNewGroupName('');
-      setShowCreateModal(false);
-      setMsg({ type: 'ok', text: '¡Grupo de estudio creado con éxito!' });
-      fetchGroups();
-    } catch (err) {
-      setMsg({ type: 'err', text: err.message });
-    } finally {
-      setActionLoading(false);
-    }
+      const response=await apiFetch('/groups/join',{method:'POST',body:JSON.stringify({groupId:code.trim()})});
+      setCode('');setPanel('');setMessage(response.data.alreadyMember?'Ya perteneces a este grupo.':'Te uniste al grupo.');
+      await load();open(response.data.id);
+    } catch(cause){setMessage(cause.message);}
+    finally{guard.current=false;setJoining(false);}
   };
-
-  const handleJoin = async (e) => {
-    e.preventDefault();
-    if (!joinGroupId.trim()) return;
-    setActionLoading(true);
-    setMsg(null);
-
-    try {
-      await apiFetch('/groups/join', {
-        method: 'POST',
-        body: JSON.stringify({ groupId: joinGroupId.trim() })
-      });
-      setJoinGroupId('');
-      setShowJoinModal(false);
-      setMsg({ type: 'ok', text: '¡Te has unido al grupo correctamente!' });
-      fetchGroups();
-    } catch (err) {
-      setMsg({ type: 'err', text: err.message });
-    } finally {
-      setActionLoading(false);
-    }
-  };
-
-  if (loading) {
-    return <div style={{ color: 'var(--muted)' }}>Cargando grupos de estudio...</div>;
-  }
-
-  return (
-    <div style={{ maxWidth: '960px', margin: '0 auto' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '14px' }}>
-        <div>
-          <h1 style={{ fontFamily: 'Montserrat', fontSize: '24px', fontWeight: 800, color: 'var(--ink)' }}>
-            {t.groups.title}
-          </h1>
-          <p style={{ color: 'var(--muted)', fontSize: '14px', marginTop: '4px' }}>
-            {t.groups.subtitle}
-          </p>
-        </div>
-
-        <div style={{ display: 'flex', gap: '10px' }}>
-          <button
-            onClick={() => setShowJoinModal(true)}
-            style={{
-              backgroundColor: 'var(--panel)',
-              color: 'var(--ink)',
-              border: '1.5px solid var(--line)',
-              borderRadius: '10px',
-              padding: '10px 16px',
-              fontFamily: 'Montserrat',
-              fontWeight: 700,
-              fontSize: '13px',
-              cursor: 'pointer'
-            }}
-          >
-            {t.groups.joinWithCode}
-          </button>
-          <button
-            onClick={() => setShowCreateModal(true)}
-            style={{
-              backgroundColor: 'var(--cta)',
-              color: 'var(--cta-ink)',
-              border: 'none',
-              borderRadius: '10px',
-              padding: '10px 18px',
-              fontFamily: 'Montserrat',
-              fontWeight: 700,
-              fontSize: '13px',
-              cursor: 'pointer'
-            }}
-          >
-            {t.groups.createGroup}
-          </button>
-        </div>
-      </div>
-
-      {msg && (
-        <div style={{
-          marginBottom: '20px',
-          padding: '12px 16px',
-          borderRadius: '8px',
-          fontSize: '13px',
-          fontWeight: 600,
-          background: msg.type === 'ok' ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)',
-          color: msg.type === 'ok' ? 'var(--accent)' : 'var(--danger)'
-        }}>
-          {msg.text}
-        </div>
-      )}
-
-      {/* Grid de Grupos */}
-      {groups.length === 0 ? (
-        <div style={{
-          background: 'var(--panel)',
-          padding: '50px 24px',
-          borderRadius: '16px',
-          textAlign: 'center',
-          border: '1px solid var(--line)',
-          boxShadow: 'var(--shadow)'
-        }}>
-          <span style={{ fontSize: '40px' }}>👥</span>
-          <h3 style={{ fontFamily: 'Montserrat', marginTop: '12px', fontSize: '18px', color: 'var(--ink)' }}>
-            {t.groups.emptyTitle}
-          </h3>
-          <p style={{ color: 'var(--muted)', fontSize: '14px', marginTop: '6px' }}>
-            {t.groups.emptySubtitle}
-          </p>
-        </div>
-      ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))', gap: '20px' }}>
-          {groups.map((g) => (
-            <div
-              key={g.id}
-              style={{
-                background: 'var(--panel)',
-                borderRadius: '16px',
-                padding: '20px',
-                border: '1px solid var(--line)',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                boxShadow: 'var(--shadow)'
-              }}
-            >
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                  <span style={{
-                    fontSize: '11px',
-                    fontWeight: 800,
-                    textTransform: 'uppercase',
-                    color: '#fff',
-                    backgroundColor: g.color || 'var(--brand)',
-                    padding: '3px 8px',
-                    borderRadius: '6px'
-                  }}>
-                    {g.subjectTestId?.toUpperCase()}
-                  </span>
-                  <span style={{ fontSize: '11px', color: 'var(--muted)' }}>
-                    ID: <code style={{ userSelect: 'all', color: 'var(--ink)' }}>{g.id.slice(0, 8)}</code>
-                  </span>
-                </div>
-
-                <h3 style={{ fontFamily: 'Montserrat', fontSize: '17px', fontWeight: 800, marginTop: '12px', color: 'var(--ink)' }}>
-                  {g.name}
-                </h3>
-
-                <div style={{ fontSize: '13px', color: 'var(--muted)', marginTop: '8px' }}>
-                  {g.memberCount} {g.memberCount === 1 ? 'miembro' : 'miembros'}
-                </div>
-
-                <div style={{ display: 'flex', gap: '6px', marginTop: '14px', flexWrap: 'wrap' }}>
-                  {g.members?.map((m) => (
-                    <div
-                      key={m.uid}
-                      title={`${m.name} (${m.role === 'owner' ? 'Líder' : 'Miembro'})`}
-                      style={{
-                        width: '32px',
-                        height: '32px',
-                        borderRadius: '50%',
-                        backgroundColor: m.role === 'owner' ? 'var(--cta)' : 'var(--brand)',
-                        color: m.role === 'owner' ? 'var(--cta-ink)' : '#fff',
-                        display: 'grid',
-                        placeItems: 'center',
-                        fontSize: '12px',
-                        fontWeight: 800,
-                        fontFamily: 'Montserrat'
-                      }}
-                    >
-                      {m.name.charAt(0).toUpperCase()}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div style={{ marginTop: '20px', paddingTop: '14px', borderTop: '1px solid var(--line)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Código completo:</span>
-                <span
-                  onClick={() => {
-                    navigator.clipboard.writeText(g.id);
-                    alert(`Código de grupo copiado: ${g.id}`);
-                  }}
-                  style={{ fontSize: '12px', color: 'var(--brand)', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline' }}
-                >
-                  Copiar Código
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Modal Crear Grupo */}
-      {showCreateModal && (
-        <div style={{
-          position: 'fixed',
-          inset: 0,
-          background: 'rgba(0,0,0,0.6)',
-          display: 'grid',
-          placeItems: 'center',
-          zIndex: 100,
-          padding: '20px'
-        }}>
-          <div style={{ background: 'var(--panel)', width: '100%', maxWidth: '420px', borderRadius: '16px', padding: '24px', border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
-            <h3 style={{ fontFamily: 'Montserrat', fontSize: '18px', fontWeight: 800, color: 'var(--ink)' }}>
-              Crear Grupo de Estudio
-            </h3>
-            <form onSubmit={handleCreate} style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}>Nombre del grupo</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Ej: Preu Matemáticas 2026"
-                  value={newGroupName}
-                  onChange={(e) => setNewGroupName(e.target.value)}
-                  style={{ width: '100%', padding: '10px 12px', borderRadius: '8px', border: '1px solid var(--line)', backgroundColor: 'var(--soft)', color: 'var(--ink)', outline: 'none' }}
-                />
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}>Materia Principal</label>
-                <select
-                  value={subjectTestId}
-                  onChange={(e) => setSubjectTestId(e.target.value)}
-                  style={{ width: '100%', padding: '10px 12px', borderRadius: '8px', border: '1px solid var(--line)', outline: 'none', background: 'var(--soft)', color: 'var(--ink)' }}
-                >
-                  <option value="m1">Competencia Matemática 1 (M1)</option>
-                  <option value="m2">Competencia Matemática 2 (M2)</option>
-                  <option value="lectora">Competencia Lectora</option>
-                  <option value="cien">Ciencias</option>
-                  <option value="hist">Historia y Ciencias Sociales</option>
-                </select>
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '10px' }}>
-                <button
-                  type="button"
-                  onClick={() => setShowCreateModal(false)}
-                  style={{ padding: '10px 14px', borderRadius: '8px', border: 'none', background: 'var(--soft)', color: 'var(--ink)', cursor: 'pointer', fontWeight: 600 }}
-                >
-                  Cancelar
-                </button>
-                <button
-                  type="submit"
-                  disabled={actionLoading}
-                  style={{ padding: '10px 18px', borderRadius: '8px', border: 'none', background: 'var(--cta)', color: 'var(--cta-ink)', cursor: 'pointer', fontWeight: 700, fontFamily: 'Montserrat' }}
-                >
-                  {actionLoading ? 'Creando...' : 'Crear Grupo'}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Modal Unirse con Código */}
-      {showJoinModal && (
-        <div style={{
-          position: 'fixed',
-          inset: 0,
-          background: 'rgba(0,0,0,0.6)',
-          display: 'grid',
-          placeItems: 'center',
-          zIndex: 100,
-          padding: '20px'
-        }}>
-          <div style={{ background: 'var(--panel)', width: '100%', maxWidth: '420px', borderRadius: '16px', padding: '24px', border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
-            <h3 style={{ fontFamily: 'Montserrat', fontSize: '18px', fontWeight: 800, color: 'var(--ink)' }}>
-              Unirse a un Grupo
-            </h3>
-            <p style={{ fontSize: '13px', color: 'var(--muted)', marginTop: '4px' }}>
-              Pídele el ID de grupo a tu compañero y pégalo aquí.
-            </p>
-            <form onSubmit={handleJoin} style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}>ID del Grupo</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Ej: fK72mNpQ9x..."
-                  value={joinGroupId}
-                  onChange={(e) => setJoinGroupId(e.target.value)}
-                  style={{ width: '100%', padding: '10px 12px', borderRadius: '8px', border: '1px solid var(--line)', backgroundColor: 'var(--soft)', color: 'var(--ink)', outline: 'none' }}
-                />
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '10px' }}>
-                <button
-                  type="button"
-                  onClick={() => setShowJoinModal(false)}
-                  style={{ padding: '10px 14px', borderRadius: '8px', border: 'none', background: 'var(--soft)', color: 'var(--ink)', cursor: 'pointer', fontWeight: 600 }}
-                >
-                  Cancelar
-                </button>
-                <button
-                  type="submit"
-                  disabled={actionLoading}
-                  style={{ padding: '10px 18px', borderRadius: '8px', border: 'none', background: 'var(--brand)', color: '#fff', cursor: 'pointer', fontWeight: 700, fontFamily: 'Montserrat' }}
-                >
-                  {actionLoading ? 'Uniéndose...' : 'Unirse al Grupo'}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+  if(selected)return <div className="social-page"><h1>{t.groups.title}</h1><GroupDetails key={selected} id={selected} questionId={questionId} onBack={()=>open(null)} onLeft={()=>{open(null);setMessage('Saliste del grupo.');load();}} /></div>;
+  return <div className="social-page">
+    <h1>{t.groups.title}</h1><p>{t.groups.subtitle}</p>
+    {questionId && <p>Elige un grupo de la materia para compartir la pregunta de práctica con una duda o aporte.</p>}
+    {limit!==null && <p>Grupos: {groups?.length ?? 0} · {limit===0?'Tu plan no limita la cantidad de grupos.':`Límite de tu plan: ${limit}.`}</p>}
+    <div className="social-actions"><button disabled={create.busy || joining} onClick={()=>setPanel('create')}>Crear grupo</button><button disabled={create.busy || joining} onClick={()=>setPanel('join')}>Unirse con código</button><button disabled={create.busy || joining} onClick={load}>Actualizar grupos</button></div>
+    {error && <p role="alert">{error}</p>}{message && <p role="status">{message}</p>}{create.error && <p role="alert">{create.error}</p>}
+    {(panel==='create' || create.pending) && <form onSubmit={createGroup}><h2>Crear grupo de estudio</h2>
+      <label htmlFor="group-name">Nombre del grupo</label><input id="group-name" required maxLength={100} value={create.pending?.name ?? name} disabled={create.busy || !!create.pending} onChange={event=>setName(event.target.value)} />
+      <label htmlFor="group-test">Materia principal</label><select id="group-test" value={create.pending?.subjectTestId ?? test} disabled={create.busy || !!create.pending} onChange={event=>setTest(event.target.value)}>{SUBJECTS.map(([id,label])=><option key={id} value={id}>{label}</option>)}</select>
+      <div className="social-actions"><button disabled={create.busy || (!create.pending && !name.trim())}>{create.pending?'Reintentar creación':'Crear e invitar'}</button>{!create.pending && <button type="button" onClick={()=>setPanel('')}>Cancelar</button>}</div>
+    </form>}
+    {panel==='join' && !create.pending && <form onSubmit={join}><h2>Unirse a un grupo</h2><label htmlFor="group-code">Código completo del grupo</label><input id="group-code" required maxLength={128} value={code} disabled={joining} onChange={event=>setCode(event.target.value)} /><div className="social-actions"><button disabled={joining || !code.trim()}>Unirse al grupo</button><button type="button" disabled={joining} onClick={()=>setPanel('')}>Cancelar</button></div></form>}
+    {!groups && !error && <p>Cargando grupos...</p>}
+    {groups?.length===0 && <p>Aún no perteneces a ningún grupo. Crea uno o únete con una invitación.</p>}
+    <div className="social-groups">{groups?.map(group=><article key={group.id}><h2>{group.name}</h2><p>{SUBJECTS.find(([id])=>id===group.subjectTestId)?.[1]} · {group.memberCount} miembros</p><p>{group.role==='owner'?'Eres líder de este grupo.':'Eres miembro de este grupo.'}</p><button onClick={()=>open(group.id)}>Abrir {group.name}</button></article>)}</div>
+  </div>;
 }

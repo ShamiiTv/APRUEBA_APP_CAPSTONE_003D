@@ -1,0 +1,61 @@
+# La entrega se organiza por fases; lo demás permanece únicamente en el PC.
+/*
+!/Fase 1/
+!/Fase 2/
+!/Fase 3/
+!/README.md
+!/.gitignore
+
+# Dependencias, herramientas y resultados de compilación
+node_modules/
+build/
+dist/
+coverage/
+.dart_tool/
+.gradle/
+.kotlin/
+.pub-cache/
+.pub/
+.firebase/
+__pycache__/
+*.pyc
+*.log
+*.tmp
+*.pid
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.agents/
+.claude/
+.codex/
+skills-lock.json
+.flutter-plugins*
+ephemeral/
+Pods/
+.symlinks/
+local.properties
+Generated.xcconfig
+flutter_export_environment.sh
+
+# Configuración privada y claves (las plantillas sí se incluyen)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*firebase-adminsdk*.json
+serviceAccount*.json
+
+# Datos temporales de emuladores y copias históricas locales
+emulator_data/
+emulator-data/
+saved-data/
+firestore_export/
+auth_export/
+firebase-export-metadata.json
+**/Revisión banco de preguntas/*.zip
