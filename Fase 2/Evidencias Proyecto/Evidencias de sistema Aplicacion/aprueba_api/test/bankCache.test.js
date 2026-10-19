@@ -14,3 +14,10 @@ test('Failed bank reads are retriable and never stored as a valid bank', async (
   const load=createBankCache(async()=>{if(++reads===1)throw Error('quota');return [];});
   await assert.rejects(load(),/quota/); assert.deepEqual(await load(),[]); assert.equal(reads,2);
 });
+
+test('Invalidation reloads the bank and an older read cannot restore stale content', async () => {
+ let release,reads=0;const load=createBankCache(async()=>{if(++reads===1)return new Promise(r=>{release=r});return {version:reads};});
+ const old=load();await Promise.resolve();load.invalidate();
+ assert.deepEqual(await load(),{version:2});release({version:1});await old;
+ assert.deepEqual(await load(),{version:2});assert.equal(reads,2);
+});

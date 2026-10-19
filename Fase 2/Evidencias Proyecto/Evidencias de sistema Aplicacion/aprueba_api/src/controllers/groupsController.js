@@ -1,3 +1,5 @@
+import { loadSharedBank } from '../services/sharedBank.js';
+import { loadAnswerHistory } from '../services/answerHistory.js';
 import { db } from '../config/firebase.js';
 import { summarizeProgress } from '../services/progress.js';
 import { TEST_IDS, problem, fail, ok, fields, identifier, requestId, text, groupLimit, stableId, dateISO, checkOperation } from '../services/social.js';
@@ -90,10 +92,10 @@ export async function getGroup(req, res) {
     if (!group.exists) throw problem('Grupo no encontrado', 404);
     const data = group.data();
     if (!data.memberIds?.includes(uid)) throw problem('Solo los miembros pueden ver este grupo', 403);
-    const questions = await db.collection('questions').select('testId','statement','options','correctAnswer','status','bankVersion','pedagogicalUse','contentId').get();
-    const bank = questions.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+    const questions = await loadSharedBank();
+    const bank = questions.map(entry => ({ ...entry.question, id: entry.id }));
     const members = await Promise.all(data.memberIds.map(async memberId => {
-      const [user, history] = await Promise.all([db.collection('users').doc(memberId).get(), db.collection('users').doc(memberId).collection('answeredQuestions').where('testId', '==', data.subjectTestId).get()]);
+      const [user, history] = await Promise.all([db.collection('users').doc(memberId).get(), loadAnswerHistory(memberId)]);
       const progress = summarizeProgress({}, history.docs.map(doc => ({ ...doc.data(), id: doc.id })), bank);
       const result = progress.subjects.find(subject => subject.testId === data.subjectTestId);
       return { uid: memberId, name: user.data()?.name || 'Estudiante', role: data.ownerId === memberId ? 'owner' : 'member', answered: result?.answered || 0, correct: result?.correct || 0, accuracy: result?.accuracy ?? null };

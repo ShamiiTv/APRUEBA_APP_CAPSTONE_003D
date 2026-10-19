@@ -1,4 +1,6 @@
-# Demostración pública provisional — 12 de octubre de 2026
+# Demostración pública provisional — registro histórico del 12 de octubre de 2026
+
+**Estado al 13 de octubre de 2026:** la demo fue desactivada y la VPS volvió a Firebase real. Las cuentas demo listadas abajo no funcionan en el servicio real. Los datos se conservaron en un snapshot independiente.
 
 Web: https://apruebashamiiplaytest.dbm.shared-servers.com/
 Móvil Flutter web: https://apruebashamiiplaytest.dbm.shared-servers.com/movil/

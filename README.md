@@ -40,12 +40,12 @@ Instalar dependencias con `npm ci` en la API y web y con `flutter pub get` en la
 
 Pruebas API y web: `npm test` en cada proyecto. Web: `npm run dev`. App: `flutter test`, `flutter analyze` y compilación para la plataforma deseada. Consultar las guías de cada componente para configurar puertos y la URL de la API. Las dependencias y compilaciones se generan localmente y no se incluyen en Git.
 
-## Demostración pública provisional
+## Servicio público y demostración histórica
 
 - Web: https://apruebashamiiplaytest.dbm.shared-servers.com/
 - Interfaz móvil: https://apruebashamiiplaytest.dbm.shared-servers.com/movil/
 
-La demo configurada el 12 de octubre de 2026 usa emuladores aislados en la VPS. Sus cuentas y avances son independientes de Firebase real. El recorrido web/móvil de login, práctica y progreso compartido fue comprobado. Las funciones señaladas como pendientes siguen en desarrollo; no se generó un APK/IPA nativo. El estado temporal y el procedimiento para volver a Firebase real se describen en `deploy/DEMO_PUBLICA.md`, dentro de las evidencias de sistema.
+Desde el 13 de octubre de 2026 la VPS volvió a Firebase real. La demo del 12 de octubre usó emuladores aislados y sus cuentas y avances se conservaron separados de los reales. El recorrido web/móvil de login, práctica y progreso compartido fue comprobado. Las funciones señaladas como pendientes siguen en desarrollo; no se generó un APK/IPA nativo. El estado temporal y el procedimiento para volver a Firebase real se describen en `deploy/DEMO_PUBLICA.md`, dentro de las evidencias de sistema.
 
 ## Evidencias académicas
 

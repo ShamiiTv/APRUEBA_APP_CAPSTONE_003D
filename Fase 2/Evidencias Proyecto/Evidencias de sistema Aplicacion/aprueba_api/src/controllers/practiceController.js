@@ -1,3 +1,4 @@
+import { loadAnswerHistory } from '../services/answerHistory.js';
 import { loadSharedBank } from '../services/sharedBank.js';
 import { db } from '../config/firebase.js';
 import { canPractice, contentId, optionsOf, normalize } from '../services/questionBank.js';
@@ -33,7 +34,8 @@ export async function getNextQuestion(req, res) {
       return { user: { uid, ...user, quota }, quota };
     });
     if (!state.quota.unlimited && remaining(state.quota) === 0) return fail(res, 'Has alcanzado tu cuota diaria de preguntas', 'QUOTA_EXCEEDED', 403);
-    const history = await userRef.collection('answeredQuestions').where('testId', '==', testId).get();
+    const fullHistory = await loadAnswerHistory(uid);
+    const history = { docs: fullHistory.docs.filter(doc => doc.data().testId === testId) };
     const answered = await answeredContents(history, ids => legacyQuestions(ids));
     const seen = new Set();
     let chosen, total = 0, unanswered = 0;
@@ -102,6 +104,7 @@ export async function submitAnswer(req, res) {
       if (isCorrect) transaction.set(userRef.collection('medalLedger').doc(identity), { event: 'reward', tier: 'bronze', amount: 1, reason: `Respuesta correcta en ítem ${questionId} (${q.testId})`, createdAt: now });
       return { ...feedback, isCorrect, selectedOption, bronzeEarned: isCorrect ? 1 : 0, alreadyAnswered: false, user: { uid, ...user, quota, medals, ...activity } };
     });
+    loadAnswerHistory.invalidate(uid);
     return res.json({ data: result, error: null, meta: { quotaRemaining: remaining(result.user.quota), quotaDate: result.user.quota.date } });
   } catch (error) {
     return fail(res, error.status ? error.message : 'No se pudo guardar la respuesta. Puedes reintentar.', error.code || 'SERVER_ERROR', error.status || 503);

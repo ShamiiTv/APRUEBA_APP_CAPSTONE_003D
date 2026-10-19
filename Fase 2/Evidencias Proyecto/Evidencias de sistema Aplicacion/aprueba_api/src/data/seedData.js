@@ -3,6 +3,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { db } from '../config/firebase.js';
+import { loadSharedBank } from '../services/sharedBank.js';
 import { formatQuestion, mapFileMetadata, normalize, optionsOf } from '../services/questionBank.js';
 
 const directory = resolve(dirname(fileURLToPath(import.meta.url)), 'questions');
@@ -62,6 +63,7 @@ export async function seedQuestions(database = db) {
     await database.collection('skills').doc(`sk_${id}_general`).set({ testId: id, name: `Habilidades generales de ${label}` }, { merge: true });
   }
   const summary = { unique: bank.size, published: [...bank.values()].filter(q => q.status === 'published').length, pending: [...bank.values()].filter(q => q.status === 'pending_review').length, supplementary: [...bank.values()].filter(q => q.status === 'supplementary').length, archived };
+  loadSharedBank.invalidate();
   console.log(JSON.stringify(summary));
   return summary;
 }

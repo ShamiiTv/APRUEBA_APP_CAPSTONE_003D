@@ -12,6 +12,7 @@ const { db } = await import('../src/config/firebase.js');
 const groups = await import('../src/controllers/groupsController.js');
 const posts = await import('../src/controllers/postsController.js');
 const { contentId } = await import('../src/services/questionBank.js');
+const { loadSharedBank } = await import('../src/services/sharedBank.js');
 const app = express();
 app.use(express.json());
 app.use((req,res,next) => { req.user = { sub: req.headers['x-user'] }; next(); });
@@ -46,7 +47,7 @@ const create = (uid,name='Grupo fixture',id=randomUUID()) => request(uid,'/group
 async function question(overrides={}) {
   const id=randomUUID();questionIds.push(id);
   const q={testId:'m1',statement:'¿Cuánto es 1 + 1?',options:['1','2','3','4'],correctAnswer:'B',explanation:{steps:['Secreto de solución']},bankVersion:2,status:'published',...overrides};
-  q.contentId=contentId(q);await db.collection('questions').doc(id).set(q);return {id,...q};
+  q.contentId=contentId(q);await db.collection('questions').doc(id).set(q);loadSharedBank.invalidate();return {id,...q};
 }
 
 test('creating a group is atomic and concurrent retries cannot duplicate it',async()=>{
