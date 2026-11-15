@@ -126,11 +126,7 @@ class _TutorContactScreenState extends ConsumerState<TutorContactScreen> {
           ),
           const SizedBox(height: 14),
           Text(
-            tr(
-              context,
-              'TU PERFIL (SE COMPARTIRÁ)',
-              'YOUR PROFILE (WILL BE SHARED)',
-            ),
+            tr(context, 'TU PERFIL DE PRUEBA', 'YOUR DEMO PROFILE'),
             style: GoogleFonts.montserrat(
               fontSize: 10,
               fontWeight: FontWeight.w700,
@@ -208,8 +204,8 @@ class _TutorContactScreenState extends ConsumerState<TutorContactScreen> {
           Text(
             tr(
               context,
-              '💳 El pago de las clases se acuerda directamente con el profesor.',
-              '💳 Payment for classes is agreed directly with the teacher.',
+              'Esta solicitud es de demostración. No reserva clases ni genera pagos.',
+              'This is a demo request. It does not book lessons or create payments.',
             ),
             style: GoogleFonts.inter(fontSize: 11, color: c.muted),
           ),
@@ -225,7 +221,13 @@ class _TutorContactScreenState extends ConsumerState<TutorContactScreen> {
                       color: AppColors.azul,
                     ),
                   )
-                : Text(tr(context, 'Enviar solicitud', 'Send request')),
+                : Text(
+                    tr(
+                      context,
+                      'Guardar solicitud simulada',
+                      'Save demo request',
+                    ),
+                  ),
           ),
         ],
       ),
