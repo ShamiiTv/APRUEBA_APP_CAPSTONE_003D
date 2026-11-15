@@ -16,6 +16,7 @@ import '../../data/user_profile.dart';
 import '../auth/auth_providers.dart';
 import '../auth/auth_repository.dart';
 import '../practice/practice_providers.dart';
+import '../notifications/notifications_providers.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -448,17 +449,49 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-/// Campana de notificaciones con el contador de no leídas.
-class _BellButton extends StatelessWidget {
+/// Campana de notificaciones con puntito cuando hay no leídas.
+class _BellButton extends ConsumerWidget {
   const _BellButton();
+
   @override
-  Widget build(BuildContext context) => IconButton(
-    tooltip: tr(
-      context,
-      'Notificaciones · próximamente',
-      'Notifications · coming soon',
-    ),
-    onPressed: () => context.push('/notifications'),
-    icon: const Icon(Icons.notifications_outlined),
-  );
+  Widget build(BuildContext context, WidgetRef ref) {
+    final unread = ref.watch(notificationsProvider).value?.unread ?? 0;
+    return IconButton(
+      tooltip: tr(context, 'Notificaciones', 'Notifications'),
+      onPressed: () async {
+        await context.push('/notifications');
+        ref.invalidate(notificationsProvider);
+      },
+      icon: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          const Icon(Icons.notifications_outlined),
+          if (unread > 0)
+            Positioned(
+              right: -4,
+              top: -4,
+              child: Container(
+                constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFEF4444),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.white, width: 1.5),
+                ),
+                child: Text(
+                  unread > 9 ? '9+' : '$unread',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 9,
+                    fontWeight: FontWeight.w800,
+                    height: 1.1,
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
 }

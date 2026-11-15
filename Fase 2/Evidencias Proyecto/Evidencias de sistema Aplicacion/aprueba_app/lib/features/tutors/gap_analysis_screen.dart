@@ -23,6 +23,12 @@ class GapAnalysisScreen extends ConsumerWidget {
         ref.watch(progressProvider).value ?? const <String, ProgressItem>{};
     final tests = ref.watch(testsProvider).value ?? const <PracticeTest>[];
     final profile = ref.watch(profileProvider).value;
+        if (profile != null && profile.plan != 'all') {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) context.go('/premium/tutors');
+      });
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
     final chosen = profile?.selectedTests ?? const <String>[];
 
     final rows =

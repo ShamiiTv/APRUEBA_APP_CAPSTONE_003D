@@ -26,12 +26,13 @@ class AppNotification {
     createdAt: createdAt,
   );
 
-  String get emoji => switch (type) {
+   String get emoji => switch (type) {
     'correction_confirmed' => '✅',
     'gift_received' => '🎁',
     'group_joined' => '👥',
     'plan_activated' => '🚀',
     'payment_failed' => '⚠️',
+    'medal_reward' => '🥉',
     _ => '🔔',
   };
 

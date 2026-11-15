@@ -43,6 +43,8 @@ class AuthRepository {
 
   Future<void> login(String email, String password) async {
     try {
+      // Descarta avisos pendientes de otra sesión.
+      pendingMedalReward.value = null;
       final res = await ApiClient.dio.post(
         '/auth/login',
         data: {'email': email.trim(), 'password': password},
@@ -55,6 +57,8 @@ class AuthRepository {
         pendingMedalReward.value = (
           tier: (r['tier'] ?? 'bronze').toString(),
           amount: (r['amount'] as num?)?.toInt() ?? 1,
+          reason: 'Inicio de sesión diario',
+          streak: (r['streak'] as num?)?.toInt(),
         );
       }
     } on DioException catch (e) {
@@ -70,6 +74,7 @@ class AuthRepository {
     String locale = 'es',
   }) async {
     try {
+      pendingMedalReward.value = null;
       final res = await ApiClient.dio.post(
         '/auth/register',
         data: {
@@ -78,8 +83,17 @@ class AuthRepository {
           'password': password,
         },
       );
-      await _saveTokens(res.data['data'] as Map);
-      // Registration does not award medals in the shared API.
+      final data = res.data['data'] as Map;
+      await _saveTokens(data);
+      final r = data['dailyLoginReward'];
+      if (r is Map) {
+        pendingMedalReward.value = (
+          tier: (r['tier'] ?? 'bronze').toString(),
+          amount: (r['amount'] as num?)?.toInt() ?? 1,
+          reason: 'Bienvenida a Aprueba',
+          streak: null,
+        );
+      }
     } on DioException catch (e) {
       throw _error(e, 'No se pudo conectar con el servidor.');
     }
@@ -162,7 +176,11 @@ class AuthRepository {
 
   Future<void> deleteAccount(String password) async {
     try {
-      await ApiClient.dio.delete('/me', data: {'password': password});
+      await ApiClient.dio.delete('/auth/me', data: {'currentPassword': password});
+      // La cuenta ya no existe: limpia la sesión local.
+      pendingMedalReward.value = null;
+      await ReminderService.cancel();
+      await TokenStorage.clear();
     } on DioException catch (e) {
       throw _error(e, 'No se pudo eliminar la cuenta.');
     }
@@ -175,6 +193,7 @@ class AuthRepository {
 
   /// Borra la sesión de este dispositivo.
   Future<void> logout() async {
+    pendingMedalReward.value = null;
     await ReminderService.cancel();
     await TokenStorage.clear();
   }

@@ -92,6 +92,17 @@ class _SelectTestsScreenState extends ConsumerState<SelectTestsScreen> {
       }
     }
   }
+  Color _dotColor(PracticeTest t) {
+    final key = '${t.id} ${t.label}'.toLowerCase();
+    if (key.contains('m1')) return const Color(0xFF10B981); // verde
+    if (key.contains('m2')) return const Color(0xFF6366F1); // violeta
+    if (key.contains('cien')) return const Color(0xFFF5AF41); // naranja
+    if (key.contains('hist')) return const Color(0xFFEF4444); // rojo
+    if (key.contains('lect') || key.contains('verbal')) {
+      return const Color(0xFF3B82F6); // azul
+    }
+    return t.color;
+  }
 
   Widget _chip(PracticeTest t) {
     final c = WfColors.of(context);
@@ -116,9 +127,13 @@ class _SelectTestsScreenState extends ConsumerState<SelectTestsScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              width: 9,
-              height: 9,
-              decoration: BoxDecoration(color: t.color, shape: BoxShape.circle),
+              width: 10,
+              height: 10,
+              decoration: BoxDecoration(
+                color: _dotColor(t),
+                shape: BoxShape.circle,
+                border: on ? Border.all(color: Colors.white, width: 1.5) : null,
+              ),
             ),
             const SizedBox(width: 8),
             Text(

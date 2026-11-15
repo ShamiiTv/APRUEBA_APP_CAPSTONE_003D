@@ -3,6 +3,17 @@ import { generateTokens } from '../middleware/auth.js';
 import { passwordRequest, validEmail, validPassword } from '../services/passwordAuth.js';
 import { practiceDate, dailyQuota } from '../services/practice.js';
 import { profilePatch } from '../services/profileSettings.js';
+import { balances } from '../services/medals.js';
+
+// Día calendario en hora de Chile (YYYY-MM-DD), para que el "día" no cambie a las 21:00.
+function chileDate(date = new Date()) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Santiago' }).format(date);
+}
+
+function previousDay(day) {
+  const d = new Date(`${day}T12:00:00Z`);
+  return new Date(d.getTime() - 86400000).toISOString().slice(0, 10);
+}
 
 export async function register(req, res) {
   try {
@@ -20,6 +31,7 @@ export async function register(req, res) {
     }
 
     const todayStr = practiceDate();
+    const loginDay = chileDate();
     const newUserRef = db.collection('users').doc();
     const uid = newUserRef.id;
 
@@ -42,7 +54,9 @@ export async function register(req, res) {
       practiceFormat: 'random',
       difficulty: 'd2',
       dailyReminder: true,
-      medals: { bronze: 0, silver: 0, gold: 0, diamond: 0, platinum: 0 },
+      medals: { bronze: 1, silver: 0, gold: 0, diamond: 0, platinum: 0 },
+      loginStreak: 1,
+      lastLoginDate: loginDay,
       quota: { used: 0, max: 10, date: todayStr, bonusSchool: 0, bonusAddress: 0, unlimited: false },
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -54,8 +68,15 @@ export async function register(req, res) {
     batch.set(newUserRef.collection('medalLedger').doc(), {
       event: 'reward',
       tier: 'bronze',
-      amount: 0,
+      amount: 1,
       reason: 'Creación de cuenta y bienvenida a Aprueba',
+      createdAt: new Date(),
+    });
+        batch.set(newUserRef.collection('notifications').doc(), {
+      type: 'medal_reward',
+      title: '+1 Medalla de Bronce',
+      body: 'Bienvenida a Aprueba. ¡Gracias por crear tu cuenta!',
+      read: false,
       createdAt: new Date(),
     });
     try {
@@ -80,6 +101,8 @@ export async function register(req, res) {
       user: { uid, ...userData, emailVerified: false },
       verificationEmailSent,
       tokens,
+      rewards: [{ type: 'welcome', tier: 'bronze', amount: 1, reason: 'Bienvenida a Aprueba', streak: 1 }],
+            dailyLoginReward: { tier: 'bronze', amount: 1, streak: 1 },
     }, null, 201);
   } catch (error) {
     if (error.code === 'auth/email-already-exists') return res.fail('El correo ya se encuentra registrado', null, 409);
@@ -103,15 +126,62 @@ export async function login(req, res) {
       return res.fail('Credenciales inválidas', null, 401);
     }
 
-    const userData = userDoc.data();
+    let userData = userDoc.data();
     const uid = userDoc.id;
+    const userRef = userDoc.ref;
     const account = await auth.getUser(uid);
+    const rewards = [];
+
+    // +1 bronce la primera vez que entra cada día. Si falla, el login igual funciona.
+    try {
+      const result = await db.runTransaction(async tx => {
+        const snap = await tx.get(userRef);
+        const current = snap.data();
+        const today = chileDate();
+        if (current.lastLoginDate === today) return { data: current, reward: null };
+
+        const streak = current.lastLoginDate === previousDay(today) ? (current.loginStreak || 0) + 1 : 1;
+        const medals = balances(current.medals);
+        medals.bronze += 1;
+        const patch = { medals, loginStreak: streak, lastLoginDate: today, updatedAt: new Date() };
+
+        tx.update(userRef, patch);
+        tx.set(userRef.collection('medalLedger').doc(), {
+          event: 'reward',
+          tier: 'bronze',
+          amount: 1,
+          reason: `Inicio de sesión diario (día ${streak} seguido)`,
+          createdAt: new Date(),
+        });
+        tx.set(userRef.collection('notifications').doc(), {
+          type: 'medal_reward',
+          title: '+1 Medalla de Bronce',
+          body: streak > 1 ? `Inicio de sesión diario · ¡Día ${streak} seguido!` : 'Inicio de sesión diario',
+          read: false,
+          createdAt: new Date(),
+        });
+        return {
+          data: { ...current, ...patch },
+          reward: { type: 'daily_login', tier: 'bronze', amount: 1, reason: 'Inicio de sesión diario', streak },
+        };
+      });
+      userData = result.data;
+      if (result.reward) rewards.push(result.reward);
+    } catch (rewardError) {
+      console.warn('No se pudo registrar la medalla de inicio de sesión', rewardError.message);
+    }
 
     const tokens = generateTokens({ id: uid, role: 'student', plan: userData.plan, authTime });
+
+        const daily = rewards.find(r => r.type === 'daily_login');
 
     return res.success({
       user: { uid, ...userData, emailVerified: account.emailVerified === true },
       tokens,
+      rewards,
+      dailyLoginReward: daily
+        ? { tier: daily.tier, amount: daily.amount, streak: daily.streak }
+        : null,
     });
   } catch (error) {
     if (['INVALID_LOGIN_CREDENTIALS', 'INVALID_PASSWORD', 'EMAIL_NOT_FOUND', 'USER_DISABLED'].includes(error.code)) {
@@ -279,4 +349,102 @@ export async function changePassword(req,res) {
     await auth.revokeRefreshTokens(req.user.sub);
     return res.success({message:'Contraseña actualizada. Inicia sesión nuevamente.'});
   } catch { return res.fail('No se pudo cambiar la contraseña. Revisa tu contraseña actual.',null,400); }
+}
+
+
+// Saca al usuario de sus grupos. Si era el único integrante, borra el grupo.
+// Si era el dueño, traspasa la propiedad a otro integrante.
+// Saca al usuario de sus grupos con la misma regla que usa la app al salir:
+// si era dueño pasa la propiedad a otro integrante; si queda vacío, se archiva.
+async function leaveGroupsOnDelete(uid) {
+  const groups = await db.collection('groups').where('memberIds', 'array-contains', uid).get();
+  for (const doc of groups.docs) {
+    const data = doc.data();
+    const members = (data.memberIds || []).filter(id => id !== uid);
+    const nextOwner = data.ownerId === uid ? members[0] || null : data.ownerId;
+    const now = new Date();
+    const batch = db.batch();
+    batch.update(doc.ref, {
+      memberIds: members,
+      memberCount: members.length,
+      ownerId: nextOwner,
+      archived: members.length === 0,
+      updatedAt: now,
+      lastActivityAt: now,
+    });
+    batch.delete(doc.ref.collection('members').doc(uid));
+    if (nextOwner && nextOwner !== data.ownerId) {
+      batch.set(doc.ref.collection('members').doc(nextOwner), { role: 'owner' }, { merge: true });
+    }
+    await batch.commit();
+  }
+}
+
+// Borra los tickets de soporte del usuario (y sus mensajes).
+async function deleteSupportTickets(uid) {
+  const tickets = await db.collection('supportTickets').where('userId', '==', uid).get();
+  for (const doc of tickets.docs) await db.recursiveDelete(doc.ref);
+}
+
+// Borra las recorrecciones del usuario.
+async function deleteCorrections(uid) {
+  const corrections = await db.collection('corrections').where('userId', '==', uid).get();
+  for (const doc of corrections.docs) await db.recursiveDelete(doc.ref);
+}
+
+// Anonimiza las publicaciones del usuario para no romper hilos de otros.
+async function anonymizePosts(uid) {
+  const posts = await db.collection('posts').where('authorUid', '==', uid).get();
+  for (let i = 0; i < posts.docs.length; i += 400) {
+    const batch = db.batch();
+    for (const doc of posts.docs.slice(i, i + 400)) {
+      batch.update(doc.ref, { author: 'Usuario eliminado', authorUid: null });
+    }
+    await batch.commit();
+  }
+}
+
+// Anonimiza los comentarios del usuario en todos los posts.
+async function anonymizeComments(uid) {
+  const comments = await db.collectionGroup('comments').where('authorUid', '==', uid).get();
+  for (let i = 0; i < comments.docs.length; i += 400) {
+    const batch = db.batch();
+    for (const doc of comments.docs.slice(i, i + 400)) {
+      batch.update(doc.ref, { author: 'Usuario eliminado', authorUid: null });
+    }
+    await batch.commit();
+  }
+}
+
+export async function deleteAccount(req, res) {
+  try {
+    const uid = req.user?.sub || req.user?.id;
+    if (!uid) return res.fail('Usuario no autenticado', null, 401);
+
+    // Pide la contraseña actual y verifica que sea de esta cuenta.
+    await reauthenticate(req);
+
+    // Limpia lo que el usuario dejó en otras colecciones.
+    await leaveGroupsOnDelete(uid);
+    await deleteSupportTickets(uid);
+    await deleteCorrections(uid);
+    await anonymizePosts(uid);
+    await anonymizeComments(uid);
+
+    // Borra users/{uid} y todas sus subcolecciones (medalLedger, etc.).
+    await db.recursiveDelete(db.collection('users').doc(uid));
+
+    // Borra la cuenta de Firebase Auth (si ya no existe, no es error).
+    await auth.deleteUser(uid).catch(error => {
+      if (error.code !== 'auth/user-not-found') throw error;
+    });
+
+    return res.success({ deleted: true });
+  } catch (error) {
+    if (error.status === 400) return res.fail(error.message, null, 400);
+    if (['INVALID_LOGIN_CREDENTIALS', 'INVALID_PASSWORD'].includes(error.code)) {
+      return res.fail('Contraseña incorrecta', null, 401);
+    }
+    return res.fail('No se pudo eliminar la cuenta. Intenta nuevamente.', null, 503);
+  }
 }

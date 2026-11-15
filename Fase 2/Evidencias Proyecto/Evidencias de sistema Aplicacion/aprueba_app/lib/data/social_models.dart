@@ -244,6 +244,8 @@ class Post {
   final Color authorColor;
   final String text;
   final String? questionStatement;
+  final String? questionId;
+  final List<({String id, String text})> questionOptions;
   final int likeCount;
   final int commentCount;
   final bool userLiked;
@@ -261,6 +263,8 @@ class Post {
     required this.userLiked,
     required this.createdAt,
     required this.comments,
+    this.questionId,
+    this.questionOptions = const [],
   });
 
   Post copyWith({
@@ -330,6 +334,9 @@ class Tutor {
   final int? reviewsCount;
   final int? experienceYears;
   final bool verified;
+  final Map<String, double> criteria;
+  final String? reviewAuthor;
+  final String? reviewText;
 
   const Tutor({
     required this.id,
@@ -346,6 +353,9 @@ class Tutor {
     required this.reviewsCount,
     required this.experienceYears,
     required this.verified,
+    this.criteria = const {},
+    this.reviewAuthor,
+    this.reviewText,
   });
 
   /// Solo se usan los campos que existan en el documento del tutor.
@@ -362,6 +372,13 @@ class Tutor {
         ? '${formatClp(rawPrice.toInt())} / hora'
         : s(rawPrice);
     final rawRating = j['rating'] ?? j['rate'];
+    final rawCriteria = j['criteria'];
+    final criteria = <String, double>{
+      if (rawCriteria is Map)
+        for (final e in rawCriteria.entries)
+          if (e.value is num) e.key.toString(): (e.value as num).toDouble(),
+    };
+    final review = j['featuredReview'];
 
     return Tutor(
       id: j['id'].toString(),
@@ -378,6 +395,9 @@ class Tutor {
       reviewsCount: i(j['reviewsCount'] ?? j['reviews'] ?? j['nrev']),
       experienceYears: i(j['experienceYears'] ?? j['exp']),
       verified: j['verified'] == true,
+      criteria: criteria,
+      reviewAuthor: review is Map ? s(review['author']) : null,
+      reviewText: review is Map ? s(review['text']) : null,
     );
   }
 }

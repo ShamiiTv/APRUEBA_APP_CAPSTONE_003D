@@ -8,7 +8,7 @@ import '../../features/auth/auth_providers.dart';
 import '../../features/auth/verify_email_screen.dart';
 
 import 'package:go_router/go_router.dart';
-
+import '../../features/splash/splash_screen.dart';
 import '../../data/practice_models.dart';
 import '../../data/social_models.dart';
 import '../../features/auth/forgot_password_screen.dart';
@@ -44,6 +44,7 @@ import '../../features/tutors/tutor_contact_screen.dart';
 import '../../features/tutors/tutor_profile_screen.dart';
 import '../../features/tutors/tutors_screen.dart';
 import '../widgets/main_shell.dart';
+import '../../features/subscription/premium_gate_screen.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/splash',
@@ -62,12 +63,10 @@ final appRouter = GoRouter(
       '/practice/skill': 'Dominio por habilidad',
       '/practice/correction': 'Recorrección',
       '/corrections': 'Recorrecciones',
-      '/notifications': 'Notificaciones',
       '/checkout': 'Pagos',
       '/payment-success': 'Pagos',
       '/manage-plan': 'Suscripciones',
       '/invoices': 'Boletas',
-      '/tutors/analysis': 'Análisis de brechas',
     };
     if (![
       '/splash',
@@ -116,8 +115,10 @@ final appRouter = GoRouter(
     ),
     GoRoute(
       path: '/splash',
+      builder: (context, state) => const SplashScreen(),
       redirect: (context, state) async {
-        if (!await _hasSession() || !context.mounted) return '/login';
+        // Sin sesión: se queda en el splash y muestra Comenzar / Ya tengo cuenta.
+        if (!await _hasSession() || !context.mounted) return null;
         try {
           final profile = await ProviderScope.containerOf(
             context,
@@ -126,7 +127,7 @@ final appRouter = GoRouter(
           if (!profile.emailVerified) return '/verify-email';
           return profile.onboardingCompleted ? '/home' : '/select-tests';
         } catch (_) {
-          return '/login';
+          return null;
         }
       },
     ),
@@ -173,6 +174,10 @@ final appRouter = GoRouter(
         if (extra is! ExplanationArgs) return const PracticeScreen();
         return CorrectionScreen(args: extra);
       },
+    ),
+    GoRoute(
+      path: '/premium/tutors',
+      builder: (context, state) => const PremiumGateScreen(),
     ),
     GoRoute(
       path: '/corrections',

@@ -65,6 +65,113 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     if (context.mounted) context.go('/login');
   }
 
+  /// Pide la contraseña, elimina la cuenta en el servidor y vuelve al inicio.
+  Future<void> _confirmDelete() async {
+    final repository = ref.read(authRepositoryProvider);
+    final ctrl = TextEditingController();
+    String? error;
+    bool busy = false;
+
+    final deleted = await showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setDialog) {
+          final c = WfColors.of(ctx);
+          return AlertDialog(
+            title: Text(tr(ctx, 'Eliminar cuenta', 'Delete account')),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  tr(
+                    ctx,
+                    'Se borrarán tu cuenta, tus medallas y tu progreso. Esta acción no se puede deshacer.',
+                    'Your account, medals and progress will be deleted. This cannot be undone.',
+                  ),
+                ),
+                const SizedBox(height: 14),
+                TextField(
+                  controller: ctrl,
+                  obscureText: true,
+                  enabled: !busy,
+                  decoration: InputDecoration(
+                    hintText: tr(
+                      ctx,
+                      'Confirma con tu contraseña',
+                      'Confirm with your password',
+                    ),
+                  ),
+                ),
+                if (error != null) ...[
+                  const SizedBox(height: 10),
+                  Text(error!, style: TextStyle(color: c.danger)),
+                ],
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: busy ? null : () => Navigator.of(ctx).pop(false),
+                child: Text(tr(ctx, 'Cancelar', 'Cancel')),
+              ),
+              FilledButton(
+                style: FilledButton.styleFrom(
+                  backgroundColor: c.danger,
+                  foregroundColor: Colors.white,
+                ),
+                onPressed: busy
+                    ? null
+                    : () async {
+                        if (ctrl.text.isEmpty) {
+                          setDialog(
+                            () => error = tr(
+                              ctx,
+                              'Ingresa tu contraseña',
+                              'Enter your password',
+                            ),
+                          );
+                          return;
+                        }
+                        setDialog(() {
+                          busy = true;
+                          error = null;
+                        });
+                        try {
+                          await repository.deleteAccount(ctrl.text);
+                          if (ctx.mounted) Navigator.of(ctx).pop(true);
+                        } on ApiException catch (e) {
+                          setDialog(() {
+                            busy = false;
+                            error = e.message;
+                          });
+                        }
+                      },
+                child: busy
+                    ? const SizedBox(
+                        height: 18,
+                        width: 18,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: Colors.white,
+                        ),
+                      )
+                    : Text(tr(ctx, 'Eliminar', 'Delete')),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+
+    if (deleted == true) {
+      ref.invalidate(profileProvider);
+      ref.invalidate(progressProvider);
+      ref.invalidate(testsProvider);
+      if (mounted) context.go('/splash');
+    }
+  }
+
   Future<void> _setLanguage(
     BuildContext context,
     WidgetRef ref,
@@ -328,9 +435,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             const SizedBox(height: 8),
             InkWell(
               borderRadius: BorderRadius.circular(14),
-              onTap: () => context.push(
-                '/private-beta-info?feature=Eliminación%20de%20cuenta',
-              ),
+              onTap: _confirmDelete,
               child: Container(
                 padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
@@ -353,8 +458,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     Text(
                       tr(
                         context,
-                        'Función pendiente de integración en esta versión.',
-                        'Integration pending in this version.',
+                        'Borra tu cuenta y todos tus datos de forma permanente.',
+                        'Permanently deletes your account and all your data.',
                       ),
                       style: small,
                     ),

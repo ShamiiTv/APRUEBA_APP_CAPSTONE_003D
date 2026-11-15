@@ -10,6 +10,7 @@ import {
   sendVerification,
   changePassword,
   createSocialSession,
+  deleteAccount,
 } from '../controllers/authController.js';
 import { authenticateToken, refreshSession, requireVerifiedEmail } from '../middleware/auth.js';
 import { createAuthLimiters } from '../middleware/authRateLimiters.js';
@@ -31,6 +32,7 @@ router.post('/social-session', authenticateToken, recoveryLimiter, createSocialS
 router.get('/me', authenticateToken, getProfile);
 router.put('/me', authenticateToken, updateProfile);
 router.patch('/me', authenticateToken, updateProfile);
+router.delete('/me', authenticateToken, recoveryLimiter, deleteAccount);
 
 // Alias /profile para estandarizar con el frontend
 router.get('/profile', authenticateToken, getProfile);

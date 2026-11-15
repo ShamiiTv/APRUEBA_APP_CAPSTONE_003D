@@ -23,7 +23,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   final _emailCtrl = TextEditingController();
   final _passCtrl = TextEditingController();
-  bool _loading = false;
+  bool _loading = false;   bool _obscure = true;
   String? _error;
 
   @override
@@ -167,9 +167,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                     const SizedBox(height: 16),
                     _label(tr(context, 'Contraseña', 'Password')),
-                    TextField(
+                                        TextField(
                       controller: _passCtrl,
-                      obscureText: true,
+                      obscureText: _obscure,
                       onSubmitted: (_) {
                         if (!_loading) _login();
                       },
@@ -178,6 +178,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         hintStyle: GoogleFonts.inter(
                           fontSize: 14,
                           color: const Color(0xFF94A3B8),
+                        ),
+                        suffixIcon: IconButton(
+                          tooltip: _obscure
+                              ? tr(context, 'Mostrar contraseña', 'Show password')
+                              : tr(context, 'Ocultar contraseña', 'Hide password'),
+                          icon: Icon(
+                            _obscure
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined,
+                          ),
+                          onPressed: () => setState(() => _obscure = !_obscure),
                         ),
                       ),
                     ),

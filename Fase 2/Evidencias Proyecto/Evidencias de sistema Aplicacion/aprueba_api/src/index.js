@@ -17,6 +17,7 @@ import plansRoutes from './routes/plansRoutes.js';
 import skillsRoutes from './routes/skillsRoutes.js';
 import supportRoutes from './routes/supportRoutes.js';
 import tutorsRoutes from './routes/tutorsRoutes.js';
+import notificationsRoutes from './routes/notificationsRoutes.js';
 import { validateAuthConfiguration, authenticateToken, requireOnboarding, requireVerifiedEmail } from './middleware/auth.js';
 
 validateAuthConfiguration();
@@ -72,6 +73,8 @@ app.use('/api/v1/plans', plansRoutes);
 app.use('/api/v1/skills', skillsRoutes);
 app.use('/api/v1/support', supportRoutes);
 app.use('/api/v1/tutors', tutorsRoutes);
+app.use('/api/v1/me/notifications', authenticateToken, notificationsRoutes);
+
 
 // Manejo de rutas no encontradas
 app.use((req, res) => {

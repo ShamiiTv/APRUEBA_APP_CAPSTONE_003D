@@ -57,7 +57,10 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
             format: _format,
             difficulty: widget.initialDifficulty,
           ));
-      ref.read(profileProvider.notifier).refresh();
+         ref.invalidate(profileProvider);
+      try {
+        await ref.read(profileProvider.future);
+      } catch (_) {}
       if (mounted) Navigator.of(context).pop(true);
     } on PracticeException catch (e) {
       if (mounted) setState(() => _error = e.message);
