@@ -1,13 +1,10 @@
-import 'package:flutter/material.dart';
-
+﻿import 'package:flutter/material.dart';
 import '../../core/l10n/l10n.dart';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/wf_colors.dart';
-import '../../core/widgets/wf_widgets.dart';
 import '../practice/practice_providers.dart';
 import 'auth_providers.dart';
 import 'auth_repository.dart';
@@ -20,6 +17,10 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
+  // Amarillo del logo y un tono más oscuro para texto legible sobre fondo claro.
+  static const _amarillo = Color(0xFFF5AF41);
+  static const _amarilloTexto = Color(0xFFC98A12);
+
   final _emailCtrl = TextEditingController();
   final _passCtrl = TextEditingController();
   bool _loading = false;
@@ -33,7 +34,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   Future<void> _login() async {
-    if (_loading) return;
     setState(() {
       _loading = true;
       _error = null;
@@ -45,10 +45,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           .login(_emailCtrl.text, _passCtrl.text);
       ref.invalidate(profileProvider);
       ref.invalidate(progressProvider);
-      final profile = await ref.read(profileProvider.future);
-      if (mounted) {
-        context.go(profile.onboardingCompleted ? '/home' : '/select-tests');
-      }
+      if (mounted) context.go('/home');
     } on ApiException catch (e) {
       if (mounted) setState(() => _error = e.message);
     } finally {
@@ -56,107 +53,200 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     }
   }
 
+  Widget _miniLogo() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.arrow_drop_up, color: _amarillo, size: 24),
+            Transform.translate(
+              offset: const Offset(0, -6),
+              child: Container(
+                width: 10,
+                height: 18,
+                decoration: BoxDecoration(
+                  color: _amarillo,
+                  borderRadius: BorderRadius.circular(3),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(width: 10),
+        Text(
+          'Aprueba',
+          style: GoogleFonts.montserrat(
+            fontSize: 26,
+            fontWeight: FontWeight.w800,
+            color: AppColors.azul,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _label(String text) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 6),
+        child: Text(
+          text,
+          style: GoogleFonts.inter(
+            fontSize: 13,
+            fontWeight: FontWeight.w700,
+            color: AppColors.azul,
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final c = WfColors.of(context);
-    final tt = Theme.of(context).textTheme;
 
     return Scaffold(
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
+            padding: const EdgeInsets.all(20),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 380),
-              child: AutofillGroup(
+              constraints: const BoxConstraints(maxWidth: 440),
+              child: Container(
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24),
+                  border: Border.all(color: const Color(0xFFE2E8F0)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.06),
+                      blurRadius: 24,
+                      offset: const Offset(0, 8),
+                    ),
+                  ],
+                ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Center(child: WfLogo(height: 112)),
-                    const SizedBox(height: 20),
-                    Text(
-                      tr(
-                        context,
-                        'Ingresa a tu cuenta',
-                        'Log in to your account',
-                      ),
-                      textAlign: TextAlign.center,
-                      style: tt.headlineSmall,
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      tr(
-                        context,
-                        'Práctica diaria para la PAES. Pocos minutos al día.',
-                        'Daily PAES practice. A few minutes a day.',
-                      ),
-                      textAlign: TextAlign.center,
-                      style: tt.bodyMedium?.copyWith(color: c.muted),
-                    ),
+                    _miniLogo(),
                     const SizedBox(height: 28),
+                    Text(
+                      tr(context, 'Ingresa a tu cuenta', 'Log in to your account'),
+                      style: GoogleFonts.montserrat(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w800,
+                        color: AppColors.azul,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      tr(
+                        context,
+                        'Continúa con tu racha de preparación PAES 2026.',
+                        'Continue your PAES 2026 preparation streak.',
+                      ),
+                      style: GoogleFonts.inter(fontSize: 14, color: c.muted),
+                    ),
+                    const SizedBox(height: 22),
+                    _label(tr(context, 'Correo electrónico', 'Email')),
                     TextField(
                       controller: _emailCtrl,
-                      autofillHints: const [AutofillHints.username],
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
-                        hintText: tr(context, 'Correo electrónico', 'Email'),
+                        hintText: tr(context, 'tucorreo@ejemplo.cl', 'youremail@example.com'),
+                        hintStyle: GoogleFonts.inter(
+                          fontSize: 14,
+                          color: const Color(0xFF94A3B8),
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 9),
+                    const SizedBox(height: 16),
+                    _label(tr(context, 'Contraseña', 'Password')),
                     TextField(
                       controller: _passCtrl,
-                      autofillHints: const [AutofillHints.password],
-                      textInputAction: TextInputAction.done,
                       obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: tr(context, 'Contraseña', 'Password'),
-                      ),
                       onSubmitted: (_) {
                         if (!_loading) _login();
                       },
+                      decoration: InputDecoration(
+                        hintText: tr(context, 'Tu contraseña', 'Your password'),
+                        hintStyle: GoogleFonts.inter(
+                          fontSize: 14,
+                          color: const Color(0xFF94A3B8),
+                        ),
+                      ),
                     ),
                     if (_error != null) ...[
                       const SizedBox(height: 10),
                       Text(_error!, style: TextStyle(color: c.danger)),
                     ],
-                    const SizedBox(height: 14),
-                    FilledButton(
-                      onPressed: _loading ? null : _login,
-                      child: _loading
-                          ? const SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                color: AppColors.azul,
-                              ),
-                            )
-                          : Text(tr(context, 'Iniciar sesión', 'Log in')),
+                    const SizedBox(height: 22),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 52,
+                      child: FilledButton(
+                        style: FilledButton.styleFrom(
+                          backgroundColor: AppColors.azul,
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          textStyle: GoogleFonts.montserrat(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        onPressed: _loading ? null : _login,
+                        child: _loading
+                            ? const SizedBox(
+                                height: 20,
+                                width: 20,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: Colors.white,
+                                ),
+                              )
+                            : Text(tr(context, 'Iniciar sesión', 'Log in')),
+                      ),
                     ),
-                    const SizedBox(height: 4),
-                    TextButton(
-                      onPressed: _loading
-                          ? null
-                          : () => context.go('/forgot-password'),
-                      child: Text(
-                        tr(
-                          context,
-                          '¿Olvidaste tu contraseña?',
-                          'Forgot your password?',
+                    const SizedBox(height: 6),
+                    Center(
+                      child: TextButton(
+                        onPressed: () => context.go('/forgot-password'),
+                        child: Text(
+                          tr(context, '¿Olvidaste tu contraseña?', 'Forgot your password?'),
+                          style: GoogleFonts.inter(
+                            fontSize: 13,
+                            color: c.muted,
+                          ),
                         ),
                       ),
                     ),
-                    TextButton(
-                      onPressed: _loading
-                          ? null
-                          : () => context.go('/register'),
-                      child: Text(
-                        tr(
-                          context,
-                          '¿No tienes cuenta? Regístrate',
-                          'No account? Sign up',
-                        ),
+                    Center(
+                      child: Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          Text(
+                            tr(context, '¿No tienes cuenta? ', 'No account? '),
+                            style: GoogleFonts.inter(fontSize: 14, color: c.muted),
+                          ),
+                          GestureDetector(
+                            onTap: () => context.go('/register'),
+                            child: Text(
+                              tr(context, 'Regístrate aquí', 'Sign up here'),
+                              style: GoogleFonts.inter(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w800,
+                                color: _amarilloTexto,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],

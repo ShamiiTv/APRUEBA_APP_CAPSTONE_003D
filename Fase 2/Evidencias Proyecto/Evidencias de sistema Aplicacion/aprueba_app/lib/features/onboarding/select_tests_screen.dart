@@ -1,13 +1,8 @@
-import '../../core/widgets/content_skeleton.dart';
-
 import 'package:flutter/material.dart';
-
-import '../../core/utils/tier_names.dart';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import '../../core/utils/tier_names.dart';
 import '../../core/l10n/l10n.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/wf_colors.dart';
@@ -15,8 +10,9 @@ import '../../data/practice_models.dart';
 import '../auth/auth_providers.dart';
 import '../practice/practice_providers.dart';
 import '../practice/practice_repository.dart';
+import 'select_format_screen.dart';
 
-/// "¿Qué pruebas quieres practicar?": pruebas, dificultad (d1–d3) y práctica aleatoria.
+/// Paso 3: "¿Qué pruebas quieres practicar?". Al continuar abre la pantalla de formato.
 class SelectTestsScreen extends ConsumerStatefulWidget {
   const SelectTestsScreen({super.key, this.fromSettings = false});
 
@@ -27,13 +23,15 @@ class SelectTestsScreen extends ConsumerStatefulWidget {
 }
 
 class _SelectTestsScreenState extends ConsumerState<SelectTestsScreen> {
+  static const _amarillo = Color(0xFFF5AF41);
+
   bool _loading = true;
-  bool _saving = false;
   String? _error;
   List<PracticeTest> _tests = [];
   final Set<String> _selected = {};
-  String _difficulty = 'd2';
+  String _difficulty = 'd1';
   String _format = 'random';
+  bool _paid = false;
 
   @override
   void initState() {
@@ -53,18 +51,19 @@ class _SelectTestsScreenState extends ConsumerState<SelectTestsScreen> {
       try {
         prefs = await repo.fetchPrefs();
       } catch (_) {}
+      try {
+        final profile = await ref.read(profileProvider.future);
+        _paid = profile.plan == 'uni' || profile.plan == 'all';
+      } catch (_) {}
       if (!mounted) return;
       setState(() {
         _tests = tests;
         _selected
           ..clear()
-          ..addAll(
-            (prefs?.selectedTests ?? const <String>[]).where(
-              (id) => tests.any((t) => t.id == id),
-            ),
-          );
-        _difficulty = prefs?.difficulty ?? 'd2';
-        _format = 'random';
+          ..addAll((prefs?.selectedTests ?? const <String>[])
+              .where((id) => tests.any((t) => t.id == id)));
+        _difficulty = prefs?.difficulty ?? 'd1';
+        _format = prefs?.format ?? 'random';
       });
     } on PracticeException catch (e) {
       if (mounted) setState(() => _error = e.message);
@@ -73,33 +72,24 @@ class _SelectTestsScreenState extends ConsumerState<SelectTestsScreen> {
     }
   }
 
-  Future<void> _save() async {
-    if (_selected.isEmpty || _saving) return;
-    setState(() {
-      _saving = true;
-      _error = null;
-    });
-    try {
-      await ref
-          .read(practiceRepositoryProvider)
-          .savePrefs(
-            PracticePrefs(
-              selectedTests: _selected.toList(),
-              format: _format,
-              difficulty: _difficulty,
-            ),
-          );
-      ref.read(profileProvider.notifier).refresh();
-      if (!mounted) return;
+  Future<void> _next() async {
+    if (_selected.isEmpty) return;
+    final saved = await Navigator.of(context).push<bool>(
+      MaterialPageRoute(
+        builder: (_) => SelectFormatScreen(
+          selectedTests: _selected.toList(),
+          initialFormat: _format,
+          initialDifficulty: _difficulty,
+          paid: _paid,
+        ),
+      ),
+    );
+    if (saved == true && mounted) {
       if (widget.fromSettings) {
         context.pop();
       } else {
         context.go('/home');
       }
-    } on PracticeException catch (e) {
-      if (mounted) setState(() => _error = e.message);
-    } finally {
-      if (mounted) setState(() => _saving = false);
     }
   }
 
@@ -108,7 +98,7 @@ class _SelectTestsScreenState extends ConsumerState<SelectTestsScreen> {
     final on = _selected.contains(t.id);
 
     return InkWell(
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(22),
       onTap: () => setState(() {
         if (on) {
           _selected.remove(t.id);
@@ -117,10 +107,10 @@ class _SelectTestsScreenState extends ConsumerState<SelectTestsScreen> {
         }
       }),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 7),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         decoration: BoxDecoration(
           color: on ? c.brand : c.chip,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(22),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -130,13 +120,13 @@ class _SelectTestsScreenState extends ConsumerState<SelectTestsScreen> {
               height: 9,
               decoration: BoxDecoration(color: t.color, shape: BoxShape.circle),
             ),
-            const SizedBox(width: 6),
+            const SizedBox(width: 8),
             Text(
               testName(context, t.id, t.label),
               style: GoogleFonts.inter(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: on ? c.onBrand : c.ink,
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+                color: on ? Colors.white : c.ink,
               ),
             ),
             if (!t.hasQuestions) ...[
@@ -145,7 +135,7 @@ class _SelectTestsScreenState extends ConsumerState<SelectTestsScreen> {
                 tr(context, '· sin preguntas aún', '· no questions yet'),
                 style: GoogleFonts.inter(
                   fontSize: 10,
-                  color: on ? c.onBrand : c.muted,
+                  color: on ? Colors.white70 : c.muted,
                 ),
               ),
             ],
@@ -155,147 +145,89 @@ class _SelectTestsScreenState extends ConsumerState<SelectTestsScreen> {
     );
   }
 
-  Widget _choice({
-    required String label,
-    required bool on,
-    required VoidCallback onTap,
-  }) {
-    final c = WfColors.of(context);
-    return InkWell(
-      borderRadius: BorderRadius.circular(20),
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 7),
-        decoration: BoxDecoration(
-          color: on ? c.brand : c.chip,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Text(
-          label,
-          style: GoogleFonts.inter(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            color: on ? c.onBrand : c.ink,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _sectionTitle(String text) {
-    final c = WfColors.of(context);
-    return Padding(
-      padding: const EdgeInsets.only(top: 22, bottom: 8),
-      child: Text(
-        text.toUpperCase(),
-        style: GoogleFonts.montserrat(
-          fontSize: 11,
-          fontWeight: FontWeight.w700,
-          letterSpacing: 0.6,
-          color: c.muted,
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final c = WfColors.of(context);
-    final tt = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(tr(context, 'Mis pruebas', 'My tests')),
-        automaticallyImplyLeading: widget.fromSettings,
-      ),
-      body: _loading
-          ? const ContentSkeleton(kind: 'cards')
-          : ListView(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-              children: [
-                Text(
-                  tr(
-                    context,
-                    '¿Qué pruebas quieres practicar?',
-                    'Which tests do you want to practice?',
-                  ),
-                  style: tt.headlineSmall,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  tr(
-                    context,
-                    'Solo recibirás preguntas de las que elijas.',
-                    'You will only get questions from the ones you choose.',
-                  ),
-                  style: GoogleFonts.inter(fontSize: 13, color: c.muted),
-                ),
-                const SizedBox(height: 14),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [for (final t in _tests) _chip(t)],
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  tr(
-                    context,
-                    'La PAES pondera varias pruebas: la mayoría elige 2 o más.',
-                    'The PAES weighs several tests: most students choose 2 or more.',
-                  ),
-                  style: GoogleFonts.inter(fontSize: 11, color: c.muted),
-                ),
-                _sectionTitle(
-                  tr(context, 'Nivel de dificultad', 'Difficulty level'),
-                ),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    for (final e in kDifficultyLabels.entries)
-                      _choice(
-                        label: difficultyName(context, e.key) ?? e.value,
-                        on: _difficulty == e.key,
-                        onTap: () => setState(() => _difficulty = e.key),
-                      ),
-                  ],
-                ),
-                _sectionTitle(tr(context, 'Formato', 'Format')),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    _choice(
-                      label: tr(context, 'Aleatorio', 'Random'),
-                      on: _format == 'random',
-                      onTap: () => setState(() => _format = 'random'),
-                    ),
-                  ],
-                ),
-                if (_error != null) ...[
-                  const SizedBox(height: 10),
-                  Text(_error!, style: TextStyle(color: c.danger)),
-                ],
-                const SizedBox(height: 28),
-                FilledButton(
-                  onPressed: (_selected.isEmpty || _saving) ? null : _save,
-                  child: _saving
-                      ? const SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color: AppColors.azul,
+      appBar: widget.fromSettings
+          ? AppBar(title: Text(tr(context, 'Mis pruebas', 'My tests')))
+          : null,
+      body: SafeArea(
+        child: _loading
+            ? const Center(child: CircularProgressIndicator())
+            : Column(
+                children: [
+                  Expanded(
+                    child: ListView(
+                      padding: const EdgeInsets.fromLTRB(22, 22, 22, 16),
+                      children: [
+                        Text(
+                          tr(context, '¿Qué pruebas quieres practicar?',
+                              'Which tests do you want to practice?'),
+                          style: GoogleFonts.montserrat(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800,
+                            color: c.ink,
                           ),
-                        )
-                      : Text(
-                          widget.fromSettings
-                              ? tr(context, 'Guardar', 'Save')
-                              : tr(context, 'Continuar', 'Continue'),
                         ),
-                ),
-              ],
-            ),
+                        const SizedBox(height: 8),
+                        Text(
+                          tr(
+                              context,
+                              'Recibirás preguntas solo de las pruebas que elijas. Puedes cambiarlas cuando quieras.',
+                              'You will only get questions from the tests you choose. You can change them anytime.'),
+                          style: GoogleFonts.inter(fontSize: 14, color: c.muted),
+                        ),
+                        const SizedBox(height: 18),
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: [for (final t in _tests) _chip(t)],
+                        ),
+                        const SizedBox(height: 14),
+                        Text(
+                          tr(
+                              context,
+                              'La PAES pondera varias pruebas: la mayoría elige 2 o más.',
+                              'The PAES weighs several tests: most students choose 2 or more.'),
+                          style: GoogleFonts.inter(fontSize: 12, color: c.muted),
+                        ),
+                        if (_error != null) ...[
+                          const SizedBox(height: 10),
+                          Text(_error!, style: TextStyle(color: c.danger)),
+                        ],
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(22, 0, 22, 18),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 54,
+                      child: FilledButton(
+                        style: FilledButton.styleFrom(
+                          backgroundColor: _amarillo,
+                          foregroundColor: AppColors.azul,
+                          disabledBackgroundColor:
+                              _amarillo.withValues(alpha: 0.4),
+                          disabledForegroundColor:
+                              AppColors.azul.withValues(alpha: 0.5),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16)),
+                          textStyle: GoogleFonts.montserrat(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        onPressed: _selected.isEmpty ? null : _next,
+                        child: Text(tr(context, 'Continuar', 'Continue')),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+      ),
     );
   }
 }
