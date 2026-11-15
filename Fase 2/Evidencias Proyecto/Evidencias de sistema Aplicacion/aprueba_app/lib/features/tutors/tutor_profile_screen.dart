@@ -11,7 +11,6 @@ import '../../core/theme/wf_colors.dart';
 import '../../core/widgets/avatar_circle.dart';
 import '../../core/widgets/wf_widgets.dart';
 import '../../data/social_models.dart';
-import '../auth/auth_providers.dart';
 import 'tutor_widgets.dart';
 
 class TutorProfileScreen extends ConsumerWidget {
@@ -23,8 +22,6 @@ class TutorProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final c = WfColors.of(context);
     final t = tutor;
-    final premium =
-        (ref.watch(profileProvider).value?.plan ?? 'free') != 'free';
     final sub = [
       if (t.subjectLabel.isNotEmpty)
         testName(context, t.subjectLabel, t.subjectLabel),
@@ -179,14 +176,8 @@ class TutorProfileScreen extends ConsumerWidget {
           ],
           const SizedBox(height: 28),
           FilledButton(
-            onPressed: () => premium
-                ? context.push('/tutors/contact', extra: t)
-                : context.push('/plans'),
-            child: Text(
-              premium
-                  ? tr(context, 'Contactar', 'Contact')
-                  : tr(context, 'Contactar · ⭐ Premium', 'Contact · ⭐ Premium'),
-            ),
+            onPressed: () => context.push('/tutors/contact', extra: t),
+            child: Text(tr(context, 'Simular contacto', 'Simulate contact')),
           ),
         ],
       ),

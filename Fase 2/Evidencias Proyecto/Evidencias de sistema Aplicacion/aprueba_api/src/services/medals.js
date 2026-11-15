@@ -19,6 +19,6 @@ export function operation(body, type) {
   return { ...body, type };
 }
 export function benefitTerms(benefit) {
-  if (!Number.isSafeInteger(benefit.costPlatinum) || benefit.costPlatinum < 1 || !Number.isSafeInteger(benefit.stock) || benefit.stock < 0) throw medalError('El beneficio no tiene condiciones válidas de canje', 409);
+  if (!Number.isSafeInteger(benefit.costPlatinum) || benefit.costPlatinum < 5 || !Number.isSafeInteger(benefit.stock) || benefit.stock < 0) throw medalError('El beneficio no tiene condiciones válidas de canje', 409);
   return { cost: benefit.costPlatinum, stock: benefit.stock };
 }

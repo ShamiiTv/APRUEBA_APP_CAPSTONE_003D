@@ -11,9 +11,22 @@
 .settings-hint { color: var(--muted); line-height: 1.6; font-size: 13px; margin: 10px 0; }
 .settings-page a { color: var(--brand); text-decoration: underline; }
 .settings-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-.settings-actions button { padding: 12px 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--brand); color: white; cursor: pointer; font-weight: 700; }
-.settings-actions button:disabled { opacity: .55; cursor: default; }
+.settings-page .settings-actions button { padding: 12px 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--brand); color: white; cursor: pointer; font-weight: 700; }
+.settings-page .settings-actions button:disabled { opacity: .55; cursor: default; }
 .settings-page :focus-visible { outline: 3px solid var(--cta); outline-offset: 3px; }
 .settings-error, .settings-success { padding: 16px; background: var(--panel); border: 1px solid currentColor; border-radius: 10px; }
 .settings-error { color: var(--danger); }
 .settings-success { color: var(--accent); }
+.settings-page > section { padding: 24px; margin: 22px 0; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+.settings-page > section h2 { font: 700 18px Montserrat, sans-serif; margin: 10px 0; }
+.settings-page > section p { font-size: 13px; line-height: 1.6; color: var(--muted); }
+.settings-page button { padding: 11px 16px; margin: 5px 8px 5px 0; border: 1px solid var(--line); border-radius: 10px; background: var(--cta); color: var(--cta-ink); font: 700 13px Montserrat, sans-serif; cursor: pointer; }
+.settings-page button:disabled { opacity: .5; cursor: default; }
+.plan-page { max-width: 1080px; }
+.plan-card { display: flex; flex-direction: column; gap: 16px; }
+.plan-card h2 { font: 800 20px Montserrat, sans-serif; }
+.plan-card p { font-size: 14px; line-height: 1.6; }
+.plan-card > button { margin-top: auto; }
+.plan-card--featured { border: 2px solid var(--cta); }
+.plan-price strong { font: 800 30px Montserrat, sans-serif; color: var(--brand); }
+.plan-badge { align-self: flex-start; background: var(--chip); color: var(--brand); padding: 5px 9px; border-radius: 8px; font-size: 12px; font-weight: 700; }

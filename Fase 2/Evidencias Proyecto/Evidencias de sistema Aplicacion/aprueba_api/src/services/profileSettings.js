@@ -1,10 +1,32 @@
 const TESTS = ['m1','m2','lectora','cien','hist'];
-const ALLOWED = ['name','school','region','selectedTests','difficulty','theme','locale','lang','dailyReminder','reminderTime','practiceFormat','targetTestId'];
+const ALLOWED = ['name','school','region','age','phone','address','selectedTests','difficulty','theme','locale','lang','dailyReminder','reminderTime','practiceFormat','targetTestId'];
 const invalid = field => { throw Object.assign(new Error('Revisa los datos del perfil y las preferencias.'),{ status:400,code:'INVALID_PROFILE',field }); };
 
 export function profilePatch(body) {
   if (!body || typeof body !== 'object' || Array.isArray(body) || !Object.keys(body).length || Object.keys(body).some(k => !ALLOWED.includes(k))) invalid('body');
   const patch = {};
+  if (body.age !== undefined) {
+    if (body.age !== null && (!Number.isInteger(body.age) || body.age < 10 || body.age > 99)) invalid('age');
+    patch.age = body.age;
+  }
+  if (body.phone !== undefined) {
+    if (typeof body.phone !== 'string' || (body.phone && !/^\+[1-9]\d{7,14}$/.test(body.phone.replace(/[\s()-]/g,'')))) invalid('phone');
+    patch.phone = body.phone.replace(/[\s()-]/g,'');
+  }
+  if (body.address !== undefined) {
+    const address = body.address;
+    if (address === null) patch.address = null;
+    else {
+      if (typeof address !== 'object' || Array.isArray(address) || Object.keys(address).some(key => !['country','commune','street','housingType','unit'].includes(key))) invalid('address');
+      patch.address = {};
+      for (const field of ['country','commune','street','housingType','unit']) {
+        if (address[field] === undefined) continue;
+        if (typeof address[field] !== 'string' || address[field].length > 200) invalid('address');
+        patch.address[field] = address[field].trim();
+      }
+      if (!patch.address.commune || !patch.address.street) invalid('address');
+    }
+  }
   for (const [field,max] of [['name',120],['school',200],['region',100]]) {
     if (body[field] === undefined) continue;
     if (typeof body[field] !== 'string' || body[field].length > max || (field === 'name' && !body[field].trim())) invalid(field);

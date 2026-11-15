@@ -15,7 +15,7 @@ const server=app.listen(0,'127.0.0.1');await new Promise(r=>server.once('listeni
 const url=`http://127.0.0.1:${server.address().port}`;
 const users=[],benefits=[];
 async function user(medals){const id=randomUUID();users.push(id);await db.collection('users').doc(id).set({medals});return id;}
-async function benefit(overrides={}){const id=randomUUID();benefits.push(id);await db.collection('benefits').doc(id).set({name:'Fixture',active:true,costPlatinum:2,stock:1,redeemedCount:0,...overrides});return id;}
+async function benefit(overrides={}){const id=randomUUID();benefits.push(id);await db.collection('benefits').doc(id).set({name:'Fixture',active:true,costPlatinum:5,stock:1,redeemedCount:0,...overrides});return id;}
 async function request(uid,path,body){const r=await fetch(url+path,{method:body?'POST':'GET',headers:{'Content-Type':'application/json','x-user':uid},...(body?{body:JSON.stringify(body)}:{})});return {status:r.status,...await r.json()};}
 after(async()=>{for(const id of users)await db.recursiveDelete(db.collection('users').doc(id));for(const id of benefits)await db.collection('benefits').doc(id).delete();await new Promise(r=>server.close(r));});
 test('rejects malformed balances, request IDs, tiers and catalog costs',()=>{
@@ -41,7 +41,7 @@ test('benefit retry charges and reserves once with pending fulfillment',async()=
  const results=await Promise.all([request(uid,'/redeem',body),request(uid,'/redeem',body)]);
  assert.ok(results.every(r=>r.status===200),JSON.stringify(results));
  assert.equal(results[0].data.redemption.status,'pending');
- const summary=await request(uid,'/summary');assert.equal(summary.data.medals.platinum,8);assert.equal(summary.data.redemptions.length,1);assert.equal(summary.data.history.length,1);
+ const summary=await request(uid,'/summary');assert.equal(summary.data.medals.platinum,5);assert.equal(summary.data.redemptions.length,1);assert.equal(summary.data.history.length,1);
  const b=(await db.collection('benefits').doc(id).get()).data();assert.equal(b.stock,0);assert.equal(b.redeemedCount,1);
  assert.equal((await request(uid,'/redeem',{...body,requestId:randomUUID()})).status,409);
 });
@@ -49,11 +49,11 @@ test('two students competing for last stock yield only one reservation',async()=
  const id=await benefit();const ids=await Promise.all([user({platinum:5}),user({platinum:5})]);
  const results=await Promise.all(ids.map(uid=>request(uid,'/redeem',{benefitId:id,requestId:randomUUID()})));
  assert.deepEqual(results.map(r=>r.status).sort(),[200,409]);
- const amounts=await Promise.all(ids.map(async uid=>(await request(uid,'/summary')).data.medals.platinum));assert.deepEqual(amounts.sort(),[3,5]);
+ const amounts=await Promise.all(ids.map(async uid=>(await request(uid,'/summary')).data.medals.platinum));assert.deepEqual(amounts.sort(),[0,5]);
 });
 test('inactive, malformed and unaffordable benefits never debit balances',async()=>{
  const uid=await user({platinum:1});
- for(const overrides of [{active:false},{costPlatinum:0},{costPlatinum:2}]){
+ for(const overrides of [{active:false},{costPlatinum:0},{costPlatinum:5}]){
  const id=await benefit(overrides);assert.equal((await request(uid,'/redeem',{benefitId:id,requestId:randomUUID()})).status,409);
  }
  assert.equal((await request(uid,'/summary')).data.medals.platinum,1);

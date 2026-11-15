@@ -12,3 +12,5 @@
 .medal-card .medal-icon{filter:drop-shadow(0 5px 6px color-mix(in srgb,var(--medal-tone) 30%,transparent));margin-bottom:12px}
 .medal-name{font-weight:700;font-size:13px}.medal-card strong{font-size:30px;margin-top:6px}.medal-caption{font-size:12px;color:var(--muted)}
 .medals-conversion{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;font-weight:600}.medals-conversion .medal-icon{width:28px;height:32px}.medals-row{padding:12px 0;border-bottom:1px solid var(--line)}.medals-row:last-child{border-bottom:0}
+.medals-page form label { display: block; margin: 12px 0; font-size: 13px; font-weight: 600; }
+.medals-page select,.medals-page input[type=number] { display: block; width: min(100%,360px); margin-top: 8px; padding: 11px; border: 1px solid var(--line); border-radius: 9px; background: var(--bg); color: var(--ink); font: inherit; }

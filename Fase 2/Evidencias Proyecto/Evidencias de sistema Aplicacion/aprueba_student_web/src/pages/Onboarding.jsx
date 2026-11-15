@@ -16,6 +16,8 @@ export default function Onboarding() {
   const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
+  const [skipNotice, setSkipNotice] = useState(false);
+  const [skipContext, setSkipContext] = useState(false);
   const [school, setSchool] = useState(user?.school || '');
   const [region, setRegion] = useState(user?.region || 'Metropolitana de Santiago');
   const [selectedTests, setSelectedTests] = useState(user?.selectedTests || ['lectora', 'm1']);
@@ -42,8 +44,7 @@ export default function Onboarding() {
       const res = await apiFetch('/auth/onboarding', {
         method: 'POST',
         body: JSON.stringify({
-          school,
-          region,
+          ...(!skipContext ? { school, region } : {}),
           selectedTests,
           difficulty,
           practiceFormat,
@@ -51,7 +52,8 @@ export default function Onboarding() {
       });
 
       updateUserState(res.data);
-      navigate('/');
+      const invitation=sessionStorage.getItem('aprueba:group-invitation');
+      navigate(invitation ? '/grupos?invite='+encodeURIComponent(invitation) : '/');
     } catch (err) {
       setError(err.message);
       setLoading(false);
@@ -61,20 +63,21 @@ export default function Onboarding() {
   return (
     <div style={{
       minHeight: '100vh',
-      backgroundColor: 'var(--fondo)',
+      backgroundColor: 'var(--bg)',
       display: 'grid',
       placeItems: 'center',
       padding: '24px',
     }}>
       <div style={{
-        background: '#FFFFFF',
+        background: 'var(--panel)',
         width: '100%',
         maxWidth: '560px',
         borderRadius: '20px',
         padding: '36px',
-        border: '1px solid #E2E8F0',
+        border: '1px solid var(--line)',
         boxShadow: '0 8px 30px rgba(26,54,93,0.06)',
       }}>
+        {skipNotice && <div className="ui-dialog-backdrop"><section className="ui-dialog" role="alertdialog" aria-modal="true" aria-labelledby="skip-title" aria-describedby="skip-description"><h2 id="skip-title">¿Omitir estos datos?</h2><p id="skip-description">Tendrás tus 10 preguntas diarias base. No se desbloquearán las 10 preguntas extra hasta completar colegio, edad y región (+5) y dirección (+5). Puedes hacerlo después en tu perfil.</p><div className="ui-actions"><button autoFocus className="ui-button" onClick={()=>setSkipNotice(false)}>Completar mis datos</button><button className="ui-button secondary" onClick={()=>{setSkipContext(true);setSkipNotice(false);setStep(2);}}>Sí, omitir por ahora</button></div></section></div>}
         {/* Barra de progreso */}
         <div style={{ display: 'flex', gap: '8px', marginBottom: '28px' }}>
           {[1, 2].map((s) => (
@@ -84,7 +87,7 @@ export default function Onboarding() {
                 flex: 1,
                 height: '6px',
                 borderRadius: '4px',
-                backgroundColor: step >= s ? 'var(--azul)' : '#E2E8F0',
+                backgroundColor: step >= s ? 'var(--brand)' : 'var(--line)',
                 transition: 'background-color 0.2s',
               }}
             />
@@ -110,10 +113,10 @@ export default function Onboarding() {
             <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--oro)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               Paso 1 de 2
             </span>
-            <h1 style={{ fontFamily: 'Montserrat', fontSize: '22px', fontWeight: 800, color: 'var(--texto-oscuro)', marginTop: '4px' }}>
+            <h1 style={{ fontFamily: 'Montserrat', fontSize: '22px', fontWeight: 800, color: 'var(--ink)', marginTop: '4px' }}>
               Tu contexto académico
             </h1>
-            <p style={{ color: 'var(--gris-medio)', fontSize: '13px', marginTop: '4px' }}>
+            <p style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '4px' }}>
               Personalizamos los ensayos y cuotas según tu institución educativa.
             </p>
 
@@ -127,7 +130,7 @@ export default function Onboarding() {
                   placeholder="Ej: Instituto Nacional"
                   value={school}
                   onChange={(e) => setSchool(e.target.value)}
-                  style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', border: '1px solid #E2E8F0', outline: 'none', fontSize: '13px' }}
+                  style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', border: '1px solid var(--line)', color: 'var(--ink)', background: 'var(--soft)', fontSize: '13px' }}
                 />
               </div>
 
@@ -138,7 +141,7 @@ export default function Onboarding() {
                 <select
                   value={region}
                   onChange={(e) => setRegion(e.target.value)}
-                  style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', border: '1px solid #E2E8F0', outline: 'none', background: '#fff', fontSize: '13px' }}
+                  style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', border: '1px solid var(--line)', color: 'var(--ink)', background: 'var(--soft)', fontSize: '13px' }}
                 >
                   <option value="Arica y Parinacota">Arica y Parinacota</option>
                   <option value="Tarapacá">Tarapacá</option>
@@ -160,13 +163,14 @@ export default function Onboarding() {
               </div>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '28px' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'flex-end', marginTop: '28px' }}>
+              <button className="ui-button secondary" onClick={()=>setSkipNotice(true)}>Omitir por ahora</button>
               <button
                 type="button"
-                onClick={() => setStep(2)}
+                onClick={() => {setSkipContext(false);setStep(2);}}
                 style={{
-                  backgroundColor: 'var(--azul)',
-                  color: '#FFFFFF',
+                  backgroundColor: 'var(--cta)',
+                  color: 'var(--panel)',
                   border: 'none',
                   borderRadius: '10px',
                   padding: '12px 24px',
@@ -185,10 +189,10 @@ export default function Onboarding() {
             <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--oro)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               Paso 2 de 2
             </span>
-            <h1 style={{ fontFamily: 'Montserrat', fontSize: '22px', fontWeight: 800, color: 'var(--texto-oscuro)', marginTop: '4px' }}>
+            <h1 style={{ fontFamily: 'Montserrat', fontSize: '22px', fontWeight: 800, color: 'var(--ink)', marginTop: '4px' }}>
               Pruebas PAES que rendirás
             </h1>
-            <p style={{ color: 'var(--gris-medio)', fontSize: '13px', marginTop: '4px' }}>
+            <p style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '4px' }}>
               Selecciona las asignaturas que componen tu postulación universitaria.
             </p>
 
@@ -200,8 +204,8 @@ export default function Onboarding() {
                     key={t.id}
                     onClick={() => toggleTest(t.id)}
                     style={{
-                      border: `1.5px solid ${isSelected ? 'var(--azul)' : '#E2E8F0'}`,
-                      backgroundColor: isSelected ? 'rgba(26,54,93,0.04)' : '#FFFFFF',
+                      border: `1.5px solid ${isSelected ? 'var(--brand)' : 'var(--line)'}`,
+                      backgroundColor: isSelected ? 'var(--soft)' : 'var(--panel)',
                       borderRadius: '10px',
                       padding: '12px 16px',
                       display: 'flex',
@@ -211,16 +215,16 @@ export default function Onboarding() {
                       transition: 'all 0.15s ease',
                     }}
                   >
-                    <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--texto-oscuro)' }}>
+                    <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink)' }}>
                       {t.label}
                     </span>
                     <span style={{
                       width: '20px',
                       height: '20px',
                       borderRadius: '6px',
-                      border: `1.5px solid ${isSelected ? 'var(--azul)' : '#CBD5E1'}`,
-                      backgroundColor: isSelected ? 'var(--azul)' : 'transparent',
-                      color: '#fff',
+                      border: `1.5px solid ${isSelected ? 'var(--brand)' : '#CBD5E1'}`,
+                      backgroundColor: isSelected ? 'var(--brand)' : 'transparent',
+                      color: 'var(--panel)',
                       display: 'grid',
                       placeItems: 'center',
                       fontSize: '11px',
@@ -240,7 +244,7 @@ export default function Onboarding() {
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: 'var(--gris-medio)',
+                  color: 'var(--muted)',
                   fontWeight: 600,
                   fontSize: '13px',
                   cursor: 'pointer',
@@ -255,7 +259,7 @@ export default function Onboarding() {
                 onClick={handleFinish}
                 style={{
                   backgroundColor: 'var(--oro)',
-                  color: 'var(--azul)',
+                  color: 'var(--brand)',
                   border: 'none',
                   borderRadius: '10px',
                   padding: '12px 26px',

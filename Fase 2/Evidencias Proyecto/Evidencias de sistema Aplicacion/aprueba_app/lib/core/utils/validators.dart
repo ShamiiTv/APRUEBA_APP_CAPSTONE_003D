@@ -11,7 +11,6 @@ final _streetRe = RegExp(
 );
 final _unitRe = RegExp(r"^[\p{L}\p{N}][\p{L}\p{N}\s°#-]{0,9}$", unicode: true);
 final _emailRe = RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]{2,}$');
-final _phoneRe = RegExp(r'^\+?[0-9]{8,15}$');
 
 String _clean(String? v) => (v ?? '').trim().replaceAll(RegExp(r'\s+'), ' ');
 
@@ -107,8 +106,8 @@ String? vAge(BuildContext c, String? v, {bool required = true}) {
     return required ? tr(c, 'Ingresa tu edad', 'Enter your age') : null;
   }
   final n = int.tryParse(s);
-  if (n == null || n < 5 || n > 99) {
-    return tr(c, 'Edad entre 5 y 99', 'Age between 5 and 99');
+  if (n == null || n < 10 || n > 99) {
+    return tr(c, 'Edad entre 10 y 99', 'Age between 10 and 99');
   }
   return null;
 }
@@ -116,11 +115,11 @@ String? vAge(BuildContext c, String? v, {bool required = true}) {
 String? vPhone(BuildContext c, String? v) {
   final s = (v ?? '').replaceAll(RegExp(r'[\s()-]'), '');
   if (s.isEmpty) return null;
-  if (!_phoneRe.hasMatch(s)) {
+  if (!RegExp(r'^\+[1-9]\d{7,14}$').hasMatch(s)) {
     return tr(
       c,
-      'Celular inválido (8 a 15 dígitos, puede llevar +)',
-      'Invalid phone (8–15 digits, may start with +)',
+      'Incluye + y código de país (8 a 15 dígitos)',
+      'Include + and country code (8–15 digits)',
     );
   }
   return null;

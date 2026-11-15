@@ -1,3 +1,4 @@
+import '../../core/widgets/content_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -76,7 +77,7 @@ class _GiftsScreenState extends ConsumerState<GiftsScreen> {
         leading: BackButton(onPressed: () => context.pop()),
       ),
       body: gifts.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const ContentSkeleton(kind: 'cards'),
         error: (e, _) => Center(
           child: Padding(
             padding: const EdgeInsets.all(24),
@@ -221,58 +222,80 @@ class _GiftsScreenState extends ConsumerState<GiftsScreen> {
   Widget _friendRow(BuildContext context, GiftFriend f, GiftsState st) {
     final c = WfColors.of(context);
     final n = _amounts[f.userId] ?? 0;
-    return Container(
-      margin: const EdgeInsets.only(top: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: c.line, width: 1.5),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  f.name,
-                  style: GoogleFonts.inter(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                if (f.giftedToday > 0)
+    return Semantics(
+      label: f.name,
+      container: true,
+      explicitChildNodes: true,
+      child: Container(
+        margin: const EdgeInsets.only(top: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: c.line, width: 1.5),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Text(
-                    tr(
-                      context,
-                      'Hoy le regalaste ${f.giftedToday}',
-                      'Gifted today: ${f.giftedToday}',
+                    f.name,
+                    style: GoogleFonts.inter(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
                     ),
-                    style: GoogleFonts.inter(fontSize: 11, color: c.muted),
                   ),
-              ],
-            ),
-          ),
-          IconButton(
-            onPressed: n == 0 ? null : () => _change(f.userId, -1, st),
-            icon: const Icon(Icons.remove_circle_outline),
-          ),
-          SizedBox(
-            width: 24,
-            child: Text(
-              '$n',
-              textAlign: TextAlign.center,
-              style: GoogleFonts.montserrat(
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
+                  if (f.giftedToday > 0)
+                    Text(
+                      tr(
+                        context,
+                        'Hoy le regalaste ${f.giftedToday}',
+                        'Gifted today: ${f.giftedToday}',
+                      ),
+                      style: GoogleFonts.inter(fontSize: 11, color: c.muted),
+                    ),
+                ],
               ),
             ),
-          ),
-          IconButton(
-            onPressed: () => _change(f.userId, 1, st),
-            icon: const Icon(Icons.add_circle_outline),
-          ),
-        ],
+            IconButton(
+              tooltip: tr(
+                context,
+                'Quitar medalla para ${f.name}',
+                'Remove medal for ${f.name}',
+              ),
+              onPressed: _sending || n == 0
+                  ? null
+                  : () => _change(f.userId, -1, st),
+              icon: const Icon(Icons.remove_circle_outline),
+            ),
+            SizedBox(
+              width: 24,
+              child: Text(
+                '$n',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.montserrat(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            IconButton(
+              tooltip: tr(
+                context,
+                'Agregar medalla para ${f.name}',
+                'Add medal for ${f.name}',
+              ),
+              onPressed:
+                  _sending ||
+                      _total >= st.remaining ||
+                      _total >= st.bronzeAvailable
+                  ? null
+                  : () => _change(f.userId, 1, st),
+              icon: const Icon(Icons.add_circle_outline),
+            ),
+          ],
+        ),
       ),
     );
   }

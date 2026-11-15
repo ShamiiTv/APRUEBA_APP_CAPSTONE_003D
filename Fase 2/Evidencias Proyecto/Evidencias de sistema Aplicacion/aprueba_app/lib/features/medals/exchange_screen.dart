@@ -1,3 +1,4 @@
+import '../../core/widgets/content_skeleton.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/l10n.dart';
@@ -68,7 +69,7 @@ class _ExchangeScreenState extends ConsumerState<ExchangeScreen> {
         leading: BackButton(onPressed: () => context.pop()),
       ),
       body: user == null
-          ? const Center(child: CircularProgressIndicator())
+          ? const ContentSkeleton(kind: 'cards')
           : ListView(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
               children: [
@@ -194,7 +195,10 @@ class _ExchangeScreenState extends ConsumerState<ExchangeScreen> {
                         )),
             style: FilledButton.styleFrom(
               backgroundColor: t.$3,
-              foregroundColor: t.$1 == 'gold' ? AppColors.azul : Colors.white,
+              foregroundColor: WfColors.readableForeground(
+                AppColors.azul,
+                t.$3,
+              ),
               disabledBackgroundColor: t.$3.withValues(alpha: 0.35),
               disabledForegroundColor: Colors.white.withValues(alpha: 0.9),
               minimumSize: const Size.fromHeight(42),

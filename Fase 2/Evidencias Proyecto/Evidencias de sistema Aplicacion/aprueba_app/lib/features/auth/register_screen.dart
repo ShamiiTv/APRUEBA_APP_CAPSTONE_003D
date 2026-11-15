@@ -7,7 +7,6 @@ import '../../core/l10n/l10n.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/wf_colors.dart';
 import '../../core/utils/validators.dart';
-import '../../core/widgets/wf_widgets.dart';
 import '../practice/practice_providers.dart';
 import 'auth_providers.dart';
 import 'auth_repository.dart';
@@ -24,7 +23,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   final _nameCtrl = TextEditingController();
   final _emailCtrl = TextEditingController();
   final _passCtrl = TextEditingController();
-  bool _consent = true;
+  bool _consent = false;
+  bool _hidePassword = true;
   bool _loading = false;
   String? _error;
 
@@ -65,7 +65,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
           );
       ref.invalidate(profileProvider);
       ref.invalidate(progressProvider);
-      if (mounted) context.go('/select-tests');
+      if (mounted) context.go('/verify-email');
     } on ApiException catch (e) {
       if (mounted) setState(() => _error = e.message);
     } finally {
@@ -76,6 +76,21 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     final c = WfColors.of(context);
+    InputDecoration fieldDecoration(String placeholder) => InputDecoration(
+      hintText: placeholder,
+      hintStyle: TextStyle(color: c.muted),
+      filled: true,
+      fillColor: c.soft,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: BorderSide(color: c.line),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: BorderSide(color: c.brand, width: 1.5),
+      ),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -89,60 +104,88 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
           child: ListView(
             padding: const EdgeInsets.fromLTRB(16, 14, 16, 24),
             children: [
-              Text(
-                tr(
-                  context,
-                  'Con tu nombre y correo desbloqueas 10 preguntas diarias gratis.',
-                  'With your name and email you unlock 10 free questions a day.',
-                ),
-                style: GoogleFonts.inter(
-                  fontSize: 13,
-                  color: c.muted,
-                  height: 1.5,
-                ),
-              ),
-              const SizedBox(height: 8),
               TextFormField(
                 controller: _nameCtrl,
+                autofillHints: const [AutofillHints.name],
+                textCapitalization: TextCapitalization.words,
                 textInputAction: TextInputAction.next,
                 inputFormatters: [lettersFormatter],
-                decoration: InputDecoration(
-                  hintText: tr(context, 'Nombre completo', 'Full name'),
+                decoration: fieldDecoration(
+                  tr(context, 'Nombre completo', 'Full name'),
                 ),
                 validator: (v) => vName(context, v),
               ),
               const SizedBox(height: 9),
               TextFormField(
                 controller: _emailCtrl,
+                autofillHints: const [AutofillHints.email],
+                autocorrect: false,
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
-                decoration: InputDecoration(
-                  hintText: tr(context, 'Correo electrónico', 'Email'),
+                decoration: fieldDecoration(
+                  tr(context, 'Correo electrónico', 'Email'),
                 ),
                 validator: (v) => vEmail(context, v),
               ),
               const SizedBox(height: 9),
               TextFormField(
                 controller: _passCtrl,
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: tr(
-                    context,
-                    'Contraseña (mín. 8, con letra y número)',
-                    'Password (min. 8, with a letter and a number)',
-                  ),
-                ),
+                obscureText: _hidePassword,
+                autofillHints: const [AutofillHints.newPassword],
+                textInputAction: TextInputAction.done,
+                enableSuggestions: false,
+                autocorrect: false,
+                decoration:
+                    fieldDecoration(tr(context, 'Contraseña', 'Password'))
+                        .copyWith(
+                          suffixIcon: IconButton(
+                            tooltip: tr(
+                              context,
+                              _hidePassword
+                                  ? 'Mostrar contraseña'
+                                  : 'Ocultar contraseña',
+                              _hidePassword ? 'Show password' : 'Hide password',
+                            ),
+                            onPressed: () =>
+                                setState(() => _hidePassword = !_hidePassword),
+                            icon: Icon(
+                              _hidePassword
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                            ),
+                          ),
+                          helperText: tr(
+                            context,
+                            '8 caracteres, una letra y un número.',
+                            '8 characters, a letter and a number.',
+                          ),
+                          helperMaxLines: 2,
+                        ),
                 validator: (v) => vPassword(context, v),
               ),
               const SizedBox(height: 11),
-              Card(
+              Container(
+                decoration: BoxDecoration(
+                  color: c.soft,
+                  borderRadius: BorderRadius.circular(28),
+                  border: Border.all(color: c.line),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(13, 6, 13, 6),
                   child: Row(
                     children: [
                       Switch(
                         value: _consent,
-                        onChanged: (v) => setState(() => _consent = v),
+                        activeThumbColor: Colors.white,
+                        activeTrackColor: c.brand,
+                        inactiveThumbColor: Colors.white,
+                        inactiveTrackColor: c.line,
+                        trackOutlineColor: const WidgetStatePropertyAll(
+                          Colors.transparent,
+                        ),
+                        onChanged: _loading
+                            ? null
+                            : (v) => setState(() => _consent = v),
                       ),
                       const SizedBox(width: 6),
                       Expanded(
@@ -163,14 +206,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: WfTag(
-                  text: tr(context, '+10 preguntas/día', '+10 questions/day'),
-                  bg: Color(0x2110B981),
-                  fg: Color(0xFF059669),
-                ),
-              ),
               if (_error != null) ...[
                 const SizedBox(height: 10),
                 Text(_error!, style: TextStyle(color: c.danger)),
@@ -187,13 +222,17 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                           color: AppColors.azul,
                         ),
                       )
-                    : Text(
-                        tr(
-                          context,
-                          'Crear cuenta y empezar',
-                          'Create account and start',
-                        ),
-                      ),
+                    : Text(tr(context, 'Crear cuenta', 'Create account')),
+              ),
+              TextButton(
+                onPressed: _loading ? null : () => context.go('/login'),
+                child: Text(
+                  tr(
+                    context,
+                    '¿Ya tienes cuenta? Inicia sesión',
+                    'Already have an account? Sign in',
+                  ),
+                ),
               ),
             ],
           ),

@@ -1,9 +1,11 @@
+import '../../core/widgets/content_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../data/social_models.dart';
+import '../../core/l10n/l10n.dart';
 import 'groups_providers.dart';
 
 class GroupDetailScreen extends ConsumerStatefulWidget {
@@ -47,15 +49,15 @@ class _GroupDetailState extends ConsumerState<GroupDetailScreen> {
     final yes = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('¿Salir del grupo?'),
+        title: Text(tr(context, '¿Salir del grupo?', 'Leave this group?')),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancelar'),
+            child: Text(tr(context, 'Cancelar', 'Cancel')),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Salir'),
+            child: Text(tr(context, 'Salir', 'Leave')),
           ),
         ],
       ),
@@ -76,7 +78,7 @@ class _GroupDetailState extends ConsumerState<GroupDetailScreen> {
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: Text(widget.group.name)),
     body: loading
-        ? const Center(child: CircularProgressIndicator())
+        ? const ContentSkeleton(kind: 'cards')
         : error != null
         ? Center(
             child: TextButton(
@@ -87,39 +89,136 @@ class _GroupDetailState extends ConsumerState<GroupDetailScreen> {
         : ListView(
             padding: const EdgeInsets.all(16),
             children: [
+              Text(
+                tr(
+                  context,
+                  'Invita a tus compañeros',
+                  'Invite your classmates',
+                ),
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              Text(
+                tr(
+                  context,
+                  'Comparte el enlace o el código completo. Quien lo reciba debe iniciar sesión y confirmar que desea unirse.',
+                  'Share the link or full code. Recipients must sign in and confirm they want to join.',
+                ),
+              ),
+              const SizedBox(height: 12),
+              SelectableText(details?['inviteCode']?.toString() ?? ''),
+              const SizedBox(height: 8),
+              OutlinedButton.icon(
+                onPressed: details?['inviteCode'] == null
+                    ? null
+                    : () async {
+                        final link = Uri.https(
+                          'aprueba.shamiiplay.com',
+                          '/invitacion',
+                          {'codigo': details!['inviteCode'].toString()},
+                        ).toString();
+                        await Clipboard.setData(ClipboardData(text: link));
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                tr(
+                                  context,
+                                  'Enlace de invitación copiado.',
+                                  'Invitation link copied.',
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                icon: const Icon(Icons.link),
+                label: Text(
+                  tr(
+                    context,
+                    'Copiar enlace de invitación',
+                    'Copy invitation link',
+                  ),
+                ),
+              ),
               OutlinedButton.icon(
                 onPressed: () async {
-                  await Clipboard.setData(ClipboardData(text: widget.group.id));
+                  await Clipboard.setData(
+                    ClipboardData(
+                      text:
+                          details?['inviteCode']?.toString() ?? widget.group.id,
+                    ),
+                  );
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
+                      SnackBar(
                         content: Text(
-                          'Código copiado. Compártelo con tu grupo.',
+                          tr(
+                            context,
+                            'Código copiado. Compártelo con tu grupo.',
+                            'Code copied. Share it with your group.',
+                          ),
                         ),
                       ),
                     );
                   }
                 },
                 icon: const Icon(Icons.copy),
-                label: const Text('Copiar código para invitar'),
+                label: Text(
+                  tr(
+                    context,
+                    'Copiar código para invitar',
+                    'Copy invitation code',
+                  ),
+                ),
+              ),
+              Text((details?['description'] ?? '').toString()),
+              Text(
+                tr(
+                  context,
+                  details?['visibility'] == 'public'
+                      ? 'Grupo público'
+                      : 'Grupo privado',
+                  details?['visibility'] == 'public'
+                      ? 'Public group'
+                      : 'Private group',
+                ),
+              ),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Text(
+                    tr(
+                      context,
+                      "${details?['statistics']?['correct'] ?? 0} correctas / ${details?['statistics']?['answered'] ?? 0} respuestas · ${details?['statistics']?['accuracy'] ?? '—'}% · no es puntaje PAES",
+                      "${details?['statistics']?['correct'] ?? 0} correct / ${details?['statistics']?['answered'] ?? 0} answers · ${details?['statistics']?['accuracy'] ?? '—'}% · not a PAES score",
+                    ),
+                  ),
+                ),
               ),
               Text(
-                'Integrantes',
+                tr(context, 'Integrantes', 'Members'),
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               for (final member in (details?['members'] as List? ?? []))
                 ListTile(
                   title: Text(member['name'].toString()),
                   subtitle: Text(
-                    '${member['answered']} respuestas · ${member['accuracy'] == null ? 'Sin práctica' : '${member['accuracy']}% de aciertos'}',
+                    tr(
+                      context,
+                      '${member['answered']} respuestas · ${member['accuracy'] == null ? 'Sin práctica' : '${member['accuracy']}% de aciertos'}',
+                      '${member['answered']} answers · ${member['accuracy'] == null ? 'No practice yet' : '${member['accuracy']}% correct'}',
+                    ),
                   ),
                 ),
               const Divider(),
               Text(
-                'Muro del grupo',
+                tr(context, 'Muro del grupo', 'Group discussion'),
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              if (posts.isEmpty) const Text('Todavía no hay publicaciones.'),
+              if (posts.isEmpty)
+                Text(
+                  tr(context, 'Todavía no hay publicaciones.', 'No posts yet.'),
+                ),
               for (final post in posts)
                 Card(
                   child: Padding(
@@ -137,7 +236,7 @@ class _GroupDetailState extends ConsumerState<GroupDetailScreen> {
                 ),
               TextButton(
                 onPressed: _leave,
-                child: const Text('Salir del grupo'),
+                child: Text(tr(context, 'Salir del grupo', 'Leave group')),
               ),
             ],
           ),

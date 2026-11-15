@@ -25,12 +25,15 @@ class CreateGroupScreen extends ConsumerStatefulWidget {
 class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
   final _name = TextEditingController();
   String? _testId;
+  String _visibility = 'private';
+  final _description = TextEditingController();
   bool _saving = false;
   String? _error;
 
   @override
   void dispose() {
     _name.dispose();
+    _description.dispose();
     super.dispose();
   }
 
@@ -57,9 +60,15 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
       _error = null;
     });
     try {
-      await ref
+      final created = await ref
           .read(groupsRepositoryProvider)
-          .create(name: name, testId: testId, colorHex: hexFromColor(color));
+          .create(
+            name: name,
+            testId: testId,
+            colorHex: hexFromColor(color),
+            visibility: _visibility,
+            description: _description.text.trim(),
+          );
       ref.invalidate(groupsProvider);
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -67,7 +76,7 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
           content: Text(tr(context, 'Grupo creado ✓', 'Group created ✓')),
         ),
       );
-      context.pop();
+      context.pushReplacement('/groups/detail', extra: created);
     } on ApiFailure catch (e) {
       if (mounted) setState(() => _error = e.message);
     } finally {
@@ -100,6 +109,41 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
             decoration: InputDecoration(
               hintText: tr(context, 'Nombre del grupo', 'Group name'),
             ),
+          ),
+          TextField(
+            controller: _description,
+            maxLength: 500,
+            decoration: InputDecoration(
+              labelText: tr(context, 'Descripción', 'Description'),
+            ),
+          ),
+          DropdownButton<String>(
+            value: _visibility,
+            onChanged: _saving
+                ? null
+                : (value) => setState(() => _visibility = value!),
+            items: [
+              DropdownMenuItem(
+                value: 'private',
+                child: Text(
+                  tr(
+                    context,
+                    'Privado · con invitación',
+                    'Private · invitation only',
+                  ),
+                ),
+              ),
+              DropdownMenuItem(
+                value: 'public',
+                child: Text(
+                  tr(
+                    context,
+                    'Público · visible para todos',
+                    'Public · visible to everyone',
+                  ),
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 16),
           Text(
@@ -146,7 +190,7 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
                           style: GoogleFonts.inter(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
-                            color: selected == t.id ? Colors.white : c.ink,
+                            color: selected == t.id ? c.onBrand : c.ink,
                           ),
                         ),
                       ],

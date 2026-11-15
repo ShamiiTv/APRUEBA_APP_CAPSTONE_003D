@@ -1,3 +1,5 @@
+import '../../core/widgets/content_skeleton.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/l10n.dart';
@@ -13,7 +15,6 @@ import '../../data/practice_models.dart';
 import '../../data/user_profile.dart';
 import '../auth/auth_providers.dart';
 import '../auth/auth_repository.dart';
-import '../notifications/notifications_providers.dart';
 import '../practice/practice_providers.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -32,7 +33,7 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       body: SafeArea(
         child: profile.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const ContentSkeleton(kind: 'home'),
           error: (error, _) => Center(
             child: Padding(
               padding: const EdgeInsets.all(24),
@@ -96,7 +97,7 @@ class HomeScreen extends ConsumerWidget {
             Text(
               'Aprueba',
               style: GoogleFonts.montserrat(
-                fontSize: 17,
+                fontSize: 23,
                 fontWeight: FontWeight.w800,
                 color: c.brand,
               ),
@@ -187,6 +188,7 @@ class HomeScreen extends ConsumerWidget {
           ),
         ),
 
+        const SizedBox(height: 12),
         // Cuota diaria
         Card(
           child: Padding(
@@ -223,8 +225,8 @@ class HomeScreen extends ConsumerWidget {
                   Text(
                     tr(
                       context,
-                      'La cuota se renueva cada día.',
-                      'Your quota resets every day.',
+                      '10 base + 5 colegio + 5 dirección · 20 máx gratis.',
+                      '10 base + 5 school + 5 address · 20 free max.',
                     ),
                     style: GoogleFonts.inter(fontSize: 11, color: c.muted),
                   ),
@@ -297,6 +299,110 @@ class HomeScreen extends ConsumerWidget {
           child: Text(tr(context, 'Continuar practicando', 'Keep practicing')),
         ),
 
+        const SizedBox(height: 24),
+        Text(
+          tr(context, 'Explora Aprueba', 'Explore Aprueba'),
+          style: tt.titleLarge,
+        ),
+        const SizedBox(height: 4),
+        Text(
+          tr(
+            context,
+            'Todo lo que puedes hacer, en un solo lugar.',
+            'Everything you can do, in one place.',
+          ),
+          style: TextStyle(color: c.muted, fontSize: 13),
+        ),
+        const SizedBox(height: 12),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final entries = [
+              (
+                Icons.emoji_events_outlined,
+                tr(context, 'Mis medallas', 'My medals'),
+                tr(context, 'Canjea y regala', 'Exchange and gift'),
+                '/medals',
+              ),
+              (
+                Icons.groups_outlined,
+                tr(context, 'Grupos de estudio', 'Study groups'),
+                tr(context, 'Invita y comparte', 'Invite and share'),
+                '/groups',
+              ),
+              (
+                Icons.school_outlined,
+                tr(context, 'Tutores', 'Tutors'),
+                tr(context, 'Catálogo de demostración', 'Demo catalog'),
+                '/tutors',
+              ),
+              (
+                Icons.forum_outlined,
+                tr(context, 'Comunidad', 'Community'),
+                tr(context, 'Aprende con otros', 'Learn with others'),
+                '/feed',
+              ),
+              (
+                Icons.person_outline,
+                tr(context, 'Mi perfil', 'My profile'),
+                tr(context, 'Datos y privacidad', 'Data and privacy'),
+                '/my-data',
+              ),
+              (
+                Icons.settings_outlined,
+                tr(context, 'Ajustes', 'Settings'),
+                tr(context, 'Tema e idioma', 'Theme and language'),
+                '/settings',
+              ),
+            ];
+            final columns = constraints.maxWidth < 300 ? 1 : 2;
+            return Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              children: [
+                for (final e in entries)
+                  SizedBox(
+                    width:
+                        (constraints.maxWidth - 10 * (columns - 1)) / columns,
+                    child: Card(
+                      clipBehavior: Clip.antiAlias,
+                      child: InkWell(
+                        onTap: () {
+                          if (e.$4 == '/my-data') {
+                            context.push(e.$4);
+                          } else {
+                            context.go(e.$4);
+                          }
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(14),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Icon(e.$1, color: c.brand, size: 26),
+                              const SizedBox(height: 10),
+                              Text(
+                                e.$2,
+                                style: TextStyle(
+                                  color: c.ink,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 13,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                e.$3,
+                                style: TextStyle(color: c.muted, fontSize: 11),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            );
+          },
+        ),
         // Progreso por prueba
         const SizedBox(height: 18),
         Text(
@@ -343,23 +449,16 @@ class HomeScreen extends ConsumerWidget {
 }
 
 /// Campana de notificaciones con el contador de no leídas.
-class _BellButton extends ConsumerWidget {
+class _BellButton extends StatelessWidget {
   const _BellButton();
-
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final unread = ref.watch(notificationsProvider).value?.unread ?? 0;
-    return IconButton(
-      tooltip: tr(context, 'Notificaciones', 'Notifications'),
-      onPressed: () async {
-        await context.push('/notifications');
-        ref.invalidate(notificationsProvider);
-      },
-      icon: Badge(
-        isLabelVisible: unread > 0,
-        label: Text('$unread'),
-        child: const Icon(Icons.notifications_outlined),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => IconButton(
+    tooltip: tr(
+      context,
+      'Notificaciones · próximamente',
+      'Notifications · coming soon',
+    ),
+    onPressed: () => context.push('/notifications'),
+    icon: const Icon(Icons.notifications_outlined),
+  );
 }

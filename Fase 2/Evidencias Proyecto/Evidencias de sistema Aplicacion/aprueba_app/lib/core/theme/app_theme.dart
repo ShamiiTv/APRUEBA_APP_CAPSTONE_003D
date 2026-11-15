@@ -13,12 +13,14 @@ class AppTheme {
   static ThemeData _build(Brightness b) {
     final c = b == Brightness.dark ? WfColors.dark : WfColors.light;
     // Manual de marca: "Fondo General" #F8FAFC en modo claro.
-    final pageBg = b == Brightness.dark ? c.bg : const Color(0xFFF8FAFC);
+    final pageBg = b == Brightness.dark
+        ? AppColors.fondoDark
+        : const Color(0xFFF8FAFC);
 
     final scheme =
         ColorScheme.fromSeed(seedColor: AppColors.azul, brightness: b).copyWith(
           primary: c.brand,
-          onPrimary: Colors.white,
+          onPrimary: c.onBrand,
           secondary: AppColors.oro,
           onSecondary: AppColors.azul,
           error: c.danger,
@@ -83,13 +85,13 @@ class AppTheme {
         ),
       ),
       cardTheme: CardThemeData(
-        color: c.soft,
+        color: c.bg,
         elevation: 0,
         margin: EdgeInsets.zero,
         surfaceTintColor: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
-          side: BorderSide(color: c.line, width: 1.5),
+          borderRadius: BorderRadius.circular(18),
+          side: BorderSide(color: c.line),
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(
@@ -110,7 +112,7 @@ class AppTheme {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          backgroundColor: c.soft,
+          backgroundColor: Colors.transparent,
           foregroundColor: c.ink,
           minimumSize: const Size.fromHeight(48),
           side: BorderSide(color: c.line, width: 1.5),
@@ -154,6 +156,33 @@ class AppTheme {
           (s) => s.contains(WidgetState.selected) ? c.brand : c.line,
         ),
       ),
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: c.bg,
+        indicatorColor: AppColors.oro.withValues(alpha: .25),
+        labelTextStyle: WidgetStateProperty.resolveWith(
+          (states) => GoogleFonts.inter(
+            fontSize: 11,
+            fontWeight: states.contains(WidgetState.selected)
+                ? FontWeight.w700
+                : FontWeight.w500,
+            color: states.contains(WidgetState.selected) ? c.ink : c.muted,
+          ),
+        ),
+        iconTheme: WidgetStateProperty.resolveWith(
+          (states) => IconThemeData(
+            color: states.contains(WidgetState.selected) ? c.brand : c.muted,
+            size: 24,
+          ),
+        ),
+      ),
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: c.bg,
+        showDragHandle: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+      ),
+      dialogTheme: DialogThemeData(backgroundColor: c.bg),
     );
   }
 }

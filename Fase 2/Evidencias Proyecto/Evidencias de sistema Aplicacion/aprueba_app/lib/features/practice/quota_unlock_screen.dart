@@ -29,6 +29,7 @@ class _QuotaUnlockScreenState extends ConsumerState<QuotaUnlockScreen> {
   final _schoolKey = GlobalKey<FormState>();
   final _school = TextEditingController();
   final _age = TextEditingController();
+  final _region = TextEditingController();
   final _addr = AddressFormController();
   bool _loading = false;
   String? _error;
@@ -37,6 +38,7 @@ class _QuotaUnlockScreenState extends ConsumerState<QuotaUnlockScreen> {
   void dispose() {
     _school.dispose();
     _age.dispose();
+    _region.dispose();
     _addr.dispose();
     super.dispose();
   }
@@ -60,6 +62,7 @@ class _QuotaUnlockScreenState extends ConsumerState<QuotaUnlockScreen> {
         await repo.unlockSchool(
           _school.text.trim(),
           int.parse(_age.text.trim()),
+          _region.text.trim(),
         );
       } else {
         await repo.unlockAddress(_addr.build());
@@ -167,6 +170,20 @@ class _QuotaUnlockScreenState extends ConsumerState<QuotaUnlockScreen> {
                     ),
                     const SizedBox(height: 10),
                     TextFormField(
+                      controller: _region,
+                      decoration: InputDecoration(
+                        labelText: tr(context, 'Región', 'Region'),
+                      ),
+                      validator: (value) => (value?.trim().isEmpty ?? true)
+                          ? tr(
+                              context,
+                              'Ingresa tu región',
+                              'Enter your region',
+                            )
+                          : null,
+                    ),
+                    const SizedBox(height: 10),
+                    TextFormField(
                       controller: _age,
                       keyboardType: TextInputType.number,
                       inputFormatters: [
@@ -208,7 +225,44 @@ class _QuotaUnlockScreenState extends ConsumerState<QuotaUnlockScreen> {
                     ),
             ),
             TextButton(
-              onPressed: () => context.go('/home'),
+              onPressed: _loading
+                  ? null
+                  : () async {
+                      final skip = await showDialog<bool>(
+                        context: context,
+                        builder: (ctx) => AlertDialog(
+                          title: Text(
+                            tr(context, '¿Omitir por ahora?', 'Skip for now?'),
+                          ),
+                          content: Text(
+                            tr(
+                              context,
+                              'Conservas tus 10 preguntas diarias base. Para obtener las 10 extra debes completar colegio, edad y región (+5) y dirección (+5). Puedes hacerlo después desde tu perfil.',
+                              'You keep your 10 base daily questions. Unlock 10 extra by completing school, age and region (+5) and address (+5). You can do this later in your profile.',
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(ctx, false),
+                              child: Text(
+                                tr(
+                                  context,
+                                  'Completar mis datos',
+                                  'Complete my details',
+                                ),
+                              ),
+                            ),
+                            FilledButton(
+                              onPressed: () => Navigator.pop(ctx, true),
+                              child: Text(
+                                tr(context, 'Omitir por ahora', 'Skip for now'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                      if (skip == true && context.mounted) context.go('/home');
+                    },
               child: Text(tr(context, 'Más tarde', 'Later')),
             ),
           ],

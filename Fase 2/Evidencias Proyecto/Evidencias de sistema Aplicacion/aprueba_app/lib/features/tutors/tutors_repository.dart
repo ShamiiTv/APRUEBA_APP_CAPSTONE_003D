@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 
+import '../../core/storage/pending_operation.dart';
+
 import '../../core/network/api_client.dart';
 import '../../core/network/api_error.dart';
 import '../../data/social_models.dart';
@@ -26,12 +28,20 @@ class TutorsRepository {
       await ApiClient.dio.post(
         '/tutors/request',
         data: {
+          'requestId': await PendingOperation.id(
+            'tutor',
+            '$tutorId|$topic|$message',
+          ),
           'tutorId': tutorId,
           'message': message,
           if (topic != null && topic.isNotEmpty) 'topic': topic,
         },
       );
+      await PendingOperation.complete('tutor');
     } on DioException catch (e) {
+      if (PendingOperation.definitiveRejection(e)) {
+        await PendingOperation.complete('tutor');
+      }
       throw apiFailureFrom(e, 'No se pudo enviar la solicitud.');
     }
   }

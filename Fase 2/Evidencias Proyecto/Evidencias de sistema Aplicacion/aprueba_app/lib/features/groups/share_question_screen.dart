@@ -1,3 +1,4 @@
+import '../../core/widgets/content_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -142,7 +143,7 @@ class _ShareQuestionScreenState extends ConsumerState<ShareQuestionScreen> {
           groups.when(
             loading: () => const Padding(
               padding: EdgeInsets.all(20),
-              child: Center(child: CircularProgressIndicator()),
+              child: ContentSkeleton(kind: 'cards', inline: true),
             ),
             error: (e, _) => Text(
               e is ApiFailure ? e.message : 'No se pudieron cargar tus grupos.',

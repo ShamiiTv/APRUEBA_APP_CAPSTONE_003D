@@ -19,7 +19,8 @@ export default function Login() {
 
     try {
       const data = await loginUser(email, password);
-      navigate(data.user.onboardingCompleted === true ? '/' : '/onboarding', { replace: true });
+      const invitation=sessionStorage.getItem('aprueba:group-invitation');
+      navigate(data.user.onboardingCompleted === true ? (invitation ? '/grupos?invite='+encodeURIComponent(invitation) : '/') : '/onboarding', { replace: true });
     } catch (err) {
       setError(err.message || 'Credenciales inválidas');
     } finally {

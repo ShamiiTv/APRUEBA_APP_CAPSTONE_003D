@@ -1,3 +1,4 @@
+import '../../core/widgets/content_skeleton.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/l10n.dart';
@@ -68,7 +69,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
         leading: BackButton(onPressed: () => context.pop()),
       ),
       body: plansAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const ContentSkeleton(kind: 'cards'),
         error: (e, _) => Center(
           child: Text(
             e is SubscriptionException

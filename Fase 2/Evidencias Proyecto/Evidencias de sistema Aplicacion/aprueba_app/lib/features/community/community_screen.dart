@@ -1,3 +1,5 @@
+import '../../core/widgets/content_skeleton.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/l10n.dart';
@@ -172,7 +174,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
 
     Widget body;
     if (_loading) {
-      body = const Center(child: CircularProgressIndicator());
+      body = const ContentSkeleton(kind: 'cards');
     } else if (_error != null) {
       body = Center(
         child: Padding(

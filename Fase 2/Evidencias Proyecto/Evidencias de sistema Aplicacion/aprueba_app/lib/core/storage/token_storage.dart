@@ -12,5 +12,20 @@ class TokenStorage {
 
   static Future<String?> read() => _storage.read(key: _accessKey);
   static Future<String?> readRefresh() => _storage.read(key: _refreshKey);
-  static Future<void> clear() => _storage.deleteAll();
+  static Future<void> clear() async {
+    String? theme;
+    try {
+      theme = await _storage.read(key: 'aprueba_theme');
+    } catch (_) {
+      /* Un fallo de preferencia no impide cerrar sesión. */
+    }
+    await _storage.deleteAll();
+    if (theme != null) {
+      try {
+        await _storage.write(key: 'aprueba_theme', value: theme);
+      } catch (_) {
+        /* La sesión ya está eliminada. */
+      }
+    }
+  }
 }

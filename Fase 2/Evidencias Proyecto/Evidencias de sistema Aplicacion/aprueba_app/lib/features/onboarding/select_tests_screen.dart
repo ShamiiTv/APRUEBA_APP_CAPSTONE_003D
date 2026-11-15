@@ -1,3 +1,5 @@
+import '../../core/widgets/content_skeleton.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../core/utils/tier_names.dart';
@@ -134,7 +136,7 @@ class _SelectTestsScreenState extends ConsumerState<SelectTestsScreen> {
               style: GoogleFonts.inter(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
-                color: on ? Colors.white : c.ink,
+                color: on ? c.onBrand : c.ink,
               ),
             ),
             if (!t.hasQuestions) ...[
@@ -143,7 +145,7 @@ class _SelectTestsScreenState extends ConsumerState<SelectTestsScreen> {
                 tr(context, '· sin preguntas aún', '· no questions yet'),
                 style: GoogleFonts.inter(
                   fontSize: 10,
-                  color: on ? Colors.white70 : c.muted,
+                  color: on ? c.onBrand : c.muted,
                 ),
               ),
             ],
@@ -173,7 +175,7 @@ class _SelectTestsScreenState extends ConsumerState<SelectTestsScreen> {
           style: GoogleFonts.inter(
             fontSize: 12,
             fontWeight: FontWeight.w600,
-            color: on ? Colors.white : c.ink,
+            color: on ? c.onBrand : c.ink,
           ),
         ),
       ),
@@ -207,7 +209,7 @@ class _SelectTestsScreenState extends ConsumerState<SelectTestsScreen> {
         automaticallyImplyLeading: widget.fromSettings,
       ),
       body: _loading
-          ? const Center(child: CircularProgressIndicator())
+          ? const ContentSkeleton(kind: 'cards')
           : ListView(
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
               children: [
@@ -268,7 +270,6 @@ class _SelectTestsScreenState extends ConsumerState<SelectTestsScreen> {
                       on: _format == 'random',
                       onTap: () => setState(() => _format = 'random'),
                     ),
-
                   ],
                 ),
                 if (_error != null) ...[

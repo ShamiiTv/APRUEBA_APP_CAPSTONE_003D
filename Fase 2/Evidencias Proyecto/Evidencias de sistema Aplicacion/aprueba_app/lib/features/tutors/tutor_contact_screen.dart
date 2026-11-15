@@ -66,7 +66,13 @@ class _TutorContactScreenState extends ConsumerState<TutorContactScreen> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(tr(context, 'Solicitud enviada ✓', 'Request sent ✓')),
+          content: Text(
+            tr(
+              context,
+              'Solicitud simulada guardada ✓',
+              'Demo request saved ✓',
+            ),
+          ),
         ),
       );
       context.go('/tutors');
@@ -113,8 +119,8 @@ class _TutorContactScreenState extends ConsumerState<TutorContactScreen> {
           Text(
             tr(
               context,
-              '${t.name} recibirá tu solicitud junto con tu perfil para conocer tus necesidades.',
-              '${t.name} will receive your request along with your profile to understand your needs.',
+              'SIMULACIÓN: no se contactará a un profesor real. Puedes probar y guardar tu solicitud.',
+              'SIMULATION: no real teacher will be contacted. You can test and save your request.',
             ),
             style: GoogleFonts.inter(fontSize: 13, color: c.muted, height: 1.5),
           ),

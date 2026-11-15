@@ -1,3 +1,4 @@
+import { lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './auth/AuthContext';
 import { useAuth } from './auth/useAuth';
@@ -7,19 +8,22 @@ import Layout from './components/Layout';
 // Vistas Públicas
 import Login from './pages/Login';
 import Register from './pages/Register';
+import VerifyEmail from './pages/VerifyEmail';
+import GroupInvitation from './pages/GroupInvitation';
 import PasswordRecovery from './pages/PasswordRecovery';
 
 // Vistas Privadas
 import Onboarding from './pages/Onboarding';
-import Home from './pages/Home';
-import Practice from './pages/Practice';
-import Medals from './pages/Medals';
-import Groups from './pages/Groups';
-import Tutors from './pages/Tutors';
-import Community from './pages/Community';
-import Plan from './pages/Plan';
-import StudyPlan from './pages/StudyPlan';
-import Settings from './pages/Settings';
+
+const Home = lazy(() => import('./pages/Home'));
+const Practice = lazy(() => import('./pages/Practice'));
+const Medals = lazy(() => import('./pages/Medals'));
+const Groups = lazy(() => import('./pages/Groups'));
+const Tutors = lazy(() => import('./pages/Tutors'));
+const Community = lazy(() => import('./pages/Community'));
+const Plan = lazy(() => import('./pages/Plan'));
+const StudyPlan = lazy(() => import('./pages/StudyPlan'));
+const Settings = lazy(() => import('./pages/Settings'));
 
 // Protege /login y /register: si ya hay sesión activa, redirige
 function PublicOnlyRoute({ children }) {
@@ -45,10 +49,12 @@ function PublicOnlyRoute({ children }) {
 
   // Si ya tenemos el objeto de usuario o hay un token válido
   if (user) {
+    if (user.emailVerified !== true) return <Navigate to="/verificar-correo" replace />;
     if (user.onboardingCompleted !== true) {
       return <Navigate to="/onboarding" replace />;
     }
-    return <Navigate to="/" replace />;
+    const invitation=sessionStorage.getItem('aprueba:group-invitation');
+    return <Navigate to={invitation ? '/grupos?invite='+encodeURIComponent(invitation) : '/'} replace />;
   }
 
   return children;
@@ -59,6 +65,8 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
+          <Route path="/invitacion" element={<GroupInvitation />} />
+          <Route path="/verificar-correo" element={<PrivateRoute verification><VerifyEmail /></PrivateRoute>} />
           <Route path="/recuperar-contrasena" element={<PasswordRecovery />} />
           <Route path="/restablecer-contrasena" element={<PasswordRecovery reset />} />
           {/* Rutas Públicas */}

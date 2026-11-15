@@ -1,3 +1,5 @@
+import '../../core/widgets/content_skeleton.dart';
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -13,13 +15,15 @@ import '../../core/theme/wf_colors.dart';
 import '../../core/utils/tier_names.dart';
 import '../../core/widgets/medal_toast.dart';
 import '../../core/widgets/wf_widgets.dart';
+import '../../core/widgets/app_menu.dart';
 import '../../data/practice_models.dart';
 import '../auth/auth_providers.dart';
 import 'practice_providers.dart';
 import 'practice_repository.dart';
 
 class PracticeScreen extends ConsumerStatefulWidget {
-  const PracticeScreen({super.key});
+  const PracticeScreen({super.key, this.similarTo});
+  final String? similarTo;
 
   @override
   ConsumerState<PracticeScreen> createState() => _PracticeScreenState();
@@ -46,6 +50,12 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
   void initState() {
     super.initState();
     _loadNext();
+  }
+
+  @override
+  void didUpdateWidget(covariant PracticeScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.similarTo != widget.similarTo) _loadNext();
   }
 
   @override
@@ -122,7 +132,9 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
       try {
         await ref.read(testsProvider.future);
       } catch (_) {}
-      final next = await ref.read(practiceRepositoryProvider).next();
+      final next = await ref
+          .read(practiceRepositoryProvider)
+          .next(similarTo: widget.similarTo);
       final onlyEmpty = next.allCompleted
           ? await _chosenTestsAreEmpty()
           : false;
@@ -208,6 +220,18 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_title()),
+        actions: [
+          IconButton(
+            tooltip: tr(context, 'Explorar Aprueba', 'Explore Aprueba'),
+            onPressed: () => showApruebaMenu(context),
+            icon: const Icon(Icons.grid_view_rounded),
+          ),
+          IconButton(
+            tooltip: tr(context, 'Niveles', 'Levels'),
+            onPressed: () => context.push('/levels'),
+            icon: const Icon(Icons.stairs),
+          ),
+        ],
         leading: BackButton(onPressed: () => context.go('/home')),
       ),
       body: _body(context),
@@ -217,7 +241,7 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
   Widget _body(BuildContext context) {
     final c = WfColors.of(context);
 
-    if (_loading) return const Center(child: CircularProgressIndicator());
+    if (_loading) return const ContentSkeleton(kind: 'question');
 
     if (_error != null && _question == null) {
       return Center(
@@ -243,12 +267,44 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
     }
 
     if (_noMore || _question == null) return _noMoreView();
-    return _result == null ? _questionView() : _resultView();
+    final content = _result == null ? _questionView() : _resultView();
+    if (widget.similarTo == null) return content;
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Text(
+            tr(
+              context,
+              'Preguntas similares · misma prueba, dificultad y eje temático',
+              'Similar questions · same test, difficulty and topic',
+            ),
+          ),
+        ),
+        TextButton(
+          onPressed: () => context.go('/practice'),
+          child: Text(
+            tr(
+              context,
+              'Volver a práctica general',
+              'Return to general practice',
+            ),
+          ),
+        ),
+        Expanded(child: content),
+      ],
+    );
   }
 
   Widget _noMoreView() {
     final c = WfColors.of(context);
-    final title = _onlyEmpty
+    final title = widget.similarTo != null
+        ? tr(
+            context,
+            'No hay más preguntas similares disponibles',
+            'No more similar questions available',
+          )
+        : _onlyEmpty
         ? tr(
             context,
             'Tus pruebas todavía no tienen preguntas',
@@ -259,7 +315,13 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
             'No quedan preguntas para tus filtros',
             'No questions left for your filters',
           );
-    final body = _onlyEmpty
+    final body = widget.similarTo != null
+        ? tr(
+            context,
+            'No quedan otras preguntas sin responder de la misma prueba, dificultad y eje temático. Puedes continuar con la práctica general.',
+            'There are no other unanswered questions with the same test, difficulty and topic. You can continue general practice.',
+          )
+        : _onlyEmpty
         ? tr(
             context,
             'Las pruebas que elegiste aún no tienen preguntas cargadas. Elige también Matemática M1 o Competencia Lectora para practicar.',
@@ -294,6 +356,17 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
               style: GoogleFonts.inter(fontSize: 13, color: c.muted),
             ),
             const SizedBox(height: 20),
+            if (widget.similarTo != null)
+              FilledButton(
+                onPressed: () => context.go('/practice'),
+                child: Text(
+                  tr(
+                    context,
+                    'Continuar práctica general',
+                    'Continue general practice',
+                  ),
+                ),
+              ),
             FilledButton(
               onPressed: () => context.push('/select-tests?from=settings'),
               child: Text(
@@ -437,19 +510,19 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
       fill = c.success.withValues(alpha: 0.08);
       circleBg = c.success;
       circleBorder = c.success;
-      circleFg = Colors.white;
+      circleFg = WfColors.readableForeground(Colors.white, circleBg);
     } else if (isNo) {
       border = c.danger;
       fill = c.danger.withValues(alpha: 0.06);
       circleBg = c.danger;
       circleBorder = c.danger;
-      circleFg = Colors.white;
+      circleFg = WfColors.readableForeground(Colors.white, circleBg);
     } else if (isSel) {
       border = c.brand;
       fill = c.brand.withValues(alpha: 0.06);
       circleBg = c.brand;
       circleBorder = c.brand;
-      circleFg = Colors.white;
+      circleFg = WfColors.readableForeground(Colors.white, circleBg);
     }
 
     return Padding(
@@ -561,15 +634,12 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
                       style: GoogleFonts.inter(
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        color: const Color(0xFF7A4A10),
+                        color: c.ink,
                       ),
                     ),
                     Text(
                       tr(context, 'Respuesta correcta', 'Correct answer'),
-                      style: GoogleFonts.inter(
-                        fontSize: 10,
-                        color: const Color(0xFF7A4A10),
-                      ),
+                      style: GoogleFonts.inter(fontSize: 10, color: c.ink),
                     ),
                   ],
                 ),
@@ -622,6 +692,14 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
               '📖 Ver explicación detallada',
               '📖 See detailed explanation',
             ),
+          ),
+        ),
+        OutlinedButton.icon(
+          onPressed: () =>
+              context.go('/practice?similarTo=${Uri.encodeComponent(q.id)}'),
+          icon: const Icon(Icons.center_focus_strong),
+          label: Text(
+            tr(context, 'Practicar similares', 'Practice similar questions'),
           ),
         ),
         const SizedBox(height: 8),

@@ -3,7 +3,7 @@
 Configuración recuperada del chat «Revisar y escalar torneos», relacionado con Copa Kick, y comprobada por SSH el 10-10-2026.
 
 - Database Mart, Ubuntu 24.04; host compartido 93.127.139.145, SSH 10047.
-- Aprueba: https://apruebashamiiplaytest.dbm.shared-servers.com (gateway hacia puerto 8081).
+- Dominio principal: https://aprueba.shamiiplay.com; móvil: https://aprueba.shamiiplay.com/movil/ (gateway hacia puerto 8081). El alias anterior se conserva como referencia histórica.
 - Código API: /opt/shamii/aprueba/api; interfaz: /opt/shamii/aprueba/web/dist.
 - Servicio: aprueba-api, ejecutado como shamii con /opt/node/bin/node y /etc/shamii/aprueba.env.
 - Configuración Firebase: /etc/shamii/aprueba-firebase.json, instalada y validada para aprueba-app-9d317. Permisos 640, root:shamii; GOOGLE_APPLICATION_CREDENTIALS y clave web configuradas en /etc/shamii/aprueba.env.
@@ -14,6 +14,8 @@ La clave y known_hosts existentes se referencian desde C:/Users/Shamii/Desktop/T
 ## Actualizar avances
 
 Desde PowerShell, ejecutar & './Fase 2/Evidencias Proyecto/Evidencias de sistema Aplicacion/deploy/Update-Aprueba.ps1' para preparar un paquete validado. Agregar -Publish para subirlo, guardar respaldo remoto y actualizar Aprueba. El script ejecuta pruebas, lint y build con VITE_API_BASE_URL=/api/v1. Cualquier fallo detiene el despliegue.
+
+Para actualizar también Flutter web, usar `-IncludeMobile -FlutterPath "ruta/a/flutter.bat"`. La compilación usa el dominio nuevo y se incluye bajo `/movil/`. Sin ese parámetro se conserva la app móvil que ya está en la VPS.
 
 El paquete contiene solo fuente API, manifests, dist e índices/reglas. No contiene .env, credenciales, datos de usuarios ni emuladores. Mantiene node_modules y configuración del servidor. Si cambia el lockfile, el script se detiene y requiere revisar la instalación de dependencias. Los respaldos quedan en /opt/shamii/aprueba-backups; el script no borra copias ni datos Firebase.
 

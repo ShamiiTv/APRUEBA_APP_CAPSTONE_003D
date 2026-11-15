@@ -42,10 +42,14 @@ Pruebas API y web: `npm test` en cada proyecto. Web: `npm run dev`. App: `flutte
 
 ## Servicio público y demostración histórica
 
-- Web: https://apruebashamiiplaytest.dbm.shared-servers.com/
-- Interfaz móvil: https://apruebashamiiplaytest.dbm.shared-servers.com/movil/
+- Web: https://aprueba.shamiiplay.com/
+- Interfaz móvil: https://aprueba.shamiiplay.com/movil/
 
 Desde el 13 de octubre de 2026 la VPS volvió a Firebase real. La demo del 12 de octubre usó emuladores aislados y sus cuentas y avances se conservaron separados de los reales. El recorrido web/móvil de login, práctica y progreso compartido fue comprobado. Las funciones señaladas como pendientes siguen en desarrollo; no se generó un APK/IPA nativo. El estado temporal y el procedimiento para volver a Firebase real se describen en `deploy/DEMO_PUBLICA.md`, dentro de las evidencias de sistema.
+
+## Mejoras del 21 de octubre de 2026
+
+Se incorporaron las funciones del wireframe de Alloxentric manteniendo la interfaz propia del equipo. Cuotas 10 + 5 + 5, regalos y canje de medallas, grupos públicos/privados, niveles por dificultad, datos personales y verificación por correo. Los planes de $990/$4.990 y los tutores funcionan como demostración explícita; no cobran dinero. Consultar el informe `deploy/MEJORAS_2026-10-21.md` para las comprobaciones y requisitos externos pendientes.
 
 ## Evidencias académicas
 

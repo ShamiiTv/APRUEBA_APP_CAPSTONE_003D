@@ -1,5 +1,11 @@
 import '../widgets/private_beta_notice.dart';
+import '../../features/practice/levels_screen.dart';
 import '../storage/token_storage.dart';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../features/auth/auth_providers.dart';
+import '../../features/auth/verify_email_screen.dart';
 
 import 'package:go_router/go_router.dart';
 
@@ -29,7 +35,6 @@ import '../../features/practice/quota_unlock_screen.dart';
 import '../../features/practice/skill_screen.dart';
 import '../../features/settings/my_data_screen.dart';
 import '../../features/settings/settings_screen.dart';
-import '../../features/splash/splash_screen.dart';
 import '../../features/subscription/checkout_screen.dart';
 import '../../features/subscription/manage_plan_screen.dart';
 import '../../features/subscription/payment_success_screen.dart';
@@ -57,30 +62,74 @@ final appRouter = GoRouter(
       '/practice/skill': 'Dominio por habilidad',
       '/practice/correction': 'Recorrección',
       '/corrections': 'Recorrecciones',
-      '/medals/gifts': 'Regalos de medallas',
-      '/medals/benefits': 'Canje de beneficios',
       '/notifications': 'Notificaciones',
       '/checkout': 'Pagos',
       '/payment-success': 'Pagos',
       '/manage-plan': 'Suscripciones',
       '/invoices': 'Boletas',
-      '/my-data': 'Edición avanzada de cuenta',
       '/tutors/analysis': 'Análisis de brechas',
     };
+    if (![
+      '/splash',
+      '/login',
+      '/register',
+      '/forgot-password',
+    ].contains(path)) {
+      if (!context.mounted) return null;
+      try {
+        final profile = await ProviderScope.containerOf(
+          context,
+          listen: false,
+        ).read(profileProvider.future);
+        if (!profile.emailVerified && path != '/verify-email') {
+          return '/verify-email';
+        }
+        if (profile.emailVerified && path == '/verify-email') {
+          return profile.onboardingCompleted ? '/home' : '/select-tests';
+        }
+        if (profile.emailVerified &&
+            !profile.onboardingCompleted &&
+            path != '/select-tests') {
+          return '/select-tests';
+        }
+      } catch (_) {
+        if (path != '/verify-email') return '/verify-email';
+      }
+    }
     final feature = pending[path];
-    if (feature != null || path.startsWith('/unlock/')) {
-      return '/private-beta-info?feature=${Uri.encodeComponent(feature ?? 'Cuota diaria de 20 preguntas: vuelve mañana para continuar')}';
+    if (feature != null) {
+      return '/private-beta-info?feature=${Uri.encodeComponent(feature)}';
     }
     return null;
   },
   routes: [
+    GoRoute(
+      path: '/verify-email',
+      builder: (context, state) => const VerifyEmailScreen(),
+    ),
+    GoRoute(path: '/levels', builder: (context, state) => const LevelsScreen()),
     GoRoute(
       path: '/private-beta-info',
       builder: (context, state) => PrivateBetaNotice(
         feature: state.uri.queryParameters['feature'] ?? 'Función pendiente',
       ),
     ),
-    GoRoute(path: '/splash', builder: (context, state) => const SplashScreen()),
+    GoRoute(
+      path: '/splash',
+      redirect: (context, state) async {
+        if (!await _hasSession() || !context.mounted) return '/login';
+        try {
+          final profile = await ProviderScope.containerOf(
+            context,
+            listen: false,
+          ).read(profileProvider.future);
+          if (!profile.emailVerified) return '/verify-email';
+          return profile.onboardingCompleted ? '/home' : '/select-tests';
+        } catch (_) {
+          return '/login';
+        }
+      },
+    ),
     GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
     GoRoute(
       path: '/register',
@@ -98,7 +147,8 @@ final appRouter = GoRouter(
     ),
     GoRoute(
       path: '/practice',
-      builder: (context, state) => const PracticeScreen(),
+      builder: (context, state) =>
+          PracticeScreen(similarTo: state.uri.queryParameters['similarTo']),
     ),
     GoRoute(
       path: '/practice/explanation',

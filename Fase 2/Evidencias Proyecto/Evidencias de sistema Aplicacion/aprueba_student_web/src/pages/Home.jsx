@@ -1,3 +1,4 @@
+import ContentSkeleton from '../components/ContentSkeleton';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiFetch } from '../api/client';
@@ -49,7 +50,7 @@ export default function Home() {
   const dateFormat = value => new Intl.DateTimeFormat(lang === 'en' ? 'en-US' : 'es-CL', { timeZone: 'America/Santiago', dateStyle: 'short', timeStyle: 'short' }).format(new Date(value));
   const goPractice = testId => navigate(`/practicar?testId=${encodeURIComponent(testId)}&difficulty=d2`);
   const eligible = progress?.subjects.filter(s => s.available > s.completed) || [];
-  const preferred = eligible.find(s => user?.selectedTests?.includes(s.testId)) || eligible[0] || progress?.subjects.find(s => s.available > 0);
+  const preferred = eligible.find(s=>s.testId===progress?.quota.unlimitedTestId) || eligible.find(s => user?.selectedTests?.includes(s.testId)) || eligible[0] || progress?.subjects.find(s => s.available > 0);
   const quotaReached = progress && !progress.quota.unlimited && progress.quota.used >= progress.quota.max;
 
   return <div className="home-dashboard">
@@ -57,9 +58,9 @@ export default function Home() {
       <div><h1>{t.home.greeting.replace('{name}', user?.name || 'Estudiante')}</h1><p>{copy.title}</p></div>
       <button onClick={refresh} disabled={!progress && !error}>{copy.refresh}</button>
     </header>
-    <p className="home-section"><button onClick={() => navigate('/plan-estudio')}>{lang === 'en' ? 'Open my study plan' : 'Ver mi plan de estudio'}</button></p>
+    <p>{lang === 'en' ? '10 base + 5 school + 5 address · 20 free max' : '10 base + 5 colegio + 5 dirección · 20 máx gratis'} <button onClick={() => navigate('/ajustes')}>{lang === 'en' ? 'Complete my profile' : 'Completar mis datos'}</button></p><p className="home-section"><button onClick={() => navigate('/plan-estudio')}>{lang === 'en' ? 'Open my study plan' : 'Ver mi plan de estudio'}</button></p>
     {error ? <div className="home-panel" role="alert"><p>{copy.error}</p><button onClick={refresh}>{copy.retry}</button></div>
-      : !progress ? <p role="status">{copy.loading}</p>
+      : !progress ? <ContentSkeleton kind="home" />
       : <>
         {progress.answered === 0 && <p className="home-panel">{copy.intro}</p>}
         <section className="home-grid" aria-label={copy.title}>
@@ -78,10 +79,10 @@ export default function Home() {
             <h3>{subject.label}</h3>
             {subject.available > 0 ? <><p><strong>{subject.completed} / {subject.available}</strong> {copy.available}</p><progress aria-label={`${subject.label}: ${subject.completed} / ${subject.available}`} value={subject.completed} max={subject.available} /><p className="home-hint">{subject.coverage}%</p></> : <p>{copy.emptyBank}</p>}
             <p className="home-hint">{subject.answered} {copy.history} · {subject.correct} {copy.hits}{subject.accuracy !== null ? ` (${subject.accuracy}%)` : ''}</p>
-            <button disabled={!subject.available || quotaReached} onClick={() => goPractice(subject.testId)}>{copy.practice}</button>
+            <button disabled={!subject.available || (quotaReached && progress.quota.unlimitedTestId!==subject.testId)} onClick={() => goPractice(subject.testId)}>{copy.practice}</button>
           </article>)}</div>
         </section>
-        <section className="home-banner home-section"><div><h2>{copy.ready}</h2><p>{quotaReached ? copy.limit : copy.readyHint}</p></div><button disabled={!preferred || quotaReached} onClick={() => goPractice(preferred.testId)}>{copy.practice}</button></section>
+        <section className="home-banner home-section"><div><h2>{copy.ready}</h2><p>{quotaReached ? copy.limit : copy.readyHint}</p></div><button disabled={!preferred || (quotaReached && progress.quota.unlimitedTestId!==preferred?.testId)} onClick={() => goPractice(preferred.testId)}>{copy.practice}</button></section>
         {progress.recent.length > 0 && <section className="home-panel home-section"><h2>{copy.recent}</h2><ul className="home-recent">{progress.recent.map((answer, index) => <li key={index}><span>{progress.subjects.find(s => s.testId === answer.testId)?.label} · {answer.isCorrect ? copy.right : copy.wrong}</span><time dateTime={answer.answeredAt}>{dateFormat(answer.answeredAt)}</time></li>)}</ul></section>}
         <p className="home-hint">{copy.updated}: <time dateTime={progress.updatedAt}>{dateFormat(progress.updatedAt)}</time> · America/Santiago</p>
       </>}

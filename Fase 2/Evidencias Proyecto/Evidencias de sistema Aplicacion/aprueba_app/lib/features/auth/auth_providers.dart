@@ -9,6 +9,7 @@ final authRepositoryProvider = Provider<AuthRepository>(
 
 /// Perfil del usuario logueado. Se carga una vez y las pantallas lo comparten.
 class ProfileNotifier extends AsyncNotifier<UserProfile> {
+  int _refreshVersion = 0;
   @override
   Future<UserProfile> build() {
     return ref.read(authRepositoryProvider).fetchProfile();
@@ -17,9 +18,11 @@ class ProfileNotifier extends AsyncNotifier<UserProfile> {
   /// Vuelve a pedir el perfil sin mostrar el spinner (mantiene los datos
   /// anteriores en pantalla hasta que lleguen los nuevos).
   Future<void> refresh() async {
-    state = await AsyncValue.guard(
+    final version = ++_refreshVersion;
+    final result = await AsyncValue.guard(
       () => ref.read(authRepositoryProvider).fetchProfile(),
     );
+    if (version == _refreshVersion) state = result;
   }
 }
 

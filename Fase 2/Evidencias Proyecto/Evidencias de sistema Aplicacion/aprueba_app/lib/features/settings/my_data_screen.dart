@@ -1,4 +1,12 @@
+import '../../core/widgets/content_skeleton.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import 'dart:convert';
+
+import '../../core/network/social_connect.dart';
+import '../../core/network/api_client.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -27,6 +35,7 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
   final _phone = TextEditingController();
   final _age = TextEditingController();
   final _school = TextEditingController();
+  final _region = TextEditingController();
   final _cur = TextEditingController();
   final _new = TextEditingController();
   final _confirm = TextEditingController();
@@ -52,6 +61,7 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
         _phone.text = u.phone ?? '';
         _age.text = u.age?.toString() ?? '';
         _school.text = u.school ?? '';
+        _region.text = u.region;
         _addr.load(u.address);
         _loaded = true;
       });
@@ -62,7 +72,16 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
 
   @override
   void dispose() {
-    for (final c in [_name, _phone, _age, _school, _cur, _new, _confirm]) {
+    for (final c in [
+      _name,
+      _phone,
+      _age,
+      _school,
+      _region,
+      _cur,
+      _new,
+      _confirm,
+    ]) {
       c.dispose();
     }
     _addr.dispose();
@@ -81,11 +100,12 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
       final data = <String, dynamic>{
         'name': _name.text.trim(),
         'phone': _phone.text.trim(),
+        'region': _region.text.trim(),
       };
-      if (_age.text.trim().isNotEmpty) {
-        data['age'] = int.parse(_age.text.trim());
-      }
-      if (_school.text.trim().isNotEmpty) data['school'] = _school.text.trim();
+      data['age'] = _age.text.trim().isEmpty
+          ? null
+          : int.parse(_age.text.trim());
+      data['school'] = _school.text.trim();
 
       await ref.read(authRepositoryProvider).updateProfile(data);
       await ref.read(profileProvider.notifier).refresh();
@@ -126,7 +146,9 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
       _new.clear();
       _confirm.clear();
       if (!mounted) return;
-      _snack(tr(context, 'Contraseña actualizada ✓', 'Password updated ✓'));
+      await ref.read(authRepositoryProvider).logout();
+      if (!mounted) return;
+      context.go('/login');
     } on ApiException catch (e) {
       _snack(e.message);
     } finally {
@@ -200,7 +222,7 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
         title: Text(tr(context, 'Mis datos y privacidad', 'My data & privacy')),
       ),
       body: profile.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const ContentSkeleton(kind: 'form'),
         error: (e, _) => Center(
           child: Text(
             e is ApiException ? e.message : 'No se pudo cargar tu perfil.',
@@ -208,7 +230,7 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
           ),
         ),
         data: (u) {
-          if (!_loaded) return const Center(child: CircularProgressIndicator());
+          if (!_loaded) return const ContentSkeleton(kind: 'form');
           return _content(context, u, c);
         },
       ),
@@ -268,6 +290,137 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
             ),
           ),
         ),
+        _section(
+          tr(context, 'Verificación de correo', 'Email verification'),
+          c,
+        ),
+        Text(
+          u.emailVerified
+              ? tr(context, 'Correo verificado', 'Email verified')
+              : tr(
+                  context,
+                  'Correo aún sin verificar',
+                  'Email not verified yet',
+                ),
+        ),
+        if (!u.emailVerified)
+          FilledButton(
+            onPressed: () async {
+              final controller = TextEditingController();
+              final password = await showDialog<String>(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                  title: Text(tr(ctx, 'Contraseña actual', 'Current password')),
+                  content: TextField(controller: controller, obscureText: true),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(ctx),
+                      child: Text(tr(ctx, 'Cancelar', 'Cancel')),
+                    ),
+                    FilledButton(
+                      onPressed: () => Navigator.pop(ctx, controller.text),
+                      child: Text(
+                        tr(ctx, 'Enviar verificación', 'Send verification'),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+              controller.dispose();
+              if (password == null || password.isEmpty) return;
+              try {
+                await ApiClient.dio.post(
+                  '/auth/verify-email',
+                  data: {'currentPassword': password},
+                );
+                if (!context.mounted) return;
+                _snack(
+                  tr(
+                    context,
+                    'Correo enviado. Abre el enlace y actualiza tu perfil.',
+                    'Email sent. Follow the link and refresh your profile.',
+                  ),
+                );
+              } catch (e) {
+                if (!context.mounted) return;
+                _snack(
+                  tr(
+                    context,
+                    'No se pudo enviar. Revisa tu contraseña.',
+                    'Could not send. Check your password.',
+                  ),
+                );
+              }
+            },
+            child: Text(tr(context, 'Verificar mi correo', 'Verify my email')),
+          ),
+        TextButton(
+          onPressed: () => ref.read(profileProvider.notifier).refresh(),
+          child: Text(
+            tr(context, 'Actualizar verificación', 'Refresh verification'),
+          ),
+        ),
+        _section(tr(context, 'Conecta tus redes', 'Connect your accounts'), c),
+        for (final provider in ['google.com', 'facebook.com'])
+          OutlinedButton(
+            onPressed:
+                !u.availableSocialProviders.contains(provider) ||
+                    u.linkedProviders.contains(provider)
+                ? null
+                : () async {
+                    final controller = TextEditingController();
+                    final password = await showDialog<String>(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                        title: Text(
+                          tr(ctx, 'Contraseña actual', 'Current password'),
+                        ),
+                        content: TextField(
+                          controller: controller,
+                          obscureText: true,
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(ctx),
+                            child: Text(tr(ctx, 'Cancelar', 'Cancel')),
+                          ),
+                          FilledButton(
+                            onPressed: () =>
+                                Navigator.pop(ctx, controller.text),
+                            child: Text(tr(ctx, 'Continuar', 'Continue')),
+                          ),
+                        ],
+                      ),
+                    );
+                    controller.dispose();
+                    if (password == null || password.isEmpty) return;
+                    try {
+                      final session = await ApiClient.dio.post(
+                        '/auth/social-session',
+                        data: {'currentPassword': password},
+                      );
+                      await linkSocial(
+                        jsonEncode(session.data['data']),
+                        provider,
+                      );
+                      await ref.read(profileProvider.notifier).refresh();
+                      if (!context.mounted) return;
+                      _snack(tr(context, 'Cuenta vinculada', 'Account linked'));
+                    } catch (e) {
+                      if (!context.mounted) return;
+                      _snack(
+                        tr(
+                          context,
+                          'No se pudo vincular. Revisa la contraseña y habilita el proveedor en Firebase. En la app nativa usa la versión web.',
+                          'Could not link. Check the password and enable the provider in Firebase. For native apps, use the web version.',
+                        ),
+                      );
+                    }
+                  },
+            child: Text(
+              '${u.linkedProviders.contains(provider) ? '✓ ' : ''}${provider == 'google.com' ? 'Google' : 'Facebook'}${!u.availableSocialProviders.contains(provider) ? tr(context, ' · pendiente de configuración', ' · pending setup') : ''}',
+            ),
+          ),
         _section(tr(context, 'Datos personales', 'Personal details'), c),
         Form(
           key: _personalKey,
@@ -342,6 +495,12 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
                 validator: (v) => vSchool(context, v, required: false),
               ),
               const SizedBox(height: 14),
+              TextFormField(
+                controller: _region,
+                decoration: InputDecoration(
+                  labelText: tr(context, 'Región', 'Region'),
+                ),
+              ),
               _saveButton(
                 busy: _savingPersonal,
                 onTap: _savePersonal,
@@ -422,10 +581,10 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
                 context,
                 'Guardamos solo los datos necesarios para tu cuenta: nombre, correo, celular, colegio, edad y domicilio. '
                     'Se usan para ampliar tu cuota diaria y personalizar tu experiencia. '
-                    'Tu contraseña se guarda cifrada. Puedes eliminar tu cuenta y todos tus datos desde Ajustes.',
+                    'Firebase Authentication protege tu contraseña. Contacta al equipo de Aprueba si necesitas solicitar la eliminación de tu cuenta.',
                 'We only store the data needed for your account: name, email, phone, school, age and address. '
                     'It is used to extend your daily quota and personalize your experience. '
-                    'Your password is stored encrypted. You can delete your account and all your data from Settings.',
+                    'Firebase Authentication protects your password. Contact the Aprueba team to request deletion of your account.',
               ),
               style: GoogleFonts.inter(
                 fontSize: 12,

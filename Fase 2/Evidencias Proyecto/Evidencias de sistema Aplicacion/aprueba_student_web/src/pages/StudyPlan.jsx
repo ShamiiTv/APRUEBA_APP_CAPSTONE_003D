@@ -1,3 +1,4 @@
+import ContentSkeleton from '../components/ContentSkeleton';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiFetch } from '../api/client';
@@ -61,7 +62,7 @@ export default function StudyPlan() {
     <header className="home-header"><div><h1>Plan de estudio</h1><p>Organiza tu práctica diaria según las pruebas que preparas y tu progreso.</p></div><button onClick={refresh} disabled={saving || (!plan && !error)}>Actualizar progreso</button></header>
     {message && <p role="status">{message}</p>}
     {error && <div className="home-panel" role="alert"><p>{error}</p>{!plan && <button onClick={refresh}>Reintentar</button>}</div>}
-    {!plan && !error && <p role="status">Cargando tu plan de estudio…</p>}
+    {!plan && !error && <ContentSkeleton kind="form" />}
     {plan && draft && <>
       <form className="home-panel" onSubmit={save}>
         <h2>Configura tu meta</h2>

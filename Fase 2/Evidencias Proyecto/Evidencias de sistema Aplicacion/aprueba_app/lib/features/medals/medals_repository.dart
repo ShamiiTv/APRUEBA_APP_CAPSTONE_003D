@@ -38,6 +38,9 @@ class MedalsRepository {
       );
       await PendingOperation.complete('exchange');
     } on DioException catch (e) {
+      if (PendingOperation.definitiveRejection(e)) {
+        await PendingOperation.complete('exchange');
+      }
       throw _error(e, 'No se pudo realizar el canje.');
     }
   }
@@ -57,18 +60,34 @@ class MedalsRepository {
   /// Canjea un beneficio con 5 de Platino y devuelve el cupón (POST /benefits/{id}/redeem).
   Future<Redemption> redeem(String benefitId) async {
     try {
-      final res = await ApiClient.dio.post('/benefits/$benefitId/redeem');
-      return Redemption.fromJson(
-        Map<String, dynamic>.from(res.data['data'] as Map),
+      final res = await ApiClient.dio.post(
+        '/medals/benefits/redeem',
+        data: {
+          'benefitId': benefitId,
+          'requestId': await PendingOperation.id('benefit', benefitId),
+        },
       );
+      await PendingOperation.complete('benefit');
+      final redemption = Map<String, dynamic>.from(
+        res.data['data']['redemption'],
+      );
+      return Redemption.fromJson({
+        'redemptionId': redemption['id'],
+        'benefit': redemption['name'],
+        'couponCode': redemption['id'],
+        'platinumSpent': redemption['costPlatinum'],
+      });
     } on DioException catch (e) {
+      if (PendingOperation.definitiveRejection(e)) {
+        await PendingOperation.complete('benefit');
+      }
       throw _error(e, 'No se pudo canjear el beneficio.');
     }
   }
 
   Future<GiftsState> fetchGifts() async {
     try {
-      final res = await ApiClient.dio.get('/me/gifts');
+      final res = await ApiClient.dio.get('/medals/gifts');
       return GiftsState.fromJson(
         Map<String, dynamic>.from(res.data['data'] as Map),
       );
@@ -81,15 +100,20 @@ class MedalsRepository {
   Future<void> sendGifts(Map<String, int> amounts) async {
     try {
       await ApiClient.dio.post(
-        '/me/gifts',
+        '/medals/gifts',
         data: {
+          'requestId': await PendingOperation.id('gifts', amounts.toString()),
           'recipients': [
             for (final e in amounts.entries)
               if (e.value > 0) {'userId': e.key, 'amount': e.value},
           ],
         },
       );
+      await PendingOperation.complete('gifts');
     } on DioException catch (e) {
+      if (PendingOperation.definitiveRejection(e)) {
+        await PendingOperation.complete('gifts');
+      }
       throw _error(e, 'No se pudieron enviar los regalos.');
     }
   }

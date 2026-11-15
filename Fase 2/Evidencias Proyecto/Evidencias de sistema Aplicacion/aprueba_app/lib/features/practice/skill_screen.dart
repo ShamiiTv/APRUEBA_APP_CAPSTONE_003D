@@ -1,3 +1,4 @@
+import '../../core/widgets/content_skeleton.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/utils/tier_names.dart';
@@ -159,7 +160,7 @@ class _SkillScreenState extends ConsumerState<SkillScreen> {
         future: _future,
         builder: (context, snap) {
           if (snap.connectionState != ConnectionState.done) {
-            return const Center(child: CircularProgressIndicator());
+            return const ContentSkeleton(kind: 'question');
           }
           if (snap.hasError) {
             final msg = snap.error is PracticeException
@@ -345,7 +346,9 @@ class _SkillScreenState extends ConsumerState<SkillScreen> {
                 for (final r in s.resources) _resource(c, r),
               const SizedBox(height: 18),
               OutlinedButton(
-                onPressed: () => context.go('/practice'),
+                onPressed: () => context.go(
+                  '/practice?similarTo=${Uri.encodeComponent(widget.args.questionId)}',
+                ),
                 child: Text(
                   '🎯 ${tr(context, 'Practicar preguntas similares', 'Practice similar questions')}',
                 ),

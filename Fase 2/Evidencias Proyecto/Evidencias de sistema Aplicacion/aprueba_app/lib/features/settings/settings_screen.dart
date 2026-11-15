@@ -14,8 +14,32 @@ import '../auth/auth_providers.dart';
 import '../auth/auth_repository.dart';
 import '../practice/practice_providers.dart';
 
-class SettingsScreen extends ConsumerWidget {
+class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
+
+  @override
+  ConsumerState<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends ConsumerState<SettingsScreen> {
+  bool _themeSaving = false;
+
+  Future<void> _setTheme(bool dark) async {
+    final repository = ref.read(authRepositoryProvider);
+    final profile = ref.read(profileProvider.notifier);
+    final theme = ref.read(themeModeProvider.notifier);
+    setState(() => _themeSaving = true);
+    try {
+      await theme.save(dark ? ThemeMode.dark : ThemeMode.light, () async {
+        await repository.updateProfile({'theme': dark ? 'dark' : 'light'});
+        await profile.refresh();
+      });
+    } on ApiException catch (e) {
+      if (mounted) _snack(context, e.message);
+    } finally {
+      if (mounted) setState(() => _themeSaving = false);
+    }
+  }
 
   static String _planLabel(BuildContext c, String plan) {
     switch (plan) {
@@ -24,7 +48,7 @@ class SettingsScreen extends ConsumerWidget {
       case 'all':
         return tr(c, 'Todas las pruebas', 'All tests');
       default:
-        return tr(c, 'Gratis · 20/día', 'Free · 20/day');
+        return tr(c, 'Gratis · 10–20/día', 'Free · 10–20/day');
     }
   }
 
@@ -108,7 +132,7 @@ class SettingsScreen extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final c = WfColors.of(context);
     final tt = Theme.of(context).textTheme;
     final profile = ref.watch(profileProvider).value;
@@ -186,31 +210,14 @@ class SettingsScreen extends ConsumerWidget {
               ),
             ),
             rowCard(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      tr(context, 'Modo oscuro', 'Dark mode'),
-                      style: bold,
-                    ),
-                  ),
-                  Switch(
-                    value: mode == ThemeMode.dark,
-                    onChanged: (v) async {
-                      ref
-                          .read(themeModeProvider.notifier)
-                          .set(v ? ThemeMode.dark : ThemeMode.light);
-                      // Se guarda en la base de datos (PATCH /me/settings).
-                      try {
-                        await ref.read(authRepositoryProvider).updateProfile({
-                          'theme': v ? 'dark' : 'light',
-                        });
-                      } on ApiException catch (e) {
-                        if (context.mounted) _snack(context, e.message);
-                      }
-                    },
-                  ),
-                ],
+              child: SwitchListTile.adaptive(
+                contentPadding: EdgeInsets.zero,
+                title: Text(
+                  tr(context, 'Modo oscuro', 'Dark mode'),
+                  style: bold,
+                ),
+                value: mode == ThemeMode.dark,
+                onChanged: _themeSaving ? null : _setTheme,
               ),
             ),
             rowCard(
@@ -278,7 +285,11 @@ class SettingsScreen extends ConsumerWidget {
               child: Row(
                 children: [
                   Text(
-                    tr(context, 'Mis recorrecciones', 'My corrections'),
+                    tr(
+                      context,
+                      'Mis recorrecciones · próximamente',
+                      'My corrections · coming soon',
+                    ),
                     style: bold,
                   ),
                   const Spacer(),
@@ -287,7 +298,7 @@ class SettingsScreen extends ConsumerWidget {
               ),
             ),
             rowCard(
-              onTap: () => context.push('/manage-plan'),
+              onTap: () => context.push('/plans'),
               child: Row(
                 children: [
                   Text(tr(context, 'Mi plan', 'My plan'), style: bold),
@@ -317,7 +328,9 @@ class SettingsScreen extends ConsumerWidget {
             const SizedBox(height: 8),
             InkWell(
               borderRadius: BorderRadius.circular(14),
-              onTap: () => context.push('/private-beta-info?feature=Eliminación%20de%20cuenta'),
+              onTap: () => context.push(
+                '/private-beta-info?feature=Eliminación%20de%20cuenta',
+              ),
               child: Container(
                 padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
@@ -351,7 +364,7 @@ class SettingsScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 20),
             OutlinedButton(
-              onPressed: () => _logout(context, ref),
+              onPressed: _themeSaving ? null : () => _logout(context, ref),
               child: Text(tr(context, 'Cerrar sesión', 'Log out')),
             ),
           ],

@@ -19,7 +19,10 @@ export async function getPosts(req, res) {
       scope = `group:${id}`;
     }
     const result = await page(query, scope, req.query.cursor);
-    const rows = await Promise.all(result.docs.map(async doc => postView(doc, (await doc.ref.collection('likes').doc(uid).get()).exists)));
+    const likeRefs = result.docs.map(doc => doc.ref.collection('likes').doc(uid));
+    const likes = likeRefs.length ? await db.getAll(...likeRefs) : [];
+    const likedPaths = new Set(likes.filter(doc => doc.exists).map(doc => doc.ref.path));
+    const rows = result.docs.map((doc, index) => postView(doc, likedPaths.has(likeRefs[index].path)));
     if (req.query.groupId !== undefined) await member(req.query.groupId, uid);
     return ok(res, rows, { nextCursor: result.nextCursor });
   } catch (error) { return fail(res, error); }
@@ -35,11 +38,12 @@ export async function createPost(req, res) {
     const result = await db.runTransaction(async tx => {
       const [user, previous] = await Promise.all([tx.get(userRef), tx.get(op)]);
       if (!user.exists) throw problem('Usuario no encontrado', 404);
-      let groupRef;
+      let groupRef, groupData;
       if (input.groupId) {
         groupRef = db.collection('groups').doc(input.groupId);
         const group = await tx.get(groupRef);
         if (!group.exists || !group.data().memberIds?.includes(uid)) throw problem('Solo los miembros pueden publicar en el grupo', 403);
+        groupData = group.data();
       }
       if (checkOperation(previous, signature)) {
         const existing = await tx.get(ref);
@@ -52,9 +56,8 @@ export async function createPost(req, res) {
         const doc = await tx.get(db.collection('questions').doc(input.questionId));
         if (!doc.exists || !canPractice(doc.data())) throw problem('La pregunta no está disponible para compartir', 409);
         const q = doc.data();
-        if (groupRef) {
-          const group = await tx.get(groupRef);
-          if (q.testId !== group.data().subjectTestId) throw problem('La pregunta debe corresponder a la materia del grupo');
+        if (groupData && q.testId !== groupData.subjectTestId) {
+          throw problem('La pregunta debe corresponder a la materia del grupo');
         }
         question = { id: doc.id, testId: q.testId, statement: q.statement, options: optionsOf(q).map(({id,text}) => ({id,text})) };
       }

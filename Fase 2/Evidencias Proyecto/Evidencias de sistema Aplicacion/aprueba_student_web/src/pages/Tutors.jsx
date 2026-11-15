@@ -1,9 +1,10 @@
+import ContentSkeleton from '../components/ContentSkeleton';
 import { useEffect, useState } from 'react';
 import { apiFetch } from '../api/client';
 import { useTheme } from '../context/useTheme';
 
 export default function Tutors() {
-  const { t } = useTheme();
+  const { t,lang } = useTheme();
   const [tutors, setTutors] = useState([]);
   const [filterTest, setFilterTest] = useState('all');
   const [loading, setLoading] = useState(true);
@@ -39,12 +40,13 @@ export default function Tutors() {
           tutorId: selectedTutor.id,
           topic,
           message,
+          requestId: crypto.randomUUID(),
         }),
       });
 
       setFeedback({
         type: 'ok',
-        text: `¡Solicitud de tutoría enviada a ${selectedTutor.name}!`,
+        text: lang==='en'?'Demo request saved. No teacher was contacted.':'Solicitud simulada guardada. No se contactó a ningún profesor.',
       });
       setSelectedTutor(null);
       setTopic('');
@@ -58,6 +60,7 @@ export default function Tutors() {
 
   return (
     <div style={{ maxWidth: '960px', margin: '0 auto' }}>
+      <p role="note">{lang==='en'?'SIMULATED TUTORS · Fictional profiles and requests for demonstration.':'TUTORES SIMULADOS · Perfiles ficticios y solicitudes de demostración.'}</p>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
         <div>
           <h1 style={{ fontFamily: 'Montserrat', fontSize: '24px', fontWeight: 800, color: 'var(--ink)' }}>
@@ -113,7 +116,7 @@ export default function Tutors() {
       )}
 
       {loading ? (
-        <div style={{ color: 'var(--muted)' }}>{t.tutors.loading}</div>
+        <ContentSkeleton kind="tutors" />
       ) : tutors.length === 0 ? (
         <div style={{ background: 'var(--panel)', padding: '32px', textAlign: 'center', borderRadius: '14px', border: '1px solid var(--line)', color: 'var(--muted)' }}>
           {t.tutors.emptyList}
@@ -153,7 +156,7 @@ export default function Tutors() {
                   </div>
                   <div>
                     <h3 style={{ fontFamily: 'Montserrat', fontSize: '15px', fontWeight: 800, color: 'var(--ink)' }}>
-                      {item.name}
+                      {lang==='en' ? `Demo tutor · ${item.subjectTestId.toUpperCase()}` : item.name}
                     </h3>
                     <div style={{ fontSize: '11px', color: 'var(--muted)' }}>
                       {item.university}
@@ -176,12 +179,12 @@ export default function Tutors() {
                 </div>
 
                 <p style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '10px', lineHeight: '1.5' }}>
-                  {item.specialty}
+                  {lang==='en' ? 'Fictional profile for testing tutoring requests.' : item.specialty}
                 </p>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '12px' }}>
                   <span style={{ color: 'var(--cta)', fontSize: '14px' }}>★</span>
-                  <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--ink)' }}>{item.rating}</span>
+                  <span>{lang==='en'?'Demo profile':'Perfil de demostración'}</span>
                   <span style={{ fontSize: '12px', color: 'var(--muted)' }}>({item.reviewsCount} {t.tutors.reviews})</span>
                 </div>
               </div>

@@ -1,3 +1,4 @@
+import '../../core/widgets/content_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -24,7 +25,7 @@ class InvoicesScreen extends ConsumerWidget {
         leading: BackButton(onPressed: () => context.pop()),
       ),
       body: data.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const ContentSkeleton(kind: 'cards'),
         error: (e, _) => Center(
           child: Padding(
             padding: const EdgeInsets.all(24),

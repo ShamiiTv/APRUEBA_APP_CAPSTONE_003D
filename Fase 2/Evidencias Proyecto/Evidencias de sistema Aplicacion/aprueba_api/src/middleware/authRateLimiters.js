@@ -9,5 +9,8 @@ const loginLimiter = rateLimit({ ...limiterOptions, max: production ? 10 : 1000,
   keyGenerator: req => typeof req.body?.email === 'string' ? req.body.email.trim().toLowerCase().slice(0, 254) : 'invalid-email' });
 const registerLimiter = rateLimit({ ...limiterOptions, max: production ? 30 : 1000 });
 const recoveryLimiter = rateLimit({ ...limiterOptions, max: production ? 10 : 1000 });
-return { loginLimiter, registerLimiter, recoveryLimiter };
+const verificationLimiter = rateLimit({ ...limiterOptions, windowMs:60_000, max:production ? 1 : 1000,
+  keyGenerator:req => req.user.sub,
+  message:{data:null,error:{code:'VERIFICATION_RATE_LIMITED',message:'Espera un minuto antes de solicitar otro correo.'},meta:null} });
+return { loginLimiter, registerLimiter, recoveryLimiter, verificationLimiter };
 }

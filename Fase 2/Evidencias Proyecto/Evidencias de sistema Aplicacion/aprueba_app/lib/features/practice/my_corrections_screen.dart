@@ -1,3 +1,4 @@
+import '../../core/widgets/content_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -57,7 +58,7 @@ class MyCorrectionsScreen extends ConsumerWidget {
         title: Text(tr(context, 'Mis recorrecciones', 'My corrections')),
       ),
       body: async.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const ContentSkeleton(kind: 'cards'),
         error: (e, _) => Center(
           child: Padding(
             padding: const EdgeInsets.all(24),

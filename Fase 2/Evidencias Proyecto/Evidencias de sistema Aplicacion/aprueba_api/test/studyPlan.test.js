@@ -23,6 +23,11 @@ test('meeting the goal creates no extra assignments or rewards', () => {
   assert.equal(plan.remainingGoal,0);
   assert.equal(plan.scheduled,0);
 });
+
+test('single-test unlimited rights remain usable after the free quota is exhausted',()=>{
+  const plan=buildStudyPlan({studyPlan:{dailyGoal:10,testIds:['m1','m2']}},progress([subject('m1'),subject('m2')],{quota:{date:'2026-10-21',used:10,max:10,unlimited:false,unlimitedTestId:'m2'}}));
+  assert.equal(plan.scheduled,10);assert.equal(plan.tasks.find(task=>task.testId==='m1').scheduled,0);assert.equal(plan.tasks.find(task=>task.testId==='m2').scheduled,10);
+});
 test('weak-test priority requires at least five answers and does not claim mastery', () => {
   const plan=buildStudyPlan({ studyPlan:{ dailyGoal:1,testIds:['m1','m2'] } },progress([subject('m1'),subject('m2',{ answered:5,accuracy:40 })]));
   assert.equal(plan.tasks[1].reason,'reinforce');

@@ -6,10 +6,15 @@ export function practiceDate(now = new Date()) {
   return `${value('year')}-${value('month')}-${value('day')}`;
 }
 
-export function dailyQuota(user, now = new Date()) {
+export function dailyQuota(user, now = new Date(), testId = null) {
   const date = practiceDate(now);
   const old = user.quota || {};
-  return { ...old, date, max: Number.isInteger(old.max) && old.max >= 0 ? old.max : 20, used: old.date === date && Number.isInteger(old.used) && old.used >= 0 ? old.used : 0, unlimited: old.unlimited === true };
+  const bonusSchool = typeof user.school === 'string' && user.school.trim() && Number.isInteger(user.age) && user.age >= 10 && user.age <= 99 && typeof user.region === 'string' && user.region.trim() ? 5 : 0;
+  const bonusAddress = bonusSchool && typeof user.address?.commune === 'string' && user.address.commune.trim() && typeof user.address?.street === 'string' && user.address.street.trim() ? 5 : 0;
+  const end = user.currentPeriodEnd?.toDate?.() || new Date(user.currentPeriodEnd || 0);
+  const active = (user.planStatus === 'active' || (user.planStatus === 'simulated' && process.env.PAYMENTS_MODE === 'simulation')) && end > now;
+  const unlimited = active && (user.plan === 'all' || (user.plan === 'uni' && testId && user.subscriptionTestId === testId));
+  return { date, max: 10 + bonusSchool + bonusAddress, bonusSchool, bonusAddress, used: old.date === date && Number.isInteger(old.used) && old.used >= 0 ? old.used : 0, unlimited: !!unlimited, unlimitedTestId: active && user.plan === 'uni' ? user.subscriptionTestId || null : null, nextStep: !bonusSchool ? 'school' : !bonusAddress ? 'address' : 'upgrade' };
 }
 
 export function dailyActivity(user, date) {

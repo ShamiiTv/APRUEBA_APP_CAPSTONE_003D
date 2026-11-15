@@ -1,4 +1,4 @@
-param([switch]$Publish)
+param([switch]$Publish,[switch]$IncludeMobile,[string]$FlutterPath)
 $ErrorActionPreference = 'Stop'
 $workspace = (Resolve-Path (Join-Path $PSScriptRoot '../../../..')).Path
 $application = Join-Path $workspace 'Fase 2/Evidencias Proyecto/Evidencias de sistema Aplicacion'
@@ -26,11 +26,19 @@ try {
   $env:VITE_API_BASE_URL = '/api/v1'
   Invoke-Checked 'E:/Node/npm.cmd' @('run','build')
 } finally { $env:VITE_API_BASE_URL = $previousApiBase; Pop-Location }
+if ($IncludeMobile) {
+  & (Join-Path $PSScriptRoot 'Build-ApruebaMobile.ps1') -FlutterPath $FlutterPath
+} else {
+  Write-Warning 'La app móvil remota se conserva. Usa -IncludeMobile para recompilarla y actualizarla también.'
+}
 # Explicit allowlist: no .env, SSH keys, users, emulator data or node_modules.
 New-Item -ItemType Directory -Path "$staging/api","$staging/web","$staging/database" -Force | Out-Null
 Copy-Item -LiteralPath "$api/src" -Destination "$staging/api" -Recurse
 Copy-Item -LiteralPath "$api/package.json","$api/package-lock.json" -Destination "$staging/api"
 Copy-Item -LiteralPath "$web/dist" -Destination "$staging/web" -Recurse
+if ($IncludeMobile) {
+  Copy-Item -LiteralPath "$application/aprueba_app/build/web" -Destination "$staging/web/dist/movil" -Recurse
+}
 Copy-Item -LiteralPath "$application/database/firestore.rules","$application/database/firestore.indexes.json" -Destination "$staging/database"
 Invoke-Checked 'C:/Windows/System32/tar.exe' @('-czf',$archive,'-C',$staging,'api','web','database')
 $localLock = (Get-FileHash "$api/package-lock.json" -Algorithm SHA256).Hash.ToLowerInvariant()

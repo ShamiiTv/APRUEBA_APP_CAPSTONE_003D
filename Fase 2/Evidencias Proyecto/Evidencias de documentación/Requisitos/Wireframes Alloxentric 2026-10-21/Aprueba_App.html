@@ -1,0 +1,1305 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aprueba · Prototipo Funcional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#1A365D;--oro:#F5B041;--fondo:#F8FAFC;--texto:#1E293B;
+  --exito:#10B981;--error:#EF4444;
+  --bg:var(--fondo);--phone-bg:#fff;--ink:var(--texto);
+  --muted:#64748B;--line:#CBD5E1;--soft:#F1F5F9;
+  --brand:var(--azul);--brand-ink:#fff;
+  --cta:var(--oro);--cta-ink:var(--azul);
+  --accent:var(--exito);--warn:var(--oro);--danger:var(--error);
+  --chip:#EEF4FF;--shadow:0 10px 30px rgba(26,54,93,.13);
+  --bronze:#CD7F32;--bronze-bg:rgba(205,127,50,.12);
+  --silver:#94A3B8;--silver-bg:rgba(148,163,184,.13);
+  --gold:#F5B041;--gold-bg:rgba(245,176,65,.15);
+  --diamond:#38BDF8;--diamond-bg:rgba(56,189,248,.13);
+  --platinum:#A78BFA;--platinum-bg:rgba(167,139,250,.14);
+}
+.dark{--bg:#0B1220;--phone-bg:#131C2E;--ink:#E2E8F0;--muted:#94A3B8;--line:#1E2D45;--soft:#1A2540;--brand:#2D5A9E;--cta:#F5B041;--cta-ink:#1A365D;--accent:#34D399;--warn:#F5B041;--danger:#F87171;--chip:#1A2C4A;--shadow:0 10px 30px rgba(0,0,0,.55)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
+body{background:var(--bg);font-family:'Inter',system-ui,sans-serif;color:var(--ink);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:16px 12px 40px;transition:background .25s;font-size:14px;line-height:1.5}
+h1,h2,h3,.h,.logo,.app-name,.price{font-family:'Montserrat',sans-serif}
+.page-top{display:flex;align-items:center;gap:10px;width:100%;max-width:420px;margin-bottom:10px}
+.page-top .logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:17px;color:var(--brand);font-family:'Montserrat',sans-serif}
+.controls{margin-left:auto;display:flex;gap:6px}
+.ctl{background:var(--phone-bg);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:6px 10px;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif}
+.phone{width:100%;max-width:390px;background:var(--phone-bg);border-radius:36px;box-shadow:var(--shadow);border:1.5px solid var(--line);overflow:hidden;display:flex;flex-direction:column;min-height:720px}
+.notch{height:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.notch::after{content:"";width:90px;height:6px;border-radius:6px;background:var(--line)}
+.screen{flex:1;display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.si{flex:1;display:flex;flex-direction:column;padding:0 16px 16px}
+.topnav{display:flex;align-items:center;gap:10px;padding:10px 0 8px;flex-shrink:0;border-bottom:1px solid var(--line);margin-bottom:12px}
+.back-btn{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);background:var(--soft);cursor:pointer;display:grid;place-items:center;font-size:14px;flex-shrink:0;color:var(--ink)}
+.nav-title{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;color:var(--brand);flex:1}
+.tabbar{display:flex;border-top:1.5px solid var(--line);background:var(--phone-bg);padding:8px 4px 10px;flex-shrink:0;justify-content:space-around}
+.tabbar div{font-size:10px;color:var(--muted);text-align:center;font-weight:700;flex:1;font-family:'Montserrat',sans-serif;cursor:pointer;padding:2px 0;transition:color .15s}
+.tabbar div .i{font-size:18px;display:block}
+.tabbar div.act{color:var(--brand)}
+.h{font-size:17px;font-weight:700;margin:14px 0 4px;color:var(--ink)}
+.p{font-size:13px;color:var(--muted);line-height:1.5;margin:4px 0}
+.note{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.45}
+.small{font-size:11px;color:var(--muted)}
+.section-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--muted);margin:14px 0 4px;font-family:'Montserrat',sans-serif}
+.btn{display:block;width:100%;text-align:center;background:var(--cta);color:var(--cta-ink);border:none;border-radius:12px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px;font-family:'Montserrat',sans-serif;letter-spacing:.01em;transition:opacity .15s,transform .1s}
+.btn:active{opacity:.85;transform:scale(.98)}
+.btn.sec{background:var(--soft);color:var(--ink);border:1.5px solid var(--line)}
+.btn.gho{background:transparent;color:var(--brand);font-weight:600;padding:9px;border:none}
+.btn.pri{background:var(--brand);color:#fff}
+.btn:disabled{opacity:.4;cursor:default;transform:none}
+input,textarea,select{background:var(--soft);border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;font-size:13px;color:var(--ink);font-family:'Inter',sans-serif;width:100%;margin-top:9px;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--brand)}
+textarea{resize:none;min-height:72px}
+.card{background:var(--soft);border:1.5px solid var(--line);border-radius:14px;padding:13px;margin-top:11px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--chip);border-radius:20px;padding:6px 13px;font-size:12px;font-weight:600;margin:3px 4px 3px 0;border:1.5px solid transparent;cursor:pointer;font-family:'Inter',sans-serif;transition:background .15s}
+.chip.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.tag{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:var(--chip);color:var(--muted);font-family:'Inter',sans-serif}
+.tag.g{background:rgba(16,185,129,.13);color:#059669}
+.tag.w{background:rgba(245,176,65,.18);color:#B45309}
+.tag.d{background:rgba(239,68,68,.13);color:#DC2626}
+.bar{height:8px;border-radius:6px;background:var(--line);overflow:hidden;margin-top:8px}
+.bar>i{display:block;height:100%;background:var(--brand);border-radius:6px;transition:width .4s}
+.opt{border:1.5px solid var(--line);border-radius:12px;padding:12px;font-size:13px;margin-top:8px;cursor:pointer;display:flex;gap:9px;align-items:center;font-family:'Inter',sans-serif;transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--brand)}
+.opt .k{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:11px;font-weight:700;flex-shrink:0;font-family:'Montserrat',sans-serif}
+.opt.sel{border-color:var(--brand);background:rgba(26,54,93,.06)}
+.opt.sel .k{background:var(--brand);color:#fff;border-color:var(--brand)}
+.onboard-option{border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;font-size:13px;margin-top:8px;cursor:pointer;display:flex;align-items:center;gap:10px;color:var(--ink);background:transparent;text-align:left;width:100%;font-family:'Inter',sans-serif}
+.onboard-option:hover,.onboard-option.sel{border-color:var(--brand);background:rgba(26,54,93,.06)}
+.onboard-option .check{width:19px;height:19px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;flex-shrink:0}
+.onboard-option.sel .check{border-color:var(--brand);background:var(--brand)}
+.onboard-option.sel .check::after{content:"";width:7px;height:7px;border-radius:50%;background:#fff}
+.step-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-family:'Montserrat',sans-serif;margin-bottom:4px}
+.opt.ok{border-color:var(--accent);background:rgba(16,185,129,.08)}
+.opt.ok .k{background:var(--accent);color:#fff;border-color:var(--accent)}
+.opt.no{border-color:var(--danger);background:rgba(239,68,68,.06)}
+.opt.no .k{background:var(--danger);color:#fff;border-color:var(--danger)}
+.medal-coin{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font-weight:800;flex-shrink:0;font-family:'Montserrat',sans-serif;box-shadow:0 2px 6px rgba(0,0,0,.15);border:2px solid rgba(255,255,255,.5)}
+.bronze{background:var(--bronze);color:#fff}
+.silver{background:var(--silver);color:#fff}
+.gold{background:var(--gold);color:#1A365D}
+.diamond{background:var(--diamond);color:#fff}
+.platinum{background:var(--platinum);color:#fff}
+.medal-sm{width:28px;height:28px;font-size:13px}
+.medal-md{width:40px;height:40px;font-size:18px}
+.medal-lg{width:56px;height:56px;font-size:26px}
+.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--bronze);color:#fff;border-radius:14px;padding:10px 18px;display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;box-shadow:0 6px 20px rgba(0,0,0,.25);transition:transform .4s cubic-bezier(.34,1.56,.64,1);z-index:999;pointer-events:none;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.splash-hero{background:var(--brand);border-radius:20px;padding:32px 20px 26px;text-align:center;margin-top:16px}
+.app-name{font-size:32px;font-weight:800;color:#fff;margin-top:14px;letter-spacing:-.5px}
+.tagline{color:rgba(255,255,255,.75);font-size:13px;margin-top:6px}
+.flex{display:flex;align-items:center;gap:10px}
+.between{justify-content:space-between}
+.divider{height:1px;background:var(--line);margin:12px 0}
+.sw{width:40px;height:23px;border-radius:20px;background:var(--line);position:relative;flex-shrink:0;cursor:pointer}
+.sw::after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:2.5px;left:3px;transition:.2s}
+.sw.on{background:var(--brand)}.sw.on::after{left:19px}
+.seg{display:flex;background:var(--soft);border:1.5px solid var(--line);border-radius:10px;padding:3px;margin-top:9px}
+.seg div{flex:1;text-align:center;font-size:12px;font-weight:700;padding:8px;border-radius:8px;cursor:pointer;color:var(--muted);font-family:'Montserrat',sans-serif;transition:background .15s}
+.seg div.on{background:var(--brand);color:#fff}
+.group-card{background:var(--soft);border:1.5px solid var(--line);border-radius:16px;padding:14px;margin-top:10px;cursor:pointer;transition:border-color .15s}
+.group-card:hover{border-color:var(--brand)}
+.group-avatar{width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:18px;font-weight:800;font-family:'Montserrat',sans-serif;flex-shrink:0}
+.mavatar{width:30px;height:30px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700;font-family:'Montserrat',sans-serif;flex-shrink:0;border:2px solid var(--phone-bg)}
+.mstack{display:flex}.mstack .mavatar{margin-left:-8px}
+.dispute-reason{border:1.5px solid var(--line);border-radius:11px;padding:11px 13px;margin-top:8px;cursor:pointer;display:flex;align-items:flex-start;gap:10px;font-size:13px;transition:border-color .15s}
+.dispute-reason:hover{border-color:var(--brand)}
+.dispute-reason.sel{border-color:var(--brand);background:rgba(26,54,93,.05)}
+.dispute-reason .dr-radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex-shrink:0;margin-top:1px;display:grid;place-items:center}
+.dispute-reason.sel .dr-radio{border-color:var(--brand);background:var(--brand)}
+.dispute-reason.sel .dr-radio::after{content:"";width:7px;height:7px;border-radius:50%;background:#fff}
+.skill-tree-node{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;margin-top:6px;font-size:12px}
+.skill-tree-node.done{background:rgba(16,185,129,.09);border:1px solid rgba(16,185,129,.22)}
+.skill-tree-node.active{background:rgba(26,54,93,.07);border:1.5px solid var(--brand)}
+.skill-tree-node.locked{background:var(--soft);border:1px solid var(--line);opacity:.5}
+.skill-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.skill-resource{border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;margin-top:8px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:border-color .15s}
+.skill-resource:hover{border-color:var(--brand)}
+.skill-resource .res-icon{width:36px;height:36px;border-radius:9px;display:grid;place-items:center;font-size:18px;flex-shrink:0;background:var(--soft)}
+.exchange-card{border:1.5px solid var(--line);border-radius:14px;padding:13px;margin-top:10px;background:var(--soft)}
+.benefit-card{border:1.5px solid var(--line);border-radius:14px;padding:13px;margin-top:10px;display:flex;align-items:center;gap:12px}
+.benefit-logo{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;font-size:20px;flex-shrink:0;background:var(--soft);border:1px solid var(--line)}
+.gift-row{display:flex;align-items:center;gap:10px;padding:11px;border:1.5px solid var(--line);border-radius:12px;margin-top:8px}
+.gift-stepper{display:flex;align-items:center;gap:8px;margin-left:auto}
+.gift-stepper button{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);background:var(--soft);font-size:16px;font-weight:700;cursor:pointer;display:grid;place-items:center;color:var(--brand)}
+.gift-stepper .qty{font-size:14px;font-weight:800;min-width:20px;text-align:center;font-family:'Montserrat',sans-serif}
+.medal-row{display:flex;align-items:center;gap:10px;padding:12px;border:1.5px solid var(--line);border-radius:12px;margin-top:8px}
+.timer{font-variant-numeric:tabular-nums;font-weight:800;font-size:15px;font-family:'Montserrat',sans-serif}
+.spacer{flex:1}
+.paybtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border-radius:12px;padding:13px;font-size:15px;font-weight:700;cursor:pointer;margin-top:9px;border:none;font-family:'Inter',sans-serif}
+.paybtn.apple{background:#000;color:#fff}
+.paybtn.google{background:#fff;color:#3c4043;border:1.5px solid var(--line)}
+.dark .paybtn.google{background:#fff;color:#3c4043}
+.or-sep{display:flex;align-items:center;gap:10px;margin:14px 0 4px;color:var(--muted);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.or-sep::before,.or-sep::after{content:"";flex:1;height:1px;background:var(--line)}
+.card-field{position:relative}
+.card-field .brand-ico{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:16px;opacity:.6}
+.secure-note{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:var(--muted);margin-top:12px}
+</style>
+</head>
+<body>
+<div class="page-top">
+  <div class="logo">
+    <svg width="26" height="26" viewBox="0 0 30 30" fill="none"><polygon points="3,27 9,6 13,6 8,27" fill="#1A365D"/><polygon points="27,27 21,6 17,6 22,27" fill="#1A365D"/><rect x="7" y="14" width="16" height="4" rx="1" fill="#1A365D"/><rect x="12" y="14" width="6" height="10" rx="1" fill="#F5B041"/><polygon points="15,5 12,10 18,10" fill="#F5B041"/></svg>
+    Aprueba
+  </div>
+  <div class="controls">
+    <select class="ctl" id="langSel" onchange="setLang(this.value)"><option value="es">🌐 ES</option><option value="en">🌐 EN</option></select>
+    <button class="ctl" id="themeBtn" onclick="toggleTheme()">🌙</button>
+  </div>
+</div>
+<div class="phone" id="phone">
+  <div class="notch"></div>
+  <div class="screen" id="screen"></div>
+</div>
+<div class="toast" id="toast"><span id="toastIcon">🥉</span><span id="toastMsg">+1 Medalla</span></div>
+
+<script>
+// ── STATE ──
+const APP={
+  lang:'es',dark:false,loggedIn:false,userName:'',
+  phone:'+56 9 1234 5678',country:'CL',language:'es',gradeId:null,gradeLabel:'',
+  selectedTests:['lectora','m1'],format:'random',difficulty:'d1',
+  medals:{bronze:14,silver:3,gold:1,diamond:0,platinum:0},
+  streak:4,quotaUsed:5,quotaMax:10,
+  dailyGiftsUsed:5,dailyGiftsMax:10,
+  invites:[],
+  groups:[
+    {id:'g1',name:'Mates PAES 2025',subject:'Matemática M1',color:'#1A365D',
+     members:[{i:'CR',n:'Camila R.',c:'#1A365D'},{i:'JL',n:'Juan L.',c:'#10B981'},{i:'AM',n:'Andrea M.',c:'#6366F1'},{i:'YO',n:'Tú',c:'#F5B041',tc:'#1A365D'}],avg:72,your:81},
+    {id:'g2',name:'Lectura crítica',subject:'Comp. Lectora',color:'#6366F1',
+     members:[{i:'TG',n:'Tomás G.',c:'#1A365D'},{i:'MV',n:'María V.',c:'#EF4444'},{i:'YO',n:'Tú',c:'#F5B041',tc:'#1A365D'}],avg:58,your:63}
+  ],
+  currentQ:{text:'Si 3x + 7 = 22, ¿cuál es el valor de x?',textEn:'If 3x + 7 = 22, what is the value of x?',opts:['x = 3','x = 5','x = 7','x = 15'],correct:1},
+  selectedOpt:null,rcSubmitted:false,rcRewarded:false,
+  plan:'free',billing:'yr',checkoutPlan:'plan5',planCancelled:false,
+  current:'splash',history:[],params:{},currentTab:'home'
+};
+
+// ── PLANS / PRICING (placeholders editables) ──
+const PLANS={
+  plan1:{nameKey:'plan1',featKey:'pf1',mo:1},   // mensual
+  plan5:{nameKey:'plan5',featKey:'pf5',mo:5}
+};
+function planPrice(pid,cycle){const p=PLANS[pid];return cycle==='yr'?p.mo*10:p.mo;} // anual = 10 meses (2 gratis)
+function priceStr(pid,cycle){return '$'+planPrice(pid,cycle)+(cycle==='yr'?L('yr'):L('mo'));}
+
+// ── TRANSLATIONS ──
+const T={
+es:{start:'Comenzar',login:'Ya tengo cuenta',tagline:'Práctica diaria para la PAES. Pocos minutos al día.',
+  reg_h:'Crea tu cuenta',reg_p:'Con tu nombre y correo desbloqueas 10 preguntas diarias gratis.',
+  name:'Nombre completo',email:'Correo electrónico',pass:'Contraseña',create:'Crear cuenta y empezar',
+  consent:'Acepto términos y el tratamiento de datos.',
+  sel_h:'¿Qué pruebas quieres practicar?',sel_p:'Solo recibirás preguntas de las que elijas.',
+  fmt_h:'Formato de preguntas',random:'Aleatorio',facsim:'Facsímil',
+  randomd:'Preguntas mezcladas de todos los ejes.',facsimd:'Simula un ensayo real ordenado como el examen.',
+  diff:'Nivel de dificultad',diff_p:'Sube de nivel a medida que respondes bien.',
+  d1:'Básico',d2:'Intermedio',d3:'Avanzado',d4:'Élite PAES',
+  today:'Hoy',quota:'Cuota diaria',streak_lbl:'Racha',days:'días',
+  cont:'Continuar practicando',progress:'Tu progreso',lectora_lbl:'C. Lectora',mate_lbl:'Matemática M1',
+  q_of:'Pregunta 6 de 10',check:'Comprobar respuesta',
+  res_ok:'¡Correcto!',res_no:'Incorrecto',
+  res_time:'Respondiste en 0:18 · más rápido que el 72% de tu cohorte.',
+  res_exp:'x = 5. Despejas restando 7 y divides por 3.',
+  see_full:'Ver explicación detallada',next_q:'Siguiente pregunta',
+  exp_h:'Cómo se llega a x = 5',exp_sub:'Paso a paso · Mat M1 · Ecuaciones de primer grado',
+  exp_back:'Volver al resultado',exp_related:'Practicar similares',
+  exp_sk_btn:'¿Qué necesito saber para esto?',exp_rc_btn:'⚑ Solicitar recorrección',
+  exp_rc_h:'Solicitar revisión',
+  exp_rc_p:'Si crees que la pregunta o la respuesta oficial tiene un error, cuéntanos.',
+  exp_rc_r1:'La respuesta marcada como correcta es incorrecta',
+  exp_rc_r2:'El enunciado de la pregunta es ambiguo o confuso',
+  exp_rc_r3:'Hay un error tipográfico o de redacción',
+  exp_rc_r4:'La explicación es incorrecta o incompleta',
+  exp_rc_r5:'Otro motivo',
+  exp_rc_comment:'Explica con tus palabras (opcional)',
+  exp_rc_send:'Enviar solicitud de revisión',
+  exp_rc_sent_h:'Solicitud enviada',
+  exp_rc_sent_p:'Nuestro equipo revisará la pregunta en 48 h. Si se confirma el error, recibirás 250 🥉 medallas de bronce.',
+  exp_rc_reward_h:'¡Error confirmado!',
+  exp_rc_reward_p:'El equipo revisó la pregunta y confirmó el error. Has recibido 250 🥉 medallas de bronce.',
+  exp_sk_h:'Habilidad evaluada',exp_sk_sub:'Competencia específica que mide esta pregunta',
+  exp_sk_prereq:'Conceptos previos necesarios',exp_sk_status:'Tu estado actual',
+  exp_sk_how:'Cómo desarrollar esta habilidad',exp_sk_practice:'Practicar preguntas similares',
+  exp_sk_back:'Volver a la explicación',
+  lim2_h:'¡Vas muy bien!',lim2_p:'Llegaste a tu cuota base. Desbloquea 5 preguntas más.',
+  school:'Colegio / Liceo',age:'Edad',unlock5:'Desbloquear +5 preguntas',later:'Más tarde',
+  cap_h:'Llegaste al límite diario',cap_p:'Has usado tus preguntas gratis de hoy.',
+  plan1:'1 prueba ilimitada',plan5:'Todas las pruebas',mo:'/mes',
+  pf1:'Preguntas ilimitadas de 1 prueba',pf5:'Acceso ilimitado a todas las pruebas PAES',
+  choose:'Elegir plan',free_back:'Volver mañana gratis',popular:'Más elegido',
+  bill_mo:'Mensual',bill_yr:'Anual',bill_save:'2 meses gratis',yr:'/año',
+  co_h:'Confirmar y pagar',co_summary:'Resumen',co_plan:'Plan',co_cycle:'Ciclo',co_total:'Total a pagar',
+  co_billed_mo:'Se cobra cada mes. Cancela cuando quieras.',co_billed_yr:'Se cobra una vez al año. Cancela cuando quieras.',
+  co_fast:'Pago rápido',co_or:'o paga con tarjeta',
+  co_card_num:'Número de tarjeta',co_exp:'MM / AA',co_cvc:'CVC',co_name:'Nombre en la tarjeta',co_email:'Correo para el recibo',
+  co_pay:'Pagar',co_secure:'Pago cifrado y procesado por Stripe',
+  pay_ok_h:'¡Pago exitoso!',pay_ok_p:'Tu plan ya está activo. ¡A practicar sin límites!',pay_go:'Empezar a practicar',
+  up_banner_h:'Desbloquea preguntas ilimitadas',up_banner_p:'Practica sin límite diario.',up_cta:'Mejorar plan',
+  mng_h:'Mi plan',mng_current:'Plan actual',mng_free:'Gratis · 20 preguntas/día',mng_next:'Próximo cobro',
+  mng_method:'Método de pago',mng_change:'Cambiar plan',mng_cancel:'Cancelar suscripción',mng_upgrade:'Mejorar a ilimitado',
+  mng_cancelled:'Suscripción cancelada. Tu plan sigue activo hasta el próximo cobro.',
+  feed_h:'Comunidad Aprueba',post_ph:'Comparte una pregunta…',
+  set_h:'Ajustes',set_lang:'Idioma',set_theme:'Modo oscuro',set_tests:'Mis pruebas',
+  set_fmt:'Formato',set_notif:'Recordatorio diario',set_plan:'Mi plan',set_free:'Gratis · 20/día',
+  next:'Continuar',
+  grp_tab:'Grupos',grp_my:'Mis grupos',grp_create:'Crear grupo',
+  grp_name:'Nombre del grupo',grp_subject:'Materia principal',grp_create_btn:'Crear grupo',
+  grp_invite_h:'Invitar miembros',grp_invite_p:'Ingresa el correo de tus compañeros.',
+  grp_email_ph:'correo@ejemplo.cl',grp_send:'Enviar invitación',
+  grp_pending:'Invitaciones pendientes',grp_waiting:'Esperando',
+  grp_detail_members:'Miembros',grp_detail_shared:'Preguntas compartidas',
+  grp_share_to:'Compartir al grupo',grp_share_btn:'Compartir en el grupo',
+  grp_choose_group:'Elige el grupo',grp_add_comment:'Agrega un comentario (opcional)',
+  grp_stats_h:'Estadísticas del grupo',grp_best:'Mejor rendimiento',grp_weak:'Áreas a reforzar',
+  grp_avg:'Promedio grupal',grp_your:'Tu resultado',grp_members_n:'miembros',
+  med_tab:'Medallas',med_bronze:'Bronce',med_silver:'Plata',med_gold:'Oro',
+  med_diamond:'Diamante',med_platinum:'Platino',
+  med_earn_correct:'Respuesta correcta',med_earn_login:'Inicio de sesión diario',
+  med_exchange_title:'Canje de medallas',med_have:'Tienes',med_need:'Necesitas',
+  med_gift_title:'Regalar medallas',med_gift_daily:'regalos disponibles hoy',
+  med_gift_send:'Regalar',med_gift_note:'Puedes regalar hasta 10 medallas de bronce al día a amigos de tus grupos.',
+  med_benefits_title:'Beneficios de marca',
+  med_benefits_sub:'Canjea 5 medallas de Platino por un beneficio exclusivo de nuestros socios.',
+  med_locked_need:'Necesitas 5 ⬡ Platino',med_unlock_benefit:'Canjear beneficio',},
+en:{start:'Get started',login:'I have an account',tagline:'Daily PAES practice. A few minutes a day.',
+  reg_h:'Create your account',reg_p:'With your name and email you unlock 10 free questions a day.',
+  name:'Full name',email:'Email',pass:'Password',create:'Create account & start',
+  consent:'I accept the terms and data processing.',
+  sel_h:'Which tests do you want to practice?',sel_p:'You\'ll only get questions from the tests you pick.',
+  fmt_h:'Question format',random:'Random',facsim:'Facsimile',
+  randomd:'Mixed questions from all areas.',facsimd:'Simulates a real mock ordered like the exam.',
+  diff:'Difficulty level',diff_p:'Level up as you answer correctly.',
+  d1:'Basic',d2:'Intermediate',d3:'Advanced',d4:'PAES Elite',
+  today:'Today',quota:'Daily quota',streak_lbl:'Streak',days:'days',
+  cont:'Keep practicing',progress:'Your progress',lectora_lbl:'Reading',mate_lbl:'Math M1',
+  q_of:'Question 6 of 10',check:'Check answer',
+  res_ok:'Correct!',res_no:'Incorrect',
+  res_time:'Answered in 0:18 · faster than 72% of your cohort.',
+  res_exp:'x = 5. Subtract 7, then divide by 3.',
+  see_full:'See detailed explanation',next_q:'Next question',
+  exp_h:'How we reach x = 5',exp_sub:'Step-by-step · Math M1 · First-degree equations',
+  exp_back:'Back to result',exp_related:'Practice similar ones',
+  exp_sk_btn:'What do I need to know for this?',exp_rc_btn:'⚑ Request correction',
+  exp_rc_h:'Request a review',
+  exp_rc_p:'If you think the question or official answer contains an error, let us know.',
+  exp_rc_r1:'The answer marked as correct is wrong',
+  exp_rc_r2:'The question statement is ambiguous or confusing',
+  exp_rc_r3:'There is a typo or wording error',
+  exp_rc_r4:'The explanation is incorrect or incomplete',
+  exp_rc_r5:'Other reason',
+  exp_rc_comment:'Explain in your own words (optional)',
+  exp_rc_send:'Submit review request',
+  exp_rc_sent_h:'Request submitted',
+  exp_rc_sent_p:'Our team will review within 48 h. If confirmed, you\'ll receive 250 🥉 bronze medals.',
+  exp_rc_reward_h:'Error confirmed!',
+  exp_rc_reward_p:'The team reviewed the question and confirmed the error. You received 250 🥉 bronze medals.',
+  exp_sk_h:'Skill being assessed',exp_sk_sub:'Specific competency this question measures',
+  exp_sk_prereq:'Required prior knowledge',exp_sk_status:'Your current status',
+  exp_sk_how:'How to develop this skill',exp_sk_practice:'Practice similar questions',
+  exp_sk_back:'Back to explanation',
+  lim2_h:'You\'re doing great!',lim2_p:'You reached your base quota. Unlock 5 more.',
+  school:'School',age:'Age',unlock5:'Unlock +5 questions',later:'Later',
+  cap_h:'You reached the daily limit',cap_p:'You\'ve used your free questions today.',
+  plan1:'1 test unlimited',plan5:'All tests',mo:'/mo',
+  pf1:'Unlimited questions for 1 test',pf5:'Unlimited access to all PAES tests',
+  choose:'Choose plan',free_back:'Come back free tomorrow',popular:'Most chosen',
+  bill_mo:'Monthly',bill_yr:'Annual',bill_save:'2 months free',yr:'/yr',
+  co_h:'Confirm & pay',co_summary:'Summary',co_plan:'Plan',co_cycle:'Cycle',co_total:'Total due',
+  co_billed_mo:'Billed every month. Cancel anytime.',co_billed_yr:'Billed once a year. Cancel anytime.',
+  co_fast:'Fast checkout',co_or:'or pay by card',
+  co_card_num:'Card number',co_exp:'MM / YY',co_cvc:'CVC',co_name:'Name on card',co_email:'Email for receipt',
+  co_pay:'Pay',co_secure:'Encrypted and processed by Stripe',
+  pay_ok_h:'Payment successful!',pay_ok_p:'Your plan is now active. Practice with no limits!',pay_go:'Start practicing',
+  up_banner_h:'Unlock unlimited questions',up_banner_p:'Practice with no daily cap.',up_cta:'Upgrade plan',
+  mng_h:'My plan',mng_current:'Current plan',mng_free:'Free · 20 questions/day',mng_next:'Next charge',
+  mng_method:'Payment method',mng_change:'Change plan',mng_cancel:'Cancel subscription',mng_upgrade:'Upgrade to unlimited',
+  mng_cancelled:'Subscription cancelled. Your plan stays active until the next charge.',
+  feed_h:'Aprueba Community',post_ph:'Share a question…',
+  set_h:'Settings',set_lang:'Language',set_theme:'Dark mode',set_tests:'My tests',
+  set_fmt:'Format',set_notif:'Daily reminder',set_plan:'My plan',set_free:'Free · 20/day',
+  next:'Continue',
+  grp_tab:'Groups',grp_my:'My groups',grp_create:'Create group',
+  grp_name:'Group name',grp_subject:'Main subject',grp_create_btn:'Create group',
+  grp_invite_h:'Invite members',grp_invite_p:'Enter your classmates\' email addresses.',
+  grp_email_ph:'email@example.com',grp_send:'Send invite',
+  grp_pending:'Pending invitations',grp_waiting:'Pending',
+  grp_detail_members:'Members',grp_detail_shared:'Shared questions',
+  grp_share_to:'Share to group',grp_share_btn:'Share to group',
+  grp_choose_group:'Choose group',grp_add_comment:'Add a comment (optional)',
+  grp_stats_h:'Group statistics',grp_best:'Best performing areas',grp_weak:'Areas to reinforce',
+  grp_avg:'Group average',grp_your:'Your result',grp_members_n:'members',
+  med_tab:'Medals',med_bronze:'Bronze',med_silver:'Silver',med_gold:'Gold',
+  med_diamond:'Diamond',med_platinum:'Platinum',
+  med_earn_correct:'Correct answer',med_earn_login:'Daily login',
+  med_exchange_title:'Medal exchange',med_have:'You have',med_need:'You need',
+  med_gift_title:'Gift medals',med_gift_daily:'gifts available today',
+  med_gift_send:'Gift',med_gift_note:'You can gift up to 10 bronze medals per day to friends in your groups.',
+  med_benefits_title:'Brand benefits',
+  med_benefits_sub:'Redeem 5 Platinum medals for an exclusive benefit from our partners.',
+  med_locked_need:'Need 5 ⬡ Platinum',med_unlock_benefit:'Redeem benefit',}
+};
+function L(k){return T[APP.lang][k]||k;}
+
+// ── HELPERS ──
+const LOGO=`<svg width="26" height="26" viewBox="0 0 30 30" fill="none"><polygon points="3,27 9,6 13,6 8,27" fill="#1A365D"/><polygon points="27,27 21,6 17,6 22,27" fill="#1A365D"/><rect x="7" y="14" width="16" height="4" rx="1" fill="#1A365D"/><rect x="12" y="14" width="6" height="10" rx="1" fill="#F5B041"/><polygon points="15,5 12,10 18,10" fill="#F5B041"/></svg>`;
+
+function coin(type,size){
+  const lbl={bronze:'🥉',silver:'🥈',gold:'🥇',diamond:'💎',platinum:'⬡'};
+  const cls={'sm':'medal-sm','md':'medal-md','lg':'medal-lg'}[size]||'medal-sm';
+  return `<span class="medal-coin ${type} ${cls}">${lbl[type]||'🏅'}</span>`;
+}
+function stars(n,sz){const s=sz||13;let h='';for(let i=1;i<=5;i++){h+=`<span style="color:${i<=Math.round(n)?'#F5B041':'var(--line)'};font-size:${s}px;line-height:1">★</span>`;}return `<span style="letter-spacing:1px;white-space:nowrap">${h}</span>`;}
+function starPick(){let h='<span style="white-space:nowrap">';for(let i=1;i<=5;i++){h+=`<span onclick="[...this.parentNode.children].forEach((s,j)=>s.style.color=j<=${i-1}?'#F5B041':'var(--line)')" style="font-size:28px;cursor:pointer;color:var(--line);padding:0 3px">★</span>`;}return h+'</span>';}
+function tabbar(){
+  const es=APP.lang==='es';
+  const tabs=[['home','🏠',L('today')],['medals','🏅',L('med_tab')],['groups','👥',L('grp_tab')],['tutors','🎓',es?'Tutores':'Tutors'],['feed','💬',es?'Red':'Feed'],['settings','⚙️',es?'Ajustes':'Settings']];
+  return `<div class="tabbar">${tabs.map(t=>`<div class="${t[0]===APP.currentTab?'act':''}" onclick="gotoTab('${t[0]}')"><span class="i">${t[1]}</span>${t[2]}</div>`).join('')}</div>`;
+}
+function topnav(title,back=true){
+  return `<div class="topnav">${back?`<button class="back-btn" onclick="nav_back()">←</button>`:''}<div class="nav-title">${title}</div></div>`;
+}
+
+// ── NAVIGATION ──
+function navigate(id,params){
+  if(APP.current)APP.history.push(APP.current);
+  APP.current=id;APP.params=params||{};render();
+}
+function nav_back(){
+  const prev=APP.history.pop();
+  if(prev){APP.current=prev;APP.params={};render();}
+}
+function gotoTab(tab){
+  APP.currentTab=tab;APP.history=[];
+  navigate(tab);
+}
+function showToast(msg,type,icon){
+  const t=document.getElementById('toast');
+  const cols={bronze:'var(--bronze)',silver:'var(--silver)',gold:'var(--gold)',diamond:'var(--diamond)',platinum:'var(--platinum)'};
+  t.style.background=cols[type]||'var(--bronze)';
+  t.style.color=(type==='gold')?'#1A365D':'#fff';
+  document.getElementById('toastMsg').textContent=msg;
+  document.getElementById('toastIcon').textContent=icon||'🥉';
+  t.className='toast';
+  requestAnimationFrame(()=>t.classList.add('show'));
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+function earnMedal(type,count=1){
+  APP.medals[type]=(APP.medals[type]||0)+count;
+  const icons={bronze:'🥉',silver:'🥈',gold:'🥇',diamond:'💎',platinum:'⬡'};
+  const names={bronze:L('med_bronze'),silver:L('med_silver'),gold:L('med_gold'),diamond:L('med_diamond'),platinum:L('med_platinum')};
+  showToast(`+${count} ${names[type]}`,type,icons[type]);
+}
+
+// ── SCREENS ──
+const SCREENS={};
+function reg(id,fn){SCREENS[id]=fn;}
+
+const allTests=[
+  {id:'lectora',label:'Comp. Lectora',color:'#1A365D'},
+  {id:'m1',label:'Matemática M1',color:'#10B981'},
+  {id:'m2',label:'Matemática M2',color:'#6366F1'},
+  {id:'cien',label:'Ciencias',color:'#F5B041'},
+  {id:'hist',label:'Historia y C. Soc.',color:'#EF4444'},
+];
+
+const EDUCATION_CATALOG={
+  CL:[
+    {labelEs:'Educaci&oacute;n b&aacute;sica',labelEn:'Primary education',items:Array.from({length:8},(_,i)=>({id:`cl-basic-${i+1}`,es:`${i+1}&ordm; B&aacute;sico`,en:`Year ${i+1}`}))},
+    {labelEs:'Educaci&oacute;n media',labelEn:'Secondary education',items:Array.from({length:4},(_,i)=>({id:`cl-media-${i+1}`,es:`${i+1}&ordm; Medio`,en:`Secondary ${i+1}`}))},
+    {labelEs:'Prueba de acceso',labelEn:'University entrance',items:[{id:'cl-paes',es:'PAES',en:'PAES'}]}
+  ],
+  UK:[
+    {labelEs:'Primary school',labelEn:'Primary school',items:Array.from({length:6},(_,i)=>({id:`uk-year-${i+1}`,es:`Year ${i+1}`,en:`Year ${i+1}`}))},
+    {labelEs:'Secondary school',labelEn:'Secondary school',items:Array.from({length:5},(_,i)=>({id:`uk-year-${i+7}`,es:`Year ${i+7}`,en:`Year ${i+7}`}))},
+    {labelEs:'Sixth form',labelEn:'Sixth form',items:[{id:'uk-year-12',es:'Year 12',en:'Year 12'},{id:'uk-year-13',es:'Year 13',en:'Year 13'}]},
+    {labelEs:'National qualifications',labelEn:'National qualifications',items:[{id:'uk-gcse',es:'GCSE',en:'GCSE'},{id:'uk-a-levels',es:'A levels',en:'A levels'}]}
+  ]
+};
+
+function tr(es,en){return APP.lang==='es'?es:en;}
+function countryName(){return APP.country==='UK'?tr('Reino Unido','United Kingdom'):tr('Chile','Chile');}
+function languageName(){return APP.language==='en'?'English':'Espa&ntilde;ol';}
+function currentGrade(){return EDUCATION_CATALOG[APP.country].flatMap(g=>g.items).find(g=>g.id===APP.gradeId);}
+function gradeName(){const g=currentGrade();return g?(APP.lang==='es'?g.es:g.en):'';}
+function getAvailableTests(){
+  const school=APP.gradeId&&!APP.gradeId.includes('paes')&&!APP.gradeId.includes('gcse')&&!APP.gradeId.includes('a-levels');
+  if(APP.country==='UK') return school
+    ? [{id:'eng',es:'English',en:'English',color:'#1A365D'},{id:'maths',es:'Maths',en:'Maths',color:'#10B981'},{id:'science',es:'Science',en:'Science',color:'#6366F1'},{id:'history',es:'History',en:'History',color:'#F5B041'}]
+    : [{id:'eng-lang',es:'English Language',en:'English Language',color:'#1A365D'},{id:'eng-lit',es:'English Literature',en:'English Literature',color:'#10B981'},{id:'maths',es:'Maths',en:'Maths',color:'#6366F1'},{id:'sciences',es:'Sciences',en:'Sciences',color:'#F5B041'},{id:'history',es:'History',en:'History',color:'#EF4444'}];
+  return school
+    ? [{id:'language',es:'Lenguaje',en:'Language',color:'#1A365D'},{id:'maths',es:'Matematica',en:'Maths',color:'#10B981'},{id:'science',es:'Ciencias',en:'Science',color:'#6366F1'},{id:'history',es:'Historia',en:'History',color:'#F5B041'}]
+    : allTests.map(t=>({id:t.id,es:t.label,en:t.id==='lectora'?'Reading comprehension':t.id==='m1'?'Maths M1':t.id==='m2'?'Maths M2':t.id==='cien'?'Science':'History & social sciences',color:t.color}));
+}
+
+reg('splash',()=>`<div class="si">
+  <div class="splash-hero" style="margin:16px 0 0">
+    <div style="display:flex;justify-content:center"><svg width="52" height="52" viewBox="0 0 30 30" fill="none"><polygon points="3,27 9,6 13,6 8,27" fill="#1A365D"/><polygon points="27,27 21,6 17,6 22,27" fill="#1A365D"/><rect x="7" y="14" width="16" height="4" rx="1" fill="#1A365D"/><rect x="12" y="14" width="6" height="10" rx="1" fill="#F5B041"/><polygon points="15,5 12,10 18,10" fill="#F5B041"/></svg></div>
+    <div class="app-name">Aprueba</div>
+    <p class="tagline">${L('tagline')}</p>
+  </div>
+  <div class="spacer"></div>
+  <button class="btn" onclick="navigate('register')">${L('start')}</button>
+  <button class="btn gho" onclick="demoLogin()">${L('login')}</button>
+</div>`);
+
+reg('register',()=>`<div class="si">
+  ${topnav(L('reg_h'))}
+  <p class="p">${L('reg_p')}</p>
+  <input id="inp_name" type="text" placeholder="${L('name')}">
+  <input id="inp_email" type="email" placeholder="${L('email')}">
+  <input id="inp_pass" type="password" placeholder="${L('pass')}">
+  <div class="card"><span class="flex"><span class="sw on"></span><span class="small" style="margin-left:8px">${L('consent')}</span></span></div>
+  <span class="tag g" style="margin-top:10px;display:inline-block">+10 ${APP.lang==='es'?'preguntas/día':'questions/day'}</span>
+  <button class="btn" onclick="doRegister()">${L('create')}</button>
+</div>`);
+
+reg('select-tests',()=>`<div class="si">
+  ${topnav(L('sel_h'))}
+  <p class="p">${L('sel_p')}</p>
+  <div style="margin-top:12px">${allTests.map(t=>`<span class="chip ${APP.selectedTests.includes(t.id)?'on':''}" onclick="toggleTest('${t.id}',this)"><span style="width:9px;height:9px;border-radius:50%;background:${t.color}"></span>${t.label}</span>`).join('')}</div>
+  <p class="note">${APP.lang==='es'?'La PAES pondera varias pruebas: la mayoría elige 2 o más.':'PAES weighs several tests: most pick 2 or more.'}</p>
+  <div class="spacer"></div>
+  <button class="btn" onclick="navigate('format')">${L('next')}</button>
+</div>`);
+
+reg('format',()=>`<div class="si">
+  ${topnav(L('fmt_h'))}
+  <div class="seg">
+    <div class="${APP.format==='random'?'on':''}" onclick="APP.format='random';render()">${L('random')}</div>
+    <div class="${APP.format==='facsim'?'on':''}" onclick="APP.format='facsim';render()">${L('facsim')}</div>
+  </div>
+  <div class="card"><b style="font-size:13px">${L(APP.format==='random'?'random':'facsim')}</b>
+    <p class="note">${L(APP.format==='random'?'randomd':'facsimd')}</p>
+    ${APP.format==='facsim'?'<span class="tag w" style="display:inline-block;margin-top:6px">⭐ Premium</span>':''}
+  </div>
+  <div class="h" style="font-size:15px">${L('diff')}</div>
+  <p class="p">${L('diff_p')}</p>
+  <div class="seg">${['d1','d2','d3'].map(d=>`<div class="${APP.difficulty===d?'on':''}" onclick="APP.difficulty='${d}';render()">${L(d)}</div>`).join('')}</div>
+  <div class="spacer"></div>
+  <button class="btn" onclick="startApp()">${L('next')}</button>
+</div>`);
+
+// International onboarding replaces the former email-first registration flow.
+reg('register',()=>`<div class="si">
+  ${topnav(tr('Tu numero de telefono','Your phone number'))}
+  <div class="step-label">1 / 6</div>
+  <p class="p">${tr('Lo usaremos para verificar tu cuenta y configurar tu pais e idioma.','We will use it to verify your account and set your country and language.')}</p>
+  <input id="inp_phone" type="tel" inputmode="tel" value="${APP.phone}" placeholder="+56 9 1234 5678">
+  <p class="note">${tr('Incluye el codigo de pais. Solo se enviara un SMS de verificacion.','Include the country code. We will only send a verification SMS.')}</p>
+  <div class="spacer"></div>
+  <button class="btn" onclick="sendSmsCode()">${tr('Enviar codigo por SMS','Send SMS code')}</button>
+</div>`);
+
+reg('sms-verification',()=>`<div class="si">
+  ${topnav(tr('Verifica tu telefono','Verify your phone'))}
+  <div class="step-label">2 / 6</div>
+  <p class="p">${tr('Enviamos un codigo de 6 digitos a','We sent a 6-digit code to')} <b>${APP.phone}</b>.</p>
+  <input id="inp_sms" type="tel" inputmode="numeric" maxlength="6" placeholder="123456" style="letter-spacing:.22em;text-align:center;font-weight:700">
+  <p class="note">${tr('En este wireframe usa 123456.','In this wireframe, use 123456.')}</p>
+  <button class="btn sec" onclick="navigate('register')">${tr('Cambiar numero','Change number')}</button>
+  <div class="spacer"></div>
+  <button class="btn" onclick="confirmSmsCode()">${tr('Verificar numero','Verify number')}</button>
+</div>`);
+
+reg('confirm-locale',()=>`<div class="si">
+  ${topnav(tr('Confirma tu configuracion','Confirm your settings'))}
+  <div class="step-label">3 / 6</div>
+  <p class="p">${tr('Detectamos esta configuracion a partir de tu numero. Puedes corregirla antes de seguir.','We detected these settings from your number. You can correct them before continuing.')}</p>
+  <label class="section-label" for="countrySelect">${tr('Pais','Country')}</label>
+  <select id="countrySelect" onchange="setOnboardingCountry(this.value)">
+    <option value="CL" ${APP.country==='CL'?'selected':''}>Chile (+56)</option>
+    <option value="UK" ${APP.country==='UK'?'selected':''}>United Kingdom (+44)</option>
+  </select>
+  <label class="section-label" for="languageSelect">${tr('Idioma de la app','App language')}</label>
+  <select id="languageSelect" onchange="setOnboardingLanguage(this.value)">
+    <option value="es" ${APP.language==='es'?'selected':''}>Espanol</option>
+    <option value="en" ${APP.language==='en'?'selected':''}>English</option>
+  </select>
+  <div class="card"><div class="flex"><span style="font-size:20px">${APP.country==='UK'?'UK':'CL'}</span><div><b>${countryName()}</b><p class="note" style="margin:1px 0 0">${tr('Idioma: ','Language: ')}${languageName()}</p></div></div></div>
+  <div class="spacer"></div>
+  <button class="btn" onclick="confirmLocale()">${tr('Confirmar y elegir grado','Confirm and choose school stage')}</button>
+</div>`);
+
+reg('select-grade',()=>`<div class="si">
+  ${topnav(tr('Elige tu grado o prueba','Choose your school stage or exam'))}
+  <div class="step-label">4 / 6</div>
+  <p class="p">${tr(`Mostraremos contenidos de ${countryName()}, desde educacion basica hasta las pruebas nacionales.`,`We will show ${countryName()} content, from primary school to national qualifications.`)}</p>
+  ${EDUCATION_CATALOG[APP.country].map(group=>`<div class="section-label">${APP.lang==='es'?group.labelEs:group.labelEn}</div>${group.items.map(item=>`<button class="onboard-option ${APP.gradeId===item.id?'sel':''}" onclick="selectGrade('${item.id}')"><span class="check"></span><span>${APP.lang==='es'?item.es:item.en}</span></button>`).join('')}`).join('')}
+  <div class="spacer"></div>
+  <button class="btn" ${APP.gradeId?'':'disabled'} onclick="continueFromGrade()">${tr('Continuar a asignaturas','Continue to subjects')}</button>
+</div>`);
+
+reg('select-tests',()=>{const tests=getAvailableTests();return `<div class="si">
+  ${topnav(tr('Elige tus asignaturas o pruebas','Choose your subjects or tests'))}
+  <div class="step-label">5 / 6</div>
+  <p class="p">${tr(`Para ${gradeName()}, selecciona lo que quieres practicar.`,`For ${gradeName()}, choose what you want to practise.`)}</p>
+  <div style="margin-top:12px">${tests.map(t=>`<span class="chip ${APP.selectedTests.includes(t.id)?'on':''}" onclick="toggleTest('${t.id}',this)"><span style="width:9px;height:9px;border-radius:50%;background:${t.color}"></span>${APP.lang==='es'?t.es:t.en}</span>`).join('')}</div>
+  <p class="note">${tr('Podras cambiar estas asignaturas desde Ajustes.','You can change these subjects later in Settings.')}</p>
+  <div class="spacer"></div>
+  <button class="btn" ${APP.selectedTests.length?'':'disabled'} onclick="navigate('account-details')">${tr('Continuar','Continue')}</button>
+</div>`;});
+
+reg('account-details',()=>`<div class="si">
+  ${topnav(tr('Crea tu cuenta','Create your account'))}
+  <div class="step-label">6 / 6</div>
+  <p class="p">${tr('Tu telefono ya fue verificado. Completa tus datos para guardar tu progreso.','Your phone has been verified. Complete your details to save your progress.')}</p>
+  <input id="inp_name" type="text" placeholder="${L('name')}">
+  <input id="inp_email" type="email" placeholder="${L('email')}">
+  <input id="inp_pass" type="password" placeholder="${L('pass')}">
+  <div class="card"><span class="flex"><span class="sw on"></span><span class="small" style="margin-left:8px">${L('consent')}</span></span></div>
+  <div class="spacer"></div>
+  <button class="btn" onclick="doRegister()">${tr('Crear cuenta','Create account')}</button>
+</div>`);
+
+reg('home',()=>{APP.currentTab='home';return `<div class="si">
+  <div class="flex between" style="padding-top:10px">${LOGO}<span style="font-weight:800;font-size:15px;font-family:'Montserrat',sans-serif;color:var(--brand);margin-left:2px">Aprueba</span><span class="spacer"></span><span class="tag w">🔥 ${APP.streak} ${L('days')}</span></div>
+  <div class="card" style="padding:10px;margin-top:10px">
+    <div class="flex between" style="margin-bottom:6px">
+      <span style="font-size:11px;font-weight:700;font-family:'Montserrat',sans-serif;color:var(--muted)">${APP.lang==='es'?'TUS MEDALLAS':'YOUR MEDALS'}</span>
+      <span style="font-size:10px;color:var(--brand);font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif" onclick="gotoTab('medals')">${APP.lang==='es'?'Ver todo →':'View all →'}</span>
+    </div>
+    <div class="flex" style="justify-content:space-around">
+      ${['bronze','silver','gold','diamond','platinum'].map(t=>`<div style="text-align:center;opacity:${APP.medals[t]>0?1:.4}">${coin(t,'sm')}<div style="font-size:12px;font-weight:800;font-family:'Montserrat',sans-serif;margin-top:2px">${APP.medals[t]}</div></div>`).join('')}
+    </div>
+    <div style="margin-top:8px">
+      <span class="small">${coin('bronze','sm')} ${APP.medals.bronze%5}/5 ${APP.lang==='es'?'para':'for'} ${coin('silver','sm')}</span>
+      <div class="bar" style="margin-top:4px"><i style="width:${(APP.medals.bronze%5)/5*100}%;background:var(--bronze)"></i></div>
+    </div>
+  </div>
+  <div class="card"><div class="flex between"><b>${L('quota')}</b><span class="small">${APP.quotaUsed} ${APP.lang==='es'?'de':'of'} ${APP.quotaMax} ${APP.lang==='es'?'usadas':'used'}</span></div>
+    <div class="bar"><i style="width:${APP.quotaUsed/APP.quotaMax*100}%"></i></div>
+    <p class="note">${APP.lang==='es'?'10 base · +5 colegio · +5 dirección · 20 máx':'10 base · +5 school · +5 address · 20 max'}</p></div>
+  ${APP.plan==='free'?`<div class="card" style="border-color:var(--brand);background:rgba(26,54,93,.05);cursor:pointer" onclick="navigate('paywall')"><div class="flex" style="gap:10px"><span style="font-size:22px">🚀</span><div style="flex:1"><b style="font-size:13px">${L('up_banner_h')}</b><p class="note" style="margin:1px 0 0">${L('up_banner_p')}</p></div><span class="tag g">${L('up_cta')} ›</span></div></div>`:''}
+  <button class="btn" onclick="navigate('question')">${L('cont')}</button>
+  <div class="h" style="font-size:15px">${L('progress')}</div>
+  <div class="card"><div class="flex between"><span>${L('lectora_lbl')}</span><span class="small">68%</span></div><div class="bar"><i style="width:68%;background:#1A365D"></i></div></div>
+  <div class="card"><div class="flex between"><span>${L('mate_lbl')}</span><span class="small">54%</span></div><div class="bar"><i style="width:54%;background:#10B981"></i></div></div>
+</div>${tabbar()}`;});
+
+reg('question',()=>{APP.selectedOpt=null;const q=APP.currentQ;const qt=APP.lang==='es'?q.text:q.textEn;
+return `<div class="si">
+  ${topnav(L('q_of'))}
+  <div class="flex between"><span class="small">${APP.lang==='es'?'Pregunta 6 de 10':'Question 6 of 10'}</span><span class="flex" style="gap:5px">⏱️<span class="timer">0:18</span></span></div>
+  <div class="bar"><i style="width:60%"></i></div>
+  <span class="tag" style="margin-top:10px;display:inline-block">${L('mate_lbl')} · ${L(APP.difficulty)}</span>
+  <div class="h">${qt}</div>
+  ${q.opts.map((o,i)=>`<div class="opt" id="opt${i}" onclick="selectOpt(${i})"><span class="k">${'ABCD'[i]}</span>${o}</div>`).join('')}
+  <div class="spacer"></div>
+  <p class="note">${APP.lang==='es'?'El cronómetro mide tu velocidad y se compara con tu cohorte.':'The timer measures your speed against your cohort.'}</p>
+  <button class="btn" onclick="checkAnswer()">${L('check')}</button>
+</div>`;});
+
+reg('result',()=>{const q=APP.currentQ;const ok=APP.selectedOpt===q.correct;
+return `<div class="si">
+  ${topnav(APP.lang==='es'?'Resultado':'Result')}
+  <div style="text-align:center;margin-top:20px"><div style="font-size:42px">${ok?'✅':'❌'}</div>
+    <div class="h" style="color:${ok?'var(--accent)':'var(--danger)'}">${ok?L('res_ok'):L('res_no')}</div></div>
+  ${q.opts.map((o,i)=>`<div class="opt ${i===q.correct?'ok':(i===APP.selectedOpt&&!ok?'no':'')}">`+
+    `<span class="k">${'ABCD'[i]}</span>${o}</div>`).join('')}
+  <div class="card"><p class="note" style="margin:0">${L('res_exp')}</p></div>
+  ${ok?`<div style="background:var(--bronze-bg);border:1px solid var(--bronze);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:9px;margin-top:8px;font-size:12px;color:#7A4A10">${coin('bronze','sm')}<div><div style="font-weight:700">+1 ${L('med_bronze')}</div><div style="font-size:10px;opacity:.85">${L('med_earn_correct')}</div></div></div>`:''}
+  <div class="card" style="background:rgba(16,185,129,.08);border-color:var(--accent)"><span class="small">⚡ ${L('res_time')}</span></div>
+  <div class="spacer"></div>
+  <button class="btn sec" onclick="navigate('explanation')">📖 ${L('see_full')}</button>
+  <button class="btn sec" onclick="navigate('share-group')">${L('grp_share_to')}</button>
+  <button class="btn" onclick="navigate('question')">${L('next_q')}</button>
+</div>${tabbar()}`;});
+
+reg('explanation',()=>{const es=APP.lang==='es';return `<div class="si">
+  ${topnav(es?'Explicación detallada':'Detailed explanation')}
+  <div class="flex" style="gap:8px"><span style="font-size:26px">📖</span><div><div class="h" style="margin:0">${L('exp_h')}</div><p class="note" style="margin:2px 0 0">${L('exp_sub')}</p></div></div>
+  <div class="card" style="text-align:center;font-size:15px;font-weight:700">3x + 7 = 22</div>
+  <div class="card"><b style="font-size:13px">${es?'Planteamiento':'Setup'}</b><p class="note" style="margin:4px 0 0">${es?'Partimos de: 3x + 7 = 22. Queremos dejar x sola.':'Start from: 3x + 7 = 22. Isolate x.'}</p></div>
+  <div class="card"><b style="font-size:13px">${es?'Paso 1 · Restar 7':'Step 1 · Subtract 7'}</b><p class="note" style="margin:4px 0 0">3x + 7 − 7 = 22 − 7  →  3x = 15</p></div>
+  <div class="card"><b style="font-size:13px">${es?'Paso 2 · Dividir por 3':'Step 2 · Divide by 3'}</b><p class="note" style="margin:4px 0 0">3x ÷ 3 = 15 ÷ 3  →  x = 5</p></div>
+  <div class="card" style="background:rgba(16,185,129,.08);border-color:var(--accent)"><b style="font-size:13px">✅ ${es?'Verificación':'Check'}</b><p class="note" style="margin:4px 0 0">3·(5) + 7 = 22 ✓</p></div>
+  <div class="card" style="background:rgba(26,54,93,.07);border-color:var(--brand)"><b style="font-size:13px">💡 ${es?'Concepto clave':'Key concept'}</b><p class="note" style="margin:4px 0 0">${es?'Lo que haces a un lado debes hacerlo al otro.':'Whatever you do to one side, do to the other.'}</p></div>
+  <button class="btn sec" onclick="navigate('question')">🎯 ${L('exp_related')}</button>
+  <div class="divider"></div>
+  <button class="btn sec" onclick="navigate('skills')" style="border-color:var(--brand);color:var(--brand)">🧠 ${L('exp_sk_btn')}</button>
+  <button class="btn sec" onclick="navigate('recorreccion')" style="border-color:var(--danger);color:var(--danger)">${L('exp_rc_btn')}</button>
+  <button class="btn" onclick="nav_back()">${L('exp_back')}</button>
+</div>${tabbar()}`;});
+
+reg('recorreccion',()=>{const es=APP.lang==='es';
+  if(APP.rcRewarded)return `<div class="si">
+    ${topnav(es?'Recorrección':'Correction')}
+    <div style="text-align:center;margin-top:40px">
+      <div style="font-size:56px">🎉</div>
+      <div class="h" style="color:var(--accent)">${L('exp_rc_reward_h')}</div>
+      <p class="p">${L('exp_rc_reward_p')}</p>
+      <div style="margin:20px auto;display:flex;justify-content:center;gap:6px;align-items:center">
+        ${coin('bronze','lg')}<span style="font-size:32px;font-weight:800;font-family:'Montserrat',sans-serif;color:var(--bronze)">+250</span>
+      </div>
+      <div style="font-size:13px;color:var(--muted)">${es?'Total bronce:':'Total bronze:'} <b style="color:var(--ink)">${APP.medals.bronze}</b></div>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn" onclick="navigate('home')">${es?'Volver al inicio':'Back to home'}</button>
+  </div>${tabbar()}`;
+  if(APP.rcSubmitted)return `<div class="si">
+    ${topnav(L('exp_rc_h'))}
+    <div class="card" style="padding:10px">
+      <div class="flex" style="gap:8px"><span style="font-size:20px">📝</span>
+        <div><div style="font-size:12px;font-weight:700;font-family:'Montserrat',sans-serif">Mat M1 · ${L('d2')}</div>
+        <span class="tag g">✔ ${es?'Resp. oficial: B (x=5)':'Official ans: B (x=5)'}</span></div></div>
+    </div>
+    <div style="background:rgba(245,176,65,.12);border:1.5px solid var(--oro);border-radius:12px;padding:14px;margin-top:14px;display:flex;gap:10px;align-items:flex-start">
+      <span style="font-size:22px">⏳</span>
+      <div><div style="font-weight:700;font-size:13px;font-family:'Montserrat',sans-serif;color:#B45309">${L('exp_rc_sent_h')}</div>
+        <p class="note" style="color:#B45309;margin:3px 0 0">${L('exp_rc_sent_p')}</p></div>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn pri" onclick="simulateRcConfirm()">${es?'🔧 Simular: confirmar error (demo)':'🔧 Simulate: confirm error (demo)'}</button>
+    <button class="btn gho" onclick="nav_back()">${L('exp_back')}</button>
+  </div>${tabbar()}`;
+  return `<div class="si">
+    ${topnav(L('exp_rc_h'))}
+    <div class="card" style="padding:10px">
+      <div class="flex" style="gap:8px"><span style="font-size:20px">📝</span>
+        <div><div style="font-size:12px;font-weight:700;font-family:'Montserrat',sans-serif">Mat M1 · ${L('d2')} · ${es?'Álgebra':'Algebra'}</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">${APP.lang==='es'?APP.currentQ.text:APP.currentQ.textEn}</div>
+        <span class="tag g" style="display:inline-block;margin-top:4px">✔ ${es?'Resp. oficial: B (x=5)':'Official ans: B (x=5)'}</span></div></div>
+    </div>
+    <div class="h" style="font-size:15px;margin-top:14px">${L('exp_rc_h')}</div>
+    <p class="p">${L('exp_rc_p')}</p>
+    ${['exp_rc_r1','exp_rc_r2','exp_rc_r3','exp_rc_r4','exp_rc_r5'].map((k,i)=>`
+    <div class="dispute-reason ${i===0?'sel':''}" onclick="this.closest('.si').querySelectorAll('.dispute-reason').forEach(d=>d.classList.remove('sel'));this.classList.add('sel')">
+      <span class="dr-radio"></span><span>${L(k)}</span>
+    </div>`).join('')}
+    <div style="margin-top:12px">
+      <div style="font-size:11px;font-weight:700;color:var(--muted);font-family:'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">${L('exp_rc_comment')}</div>
+      <textarea placeholder="${es?'ej: Según la PAES 2023, la respuesta debería ser…':'e.g. According to the 2023 PAES, the answer should be…'}"></textarea>
+    </div>
+    <div style="background:var(--bronze-bg);border:1px solid var(--bronze);border-radius:10px;padding:9px 12px;margin-top:10px;display:flex;gap:8px;align-items:center;font-size:12px;color:#7A4A10">
+      ${coin('bronze','sm')}<span>${es?'Si el error se confirma, recibirás <b>250 🥉 medallas de bronce</b>.':'If the error is confirmed, you\'ll receive <b>250 🥉 bronze medals</b>.'}</span>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn" onclick="submitRc()">${L('exp_rc_send')}</button>
+    <button class="btn gho" onclick="nav_back()">${L('exp_back')}</button>
+  </div>${tabbar()}`;
+});
+
+reg('skills',()=>{const es=APP.lang==='es';return `<div class="si">
+  ${topnav(L('exp_sk_h'))}
+  <div style="background:var(--brand);border-radius:14px;padding:14px;color:#fff">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.08em;opacity:.7;font-family:'Montserrat',sans-serif">${L('exp_sk_sub').toUpperCase()}</div>
+    <div style="font-size:16px;font-weight:800;font-family:'Montserrat',sans-serif;margin-top:4px">${es?'Resolución de ecuaciones lineales':'Solving linear equations'}</div>
+    <div class="flex" style="margin-top:8px;gap:6px;flex-wrap:wrap">
+      <span style="background:rgba(255,255,255,.18);border-radius:6px;padding:3px 8px;font-size:10px;font-weight:700;font-family:'Montserrat',sans-serif">${es?'Álgebra':'Algebra'}</span>
+      <span style="background:rgba(255,255,255,.18);border-radius:6px;padding:3px 8px;font-size:10px;font-weight:700;font-family:'Montserrat',sans-serif">Mat M1</span>
+      <span style="background:rgba(245,176,65,.3);border-radius:6px;padding:3px 8px;font-size:10px;font-weight:700;font-family:'Montserrat',sans-serif;color:var(--oro)">${L('d2')} · Nivel 2/4</span>
+    </div>
+  </div>
+  <div class="section-label">${L('exp_sk_status')}</div>
+  <div class="card" style="padding:11px">
+    <div class="flex between"><span style="font-size:13px;font-weight:600">${es?'Tu dominio':'Your mastery'}</span>
+      <span style="font-size:18px;font-weight:800;font-family:'Montserrat',sans-serif;color:var(--brand)">58%</span></div>
+    <div class="bar"><i style="width:58%"></i></div>
+    <div class="flex between" style="margin-top:5px"><span class="small">${es?'12 de 21 correctas':'12 of 21 correct'}</span><span class="tag w">${es?'En progreso':'In progress'}</span></div>
+  </div>
+  <div class="section-label">${L('exp_sk_prereq')}</div>
+  <div class="skill-tree-node done"><span class="skill-dot" style="background:#10B981"></span><span style="flex:1;font-weight:600">${es?'Operaciones aritméticas':'Basic arithmetic'}</span><span class="tag g">✔ ${es?'Dom.':'Done'}</span></div>
+  <div class="skill-tree-node done"><span class="skill-dot" style="background:#10B981"></span><span style="flex:1;font-weight:600">${es?'Propiedades de la igualdad':'Properties of equality'}</span><span class="tag g">✔ ${es?'Dom.':'Done'}</span></div>
+  <div class="skill-tree-node active"><span class="skill-dot" style="background:var(--brand)"></span><span style="flex:1;font-weight:700;color:var(--brand)">${es?'Ecuaciones lineales (1 incógnita)':'Linear equations'}</span><span class="tag w">${es?'Reforzar':'Reinforce'}</span></div>
+  <div class="skill-tree-node locked"><span class="skill-dot" style="background:var(--muted)"></span><span style="flex:1">${es?'Sistemas de ecuaciones':'Systems of equations'}</span><span class="tag">${es?'Bloqueado':'Locked'}</span></div>
+  <div class="section-label">${L('exp_sk_how')}</div>
+  <div class="skill-resource"><div class="res-icon">🎬</div><div style="flex:1;min-width:0"><div style="font-weight:700;font-size:12px;font-family:'Montserrat',sans-serif">${es?'Video: Ecuaciones paso a paso':'Video: Equations step by step'}</div><div class="small">8 min · Khan Academy</div></div><span style="color:var(--brand);font-size:16px">▶</span></div>
+  <div class="skill-resource"><div class="res-icon">📋</div><div style="flex:1;min-width:0"><div style="font-weight:700;font-size:12px;font-family:'Montserrat',sans-serif">${es?'Ficha de ejercicios: Álgebra M1':'Exercise sheet: Algebra M1'}</div><div class="small">${es?'20 ejercicios · PDF':'20 exercises · PDF'}</div></div><span style="color:var(--brand);font-size:16px">↓</span></div>
+  <div class="skill-resource"><div class="res-icon">🎯</div><div style="flex:1;min-width:0"><div style="font-weight:700;font-size:12px;font-family:'Montserrat',sans-serif">${es?'Módulo guiado: 15 preguntas':'Guided module: 15 questions'}</div><div class="small">~12 min</div></div><span style="color:var(--brand);font-size:16px">→</span></div>
+  <div class="spacer"></div>
+  <button class="btn">🎯 ${L('exp_sk_practice')}</button>
+  <button class="btn gho" onclick="nav_back()">${L('exp_sk_back')}</button>
+</div>${tabbar()}`;});
+
+reg('medals',()=>{APP.currentTab='medals';const es=APP.lang==='es';
+  const tiers=[{type:'bronze',col:'#CD7F32',next:'silver'},{type:'silver',col:'#94A3B8',next:'gold'},{type:'gold',col:'#F5B041',next:'diamond'},{type:'diamond',col:'#38BDF8',next:'platinum'},{type:'platinum',col:'#A78BFA',next:null}];
+  return `<div class="si">
+  <div class="flex between" style="padding-top:10px"><div class="h" style="margin:0">${es?'Mis Medallas':'My Medals'}</div><span class="tag w">🔥 ${APP.streak} ${L('days')}</span></div>
+  <p class="p">${es?'Ganas medallas respondiendo y practicando cada día.':'Earn medals by answering and practicing daily.'}</p>
+  ${tiers.map(m=>{const cnt=APP.medals[m.type]||0;const prog=m.next?Math.min(100,Math.round((cnt%5)/5*100)):0;
+    return `<div class="medal-row">${coin(m.type,'md')}<div style="flex:1;min-width:0">
+      <div class="flex between"><span style="font-size:13px;font-weight:600">${L('med_'+m.type)}</span><span style="font-size:20px;font-weight:800;font-family:'Montserrat',sans-serif;color:${m.col}">${cnt}</span></div>
+      ${m.next?`<div style="margin-top:4px"><div class="flex between"><span class="small">${cnt%5}/5 → ${coin(m.next,'sm')}</span><span style="font-size:10px;font-weight:700;color:${m.col};font-family:'Montserrat',sans-serif">${prog}%</span></div><div class="bar" style="margin-top:3px;height:6px"><i style="width:${prog}%;background:${m.col}"></i></div></div>`:`<div class="small" style="margin-top:3px">${es?'5 platino = 1 beneficio':'5 platinum = 1 benefit'}</div>`}
+    </div>${cnt>=5&&m.next?`<button style="background:${m.col};border:none;border-radius:9px;color:#fff;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif" onclick="doExchange('${m.type}','${m.next}')">${es?'Canjear →':'Exchange →'}</button>`:''}</div>`;}).join('')}
+  <div class="spacer"></div>
+  <div class="flex" style="gap:8px;margin-top:8px">
+    <button class="btn sec" style="flex:1" onclick="navigate('exchange')">🔄 ${L('med_exchange_title')}</button>
+    <button class="btn sec" style="flex:1" onclick="navigate('gift')">🎁 ${es?'Regalar':'Gift'}</button>
+  </div>
+  <button class="btn" onclick="navigate('benefits')">🏷️ ${L('med_benefits_title')}</button>
+</div>${tabbar()}`;});
+
+reg('exchange',()=>{const es=APP.lang==='es';
+  const exch=[{from:'bronze',to:'silver',col:'#CD7F32'},{from:'silver',to:'gold',col:'#94A3B8'},{from:'gold',to:'diamond',col:'#F5B041'},{from:'diamond',to:'platinum',col:'#38BDF8'},{from:'platinum',to:null,col:'#A78BFA'}];
+  return `<div class="si">
+  ${topnav(L('med_exchange_title'))}
+  <p class="p">${es?'5 medallas de un nivel = 1 del siguiente. Irreversible.':'5 medals at one level = 1 of the next. Irreversible.'}</p>
+  <div class="flex" style="justify-content:center;gap:4px;margin:10px 0;align-items:center;flex-wrap:wrap">
+    ${['bronze','silver','gold','diamond','platinum'].map((t,i,a)=>coin(t,'md')+(i<a.length-1?'<span style="color:var(--muted);font-size:14px;align-self:center">→</span>':'')).join('')}
+  </div>
+  ${exch.map(e=>{const have=APP.medals[e.from]||0;const can=have>=5;const tl=e.to?L('med_'+e.to):(es?'Beneficio':'Benefit');
+    return `<div class="exchange-card">
+      <div class="flex" style="justify-content:space-around;align-items:center">${coin(e.from,'md')}
+        <div style="text-align:center"><div style="font-size:12px;color:var(--muted)">5 ${L('med_'+e.from)} → 1 ${tl}</div><div style="font-size:11px;font-weight:700;color:${e.col}">${L('med_have')}: ${have}</div></div>
+        ${e.to?coin(e.to,'md'):`<span style="font-size:26px">🎁</span>`}
+      </div>
+      <div style="margin-top:8px"><div class="flex between" style="margin-bottom:3px"><span class="small">${have}/5</span><span class="small" style="color:${can?'#059669':'var(--muted)'}">${can?(es?'¡Listo!':'Ready!'):(es?`Faltan ${5-have}`:`Need ${5-have}`)}</span></div>
+        <div class="bar" style="height:6px"><i style="width:${Math.min(100,have/5*100)}%;background:${e.col}"></i></div></div>
+      <button style="display:block;width:100%;margin-top:9px;padding:9px;border:none;border-radius:10px;font-size:12px;font-weight:700;font-family:'Montserrat',sans-serif;cursor:pointer;background:${e.col};color:${e.col==='#F5B041'?'#1A365D':'#fff'};opacity:${can?1:.4}" ${can?`onclick="doExchange('${e.from}','${e.to}')"`:'disabled'}>
+        ${can?(es?`Canjear 5 ${L('med_'+e.from)} → 1 ${tl}`:`Exchange 5 ${L('med_'+e.from)} → 1 ${tl}`):(es?`Faltan ${5-have} ${L('med_'+e.from)}`:`Need ${5-have} more`)}
+      </button>
+    </div>`;}).join('')}
+</div>${tabbar()}`;});
+
+reg('benefits',()=>{const es=APP.lang==='es';const plat=APP.medals.platinum||0;
+  const bens=[{emoji:'📚',name:'Preuniversitario CPT',desc:es?'20% dto. en matrícula':'20% off enrollment',locked:true},{emoji:'🎧',name:'Spotify Premium',desc:es?'3 meses gratis':'3 months free',locked:true},{emoji:'✏️',name:'Librería Universitaria',desc:es?'15% en material escolar':'15% off supplies',locked:true},{emoji:'🍕',name:'Rappi',desc:es?'$2.000 primer pedido':'$2,000 first order',locked:true},{emoji:'💻',name:'Platzi',desc:es?'1 mes acceso completo':'1 month full access',locked:false}];
+  return `<div class="si">
+  ${topnav(L('med_benefits_title'))}
+  <p class="p">${L('med_benefits_sub')}</p>
+  <div class="card" style="border-color:var(--platinum);background:var(--platinum-bg);padding:12px">
+    <div class="flex" style="gap:8px">${coin('platinum','md')}<div><div style="font-size:20px;font-weight:800;font-family:'Montserrat',sans-serif;color:#7C3AED">${plat} / 5</div><div class="small">${es?'Platino para desbloquear':'Platinum to unlock'}</div></div></div>
+    <div class="bar" style="margin-top:8px;height:7px"><i style="width:${plat/5*100}%;background:var(--platinum)"></i></div>
+    <p class="note" style="margin-top:5px">${es?'Ruta: 625 bronce → 125 plata → 25 oro → 5 diamante → 1 platino':'Path: 625 bronze → 125 silver → 25 gold → 5 diamond → 1 platinum'}</p>
+  </div>
+  <div class="section-label">${es?'BENEFICIOS DISPONIBLES':'AVAILABLE BENEFITS'}</div>
+  ${bens.map(b=>`<div class="benefit-card" style="${b.locked?'opacity:.6':''}">
+    <div class="benefit-logo">${b.emoji}</div>
+    <div style="flex:1;min-width:0"><div style="font-weight:700;font-size:13px;font-family:'Montserrat',sans-serif">${b.name}</div><div class="small">${b.desc}</div>
+      ${b.locked?`<span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:var(--platinum-bg);color:#7C3AED;font-family:'Montserrat',sans-serif;display:inline-block;margin-top:4px">🔒 ${L('med_locked_need')}</span>`:`<span class="tag g" style="display:inline-block;margin-top:4px">✅ ${es?'Desbloqueado':'Unlocked'}</span>`}
+    </div>
+    ${!b.locked&&plat>=5?`<button style="background:var(--platinum);border:none;border-radius:9px;color:#fff;padding:8px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif">${L('med_unlock_benefit')}</button>`:''}
+  </div>`).join('')}
+</div>${tabbar()}`;});
+
+reg('gift',()=>{const es=APP.lang==='es';const rem=APP.dailyGiftsMax-APP.dailyGiftsUsed;
+  const friends=[{i:'CR',n:'Camila R.',c:'#1A365D',tc:'#fff'},{i:'JL',n:'Juan L.',c:'#10B981',tc:'#fff'},{i:'AM',n:'Andrea M.',c:'#6366F1',tc:'#fff'},{i:'SR',n:'Sebastián R.',c:'#F5B041',tc:'#1A365D'},{i:'TG',n:'Tomás G.',c:'#1A365D',tc:'#fff'}];
+  return `<div class="si">
+  ${topnav(L('med_gift_title'))}
+  <p class="p">${L('med_gift_note')}</p>
+  <div style="background:var(--bronze-bg);border:1.5px solid var(--bronze);border-radius:10px;padding:10px 13px;margin-top:10px;display:flex;align-items:center;gap:10px">
+    ${coin('bronze','sm')}<div style="flex:1"><div class="flex between"><span style="font-size:12px;font-weight:700;font-family:'Montserrat',sans-serif;color:#7A4A10">${APP.dailyGiftsUsed}/${APP.dailyGiftsMax} ${L('med_gift_daily')}</span><span style="font-size:11px;color:#7A4A10">${APP.medals.bronze} ${es?'disponibles':'available'}</span></div><div class="bar" style="margin-top:4px;background:rgba(205,127,50,.2);height:7px"><i style="width:${APP.dailyGiftsUsed/APP.dailyGiftsMax*100}%;background:var(--bronze)"></i></div></div>
+  </div>
+  <p class="note">${es?'Límite se resetea a medianoche.':'Limit resets at midnight.'}</p>
+  <div class="section-label">${es?'AMIGOS EN TUS GRUPOS':'FRIENDS IN YOUR GROUPS'}</div>
+  ${friends.map((f,fi)=>`<div class="gift-row">
+    <div class="mavatar" style="background:${f.c};color:${f.tc||'#fff'};width:36px;height:36px;font-size:12px">${f.i}</div>
+    <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600">${f.n}</div><div style="font-size:10px;color:var(--muted)" id="gs${fi}">${es?'Sin regalos hoy':'No gifts yet'}</div></div>
+    <div class="gift-stepper"><button onclick="gDec(${fi})">−</button><span class="qty" id="gq${fi}">0</span><button onclick="gInc(${fi})">+</button></div>
+    <button style="margin-left:6px;background:var(--bronze);border:none;border-radius:8px;color:#fff;padding:7px 9px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif" onclick="sendGift(${fi})">${L('med_gift_send')}</button>
+  </div>`).join('')}
+  <div class="spacer"></div>
+  <button class="btn" style="background:var(--bronze)" onclick="sendAllGifts()">${es?'Enviar regalos seleccionados':'Send selected gifts'}</button>
+</div>${tabbar()}`;});
+
+reg('groups',()=>{APP.currentTab='groups';const es=APP.lang==='es';return `<div class="si">
+  <div class="flex between" style="padding-top:10px"><div class="h" style="margin:0">${L('grp_my')}</div>
+    <button class="btn pri" style="width:auto;padding:8px 14px;margin:0;font-size:12px" onclick="navigate('create-group')">＋ ${L('grp_create')}</button></div>
+  ${APP.groups.map((g,gi)=>`<div class="group-card" onclick="navigate('group-detail',{gi:${gi}})">
+    <div class="flex between"><div class="flex" style="gap:10px">
+      <div class="group-avatar" style="background:${g.color}">${g.name[0]}</div>
+      <div><div style="font-weight:700;font-size:13px;font-family:'Montserrat',sans-serif">${g.name}</div><div style="font-size:11px;color:var(--muted)">${g.subject} · ${g.members.length} ${L('grp_members_n')}</div></div>
+    </div><span style="background:rgba(245,176,65,.18);color:#B45309;font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;font-family:'Montserrat',sans-serif">+3 ${es?'hoy':'today'}</span></div>
+    <div class="flex" style="margin-top:10px;gap:6px">
+      <div class="mstack">${g.members.slice(0,3).map(m=>`<div class="mavatar" style="background:${m.c};color:${m.tc||'#fff'};margin-left:-8px">${m.i}</div>`).join('')}</div>
+      <span class="small" style="margin-left:6px">${es?'Última actividad hace 2 h':'Last activity 2 h ago'}</span></div>
+    <div class="bar" style="margin-top:10px"><i style="width:${g.avg}%;background:${g.color}"></i></div>
+    <div class="flex between" style="margin-top:4px"><span class="small">${L('grp_avg')}: ${g.avg}%</span><span class="small">${L('grp_your')}: ${g.your}%</span></div>
+  </div>`).join('')}
+  ${APP.groups.length===0?`<div style="text-align:center;padding:40px 16px;color:var(--muted);font-size:13px"><span style="font-size:36px;display:block;margin-bottom:10px">👥</span>${es?'Aún no tienes grupos.<br>Crea uno e invita a tus compañeros.':'No groups yet.<br>Create one and invite classmates.'}</div>`:''}
+</div>${tabbar()}`;});
+
+reg('create-group',()=>{const es=APP.lang==='es';return `<div class="si">
+  ${topnav(L('grp_create'))}
+  <p class="p">${es?'Dale un nombre y elige la materia principal.':'Give your group a name and choose the main subject.'}</p>
+  <input id="newGrpName" type="text" placeholder="${L('grp_name')}">
+  <div class="section-label">${L('grp_subject')}</div>
+  <div style="margin-top:4px">${allTests.map((t,i)=>`<span class="chip ${i===1?'on':''}" onclick="this.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));this.classList.add('on')"><span style="width:9px;height:9px;border-radius:50%;background:${t.color}"></span>${t.label}</span>`).join('')}</div>
+  <div class="spacer"></div>
+  <button class="btn" onclick="createGroup()">${L('grp_create_btn')}</button>
+  <button class="btn gho" onclick="nav_back()">${es?'Cancelar':'Cancel'}</button>
+</div>`;});
+
+reg('invite-members',()=>{const es=APP.lang==='es';const gi=(APP.params||{}).gi||0;return `<div class="si">
+  ${topnav(L('grp_invite_h'))}
+  <p class="p">${L('grp_invite_p')}</p>
+  <div class="flex" style="gap:8px;margin-top:12px">
+    <input id="invEmail" type="email" placeholder="${L('grp_email_ph')}" style="flex:1;margin:0">
+    <button class="btn pri" style="width:auto;margin:0;padding:11px 14px;font-size:12px" onclick="sendInvite(${gi})">${L('grp_send')}</button>
+  </div>
+  <div class="section-label">${L('grp_pending')}</div>
+  <div id="invList">${APP.invites.filter(inv=>inv.gi===gi).map(inv=>`<div class="flex" style="gap:8px;padding:9px 11px;background:var(--soft);border:1.5px dashed var(--line);border-radius:10px;margin-top:8px;font-size:12px"><span>✉️</span><span style="flex:1">${inv.email}</span><span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;background:rgba(16,185,129,.13);color:#059669;font-family:'Montserrat',sans-serif">${L('grp_waiting')}</span></div>`).join('')}${APP.invites.filter(inv=>inv.gi===gi).length===0?`<p class="note">${es?'Aún no has enviado invitaciones.':'No invitations sent yet.'}</p>`:''}</div>
+</div>`;});
+
+reg('group-detail',()=>{const gi=(APP.params||{}).gi||0;const g=APP.groups[gi];const es=APP.lang==='es';return `<div class="si">
+  ${topnav(g.name)}
+  <div style="background:var(--brand);border-radius:14px;padding:14px;color:#fff;margin-bottom:4px">
+    <div style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:800">${g.name}</div>
+    <div style="font-size:11px;opacity:.75;margin-top:2px">${g.subject} · ${g.members.length} ${L('grp_members_n')}</div>
+  </div>
+  <div class="section-label">${L('grp_detail_members')}</div>
+  ${g.members.map(m=>`<div class="flex" style="gap:10px;padding:8px 0;border-bottom:1px solid var(--line)">
+    <div class="mavatar" style="background:${m.c};color:${m.tc||'#fff'}">${m.i}</div>
+    <div style="flex:1"><div style="font-size:13px;font-weight:600">${m.n}</div><div class="small">${es?'Activo hoy':'Active today'}</div></div>
+    <span class="tag g">72%</span>
+  </div>`).join('')}
+  <div class="flex" style="gap:8px;margin-top:14px">
+    <button class="btn sec" style="flex:1" onclick="navigate('invite-members',{gi:${gi}})">+ ${es?'Invitar':'Invite'}</button>
+    <button class="btn sec" style="flex:1" onclick="navigate('group-stats',{gi:${gi}})">📊 Stats</button>
+  </div>
+  <div class="section-label">${L('grp_detail_shared')}</div>
+  <div class="card" style="padding:11px">
+    <div style="font-size:10px;color:var(--muted);margin-bottom:4px">Camila R. · ${es?'hace 2 h':'2 h ago'}</div>
+    <div style="font-size:12.5px;line-height:1.4">${APP.lang==='es'?APP.currentQ.text:APP.currentQ.textEn}</div>
+    <span class="tag g" style="display:inline-block;margin-top:6px">✅ ${es?'Correcto en 0:18':'Correct in 0:18'}</span>
+  </div>
+</div>`;});
+
+reg('group-stats',()=>{const gi=(APP.params||{}).gi||0;const g=APP.groups[gi];const es=APP.lang==='es';
+  const areas=[{name:es?'Álgebra':'Algebra',avg:72,col:'#10B981'},{name:es?'Geometría':'Geometry',avg:65,col:'#1A365D'},{name:es?'Estadística':'Statistics',avg:58,col:'#6366F1'},{name:es?'Cálculo':'Calculus',avg:44,col:'#EF4444'},{name:es?'Lectura':'Reading',avg:80,col:'#10B981'}];
+  return `<div class="si">
+  ${topnav(L('grp_stats_h'))}
+  <div class="card" style="text-align:center"><div style="font-size:28px;font-weight:800;font-family:'Montserrat',sans-serif;color:var(--brand)">${g.avg}%</div><div class="small">${L('grp_avg')} · ${g.members.length} ${L('grp_members_n')}</div></div>
+  <div class="section-label">${L('grp_best')}</div>
+  ${areas.filter(a=>a.avg>=65).map(a=>`<div class="flex" style="gap:10px;margin-top:8px;align-items:center"><div style="font-size:12px;font-weight:600;width:90px;flex-shrink:0">${a.name}</div><div style="flex:1;height:8px;border-radius:6px;background:var(--line);overflow:hidden"><div style="width:${a.avg}%;height:100%;background:${a.col};border-radius:6px"></div></div><span class="small">${a.avg}%</span></div>`).join('')}
+  <div class="section-label">${L('grp_weak')}</div>
+  ${areas.filter(a=>a.avg<65).map(a=>`<div class="flex" style="gap:10px;margin-top:8px;align-items:center"><div style="font-size:12px;font-weight:600;width:90px;flex-shrink:0">${a.name}</div><div style="flex:1;height:8px;border-radius:6px;background:var(--line);overflow:hidden"><div style="width:${a.avg}%;height:100%;background:var(--danger);border-radius:6px"></div></div><span class="small" style="color:var(--danger)">${a.avg}%</span></div>`).join('')}
+</div>`;});
+
+reg('share-group',()=>{const es=APP.lang==='es';return `<div class="si">
+  ${topnav(L('grp_share_to'))}
+  <div class="card" style="border-color:var(--brand);padding:11px">
+    <p style="font-size:12.5px;margin:0 0 8px">${APP.lang==='es'?APP.currentQ.text:APP.currentQ.textEn}</p>
+    <div style="filter:blur(4px);user-select:none"><div class="opt"><span class="k">A</span> ████</div><div class="opt"><span class="k">B</span> ████</div></div>
+    <span class="tag g" style="display:inline-block;margin-top:6px">✅ ${es?'Correcto en 0:18':'Correct in 0:18'}</span>
+  </div>
+  <div class="section-label">${L('grp_choose_group')}</div>
+  ${APP.groups.map((g,gi)=>`<div class="group-card" onclick="this.style.borderColor='var(--brand)';this.querySelectorAll('.chk').forEach(e=>e.remove());const c=document.createElement('span');c.className='chk';c.style.cssText='font-size:18px;margin-left:auto';c.textContent=' ✅';this.querySelector('.gn').appendChild(c)">
+    <div class="flex" style="gap:10px"><div class="group-avatar" style="background:${g.color};width:32px;height:32px;font-size:14px">${g.name[0]}</div>
+    <div class="gn"><div style="font-weight:700;font-size:13px;font-family:'Montserrat',sans-serif">${g.name}</div></div></div>
+  </div>`).join('')}
+  <div style="margin-top:12px"><div style="font-size:11px;font-weight:700;color:var(--muted);font-family:'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">${L('grp_add_comment')}</div>
+    <textarea placeholder="${es?'¿Qué quieres decir?':'What do you want to say?'}"></textarea></div>
+  <div class="spacer"></div>
+  <button class="btn" onclick="shareToGroup()">${L('grp_share_btn')}</button>
+  <button class="btn gho" onclick="nav_back()">${es?'Cancelar':'Cancel'}</button>
+</div>${tabbar()}`;});
+
+reg('feed',()=>{APP.currentTab='feed';const es=APP.lang==='es';return `<div class="si">
+  <div class="flex between" style="padding-top:10px">${LOGO}<b style="font-family:'Montserrat',sans-serif;color:var(--brand);margin-left:2px">${L('feed_h')}</b></div>
+  <div class="card" style="margin-top:8px"><input type="text" placeholder="${L('post_ph')}" style="margin:0;background:none;border:none;padding:0;font-size:13px;color:var(--ink)"></div>
+  ${[{u:'Camila R.',i:'CR',c:'#1A365D'},{u:'Juan L.',i:'JL',c:'#10B981'}].map(u=>`<div class="card">
+    <div class="flex between" style="margin-bottom:6px"><div class="flex" style="gap:8px"><div class="mavatar" style="background:${u.c}">${u.i}</div><b style="font-size:12px">${u.u}</b></div>${LOGO}</div>
+    <p style="font-size:12.5px;margin:4px 0">${APP.lang==='es'?APP.currentQ.text:APP.currentQ.textEn}</p>
+    <div style="filter:blur(4px);user-select:none"><div class="opt"><span class="k">A</span> ████</div><div class="opt"><span class="k">B</span> ████</div></div>
+    <span class="tag g" style="display:inline-block;margin-top:6px">✅ ${es?'Correcto en 0:18':'Correct in 0:18'}</span>
+    <p class="note">👍 24 · 💬 6 · 🔁 3</p>
+  </div>`).join('')}
+</div>${tabbar()}`;});
+
+reg('settings',()=>{APP.currentTab='settings';const es=APP.lang==='es';return `<div class="si">
+  <div class="h" style="font-size:16px;padding-top:10px">${L('set_h')}</div>
+  <div class="card"><span class="flex between"><b style="font-size:13px">${L('set_theme')}</b><span class="sw ${APP.dark?'on':''}" onclick="toggleTheme()"></span></span></div>
+  <div class="card"><span class="flex between"><b style="font-size:13px">${L('set_lang')}</b>
+    <select style="background:none;border:none;font-size:12px;color:var(--brand);font-weight:700;cursor:pointer;padding:0;margin:0;width:auto" onchange="setLang(this.value)">
+      <option value="es" ${APP.lang==='es'?'selected':''}>Español</option><option value="en" ${APP.lang==='en'?'selected':''}>English</option>
+    </select></span></div>
+  <div class="card"><span class="flex between"><b style="font-size:13px">${L('set_notif')}</b><span class="sw on" onclick="this.classList.toggle('on')"></span></span></div>
+  <div class="card"><span class="flex between"><b style="font-size:13px">${L('set_tests')}</b><span class="small">${APP.selectedTests.join(', ')} ›</span></span></div>
+  <div class="card" style="cursor:pointer" onclick="navigate('manage-plan')"><span class="flex between"><b style="font-size:13px">${L('set_plan')}</b><span class="small">${APP.plan==='free'?L('set_free'):L(PLANS[APP.plan].nameKey)+(APP.planCancelled?(es?' · cancelado':' · cancelled'):'')} ›</span></span></div>
+  <div class="card"><span class="flex between"><b style="font-size:13px">${es?'Mis datos y privacidad':'My data & privacy'}</b><span class="small">›</span></span></div>
+  <div class="divider"></div>
+  <div class="card" style="background:rgba(239,68,68,.06);border-color:var(--danger)">
+    <div style="font-size:13px;font-weight:700;color:var(--danger);font-family:'Montserrat',sans-serif">${es?'Eliminar cuenta':'Delete account'}</div>
+    <p class="note">${es?'Todos tus datos y medallas serán eliminados.':'All your data and medals will be deleted.'}</p>
+  </div>
+</div>${tabbar()}`;});
+
+reg('limit-2',()=>{const es=APP.lang==='es';return `<div class="si">
+  <div style="text-align:center;margin-top:30px"><div style="font-size:38px">🎉</div><div class="h">${L('lim2_h')}</div></div>
+  <p class="p" style="text-align:center">${L('lim2_p')}</p>
+  <div class="card" style="background:rgba(26,54,93,.07);border-color:var(--brand)"><div class="flex between"><span class="small">${L('quota')}</span><span class="tag g">+5</span></div><div class="bar"><i style="width:50%"></i></div></div>
+  <input type="text" placeholder="${L('school')}">
+  <div class="flex" style="gap:8px;margin-top:9px"><input type="number" placeholder="${L('age')}" style="margin:0"><select style="margin:0;flex:1"><option>${es?'Región':'Region'}</option></select></div>
+  <div class="spacer"></div>
+  <button class="btn" onclick="APP.quotaMax=15;earnMedal('bronze',1);navigate('home')">${L('unlock5')}</button>
+  <button class="btn gho" onclick="navigate('home')">${L('later')}</button>
+</div>`;});
+
+reg('paywall',()=>{const es=APP.lang==='es';const c=APP.billing;
+  const priceBlock=(pid)=>`<div style="font-size:26px;font-weight:800;font-family:'Montserrat',sans-serif;color:var(--brand)">$${planPrice(pid,c)}<small style="font-size:13px;color:var(--muted);font-weight:600">${c==='yr'?L('yr'):L('mo')}</small></div>`;
+  return `<div class="si">
+  <div style="text-align:center;margin-top:20px"><div style="font-size:36px">🚀</div><div class="h">${L('cap_h')}</div></div>
+  <p class="p" style="text-align:center">${L('cap_p')}</p>
+  <div class="seg">
+    <div class="${c==='mo'?'on':''}" onclick="APP.billing='mo';render()">${L('bill_mo')}</div>
+    <div class="${c==='yr'?'on':''}" onclick="APP.billing='yr';render()">${L('bill_yr')} <span style="font-size:10px">· ${L('bill_save')}</span></div>
+  </div>
+  <div class="card" onclick="goCheckout('plan1')" style="cursor:pointer"><div class="flex between"><b>${L('plan1')}</b>${priceBlock('plan1')}</div><p class="note">${L('pf1')}</p><button class="btn sec" onclick="event.stopPropagation();goCheckout('plan1')">${L('choose')}</button></div>
+  <div class="card" onclick="goCheckout('plan5')" style="border-color:var(--brand);border-width:2px;cursor:pointer"><div class="flex between"><b>${L('plan5')}</b><span class="tag g">${L('popular')}</span></div>${priceBlock('plan5')}<p class="note">${L('pf5')}</p><button class="btn" onclick="event.stopPropagation();goCheckout('plan5')">${L('choose')}</button></div>
+  <button class="btn gho" onclick="navigate('home')">${L('free_back')}</button>
+</div>`;});
+
+reg('checkout',()=>{const es=APP.lang==='es';const pid=APP.checkoutPlan;const c=APP.billing;
+  const planName=L(PLANS[pid].nameKey);
+  return `<div class="si">
+  ${topnav(L('co_h'))}
+  <div class="section-label">${L('co_summary')}</div>
+  <div class="card" style="margin-top:4px">
+    <div class="flex between"><span>${L('co_plan')}</span><b>${planName}</b></div>
+    <div class="divider"></div>
+    <div class="flex between"><span>${L('co_cycle')}</span><b>${c==='yr'?L('bill_yr'):L('bill_mo')}${c==='yr'?` · ${L('bill_save')}`:''}</b></div>
+    <div class="divider"></div>
+    <div class="flex between"><b>${L('co_total')}</b><div style="font-size:22px;font-weight:800;font-family:'Montserrat',sans-serif;color:var(--brand)">${priceStr(pid,c)}</div></div>
+    <p class="note">${c==='yr'?L('co_billed_yr'):L('co_billed_mo')}</p>
+  </div>
+
+  <div class="section-label">${L('co_fast')}</div>
+  <button class="paybtn apple" onclick="payPlan()"><svg width="15" height="18" viewBox="0 0 17 21" fill="#fff" style="margin-right:2px"><path d="M14.1 11.1c0-2 1.6-2.9 1.7-3-0.9-1.4-2.4-1.5-2.9-1.6-1.2-0.1-2.4 0.7-3 0.7-0.6 0-1.6-0.7-2.6-0.7-1.3 0-2.6 0.8-3.3 2-1.4 2.4-0.4 6 1 8 0.7 1 1.5 2.1 2.5 2 1-0.04 1.4-0.6 2.6-0.6 1.2 0 1.5 0.6 2.6 0.6 1.1 0 1.8-1 2.4-2 0.8-1.1 1.1-2.2 1.1-2.3 0-0.02-2.1-0.8-2.1-3.1zM12.2 5.2c0.5-0.6 0.9-1.5 0.8-2.4-0.8 0.03-1.7 0.5-2.2 1.2-0.5 0.6-0.9 1.5-0.8 2.3 0.9 0.07 1.7-0.5 2.2-1.1z"/></svg>Pay</button>
+  <button class="paybtn google" onclick="payPlan()"><span style="font-weight:800"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span> Pay</button>
+
+  <div class="or-sep">${L('co_or')}</div>
+  <div class="card-field"><input id="cc_num" inputmode="numeric" placeholder="${L('co_card_num')}" value="4242 4242 4242 4242"><span class="brand-ico">💳</span></div>
+  <div class="flex" style="gap:8px"><input id="cc_exp" placeholder="${L('co_exp')}" value="12 / 28" style="margin-top:9px"><input id="cc_cvc" inputmode="numeric" placeholder="${L('co_cvc')}" value="123" style="margin-top:9px"></div>
+  <input id="cc_name" placeholder="${L('co_name')}" value="${APP.userName||''}">
+  <input id="cc_email" type="email" placeholder="${L('co_email')}" value="">
+  <button class="btn" onclick="payPlan()">${L('co_pay')} ${priceStr(pid,c)}</button>
+  <div class="secure-note">🔒 ${L('co_secure')}</div>
+</div>`;});
+
+reg('payment-success',()=>{const es=APP.lang==='es';const pid=APP.plan;const planName=pid&&PLANS[pid]?L(PLANS[pid].nameKey):'';
+  return `<div class="si">
+  <div style="text-align:center;margin-top:50px">
+    <div style="font-size:60px">🎉</div>
+    <div class="h" style="color:var(--accent)">${L('pay_ok_h')}</div>
+    <p class="p">${L('pay_ok_p')}</p>
+    <div class="card" style="background:rgba(16,185,129,.08);border-color:var(--accent);text-align:left;margin-top:16px">
+      <div class="flex between"><span class="small">${L('co_plan')}</span><b>${planName}</b></div>
+      <div class="flex between" style="margin-top:6px"><span class="small">${L('co_total')}</span><b>${priceStr(pid,APP.billing)}</b></div>
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <button class="btn" onclick="navigate('home')">${L('pay_go')}</button>
+</div>`;});
+
+reg('manage-plan',()=>{const es=APP.lang==='es';const isFree=APP.plan==='free';
+  if(isFree)return `<div class="si">
+    ${topnav(L('mng_h'))}
+    <div class="card"><div class="flex between"><b style="font-size:13px">${L('mng_current')}</b><span class="tag">${L('mng_free')}</span></div></div>
+    <div class="card" style="border-color:var(--brand);border-width:1.5px;background:rgba(26,54,93,.05)">
+      <div class="flex" style="gap:10px"><span style="font-size:24px">🚀</span><div><b style="font-size:13px">${L('up_banner_h')}</b><p class="note" style="margin:2px 0 0">${L('up_banner_p')}</p></div></div>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn" onclick="navigate('paywall')">${L('mng_upgrade')}</button>
+  </div>${tabbar()}`;
+  const pid=APP.plan;const planName=L(PLANS[pid].nameKey);
+  return `<div class="si">
+    ${topnav(L('mng_h'))}
+    <div class="card"><div class="flex between"><b style="font-size:13px">${L('mng_current')}</b><span class="tag g">${planName}</span></div>
+      <div class="divider"></div>
+      <div class="flex between"><span class="small">${L('co_cycle')}</span><span class="small">${APP.billing==='yr'?L('bill_yr'):L('bill_mo')} · ${priceStr(pid,APP.billing)}</span></div>
+      <div class="flex between" style="margin-top:6px"><span class="small">${L('mng_next')}</span><span class="small">${APP.billing==='yr'?'04/06/2027':'04/07/2026'}</span></div>
+      <div class="flex between" style="margin-top:6px"><span class="small">${L('mng_method')}</span><span class="small">💳 •••• 4242</span></div>
+    </div>
+    ${APP.planCancelled?`<div class="card" style="background:var(--gold-bg);border-color:var(--oro)"><p class="note" style="margin:0;color:#B45309">⏳ ${L('mng_cancelled')}</p></div>`:''}
+    <div class="spacer"></div>
+    <button class="btn sec" onclick="navigate('paywall')">${L('mng_change')}</button>
+    ${APP.planCancelled?'':`<button class="btn gho" style="color:var(--danger)" onclick="cancelPlan()">${L('mng_cancel')}</button>`}
+  </div>${tabbar()}`;});
+
+// ── TUTORES (marketplace de profesores particulares) ──
+const TUTORS=[
+  {ini:'MV',c:'#1A365D',tc:'#fff',name:'María Valdés',subj:'Matemática M1·M2',subjEn:'Math M1·M2',rate:4.9,nrev:128,price:'$12.000',mode:'Online · Presencial',modeEn:'Online · In-person',ver:true,exp:5,bio:'Ingeniera civil PUC. Preparo PAES Matemática con foco en álgebra y funciones. Método paso a paso y ensayos cronometrados.',bioEn:'PUC civil engineer. PAES Math prep focused on algebra and functions. Step-by-step method and timed mock tests.',crit:[4.9,4.8,5.0]},
+  {ini:'RC',c:'#10B981',tc:'#fff',name:'Rodrigo Cea',subj:'Comp. Lectora',subjEn:'Reading Comp.',rate:4.7,nrev:86,price:'$10.000',mode:'Online',modeEn:'Online',ver:true,exp:4,bio:'Profesor de Lenguaje. Estrategias de comprensión lectora y manejo del tiempo.',bioEn:'Language teacher. Reading comprehension strategies and time management.',crit:[4.8,4.6,4.7]},
+  {ini:'PS',c:'#6366F1',tc:'#fff',name:'Paula Soto',subj:'Ciencias · Biología',subjEn:'Science · Biology',rate:4.8,nrev:54,price:'$11.000',mode:'Presencial',modeEn:'In-person',ver:false,exp:6,bio:'Bióloga. Clases de Ciencias PAES con material propio y guías de práctica.',bioEn:'Biologist. PAES Science classes with own material and practice guides.',crit:[4.9,4.7,4.8]},
+  {ini:'JF',c:'#F5B041',tc:'#1A365D',name:'Javier Fuentes',subj:'Historia y C. Soc.',subjEn:'History',rate:4.6,nrev:41,price:'$9.500',mode:'Online',modeEn:'Online',ver:true,exp:3,bio:'Historiador. Preparación PAES Historia y Educación Ciudadana con foco en análisis de fuentes.',bioEn:'Historian. PAES History prep focused on source analysis.',crit:[4.6,4.7,4.5]},
+];
+const TUT_CRIT=()=>APP.lang==='es'?['Didáctica (claridad)','Puntualidad','Dominio del tema']:['Teaching (clarity)','Punctuality','Subject mastery'];
+function curT(){return TUTORS[APP.params.t||0];}
+
+// 1 · MARKETPLACE / BÚSQUEDA (pestaña)
+reg('tutors',()=>{APP.currentTab='tutors';const es=APP.lang==='es';return `<div class="si">
+  <div class="flex between" style="padding-top:10px">${LOGO}<span style="font-weight:800;font-size:15px;font-family:'Montserrat',sans-serif;color:var(--brand);margin-left:2px">${es?'Tutores':'Tutors'}</span><span class="spacer"></span><span class="tag w">⭐ Premium</span></div>
+  <input type="text" placeholder="🔍 ${es?'Buscar profesor o asignatura…':'Search tutor or subject…'}" style="margin-top:10px">
+  <div style="margin-top:8px;overflow-x:auto;white-space:nowrap">${allTests.map((t,i)=>`<span class="chip ${i===0?'on':''}" onclick="this.classList.toggle('on')"><span style="width:8px;height:8px;border-radius:50%;background:${t.color}"></span>${t.label}</span>`).join('')}</div>
+  ${APP.plan==='free'?`<div class="card" style="border-color:var(--brand);background:rgba(26,54,93,.05);cursor:pointer;padding:10px" onclick="navigate('paywall')"><div class="flex" style="gap:9px"><span style="font-size:18px">🔓</span><div style="flex:1"><span class="small" style="color:var(--ink);font-weight:600">${es?'Contactar tutores y el análisis requieren Premium':'Contacting tutors & analysis need Premium'}</span></div><span class="tag g">${es?'Mejorar ›':'Upgrade ›'}</span></div></div>`:''}
+  <div class="card" style="border-color:var(--oro);background:var(--gold-bg);cursor:pointer" onclick="navigate('tutor-analysis')">
+    <div class="flex between"><div class="flex" style="gap:10px"><span style="font-size:22px">🎯</span><div><b style="font-size:13px">${es?'Análisis de falencias':'Gap analysis'}</b><p class="note" style="margin:1px 0 0">${es?'Detecta tus áreas débiles desde tu práctica PAES':'Spot weak areas from your PAES practice'}</p></div></div><span class="tag w">⭐</span></div>
+    <button class="btn" style="margin-top:9px" onclick="event.stopPropagation();navigate('tutor-analysis')">${es?'Generar mi análisis →':'Generate my analysis →'}</button>
+  </div>
+  <div class="h" style="font-size:15px">${es?'Profesores destacados':'Featured tutors'}</div>
+  ${TUTORS.map((t,i)=>`
+  <div class="card" style="padding:12px;cursor:pointer" onclick="navigate('tutor-profile',{t:${i}})">
+    <div class="flex" style="align-items:flex-start;gap:10px">
+      <div class="avatar" style="background:${t.c};color:${t.tc};width:44px;height:44px;font-size:14px;flex-shrink:0;display:grid;place-items:center;border-radius:50%;font-weight:700;font-family:'Montserrat',sans-serif">${t.ini}</div>
+      <div style="flex:1;min-width:0">
+        <div class="flex between"><span style="font-weight:700;font-size:14px;font-family:'Montserrat',sans-serif">${t.name}</span>${t.ver?`<span class="tag g">✔ ${es?'Verificado':'Verified'}</span>`:''}</div>
+        <div class="small" style="margin-top:1px">${es?t.subj:t.subjEn} · ${es?t.mode:t.modeEn}</div>
+        <div class="flex" style="gap:6px;margin-top:5px">${stars(t.rate,12)}<span style="font-size:11px;font-weight:700;font-family:'Montserrat',sans-serif">${t.rate}</span><span class="small">(${t.nrev})</span></div>
+      </div>
+    </div>
+    <div class="flex between" style="margin-top:10px"><span><b style="font-size:15px;font-family:'Montserrat',sans-serif;color:var(--brand)">${t.price}</b><span class="small"> / ${es?'hora':'hr'}</span></span><span class="tag" style="background:var(--brand);color:#fff">${es?'Ver perfil ›':'View profile ›'}</span></div>
+  </div>`).join('')}
+</div>${tabbar()}`;});
+
+// 2 · ANÁLISIS DE FALENCIAS (premium · datos PAES)
+reg('tutor-analysis',()=>{const es=APP.lang==='es';
+  const fal=[
+    {subj:es?'Matemática M1':'Math M1',col:'#10B981',m:58,weak:es?['Álgebra','Funciones']:['Algebra','Functions'],n:6},
+    {subj:es?'Comp. Lectora':'Reading Comp.',col:'#1A365D',m:71,weak:es?['Inferencias']:['Inference'],n:4},
+    {subj:es?'Ciencias':'Science',col:'#F5B041',m:44,weak:es?['Biología celular','Química']:['Cell biology','Chemistry'],n:5},
+  ];
+  return `<div class="si">
+  ${topnav(es?'Análisis de falencias':'Gap analysis')}
+  <span class="tag w" style="display:inline-block">⭐ Premium</span>
+  <div class="card" style="border-color:var(--brand);background:rgba(26,54,93,.05)"><div class="flex" style="gap:10px"><span style="font-size:20px">📊</span><div><b style="font-size:13px">${es?'Tu diagnóstico PAES':'Your PAES diagnosis'}</b><p class="note" style="margin:1px 0 0">${es?'Basado en 342 ejercicios resueltos en Aprueba':'Based on 342 exercises solved in Aprueba'}</p></div></div></div>
+  <p class="note">${es?'Generado desde tu desempeño. Ordenado de mayor a menor necesidad.':'Generated from your performance. Sorted by need.'}</p>
+  ${fal.map(f=>`
+  <div class="card">
+    <div class="flex between"><b style="font-size:13px">${f.subj}</b><span class="tag ${f.m<55?'d':f.m<70?'w':'g'}">${f.m}% ${es?'dominio':'mastery'}</span></div>
+    <div class="bar" style="height:7px"><i style="width:${f.m}%;background:${f.col}"></i></div>
+    <div class="small" style="margin-top:8px">${es?'Áreas a reforzar':'Areas to reinforce'}:</div>
+    <div style="margin-top:5px">${f.weak.map(w=>`<span class="tag d" style="margin-right:5px;display:inline-block">⚠ ${w}</span>`).join('')}</div>
+    <button class="btn sec" style="margin-top:10px" onclick="gotoTab('tutors')">${es?`Ver ${f.n} tutores recomendados →`:`See ${f.n} recommended tutors →`}</button>
+  </div>`).join('')}
+</div>`;});
+
+// 3 · PERFIL DEL PROFESOR
+reg('tutor-profile',()=>{const es=APP.lang==='es';const t=curT();const cn=TUT_CRIT();
+  return `<div class="si">
+  ${topnav(es?'Perfil del profesor':'Tutor profile')}
+  <div class="flex" style="gap:12px;align-items:flex-start">
+    <div class="avatar" style="background:${t.c};color:${t.tc};width:60px;height:60px;font-size:20px;flex-shrink:0;display:grid;place-items:center;border-radius:50%;font-weight:700;font-family:'Montserrat',sans-serif">${t.ini}</div>
+    <div style="flex:1">
+      <div class="flex" style="gap:6px"><span style="font-weight:800;font-size:16px;font-family:'Montserrat',sans-serif">${t.name}</span>${t.ver?`<span class="tag g">✔ ${es?'Verificado':'Verified'}</span>`:''}</div>
+      <div class="small">${es?t.subj:t.subjEn} · ${es?t.mode:t.modeEn}</div>
+      <div class="flex" style="gap:6px;margin-top:4px">${stars(t.rate,13)}<span style="font-size:12px;font-weight:700;font-family:'Montserrat',sans-serif">${t.rate}</span><span class="small">(${t.nrev} ${es?'reseñas':'reviews'})</span></div>
+    </div>
+  </div>
+  <div class="flex between" style="margin-top:10px"><span><b style="font-size:18px;font-family:'Montserrat',sans-serif;color:var(--brand)">${t.price}</b><span class="small"> / ${es?'hora':'hr'}</span></span><span class="tag">🎓 ${t.exp} ${es?'años exp.':'yrs exp.'}</span></div>
+  <p class="p" style="margin-top:10px">${es?t.bio:t.bioEn}</p>
+  <div class="h" style="font-size:14px">${es?'Valoración por criterio':'Rating by criterion'}</div>
+  ${cn.map((c,i)=>`<div class="flex between" style="margin-top:7px"><span class="small" style="flex:1">${c}</span>${stars(t.crit[i],12)}<span style="font-size:11px;font-weight:700;font-family:'Montserrat',sans-serif;width:26px;text-align:right">${t.crit[i].toFixed(1)}</span></div>`).join('')}
+  <div class="flex between" style="margin-top:14px"><b style="font-size:14px">${es?'Reseñas':'Reviews'}</b><span style="font-size:11px;color:var(--brand);font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif" onclick="navigate('tutor-reviews',{t:${APP.params.t||0}})">${es?`Ver todas (${t.nrev}) →`:`See all (${t.nrev}) →`}</span></div>
+  <div class="card" style="padding:11px"><div class="flex between"><div class="flex" style="gap:7px"><div class="avatar" style="background:#10B981;color:#fff;width:28px;height:28px;font-size:10px;display:grid;place-items:center;border-radius:50%;font-weight:700">CR</div><span style="font-size:12px;font-weight:600">Camila R.</span></div>${stars(5,11)}</div><p class="small" style="margin-top:6px">${es?'"Explica increíble, subí 120 puntos en el ensayo. Muy puntual."':'"Explains amazingly, my mock score went up 120 points. Very punctual."'}</p></div>
+  <div class="spacer"></div>
+  <button class="btn" onclick="navigate('tutor-contact',{t:${APP.params.t||0}})">${es?'Contactar':'Contact'} · <span style="opacity:.85">⭐ Premium</span></button>
+  <button class="btn gho" onclick="nav_back()">${es?'Volver':'Back'}</button>
+</div>`;});
+
+// 4 · TODAS LAS RESEÑAS
+reg('tutor-reviews',()=>{const es=APP.lang==='es';const t=curT();const cn=TUT_CRIT();
+  const rv=[
+    {ini:'CR',c:'#10B981',name:'Camila R.',date:es?'Hace 2 sem':'2 wk ago',ov:5,vals:[5,5,5],txt:es?'Explica increíble, subí 120 puntos. Muy puntual y paciente.':'Explains amazingly, +120 points. Punctual and patient.'},
+    {ini:'TG',c:'#1A365D',name:'Tomás G.',date:es?'Hace 1 mes':'1 mo ago',ov:5,vals:[5,4,5],txt:es?'Domina la materia. A veces se atrasaba unos minutos.':'Masters the subject. Sometimes a few minutes late.'},
+    {ini:'AM',c:'#6366F1',name:'Andrea M.',date:es?'Hace 1 mes':'1 mo ago',ov:4,vals:[4,5,4],txt:es?'Buena profe, me habría gustado más material de práctica.':'Good tutor, wish there were more practice material.'},
+  ];
+  return `<div class="si">
+  ${topnav(es?'Reseñas · '+t.name:'Reviews · '+t.name)}
+  <div class="card" style="text-align:center;background:rgba(26,54,93,.05);border-color:var(--brand)"><div style="font-size:30px;font-weight:800;font-family:'Montserrat',sans-serif;color:var(--brand)">${t.rate}</div>${stars(t.rate,16)}<div class="small" style="margin-top:4px">${t.nrev} ${es?'reseñas verificadas':'verified reviews'}</div></div>
+  <div class="h" style="font-size:14px">${es?'Promedio por criterio':'Average by criterion'}</div>
+  ${cn.map((c,i)=>`<div class="flex between" style="margin-top:6px"><span class="small" style="flex:1">${c}</span>${stars(t.crit[i],11)}<span style="font-size:11px;font-weight:700;width:26px;text-align:right;font-family:'Montserrat',sans-serif">${t.crit[i].toFixed(1)}</span></div>`).join('')}
+  <div class="h" style="font-size:14px">${es?'Opiniones':'Opinions'}</div>
+  ${rv.map(r=>`<div class="card" style="padding:11px"><div class="flex between"><div class="flex" style="gap:7px"><div class="avatar" style="background:${r.c};color:#fff;width:28px;height:28px;font-size:10px;display:grid;place-items:center;border-radius:50%;font-weight:700">${r.ini}</div><div><div style="font-size:12px;font-weight:600">${r.name}</div><div class="small" style="font-size:10px">${r.date}</div></div></div>${stars(r.ov,11)}</div><div class="flex" style="gap:8px;margin-top:7px;flex-wrap:wrap">${cn.map((c,i)=>`<span class="small" style="font-size:10px">${c.split(' ')[0]}: <b>${r.vals[i]}</b></span>`).join('')}</div><p class="small" style="margin-top:6px">"${r.txt}"</p></div>`).join('')}
+</div>`;});
+
+// 5 · CONTACTAR / SOLICITUD (premium)
+reg('tutor-contact',()=>{const es=APP.lang==='es';const t=curT();
+  return `<div class="si">
+  ${topnav(es?'Contactar profesor':'Contact tutor')}
+  <span class="tag w" style="display:inline-block">⭐ Premium</span>
+  <p class="p">${es?t.name+' recibirá tu perfil para conocer tus necesidades antes de responder.':t.name+' will receive your profile to understand your needs before replying.'}</p>
+  <div class="h" style="font-size:13px">${es?'Tu perfil (se compartirá)':'Your profile (will be shared)'}</div>
+  <div class="card"><div class="flex" style="gap:10px"><div class="avatar" style="background:#F5B041;color:#1A365D;width:40px;height:40px;font-size:13px;display:grid;place-items:center;border-radius:50%;font-weight:700">${(APP.userName||'MX').slice(0,2).toUpperCase()}</div><div><b style="font-size:13px">${APP.userName||'Max'} · ${es?'4º Medio':'12th grade'}</b><div class="small">${es?'Objetivo: 700+ pts · Rinde PAES nov. 2026':'Goal: 700+ pts · PAES Nov 2026'}</div></div></div>
+    <div class="small" style="margin-top:9px">${es?'Áreas débiles (de tu análisis)':'Weak areas (from your analysis)'}:</div>
+    <div style="margin-top:5px">${(es?['Álgebra','Funciones']:['Algebra','Functions']).map(w=>`<span class="tag d" style="margin-right:5px;display:inline-block">⚠ ${w}</span>`).join('')}</div>
+  </div>
+  <div class="h" style="font-size:13px">${es?'Mensaje':'Message'}</div>
+  <textarea placeholder="${es?'Hola '+t.name+', necesito reforzar álgebra para la PAES. ¿Tienes cupos en las tardes?':'Hi '+t.name+', I need to reinforce algebra for the PAES. Any afternoon slots?'}" style="width:100%;min-height:80px;resize:none"></textarea>
+  <p class="note">💳 ${es?'El pago de clases se acuerda directamente con el profesor (pronto integrado en Aprueba).':'Lesson payment is arranged directly with the tutor (coming soon in Aprueba).'}</p>
+  <div class="spacer"></div>
+  <button class="btn" onclick="tutSendRequest(${APP.params.t||0})">${es?'Enviar solicitud':'Send request'}</button>
+</div>`;});
+
+// 6 · CHAT INTERNO (+ compartir contacto)
+reg('tutor-chat',()=>{const es=APP.lang==='es';const t=curT();
+  const msgs=[
+    {me:false,x:es?'¡Hola '+(APP.userName||'Max')+'! Vi tu perfil, podemos partir reforzando álgebra. Tengo cupo martes y jueves 18:00.':'Hi '+(APP.userName||'Max')+'! Saw your profile, we can start with algebra. I have Tue & Thu 6pm slots.'},
+    {me:true,x:es?'Perfecto, me sirve el martes. ¿Es online?':'Great, Tuesday works. Is it online?'},
+    {me:false,x:es?'Sí, por videollamada. La primera clase es de diagnóstico 👍':'Yes, by video call. First class is a diagnosis 👍'},
+  ];
+  return `<div class="si">
+  <div class="topnav"><button class="back-btn" onclick="nav_back()">←</button><div class="avatar" style="background:${t.c};color:${t.tc};width:30px;height:30px;font-size:11px;display:grid;place-items:center;border-radius:50%;font-weight:700;margin-right:8px">${t.ini}</div><div class="nav-title" style="flex:1">${t.name}<div class="small" style="font-size:10px;color:var(--accent);font-weight:600">● ${es?'En línea':'Online'}</div></div></div>
+  <div class="card" style="padding:10px;background:var(--gold-bg);border-color:var(--oro)"><div class="flex between"><span class="small" style="font-weight:600;color:var(--ink)">🔒 ${es?'Compartir mi WhatsApp':'Share my WhatsApp'}</span><span class="sw on" onclick="this.classList.toggle('on')"></span></div><p class="note" style="margin-top:4px">${es?'Se revela solo si ambos aceptan. Recomendamos coordinar aquí primero.':'Revealed only if both agree. We suggest coordinating here first.'}</p></div>
+  <div style="flex:1;margin-top:10px;display:flex;flex-direction:column;gap:8px">${msgs.map(m=>`<div style="max-width:80%;align-self:${m.me?'flex-end':'flex-start'};background:${m.me?'var(--brand)':'var(--soft)'};color:${m.me?'#fff':'var(--ink)'};border:1.5px solid ${m.me?'var(--brand)':'var(--line)'};border-radius:14px;padding:9px 12px;font-size:12px;line-height:1.4">${m.x}</div>`).join('')}</div>
+  <button class="btn sec" onclick="navigate('tutor-review',{t:${APP.params.t||0}})">⭐ ${es?'Calificar a '+t.name:'Rate '+t.name}</button>
+  <div class="flex" style="gap:8px;margin-top:8px"><input type="text" placeholder="${es?'Escribe un mensaje…':'Type a message…'}" style="flex:1;margin:0"><button class="btn" style="width:auto;margin:0;padding:11px 16px">➤</button></div>
+</div>`;});
+
+// 7 · DEJAR RESEÑA (1–5 ⭐ · 3 criterios)
+reg('tutor-review',()=>{const es=APP.lang==='es';const t=curT();const cn=TUT_CRIT();
+  return `<div class="si">
+  ${topnav(es?'Calificar profesor':'Rate tutor')}
+  <div class="flex" style="gap:10px"><div class="avatar" style="background:${t.c};color:${t.tc};width:40px;height:40px;font-size:13px;display:grid;place-items:center;border-radius:50%;font-weight:700">${t.ini}</div><div><b style="font-size:13px">${t.name}</b><div class="small">${es?'8 clases tomadas · '+t.subj:'8 classes taken · '+t.subjEn}</div></div></div>
+  <p class="p" style="margin-top:8px">${es?'Califica de 1 a 5 estrellas cada criterio:':'Rate each criterion from 1 to 5 stars:'}</p>
+  ${cn.map(c=>`<div class="card" style="padding:12px"><div style="font-size:13px;font-weight:700;font-family:'Montserrat',sans-serif;margin-bottom:6px">${c}</div>${starPick()}</div>`).join('')}
+  <div class="h" style="font-size:13px">${es?'Comentario (opcional)':'Comment (optional)'}</div>
+  <textarea placeholder="${es?'Cuenta tu experiencia para ayudar a otros alumnos…':'Share your experience to help other students…'}" style="width:100%;min-height:72px;resize:none"></textarea>
+  <div class="spacer"></div>
+  <button class="btn" onclick="tutPublishReview(${APP.params.t||0})">${es?'Publicar reseña':'Publish review'}</button>
+</div>`;});
+
+// ── ACTIONS ──
+function tutSendRequest(t){showToast(APP.lang==='es'?'Solicitud enviada ✓':'Request sent ✓','gold','📨');setTimeout(()=>navigate('tutor-chat',{t}),700);}
+function tutPublishReview(t){showToast(APP.lang==='es'?'¡Reseña publicada! +2 🥉':'Review published! +2 🥉','bronze','⭐');APP.medals.bronze=(APP.medals.bronze||0)+2;setTimeout(()=>navigate('tutor-profile',{t}),700);}
+function demoLogin(){APP.loggedIn=true;APP.userName='Demo';earnMedal('bronze',1);navigate('home');}
+function doRegister(){
+  const n=document.getElementById('inp_name');
+  APP.loggedIn=true;APP.userName=(n&&n.value.trim())||'Estudiante';
+  earnMedal('bronze',1);navigate('select-tests');
+}
+function sendSmsCode(){
+  const input=document.getElementById('inp_phone');
+  const value=(input&&input.value.trim())||'';
+  const compact=value.replace(/[\s()-]/g,'');
+  if(!compact.startsWith('+')||compact.length<9){alert(tr('Ingresa un numero con codigo de pais.','Enter a number including the country code.'));return;}
+  APP.phone=value;
+  APP.country=compact.startsWith('+44')?'UK':'CL';
+  APP.language=APP.country==='UK'?'en':'es';
+  APP.lang=APP.language;
+  document.getElementById('langSel').value=APP.lang;
+  navigate('sms-verification');
+}
+function confirmSmsCode(){
+  const input=document.getElementById('inp_sms');
+  const code=(input&&input.value.trim())||'';
+  if(code!=='123456'){alert(tr('Ingresa el codigo de 6 digitos.','Enter the 6-digit code.'));return;}
+  navigate('confirm-locale');
+}
+function setOnboardingCountry(country){
+  APP.country=country;
+  APP.language=country==='UK'?'en':'es';
+  APP.lang=APP.language;
+  document.getElementById('langSel').value=APP.lang;
+  render();
+}
+function setOnboardingLanguage(language){
+  APP.language=language;
+  APP.lang=language;
+  document.getElementById('langSel').value=APP.lang;
+  render();
+}
+function confirmLocale(){
+  APP.lang=APP.language;
+  APP.gradeId=null;APP.gradeLabel='';APP.selectedTests=[];
+  document.documentElement.lang=APP.lang;
+  document.getElementById('langSel').value=APP.lang;
+  navigate('select-grade');
+}
+function selectGrade(id){APP.gradeId=id;APP.gradeLabel=gradeName();render();}
+function continueFromGrade(){
+  if(!APP.gradeId)return;
+  APP.gradeLabel=gradeName();APP.selectedTests=[];
+  navigate('select-tests');
+}
+function doRegister(){
+  const n=document.getElementById('inp_name');
+  const email=document.getElementById('inp_email');
+  if(!n||!n.value.trim()||!email||!email.value.includes('@')){alert(tr('Completa tu nombre y correo.','Enter your name and email.'));return;}
+  APP.loggedIn=true;APP.userName=n.value.trim();
+  earnMedal('bronze',1);navigate('format');
+}
+function startApp(){earnMedal('bronze',1);navigate('home');}
+function toggleTest(id,el){const i=APP.selectedTests.indexOf(id);if(i>=0)APP.selectedTests.splice(i,1);else APP.selectedTests.push(id);el.classList.toggle('on');}
+function selectOpt(i){
+  document.querySelectorAll('.opt').forEach((o,j)=>{o.className='opt'+(j===i?' sel':'');});
+  APP.selectedOpt=i;
+}
+function checkAnswer(){
+  if(APP.selectedOpt===null)return;
+  const q=APP.currentQ;
+  APP.quotaUsed=Math.min(APP.quotaUsed+1,APP.quotaMax);
+  if(APP.selectedOpt===q.correct)earnMedal('bronze',1);
+  navigate('result');
+  if(APP.quotaUsed>=APP.quotaMax&&APP.quotaMax===10)setTimeout(()=>navigate('limit-2'),1500);
+  else if(APP.quotaUsed>=APP.quotaMax&&APP.quotaMax>=20)setTimeout(()=>navigate('paywall'),1500);
+}
+function goCheckout(pid){APP.checkoutPlan=pid;navigate('checkout');}
+function payPlan(){
+  APP.plan=APP.checkoutPlan;APP.planCancelled=false;
+  APP.quotaMax=9999;APP.quotaUsed=0; // plan activo: sin límite
+  showToast(APP.lang==='es'?'Plan activado ✓':'Plan activated ✓','gold','🎉');
+  navigate('payment-success');
+}
+function cancelPlan(){APP.planCancelled=true;render();}
+function submitRc(){APP.rcSubmitted=true;render();}
+function simulateRcConfirm(){
+  APP.rcRewarded=true;APP.rcSubmitted=false;
+  APP.medals.bronze=(APP.medals.bronze||0)+250;
+  showToast((APP.lang==='es'?'+250 Medallas de Bronce!':'+250 Bronze Medals!'),'bronze','🥉');
+  render();
+}
+function doExchange(from,to){
+  if((APP.medals[from]||0)<5)return;
+  APP.medals[from]=(APP.medals[from]||0)-5;
+  if(to)APP.medals[to]=(APP.medals[to]||0)+1;
+  earnMedal(to||'platinum',1);
+  setTimeout(()=>render(),400);
+}
+function gDec(fi){const q=document.getElementById('gq'+fi);if(q&&+q.textContent>0)q.textContent=+q.textContent-1;}
+function gInc(fi){
+  const q=document.getElementById('gq'+fi);if(!q)return;
+  let s=0;document.querySelectorAll('[id^="gq"]').forEach(e=>s+=+e.textContent);
+  const rem=APP.dailyGiftsMax-APP.dailyGiftsUsed;
+  if(s<rem)q.textContent=+q.textContent+1;
+}
+function sendGift(fi){
+  const q=document.getElementById('gq'+fi);const amt=q?+q.textContent:0;
+  if(amt>0){
+    APP.dailyGiftsUsed=Math.min(APP.dailyGiftsUsed+amt,APP.dailyGiftsMax);
+    APP.medals.bronze=Math.max(0,(APP.medals.bronze||0)-amt);
+    const s=document.getElementById('gs'+fi);
+    if(s)s.textContent=(APP.lang==='es'?'Regaladas: ':'Gifted: ')+amt+' 🥉';
+    if(q)q.textContent='0';
+  }
+}
+function sendAllGifts(){document.querySelectorAll('[id^="gq"]').forEach((_,fi)=>sendGift(fi));}
+function createGroup(){
+  const name=document.getElementById('newGrpName');
+  const gName=name?name.value.trim():'';
+  if(!gName){alert(APP.lang==='es'?'Ingresa un nombre para el grupo':'Enter a group name');return;}
+  const chips=document.querySelectorAll('.chip.on');
+  let subj=allTests[0].label;
+  chips.forEach(c=>{const t=allTests.find(t=>c.textContent.includes(t.label));if(t)subj=t.label;});
+  APP.groups.push({id:'g'+Date.now(),name:gName,subject:subj,color:['#1A365D','#10B981','#6366F1','#EF4444','#F5B041'][APP.groups.length%5],members:[{i:'YO',n:APP.userName||'Tú',c:'#F5B041',tc:'#1A365D'}],avg:0,your:0});
+  navigate('invite-members',{gi:APP.groups.length-1});
+}
+function sendInvite(gi){
+  const inp=document.getElementById('invEmail');
+  const email=inp?inp.value.trim():'';
+  if(!email||!email.includes('@')){alert(APP.lang==='es'?'Ingresa un correo válido':'Enter a valid email');return;}
+  APP.invites.push({gi,email});if(inp)inp.value='';render();
+}
+function shareToGroup(){
+  showToast(APP.lang==='es'?'Pregunta compartida en el grupo':'Question shared to group','bronze','👥');
+  setTimeout(()=>navigate('group-detail',{gi:0}),800);
+}
+function toggleTheme(){APP.dark=!APP.dark;document.body.classList.toggle('dark',APP.dark);document.getElementById('themeBtn').textContent=APP.dark?'☀️':'🌙';}
+function setLang(l){APP.lang=l;document.getElementById('langSel').value=l;document.documentElement.lang=l;render();}
+
+// ── RENDER ──
+function render(){
+  const fn=SCREENS[APP.current];
+  document.getElementById('screen').innerHTML=fn?fn():`<div class="si" style="text-align:center;padding-top:60px"><div style="font-size:40px">⚠️</div><div class="h">Screen not found: ${APP.current}</div><button class="btn" onclick="navigate('splash')">← Back</button></div>`;
+}
+navigate('splash');
+</script>
+</body>
+</html>

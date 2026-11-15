@@ -2,6 +2,19 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import express from 'express';
 import { createAuthLimiters } from '../src/middleware/authRateLimiters.js';
+
+test('Verification resend is limited by Firebase UID rather than shared source IP',async()=>{
+  const app=express();
+  const {verificationLimiter}=createAuthLimiters(true);
+  app.post('/verify',(req,res,next)=>{req.user={sub:req.headers['x-test-user']};next();},verificationLimiter,(req,res)=>res.json({sent:true}));
+  const server=app.listen(0,'127.0.0.1');await new Promise(resolve=>server.once('listening',resolve));
+  const request=uid=>fetch(`http://127.0.0.1:${server.address().port}/verify`,{method:'POST',headers:{'x-test-user':uid}});
+  try{
+    assert.equal((await request('one')).status,200);
+    const denied=await request('one');assert.equal(denied.status,429);assert.equal((await denied.json()).error.code,'VERIFICATION_RATE_LIMITED');
+    assert.equal((await request('two')).status,200);
+  }finally{await new Promise(resolve=>server.close(resolve));}
+});
 test('Successful logins and another account do not consume the failed-login budget', async () => {
   const app=express();app.use(express.json());
   const {loginLimiter,registerLimiter}=createAuthLimiters(true);

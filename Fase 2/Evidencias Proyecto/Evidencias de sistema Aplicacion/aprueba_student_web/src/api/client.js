@@ -1,4 +1,6 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000/api/v1';
+// Production always uses the API on the same origin, even when no build-time
+// environment file is available. Local development keeps its separate API port.
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? '/api/v1' : 'http://localhost:4000/api/v1');
 let refreshPending;
 
 export function clearSession() {

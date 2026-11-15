@@ -27,11 +27,11 @@ class Benefit {
     id: j['id'].toString(),
     name: (j['name'] ?? '').toString(),
     description: (j['description'] ?? '').toString(),
-    sponsorName: (j['sponsor'] ?? '').toString(),
+    sponsorName: (j['sponsorName'] ?? '').toString(),
     costPlatinum: (j['costPlatinum'] as num?)?.toInt() ?? 5,
     icon: (j['icon'] ?? '').toString(),
     unlocked: j['unlocked'] == true,
-    inStock: j['inStock'] != false,
+    inStock: j['canRedeem'] == true,
   );
 }
 

@@ -1,5 +1,6 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { useState, useRef } from 'react';
+import { Suspense, useState, useRef } from 'react';
+import ContentSkeleton from './ContentSkeleton';
 import { useAuth } from '../auth/useAuth';
 import { useTheme } from '../context/useTheme';
 import './Layout.css';
@@ -267,7 +268,9 @@ export default function Layout() {
         </header>
 
         <main style={{ padding: '32px', maxWidth: '1100px', width: '100%', margin: '0 auto', flex: 1 }}>
-          <Outlet />
+          <Suspense fallback={<ContentSkeleton kind="cards" />}>
+            <Outlet />
+          </Suspense>
         </main>
       </div>
     </div>

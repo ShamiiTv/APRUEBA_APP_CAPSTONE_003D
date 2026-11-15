@@ -1,3 +1,5 @@
+import '../../core/widgets/content_skeleton.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/l10n.dart';
@@ -37,7 +39,7 @@ class MedalsScreen extends ConsumerWidget {
     return Scaffold(
       body: SafeArea(
         child: profile.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const ContentSkeleton(kind: 'medals'),
           error: (error, _) => Center(
             child: Padding(
               padding: const EdgeInsets.all(24),
@@ -238,7 +240,10 @@ class MedalsScreen extends ConsumerWidget {
               onPressed: () => _exchange(context, ref, t.$1, next),
               style: FilledButton.styleFrom(
                 backgroundColor: t.$3,
-                foregroundColor: t.$1 == 'gold' ? AppColors.azul : Colors.white,
+                foregroundColor: WfColors.readableForeground(
+                  AppColors.azul,
+                  t.$3,
+                ),
                 minimumSize: const Size(0, 34),
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 shape: RoundedRectangleBorder(

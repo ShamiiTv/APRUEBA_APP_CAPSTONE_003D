@@ -1,3 +1,4 @@
+import ContentSkeleton from '../components/ContentSkeleton';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { apiFetch } from '../api/client';
@@ -7,18 +8,23 @@ import './Practice.css';
 
 export default function Practice() {
   const { user, updateUserState } = useAuth();
-  const { t } = useTheme();
+  const { t,lang } = useTheme();
   const navigate = useNavigate();
 
   const [params] = useSearchParams();
   const requestedTest = params.get('testId');
+  const [similarTo,setSimilarTo]=useState(params.get('similarTo') || null);
   const requestedDifficulty = params.get('difficulty');
   const [testId, setTestId] = useState(['m1','m2','lectora','cien','hist'].includes(requestedTest) ? requestedTest : user?.selectedTests?.[0] || 'm1');
   const [difficulty, setDifficulty] = useState(['d1','d2','d3'].includes(requestedDifficulty) ? requestedDifficulty : user?.difficulty || 'd2');
   const [reload, setReload] = useState(0);
   const startedAt = useRef(0);
+  const questionSurface = useRef(null);
+  const [questionHeight,setQuestionHeight] = useState(0);
+
   const submission = useRef(false);
   const [question, setQuestion] = useState(null);
+  useEffect(()=>{const node=questionSurface.current;if(!node)return;const observer=new ResizeObserver(()=>setQuestionHeight(node.getBoundingClientRect().height));observer.observe(node);return()=>observer.disconnect();},[question]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -27,6 +33,8 @@ export default function Practice() {
   const [noQuestions, setNoQuestions] = useState(false);
   const [quotaExceeded, setQuotaExceeded] = useState(false);
   const [error, setError] = useState(null);
+  const [levels,setLevels]=useState([]);
+  useEffect(()=>{const controller=new AbortController();apiFetch(`/practice/levels?testId=${testId}`,{signal:controller.signal}).then(res=>setLevels(res.data)).catch(()=>{});return()=>controller.abort();},[testId,reload]);
 
   const fetchNextQuestion = () => {
     setLoading(true);
@@ -42,12 +50,13 @@ export default function Practice() {
 
   useEffect(() => {
     const controller = new AbortController();
-    apiFetch(`/practice/next?testId=${testId}&difficulty=${difficulty}`, { signal: controller.signal })
+    apiFetch(`/practice/next?testId=${testId}&difficulty=${difficulty}${similarTo ? '&similarTo='+encodeURIComponent(similarTo) : ''}`, { signal: controller.signal })
       .then(res => {
         if (controller.signal.aborted) return;
         setAllCompleted(res.data?.allCompleted === true);
         setNoQuestions(res.data?.noQuestions === true);
         setQuestion(res.data?.question || null);
+        if(similarTo && res.meta?.similarity){setTestId(res.meta.testId);setDifficulty(res.meta.difficulty);}
         if (res.data?.user) updateUserState(res.data.user);
         startedAt.current = Date.now();
       }).catch(err => {
@@ -56,7 +65,7 @@ export default function Practice() {
         else setError(err.message);
       }).finally(() => { if (!controller.signal.aborted) setLoading(false); });
     return () => controller.abort();
-  }, [testId, difficulty, reload, updateUserState]);
+  }, [testId, difficulty, similarTo, reload, updateUserState]);
 
   const handleSubmit = async () => {
     if (!selectedOption || submission.current || !question || result) return;
@@ -97,6 +106,7 @@ export default function Practice() {
 
   return (
     <div style={{ maxWidth: '820px', margin: '0 auto', position: 'relative' }}>
+      {similarTo && <section role="status"><p>{lang==='en'?'Similar questions: same test, difficulty and topic.':'Preguntas similares: misma prueba, dificultad y eje temático.'}</p><button onClick={()=>{setSimilarTo(null);fetchNextQuestion();}}>{lang==='en'?'Return to general practice':'Volver a práctica general'}</button></section>}
       {/* Cabecera del Módulo */}
       <div style={{
         display: 'flex',
@@ -111,14 +121,14 @@ export default function Practice() {
             {t.practice.title}
           </h1>
           <p style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '4px' }}>
-            {t.practice.subtitle}
+            {t.practice.subtitle} · {lang==='en'?'10 base + 5 school + 5 address · 20 free max':'10 base + 5 colegio + 5 dirección · 20 máx gratis'}
           </p>
         </div>
 
         <select
           value={testId}
           disabled={submitting}
-          onChange={(e) => { setTestId(e.target.value); fetchNextQuestion(); }}
+          onChange={(e) => { setSimilarTo(null); setTestId(e.target.value); fetchNextQuestion(); }}
           style={{
             padding: '10px 16px',
             borderRadius: '10px',
@@ -139,10 +149,11 @@ export default function Practice() {
           <option value="hist">{t.practice.selectHistoria}</option>
         </select>
         <select aria-label="Dificultad" value={difficulty} disabled={submitting} onChange={e => { setDifficulty(e.target.value); fetchNextQuestion(); }} style={{ padding: '10px', borderRadius: '10px', color: 'var(--ink)', background: 'var(--panel)', border: '1px solid var(--line)' }}>
-          <option value="d1">Básica</option><option value="d2">Intermedia</option><option value="d3">Avanzada</option>
+          <option value="d1">{lang==='en'?'Basic':'Básica'}</option><option value="d2">{lang==='en'?'Intermediate':'Intermedia'}</option><option value="d3">{lang==='en'?'Advanced':'Avanzada'}</option>
         </select>
       </div>
 
+      <section className="practice-levels"><h2>{lang==='en'?'Difficulty levels':'Niveles escalonados'}</h2><p>{lang==='en'?'20 correct answers in the previous level unlock the next one.':'20 aciertos en el nivel anterior desbloquean el siguiente.'}</p><div className="level-grid">{levels.map(level=><button className="level-button" aria-pressed={difficulty===level.id} key={level.id} disabled={submitting || loading || !level.unlocked || !level.available} onClick={()=>{setSimilarTo(null);setDifficulty(level.id);fetchNextQuestion();}}><strong>{level.unlocked?'🔓':'🔒'} {({d1:lang==='en'?'Basic':'Básica',d2:lang==='en'?'Intermediate':'Intermedia',d3:lang==='en'?'Advanced':'Avanzada'})[level.id] || level.id}</strong><span>{level.correct}/20 {lang==='en'?'correct':'aciertos'} · {level.available} {lang==='en'?'questions':'preguntas'}</span><progress value={Math.min(level.correct,20)} max="20"/><small>{!level.available ? (lang==='en'?'No questions yet':'Sin preguntas disponibles') : !level.unlocked ? (lang==='en'?'Locked':'Por desbloquear') : difficulty===level.id ? (lang==='en'?'Selected':'Seleccionado') : (lang==='en'?'Practice this level →':'Practicar este nivel →')}</small></button>)}</div></section>
       {error && !quotaExceeded && (
         <div style={{
           padding: '14px 18px',
@@ -159,6 +170,7 @@ export default function Practice() {
       )}
 
       {/* Modal de Cuota Agotada */}
+      {quotaExceeded && <p><button onClick={()=>navigate('/ajustes')}>{lang==='en'?'Complete school / address (+5 each)':'Completar colegio / dirección (+5 cada uno)'}</button> <button onClick={()=>navigate('/plan')}>{lang==='en'?'View monthly plans':'Ver planes mensuales'}</button></p>}
       {quotaExceeded && !result ? (
         <div style={{
           backgroundColor: 'var(--panel)',
@@ -244,18 +256,11 @@ export default function Practice() {
           </div>
         </div>
       ) : loading ? (
-        <div style={{
-          backgroundColor: 'var(--panel)',
-          borderRadius: '16px',
-          padding: '60px',
-          textAlign: 'center',
-          color: 'var(--muted)',
-          border: '1px solid var(--line)'
-        }}>
-          {t.practice.loadingQuestions}
-        </div>
+        <ContentSkeleton kind="question" minHeight={questionHeight || undefined} />
+      ) : similarTo && !question ? (
+          <section role="status"><h2>{lang==='en'?'No more similar questions available':'No hay más preguntas similares disponibles'}</h2><p>{lang==='en'?'There are no other unanswered questions with the same test, difficulty and topic.':'No quedan otras preguntas sin responder de la misma prueba, dificultad y eje temático.'}</p><button onClick={()=>{setSimilarTo(null);fetchNextQuestion();}}>{lang==='en'?'Continue general practice':'Continuar práctica general'}</button></section>
       ) : noQuestions ? (
-        <div style={{ padding: '32px', background: 'var(--panel)', borderRadius: '16px', border: '1px solid var(--line)', color: 'var(--muted)' }}>Todavía no hay preguntas disponibles para esta prueba y dificultad. Selecciona otra opción.</div>
+        <div style={{ padding: '32px', background: 'var(--panel)', borderRadius: '16px', border: '1px solid var(--line)', color: 'var(--muted)' }}>{lang==='en'?'There are no questions for this test and difficulty yet. Choose another option.':'Todavía no hay preguntas disponibles para esta prueba y dificultad. Selecciona otra opción.'}</div>
       ) : allCompleted ? (
         <div style={{
           backgroundColor: 'var(--panel)',
@@ -274,7 +279,7 @@ export default function Practice() {
           </p>
         </div>
       ) : question ? (
-        <div style={{
+        <div ref={questionSurface} className="question-surface" style={{
           backgroundColor: 'var(--panel)',
           borderRadius: '16px',
           padding: '32px',
@@ -300,18 +305,18 @@ export default function Practice() {
           </div>
 
           {/* Enunciado */}
-          <div style={{
+          <div className="question-statement-space" style={{
             fontSize: '16px',
             lineHeight: 1.6,
             color: 'var(--ink)',
             fontWeight: 500,
-            marginBottom: '24px'
+            marginBottom: '24px',whiteSpace:'pre-wrap',overflowWrap:'anywhere'
           }}>
             {question.statement}
           </div>
 
           {/* Alternativas A-E */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '28px' }}>
+          <div className="question-options-space" style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '28px' }}>
             {question.options?.map((opt) => {
               const isSelected = selectedOption === opt.id;
               let borderCol = isSelected ? 'var(--brand)' : 'var(--line)';
@@ -330,6 +335,7 @@ export default function Practice() {
               return (
                 <button
                   key={opt.id}
+                  aria-pressed={isSelected}
                   disabled={Boolean(result) || submitting}
                   onClick={() => setSelectedOption(opt.id)}
                   style={{
@@ -360,7 +366,7 @@ export default function Practice() {
                   }}>
                     {opt.id}
                   </span>
-                  <span style={{ fontSize: '14px', color: 'var(--ink)', fontWeight: 500 }}>
+                  <span style={{ fontSize: '14px', color: 'var(--ink)', fontWeight: 500,whiteSpace:'pre-wrap',overflowWrap:'anywhere' }}>
                     {opt.text}
                   </span>
                 </button>
@@ -383,7 +389,7 @@ export default function Practice() {
                 color: result.isCorrect ? 'var(--accent)' : 'var(--danger)',
                 marginBottom: '8px'
               }}>
-                {result.alreadyAnswered ? 'Esta pregunta ya estaba respondida; se muestra tu intento anterior.' : result.isCorrect ? t.practice.correctFeedback : t.practice.incorrectFeedback}
+                {result.alreadyAnswered ? (lang==='en'?'This question was already answered; this is your first attempt.':'Esta pregunta ya estaba respondida; se muestra tu intento anterior.') : result.isCorrect ? t.practice.correctFeedback : t.practice.incorrectFeedback}
               </div>
               <p style={{ fontSize: '13px', color: 'var(--ink)', lineHeight: 1.5, margin: '0 0 10px 0' }}>
                 {result.explanation}
@@ -403,9 +409,10 @@ export default function Practice() {
             </div>
           )}
 
+          {result && <button disabled={submitting} onClick={()=>{setSimilarTo(question.id);fetchNextQuestion();}}>{lang==='en'?'Practice similar questions':'Practicar similares'}</button>}
           {/* Acciones */}
           <div style={{ display: 'flex', justifyContent: 'flex-end', flexWrap: 'wrap', gap: '12px' }}>
-            {result && <div className="practice-share-actions"><button className="practice-share-button" onClick={() => navigate(`/grupos?questionId=${encodeURIComponent(question.id)}&testId=${encodeURIComponent(testId)}`)}><span className="practice-share-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5v1"/></svg></span>Compartir al grupo<svg className="practice-share-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><button className="practice-share-button practice-share-button--community" onClick={() => navigate(`/comunidad?questionId=${encodeURIComponent(question.id)}`)}><span className="practice-share-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H5l-3 2V11.5a9.5 9.5 0 0 1 19 0Z"/><path d="M7 11h10m-10 4h6"/></svg></span>Compartir a la comunidad<svg className="practice-share-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>}
+            {result && <div className="practice-share-actions"><button className="practice-share-button" onClick={() => navigate(`/grupos?questionId=${encodeURIComponent(question.id)}&testId=${encodeURIComponent(testId)}`)}><span className="practice-share-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5v1"/></svg></span>{lang==='en'?'Share with group':'Compartir al grupo'}<svg className="practice-share-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><button className="practice-share-button practice-share-button--community" onClick={() => navigate(`/comunidad?questionId=${encodeURIComponent(question.id)}`)}><span className="practice-share-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H5l-3 2V11.5a9.5 9.5 0 0 1 19 0Z"/><path d="M7 11h10m-10 4h6"/></svg></span>{lang==='en'?'Share with community':'Compartir a la comunidad'}<svg className="practice-share-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>}
             {!result ? (
               <button
                 onClick={handleSubmit}
@@ -440,7 +447,7 @@ export default function Practice() {
                   cursor: 'pointer'
                 }}
               >
-                {quotaExceeded ? 'Ver cuota diaria' : t.practice.nextQuestion}
+                {quotaExceeded ? (lang==='en'?'View daily quota':'Ver cuota diaria') : t.practice.nextQuestion}
               </button>
             )}
           </div>

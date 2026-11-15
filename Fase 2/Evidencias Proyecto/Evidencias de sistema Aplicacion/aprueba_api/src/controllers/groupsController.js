@@ -1,4 +1,5 @@
 import { loadSharedBank } from '../services/sharedBank.js';
+import { randomBytes } from 'node:crypto';
 import { loadAnswerHistory } from '../services/answerHistory.js';
 import { db } from '../config/firebase.js';
 import { summarizeProgress } from '../services/progress.js';
@@ -6,7 +7,13 @@ import { TEST_IDS, problem, fail, ok, fields, identifier, requestId, text, group
 
 function view(doc, uid) {
   const g = doc.data();
-  return { id: doc.id, name: g.name, subjectTestId: g.subjectTestId, ownerId: g.ownerId, memberCount: g.memberIds?.length || 0, role: g.ownerId === uid ? 'owner' : 'member', createdAt: dateISO(g.createdAt), lastActivityAt: dateISO(g.lastActivityAt) };
+  return { id: doc.id, name: g.name, description:g.description || '', visibility:g.visibility || 'private', inviteCode:g.visibility==='private' && g.inviteToken ? `${doc.id}:${g.inviteToken}` : doc.id, subjectTestId: g.subjectTestId, ownerId: g.ownerId, memberCount: g.memberIds?.length || 0, role: g.ownerId === uid ? 'owner' : 'member', createdAt: dateISO(g.createdAt), lastActivityAt: dateISO(g.lastActivityAt) };
+}
+export async function getPublicGroups(req,res) {
+  try {
+    const snapshot=await db.collection('groups').where('visibility','==','public').limit(50).get();
+    return ok(res,snapshot.docs.filter(doc=>!doc.data().archived).map(doc=>({id:doc.id,name:doc.data().name,description:doc.data().description || '',subjectTestId:doc.data().subjectTestId,memberCount:doc.data().memberIds?.length || 0,visibility:'public'})));
+  } catch(error) {return fail(res,error);}
 }
 export async function getMyGroups(req, res) {
   try {
@@ -18,8 +25,9 @@ export async function getMyGroups(req, res) {
 }
 export async function createGroup(req, res) {
   try {
-    fields(req.body, ['name', 'subjectTestId', 'requestId']);
-    const input = { name: text(req.body.name, 100), subjectTestId: req.body.subjectTestId || 'm1' };
+    fields(req.body, ['name', 'subjectTestId', 'requestId','visibility','description']);
+    const input = { name: text(req.body.name, 100), subjectTestId: req.body.subjectTestId || 'm1',visibility:req.body.visibility || 'private',description:req.body.description ? text(req.body.description,500) : '' };
+    if (!['public','private'].includes(input.visibility)) throw problem('Privacidad inválida');
     if (!TEST_IDS.includes(input.subjectTestId)) throw problem('Materia inválida');
     const uid = req.user.sub, id = requestId(req.body);
     const userRef = db.collection('users').doc(uid);
@@ -33,7 +41,7 @@ export async function createGroup(req, res) {
       const limit = groupLimit(user.data());
       if (limit && memberships.size >= limit) throw problem('Alcanzaste el límite de grupos de tu plan. Puedes salir de un grupo antes de crear otro.', 409);
       const now = new Date();
-      tx.set(groupRef, { ...input, ownerId: uid, memberIds: [uid], memberCount: 1, createdAt: now, lastActivityAt: now, updatedAt: now });
+      tx.set(groupRef, { ...input, inviteToken:randomBytes(24).toString('hex'),ownerId: uid, memberIds: [uid], memberCount: 1, createdAt: now, lastActivityAt: now, updatedAt: now });
       tx.set(groupRef.collection('members').doc(uid), { name: user.data().name || 'Estudiante', role: 'owner', joinedAt: now });
       tx.update(userRef, { groupsUpdatedAt: now });
       tx.set(opRef, { signature, groupId: groupRef.id, createdAt: now });
@@ -45,7 +53,10 @@ export async function createGroup(req, res) {
 export async function joinGroup(req, res) {
   try {
     fields(req.body, ['groupId']);
-    const uid = req.user.sub, id = identifier(req.body.groupId);
+    if (typeof req.body.groupId !== 'string' || req.body.groupId.length>200) throw problem('Código inválido');
+    const [rawId,token,...extra]=req.body.groupId.split(':');
+    if (extra.length) throw problem('Código inválido');
+    const uid = req.user.sub, id = identifier(rawId);
     const userRef = db.collection('users').doc(uid), groupRef = db.collection('groups').doc(id);
     const result = await db.runTransaction(async tx => {
       const [user, group, memberships] = await Promise.all([tx.get(userRef), tx.get(groupRef), tx.get(db.collection('groups').where('memberIds', 'array-contains', uid))]);
@@ -53,6 +64,7 @@ export async function joinGroup(req, res) {
       if (!group.exists || group.data().archived) throw problem('El grupo no existe o está cerrado', 404);
       const members = group.data().memberIds || [];
       if (members.includes(uid)) return { id, alreadyMember: true };
+      if (group.data().visibility==='private' && token!==group.data().inviteToken) throw problem('Este grupo es privado. Necesitas el código completo de invitación.',403);
       if (members.length >= 100) throw problem('El grupo alcanzó su capacidad de 100 miembros', 409);
       const limit = groupLimit(user.data());
       if (limit && memberships.size >= limit) throw problem('Alcanzaste el límite de grupos de tu plan', 409);
@@ -92,14 +104,20 @@ export async function getGroup(req, res) {
     if (!group.exists) throw problem('Grupo no encontrado', 404);
     const data = group.data();
     if (!data.memberIds?.includes(uid)) throw problem('Solo los miembros pueden ver este grupo', 403);
-    const questions = await loadSharedBank();
+    const users = db.collection('users');
+    const [questions, profiles, histories] = await Promise.all([
+      loadSharedBank(),
+      db.getAll(...data.memberIds.map(memberId => users.doc(memberId))),
+      Promise.all(data.memberIds.map(memberId => loadAnswerHistory(memberId))),
+    ]);
+    const names = new Map(profiles.map(doc => [doc.id, doc.data()?.name]));
     const bank = questions.map(entry => ({ ...entry.question, id: entry.id }));
-    const members = await Promise.all(data.memberIds.map(async memberId => {
-      const [user, history] = await Promise.all([db.collection('users').doc(memberId).get(), loadAnswerHistory(memberId)]);
+    const members = data.memberIds.map((memberId, index) => {
+      const history = histories[index];
       const progress = summarizeProgress({}, history.docs.map(doc => ({ ...doc.data(), id: doc.id })), bank);
       const result = progress.subjects.find(subject => subject.testId === data.subjectTestId);
-      return { uid: memberId, name: user.data()?.name || 'Estudiante', role: data.ownerId === memberId ? 'owner' : 'member', answered: result?.answered || 0, correct: result?.correct || 0, accuracy: result?.accuracy ?? null };
-    }));
+      return { uid: memberId, name: names.get(memberId) || 'Estudiante', role: data.ownerId === memberId ? 'owner' : 'member', answered: result?.answered || 0, correct: result?.correct || 0, accuracy: result?.accuracy ?? null };
+    });
     // Membership can change while summaries load; recheck before returning private data.
     const latest = await ref.get();
     if (!latest.exists || !latest.data().memberIds?.includes(uid)) throw problem('Ya no perteneces a este grupo', 403);

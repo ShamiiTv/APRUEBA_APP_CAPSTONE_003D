@@ -10,11 +10,23 @@ import 'core/theme/app_theme.dart';
 import 'core/theme/theme_controller.dart';
 import 'features/auth/auth_providers.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final initialMode = await ThemePreferenceStore.read();
   // Si la sesión vence en cualquier pantalla, volvemos al login.
   ApiClient.onUnauthorized = () => appRouter.go('/login');
 
-  runApp(ProviderScope(retry: (retryCount, error) => null, child: const ApruebaApp()));
+  runApp(
+    ProviderScope(
+      overrides: [
+        themeModeProvider.overrideWith(
+          () => ThemeModeNotifier(initialMode: initialMode),
+        ),
+      ],
+      retry: (retryCount, error) => null,
+      child: const ApruebaApp(),
+    ),
+  );
 }
 
 class ApruebaApp extends ConsumerWidget {
@@ -35,7 +47,7 @@ class ApruebaApp extends ConsumerWidget {
       // El modo oscuro también se recuerda entre sesiones.
       final wanted = p.theme == 'dark' ? ThemeMode.dark : ThemeMode.light;
       if (wanted != ref.read(themeModeProvider)) {
-        ref.read(themeModeProvider.notifier).set(wanted);
+        ref.read(themeModeProvider.notifier).applySaved(wanted);
       }
       // Recordatorio diario del celular (Android).
       ReminderService.sync(

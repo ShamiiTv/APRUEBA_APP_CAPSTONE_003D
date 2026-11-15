@@ -64,6 +64,10 @@ class UserProfile {
   final String? phone;
   final int? age;
   final String? school;
+  final String region;
+  final bool emailVerified;
+  final List<String> linkedProviders;
+  final List<String> availableSocialProviders;
   final Address? address;
   final String locale;
   final bool dailyReminder;
@@ -87,6 +91,10 @@ class UserProfile {
     required this.phone,
     required this.age,
     required this.school,
+    this.region = '',
+    this.emailVerified = false,
+    this.linkedProviders = const [],
+    this.availableSocialProviders = const [],
     required this.address,
     required this.locale,
     required this.dailyReminder,
@@ -122,6 +130,12 @@ class UserProfile {
       phone: text(json['phone']),
       age: (json['age'] as num?)?.toInt(),
       school: text(json['school']),
+      region: text(json['region']) ?? '',
+      emailVerified: json['emailVerified'] == true,
+      linkedProviders: List<String>.from(json['linkedProviders'] ?? []),
+      availableSocialProviders: List<String>.from(
+        json['availableSocialProviders'] ?? [],
+      ),
       address: Address.from(json['address']),
       locale: (json['locale'] ?? 'es').toString() == 'en' ? 'en' : 'es',
       dailyReminder: json['dailyReminder'] != false,
@@ -129,7 +143,7 @@ class UserProfile {
       plan: (json['plan'] ?? 'free').toString(),
       streak: ((json['streak'] ?? 0) as num).toInt(),
       quotaUsed: ((quota['used'] ?? 0) as num).toInt(),
-      quotaMax: ((quota['max'] ?? 20) as num).toInt(),
+      quotaMax: ((quota['max'] ?? 10) as num).toInt(),
       unlimited: quota['unlimited'] == true,
       medals: {for (final t in tiers) t: ((medals[t] ?? 0) as num).toInt()},
       selectedTests: tests.map((e) => e.toString()).toList(),

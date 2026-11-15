@@ -26,7 +26,7 @@ class ApiClient {
 
   static String get _baseUrl {
     if (_envUrl.isNotEmpty) return _envUrl;
-    return 'https://apruebashamiiplaytest.dbm.shared-servers.com/api/v1';
+    return 'https://aprueba.shamiiplay.com/api/v1';
   }
 
   static String? _codeOf(DioException error) {

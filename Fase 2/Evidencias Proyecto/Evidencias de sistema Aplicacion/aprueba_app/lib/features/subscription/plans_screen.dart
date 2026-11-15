@@ -1,276 +1,228 @@
+import '../../core/widgets/loading_geometry.dart';
+import '../../core/widgets/content_skeleton.dart';
+import '../../data/plan_models.dart';
+import 'subscription_providers.dart';
+
 import 'package:flutter/material.dart';
-
-import '../../core/l10n/l10n.dart';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../../core/theme/wf_colors.dart';
-import '../../core/widgets/wf_widgets.dart';
-import '../../data/plan_models.dart';
+import '../../core/l10n/l10n.dart';
+import '../../core/network/api_client.dart';
+import '../../core/storage/pending_operation.dart';
 import '../auth/auth_providers.dart';
-import 'subscription_providers.dart';
-import 'subscription_repository.dart';
 
 class PlansScreen extends ConsumerStatefulWidget {
   const PlansScreen({super.key, this.limitReached = false});
-
-  /// true cuando se llega desde el límite diario.
   final bool limitReached;
-
   @override
-  ConsumerState<PlansScreen> createState() => _PlansScreenState();
+  ConsumerState<PlansScreen> createState() => _PlansState();
 }
 
-class _PlansScreenState extends ConsumerState<PlansScreen> {
-  String _cycle = 'yearly';
+class _PlansState extends ConsumerState<PlansScreen> {
+  String testId = 'm1';
+  bool busy = false;
+  String? message;
+  Future<void> choose(String plan) async {
+    if (busy) return;
+    setState(() => busy = true);
+    try {
+      final signature = '$plan:$testId';
+      await ApiClient.dio.post(
+        '/plans/subscribe',
+        data: {
+          'planId': plan,
+          'billingCycle': 'monthly',
+          if (plan == 'uni') 'testId': testId,
+          'requestId': await PendingOperation.id('plan', signature),
+        },
+      );
+      await PendingOperation.complete('plan');
+      await ref.read(profileProvider.notifier).refresh();
+      if (mounted) {
+        setState(
+          () => message = tr(
+            context,
+            'Plan simulado activado. No se realizó ningún cobro.',
+            'Demo plan activated. No payment was made.',
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(
+          () => message = tr(
+            context,
+            'No se pudo simular el plan. Reintenta la misma selección.',
+            'Could not simulate the plan. Retry the same selection.',
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => busy = false);
+    }
+  }
 
   @override
-  Widget build(BuildContext context) {
-    final plansAsync = ref.watch(plansProvider);
-    final current = ref.watch(profileProvider).value?.plan ?? 'free';
-    final c = WfColors.of(context);
-
-    return Scaffold(
-      body: SafeArea(
-        child: plansAsync.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (e, _) => Center(
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    e is SubscriptionException
-                        ? e.message
-                        : tr(
-                            context,
-                            'No se pudieron cargar los planes.',
-                            'Could not load the plans.',
-                          ),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: c.danger),
-                  ),
-                  const SizedBox(height: 16),
-                  FilledButton(
-                    onPressed: () => ref.invalidate(plansProvider),
-                    child: Text(tr(context, 'Reintentar', 'Retry')),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          data: (plans) => _content(context, plans, current),
-        ),
-      ),
-    );
-  }
-
-  Widget _content(BuildContext context, List<Plan> plans, String current) {
-    final c = WfColors.of(context);
-    final tt = Theme.of(context).textTheme;
-    final paid = plans.where((p) => !p.isFree).toList();
-
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
-      children: [
-        const Center(child: Text('🚀', style: TextStyle(fontSize: 36))),
-        const SizedBox(height: 6),
-        Center(
-          child: Text(
-            widget.limitReached
-                ? tr(
-                    context,
-                    'Llegaste al límite diario',
-                    'You reached the daily limit',
-                  )
-                : tr(context, 'Elige tu plan', 'Choose your plan'),
-            style: tt.headlineSmall,
-          ),
-        ),
-        const SizedBox(height: 6),
-        Text(
-          widget.limitReached
-              ? tr(
-                  context,
-                  'Has usado tus preguntas gratis de hoy.',
-                  'You have used today\'s free questions.',
-                )
-              : tr(
-                  context,
-                  'Practica sin límite diario.',
-                  'Practice with no daily limit.',
-                ),
-          textAlign: TextAlign.center,
-          style: GoogleFonts.inter(fontSize: 13, color: c.muted),
-        ),
-        const SizedBox(height: 14),
-        _toggle(c),
-        for (final p in paid) _planCard(context, p, current),
-        const SizedBox(height: 6),
-        TextButton(
-          onPressed: () => context.go('/home'),
-          child: Text(
-            widget.limitReached
-                ? tr(
-                    context,
-                    'Volver mañana gratis',
-                    'Come back tomorrow for free',
-                  )
-                : tr(context, 'Ahora no', 'Not now'),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _toggle(WfColors c) {
-    Widget seg(String label, String value) {
-      final on = _cycle == value;
-      return Expanded(
-        child: InkWell(
-          borderRadius: BorderRadius.circular(8),
-          onTap: () => setState(() => _cycle = value),
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: on ? c.brand : Colors.transparent,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Text(
-              label,
-              style: GoogleFonts.montserrat(
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-                color: on ? Colors.white : c.muted,
-              ),
-            ),
-          ),
-        ),
-      );
-    }
-
-    return Container(
-      padding: const EdgeInsets.all(3),
-      decoration: BoxDecoration(
-        color: c.soft,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: c.line, width: 1.5),
-      ),
-      child: Row(
-        children: [
-          seg('Mensual', 'monthly'),
-          seg('Anual · 2 meses gratis', 'yearly'),
-        ],
-      ),
-    );
-  }
-
-  Widget _planCard(BuildContext context, Plan p, String current) {
-    final c = WfColors.of(context);
-    final isCurrent = current == p.id;
-    final price = p.priceFor(_cycle);
-    final suffix = _cycle == 'yearly'
-        ? tr(context, '/año', '/year')
-        : tr(context, '/mes', '/month');
-    final onTap = isCurrent
-        ? null
-        : () => context.push('/checkout?plan=${p.id}&cycle=$_cycle');
-    final label = isCurrent
-        ? tr(context, 'Plan actual', 'Current plan')
-        : tr(context, 'Elegir plan', 'Choose plan');
-
-    return Padding(
-      padding: const EdgeInsets.only(top: 11),
-      child: Container(
-        padding: const EdgeInsets.all(13),
-        decoration: BoxDecoration(
-          color: c.soft,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: p.popular ? c.brand : c.line,
-            width: p.popular ? 2 : 1.5,
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(title: Text(tr(context, 'Planes', 'Plans'))),
+    body: ref
+        .watch(plansProvider)
+        .when(
+          loading: () => const ContentSkeleton(kind: 'plans'),
+          error: (error, stack) => Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(
-                  child: Text(
-                    p.name,
-                    style: GoogleFonts.inter(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                    ),
+                Text(
+                  tr(
+                    context,
+                    'No se pudieron cargar los planes.',
+                    'Could not load plans.',
                   ),
                 ),
-                if (p.popular)
-                  WfTag(
-                    text: tr(context, 'Más elegido', 'Most popular'),
-                    bg: Color(0x2110B981),
-                    fg: Color(0xFF059669),
-                  ),
+                const SizedBox(height: 16),
+                FilledButton(
+                  onPressed: () => ref.invalidate(plansProvider),
+                  child: Text(tr(context, 'Reintentar', 'Retry')),
+                ),
               ],
             ),
-            const SizedBox(height: 4),
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: formatClp(price),
-                    style: GoogleFonts.montserrat(
-                      fontSize: 26,
-                      fontWeight: FontWeight.w800,
-                      color: c.brand,
-                    ),
-                  ),
-                  TextSpan(
-                    text: suffix,
-                    style: GoogleFonts.montserrat(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: c.muted,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 4),
-            for (final f in p.features)
-              Padding(
-                padding: const EdgeInsets.only(top: 4),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '✓ ',
-                      style: TextStyle(
-                        color: c.success,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        f,
-                        style: GoogleFonts.inter(fontSize: 12, color: c.muted),
-                      ),
-                    ),
-                  ],
+          ),
+          data: (plans) => ListView(
+            padding: const EdgeInsets.all(20),
+            children: [
+              Text(
+                tr(
+                  context,
+                  'DEMOSTRACIÓN DE PAGOS · Sin cobros ni boletas reales.',
+                  'PAYMENT DEMO · No charge or real receipts.',
                 ),
               ),
-            const SizedBox(height: 12),
-            p.popular
-                ? FilledButton(onPressed: onTap, child: Text(label))
-                : OutlinedButton(onPressed: onTap, child: Text(label)),
-          ],
+              if (widget.limitReached)
+                Text(
+                  tr(
+                    context,
+                    'Agotaste tu cuota diaria gratuita.',
+                    'You used your free daily quota.',
+                  ),
+                ),
+              if (message != null)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Text(message!),
+                ),
+              if (plans.isEmpty)
+                Text(
+                  tr(
+                    context,
+                    'No hay planes disponibles.',
+                    'No plans available.',
+                  ),
+                ),
+              for (final plan in plans)
+                Card(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: LoadingGeometry.planHeight(context, plan.id),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            plan.id == 'free'
+                                ? tr(context, 'Plan gratuito', 'Free plan')
+                                : plan.id == 'uni'
+                                ? tr(
+                                    context,
+                                    'Una prueba ilimitada',
+                                    'One unlimited test',
+                                  )
+                                : tr(context, 'Acceso completo', 'Full access'),
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            '${formatClp(plan.monthly)} CLP / ${tr(context, 'mes', 'month')}',
+                            style: Theme.of(context).textTheme.headlineSmall,
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            plan.id == 'free'
+                                ? tr(
+                                    context,
+                                    '10 base + 5 colegio + 5 dirección · 20 máximo diario',
+                                    '10 base + 5 school + 5 address · 20 daily maximum',
+                                  )
+                                : plan.id == 'uni'
+                                ? tr(
+                                    context,
+                                    'Preguntas ilimitadas en una prueba por un mes.',
+                                    'Unlimited questions in one test for a month.',
+                                  )
+                                : tr(
+                                    context,
+                                    'Todas las pruebas por un mes.',
+                                    'All tests for one month.',
+                                  ),
+                          ),
+                          if (plan.id == 'uni')
+                            DropdownButton<String>(
+                              isExpanded: true,
+                              value: testId,
+                              onChanged: busy
+                                  ? null
+                                  : (v) => setState(() => testId = v!),
+                              items: const [
+                                DropdownMenuItem(
+                                  value: 'm1',
+                                  child: Text('M1'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'm2',
+                                  child: Text('M2'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'lectora',
+                                  child: Text('Lectora / Reading'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'cien',
+                                  child: Text('Ciencias / Science'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'hist',
+                                  child: Text('Historia / History'),
+                                ),
+                              ],
+                            ),
+                          const SizedBox(height: 20),
+                          FilledButton(
+                            onPressed: busy ? null : () => choose(plan.id),
+                            child: Text(
+                              busy
+                                  ? tr(context, 'Guardando…', 'Saving…')
+                                  : tr(
+                                      context,
+                                      'Simular selección',
+                                      'Simulate selection',
+                                    ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              TextButton(
+                onPressed: () => context.go('/home'),
+                child: Text(tr(context, 'Volver a Inicio', 'Back to Home')),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+  );
 }
+

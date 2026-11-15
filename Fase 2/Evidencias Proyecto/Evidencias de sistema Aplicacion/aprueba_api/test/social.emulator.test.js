@@ -43,7 +43,7 @@ async function request(uid,path,body) {
   if(path==='/posts' && body && result.data?.id) postIds.add(result.data.id);
   return result;
 }
-const create = (uid,name='Grupo fixture',id=randomUUID()) => request(uid,'/groups',{name,subjectTestId:'m1',requestId:id});
+const create = (uid,name='Grupo fixture',id=randomUUID()) => request(uid,'/groups',{name,subjectTestId:'m1',visibility:'public',requestId:id});
 async function question(overrides={}) {
   const id=randomUUID();questionIds.push(id);
   const q={testId:'m1',statement:'¿Cuánto es 1 + 1?',options:['1','2','3','4'],correctAnswer:'B',explanation:{steps:['Secreto de solución']},bankVersion:2,status:'published',...overrides};

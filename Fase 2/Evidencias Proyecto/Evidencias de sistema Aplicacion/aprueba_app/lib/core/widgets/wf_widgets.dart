@@ -61,7 +61,10 @@ class WfTag extends StatelessWidget {
         style: GoogleFonts.inter(
           fontSize: 10,
           fontWeight: FontWeight.w700,
-          color: fg ?? c.muted,
+          color: WfColors.readableForeground(
+            fg ?? c.muted,
+            Color.alphaBlend(bg ?? c.chip, c.bg),
+          ),
         ),
       ),
     );

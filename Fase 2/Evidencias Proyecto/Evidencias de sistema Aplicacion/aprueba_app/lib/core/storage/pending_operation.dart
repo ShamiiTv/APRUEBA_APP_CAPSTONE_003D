@@ -25,6 +25,7 @@ class PendingOperation {
       final saved = jsonDecode(raw) as Map;
       if (saved['signature'] != signature) {
         throw DioException(
+          error: 'pending-operation-conflict',
           requestOptions: RequestOptions(path: operation),
           response: Response(
             requestOptions: RequestOptions(path: operation),
@@ -50,6 +51,12 @@ class PendingOperation {
     );
     return id;
   }
+
+  static bool definitiveRejection(DioException error) =>
+      error.error != 'pending-operation-conflict' &&
+      error.response?.statusCode != null &&
+      error.response!.statusCode! >= 400 &&
+      error.response!.statusCode! < 500;
 
   static Future<void> complete(String operation) async =>
       _storage.delete(key: await _key(operation));

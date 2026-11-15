@@ -1,3 +1,5 @@
+import ContentSkeleton from './ContentSkeleton';
+import { useTheme } from '../context/useTheme';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { apiFetch } from '../api/client';
 import { useSocialMutation } from '../hooks/useSocialMutation';
@@ -7,6 +9,7 @@ const merge = (previous, added) => [...new Map([...previous, ...added].map(row =
 const date = value => value ? new Date(value).toLocaleString('es-CL', { timeZone: 'America/Santiago' }) : '';
 
 function Comments({ postId, onCount }) {
+  const {lang}=useTheme();const tr=(es,en)=>lang==='en'?en:es;
   const [rows, setRows] = useState(null);
   const [cursor, setCursor] = useState(null);
   const [error, setError] = useState('');
@@ -38,25 +41,26 @@ function Comments({ postId, onCount }) {
     if (!response) return;
     setRows(previous => merge([response.data], previous || []));
     onCount(response.meta.commentCount);
-    setDraft(''); setMessage('Comentario publicado.');
+    setDraft(''); setMessage(tr('Comentario publicado.','Comment published.'));
   };
-  return <section aria-label="Comentarios">
+  return <section aria-label={tr('Comentarios','Comments')}>
     {error && <p role="alert">{error}</p>}
     {mutation.error && <p role="alert">{mutation.error}</p>}
     {message && <p role="status">{message}</p>}
-    {!rows && !error && <p>Cargando comentarios...</p>}
-    {rows?.length === 0 && <p>Aún no hay comentarios.</p>}
+    {!rows && !error && <ContentSkeleton kind="cards" />}
+    {rows?.length === 0 && <p>{tr('Aún no hay comentarios.','No comments yet.')}</p>}
     {rows?.map(row => <article key={row.id}><strong>{row.author.name}</strong><p className="social-text">{row.text}</p><time dateTime={row.createdAt}>{date(row.createdAt)}</time></article>)}
-    <div className="social-actions"><button disabled={loading} onClick={() => load()}>Actualizar comentarios</button>{cursor && <button disabled={loading} onClick={() => load(cursor)}>Ver comentarios anteriores</button>}</div>
+    <div className="social-actions"><button disabled={loading} onClick={() => load()}>{tr('Actualizar comentarios','Refresh comments')}</button>{cursor && <button disabled={loading} onClick={() => load(cursor)}>{tr('Ver comentarios anteriores','Older comments')}</button>}</div>
     <form onSubmit={submit}>
-      <label htmlFor={`comment-${postId}`}>Escribe un comentario</label>
+      <label htmlFor={`comment-${postId}`}>{tr('Escribe un comentario','Write a comment')}</label>
       <textarea id={`comment-${postId}`} maxLength={1000} value={mutation.pending?.text ?? draft} disabled={mutation.busy || !!mutation.pending} onChange={event => setDraft(event.target.value)} />
-      <button disabled={mutation.busy || (!mutation.pending && !draft.trim())}>{mutation.pending ? 'Reintentar comentario' : 'Enviar comentario'}</button>
+      <button disabled={mutation.busy || (!mutation.pending && !draft.trim())}>{mutation.pending ? tr('Reintentar comentario','Retry comment') : tr('Enviar comentario','Send comment')}</button>
     </form>
   </section>;
 }
 
 function Post({ initial }) {
+  const {lang}=useTheme();const tr=(es,en)=>lang==='en'?en:es;
   const [post, setPost] = useState(initial);
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -75,14 +79,15 @@ function Post({ initial }) {
   return <article className="social-post">
     <strong>{post.author.name}</strong> <time dateTime={post.createdAt}>{date(post.createdAt)}</time>
     <p className="social-text">{post.text}</p>
-    {post.question && <section aria-label="Pregunta compartida"><strong>{post.question.testId?.toUpperCase()}</strong><p className="social-text">{post.question.statement}</p><ol>{post.question.options?.map((option,index) => <li key={index}>{typeof option === 'string' ? option : option.text}</li>)}</ol><p>Pregunta compartida para conversar; no consume cuota ni entrega medallas.</p></section>}
+    {post.question && <section aria-label={tr('Pregunta compartida','Shared question')}><strong>{post.question.testId?.toUpperCase()}</strong><p className="social-text">{post.question.statement}</p><ol>{post.question.options?.map((option,index) => <li key={index}>{typeof option === 'string' ? option : option.text}</li>)}</ol><p>{tr('Pregunta compartida para conversar; no consume cuota ni entrega medallas.','Shared for discussion; it does not use your quota or award medals.')}</p></section>}
     {error && <p role="alert">{error}</p>}
-    <div className="social-actions"><button aria-pressed={post.userLiked} disabled={busy} onClick={react}>{post.userLiked ? 'Quitar Me gusta' : 'Me gusta'} · {post.likeCount}</button><button aria-expanded={open} onClick={() => setOpen(value => !value)}>Comentarios · {post.commentCount}</button></div>
+    <div className="social-actions"><button aria-pressed={post.userLiked} disabled={busy} onClick={react}>{post.userLiked ? tr('Quitar Me gusta','Unlike') : tr('Me gusta','Like')} · {post.likeCount}</button><button aria-expanded={open} onClick={() => setOpen(value => !value)}>{tr('Comentarios','Comments')} · {post.commentCount}</button></div>
     {open && <Comments postId={post.id} onCount={count => setPost(previous => ({ ...previous, commentCount: count }))} />}
   </article>;
 }
 
 export default function SocialFeed({ groupId, questionId }) {
+  const {lang}=useTheme();const tr=(es,en)=>lang==='en'?en:es;
   const [rows, setRows] = useState(null);
   const [cursor, setCursor] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -119,23 +124,23 @@ export default function SocialFeed({ groupId, questionId }) {
     const response = await mutation.run({ text: draft, ...(groupId ? { groupId } : {}), ...(attach && questionId ? { questionId } : {}) });
     if (!response) return;
     setRows(previous => merge([response.data], previous || []));
-    setDraft(''); setAttach(false); setMessage('Publicación registrada.');
+    setDraft(''); setAttach(false); setMessage(tr('Publicación registrada.','Post saved.'));
   };
   return <div className="social-feed">
     <form onSubmit={submit}>
-      <label htmlFor={groupId ? `post-${groupId}` : 'post-public'}>{groupId ? 'Comparte una pregunta o duda con tu grupo' : 'Comparte una pregunta o duda con la comunidad'}</label>
+      <label htmlFor={groupId ? `post-${groupId}` : 'post-public'}>{groupId ? tr('Comparte una pregunta o duda con tu grupo','Share a question or doubt with your group') : tr('Comparte una pregunta o duda con la comunidad','Share a question or doubt with the community')}</label>
       <textarea id={groupId ? `post-${groupId}` : 'post-public'} rows={3} maxLength={3000} disabled={mutation.busy || !!mutation.pending} value={mutation.pending?.text ?? draft} onChange={event => setDraft(event.target.value)} />
-      {questionId && <label className="social-check"><input type="checkbox" checked={mutation.pending ? !!mutation.pending.questionId : attach} disabled={mutation.busy || !!mutation.pending} onChange={event => setAttach(event.target.checked)} />Adjuntar la pregunta de práctica</label>}
-      <p>{groupId ? 'Solo los miembros de este grupo pueden ver esta publicación.' : 'Tu nombre y publicación serán visibles para la comunidad de Aprueba.'}</p>
-      <button disabled={mutation.busy || (!mutation.pending && !draft.trim())}>{mutation.pending ? 'Reintentar publicación' : 'Publicar'}</button>
+      {questionId && <label className="social-check"><input type="checkbox" checked={mutation.pending ? !!mutation.pending.questionId : attach} disabled={mutation.busy || !!mutation.pending} onChange={event => setAttach(event.target.checked)} />{tr('Adjuntar la pregunta de práctica','Attach the practice question')}</label>}
+      <p>{groupId ? tr('Solo los miembros de este grupo pueden ver esta publicación.','Only members of this group can see this post.') : tr('Tu nombre y publicación serán visibles para la comunidad de Aprueba.','Your name and post will be visible to the Aprueba community.')}</p>
+      <button disabled={mutation.busy || (!mutation.pending && !draft.trim())}>{mutation.pending ? tr('Reintentar publicación','Retry post') : tr('Publicar','Publish')}</button>
     </form>
     {mutation.error && <p role="alert">{mutation.error}</p>}
     {message && <p role="status">{message}</p>}
-    <div className="social-actions"><button disabled={loading} onClick={() => load()}>Actualizar publicaciones</button></div>
+    <div className="social-actions"><button disabled={loading} onClick={() => load()}>{tr('Actualizar publicaciones','Refresh posts')}</button></div>
     {error && <p role="alert">{error}</p>}
-    {!rows && !error && <p>Cargando publicaciones...</p>}
-    {rows?.length === 0 && <p>Aún no hay publicaciones. Comparte la primera duda o aporte.</p>}
+    {!rows && !error && <ContentSkeleton kind="cards" />}
+    {rows?.length === 0 && <p>{tr('Aún no hay publicaciones. Comparte la primera duda o aporte.','No posts yet. Share the first question or contribution.')}</p>}
     {rows?.map(row => <Post key={`${revision}:${row.id}`} initial={row} />)}
-    {cursor && <button disabled={loading} onClick={() => load(cursor)}>Ver publicaciones anteriores</button>}
+    {cursor && <button disabled={loading} onClick={() => load(cursor)}>{tr('Ver publicaciones anteriores','Older posts')}</button>}
   </div>;
 }

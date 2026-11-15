@@ -2,8 +2,8 @@ import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import jwt from 'jsonwebtoken';
 import { db, auth } from '../src/config/firebase.js';
-import { login, register, forgotPassword, resetPassword, completeOnboarding } from '../src/controllers/authController.js';
-import { generateTokens, authenticateToken, refreshSession, requireOnboarding, validateAuthConfiguration } from '../src/middleware/auth.js';
+import { login, register, forgotPassword, resetPassword, completeOnboarding,sendVerification } from '../src/controllers/authController.js';
+import { generateTokens, authenticateToken, refreshSession, requireOnboarding, requireVerifiedEmail, validateAuthConfiguration } from '../src/middleware/auth.js';
 
 process.env.JWT_SECRET = 'isolated-test-access-secret-not-for-deployment';
 process.env.JWT_REFRESH_SECRET = 'isolated-test-refresh-secret-not-for-deployment';
@@ -15,6 +15,12 @@ function response() {
   return { status: 200, success(data, meta, status = 200) { this.status = status; this.data = data; return this; }, fail(message, details, status) { this.status = status; this.error = message; return this; } };
 }
 function identityResponse(ok, data) { return { ok, json: async () => data }; }
+test('email guard rejects missing and forged verification and accepts only Firebase verification',()=>{
+  for(const user of [{sub:'test-user'},{emailVerified:true,firebaseAccount:{emailVerified:false}}]){
+    const res=response();requireVerifiedEmail({user},res,()=>assert.fail('verification bypass'));assert.equal(res.status,403);
+  }
+  let allowed=false;requireVerifiedEmail({user:{firebaseAccount:{emailVerified:true}}},response(),()=>{allowed=true;});assert.equal(allowed,true);
+});
 function profile(data = { plan: 'free', onboardingCompleted: false }) {
   const ref = { id: 'test-user', get: async () => ({ id: 'test-user', exists: true, data: () => data }), collection: () => ({ doc: () => ({}) }), update: async () => {} };
   db.collection = () => ({ doc: () => ref, where: () => ({ limit: () => ({ get: async () => ({ empty: true, docs: [] }) }) }) });
@@ -31,6 +37,7 @@ test('login rejects an incorrect password and never issues tokens', async () => 
 
 test('login uses verified Firebase UID, returns short access token and distinct refresh token', async () => {
   profile();
+  auth.getUser = async () => ({ emailVerified:true });
   globalThis.fetch = async (url, options) => {
     assert.ok(url.includes('signInWithPassword'));
     assert.equal(JSON.parse(options.body).password, 'valid-password');
@@ -140,7 +147,7 @@ test('onboarding is enforced by API and rejects unknown test IDs', async () => {
   assert.equal(res.status, 400);
   profile({ onboardingCompleted: true });
   let allowed = false;
-  await requireOnboarding({ user: { sub: 'test-user' } }, response(), () => { allowed = true; });
+  await requireOnboarding({ user: { sub: 'test-user', firebaseAccount:{emailVerified:true} } }, response(), () => { allowed = true; });
   assert.equal(allowed, true);
 });
 
@@ -149,4 +156,18 @@ test('missing secrets fail configuration instead of falling back to public secre
   delete process.env.JWT_SECRET;
   assert.throws(validateAuthConfiguration, /JWT_SECRET/);
   process.env.JWT_SECRET = original;
+});
+
+test('email verification requires the current password and verified Firebase UID, without exposing the Firebase token',async()=>{
+  auth.getUser=async()=>({email:'test@example.test'});
+  const actions=[];
+  globalThis.fetch=async(url,options)=>{
+    const body=JSON.parse(options.body);actions.push(url);
+    if(url.includes('signInWithPassword')){assert.equal(body.password,'valid-password');return identityResponse(true,{localId:'test-user',idToken:'private-firebase-token'});}
+    assert.equal(body.requestType,'VERIFY_EMAIL');assert.equal(body.idToken,'private-firebase-token');return identityResponse(true,{email:'test@example.test'});
+  };
+  const res=response();await sendVerification({user:{sub:'test-user'},body:{currentPassword:'valid-password'}},res);
+  assert.equal(res.status,200);assert.deepEqual(res.data,{sent:true});assert.equal(actions.length,2);
+  globalThis.fetch=async()=>identityResponse(true,{localId:'another-user',idToken:'other-token'});
+  const mismatch=response();await sendVerification({user:{sub:'test-user'},body:{currentPassword:'valid-password'}},mismatch);assert.notEqual(mismatch.status,200);
 });

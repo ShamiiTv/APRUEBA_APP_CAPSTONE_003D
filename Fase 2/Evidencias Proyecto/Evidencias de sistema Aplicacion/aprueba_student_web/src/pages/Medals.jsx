@@ -1,14 +1,18 @@
+import ContentSkeleton from '../components/ContentSkeleton';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { apiFetch } from '../api/client';
 import { useAuth } from '../auth/useAuth';
 import { useTheme } from '../context/useTheme';
 import MedalIcon from '../components/MedalIcon';
 import './Medals.css';
-const TIERS = [['bronze','Bronce'],['silver','Plata'],['gold','Oro'],['diamond','Diamante'],['platinum','Platino']];
-const label = tier => TIERS.find(([key])=>key===tier)?.[1] || tier;
+import MedalGifts from '../components/MedalGifts';
+const BASE_TIERS = [['bronze','Bronce'],['silver','Plata'],['gold','Oro'],['diamond','Diamante'],['platinum','Platino']];
 export default function Medals() {
   const { user, updateUserState }=useAuth();
-  const { t }=useTheme();
+  const { t,lang }=useTheme();const tr=(es,en)=>lang==='en'?en:es;
+  const names={bronze:'Bronze',silver:'Silver',gold:'Gold',diamond:'Diamond',platinum:'Platinum'};
+  const TIERS=BASE_TIERS.map(([tier,name])=>[tier,lang==='en'?names[tier]:name]);
+  const label=tier=>TIERS.find(([key])=>key===tier)?.[1] || tier;
   const [summary,setSummary]=useState(null);
   const [benefits,setBenefits]=useState(null);
   const [error,setError]=useState('');
@@ -60,29 +64,30 @@ export default function Medals() {
   };
   return <div className="medals-page">
     <h1>{t.medals.title}</h1>
-    <p>Obtienes una medalla de bronce por cada primera respuesta correcta. Convierte 5 medallas en 1 del siguiente nivel.</p>
+    <p>{tr('Obtienes una medalla de bronce por cada primera respuesta correcta. Convierte 5 medallas en 1 del siguiente nivel.','Earn one bronze medal for each first correct answer. Exchange five medals for one of the next tier.')}</p>
     {error && <p role="alert">{error}</p>}
-    <button disabled={busy} onClick={load}>Actualizar saldos y catálogo</button>
+    <button disabled={busy} onClick={load}>{tr('Actualizar saldos y catálogo','Refresh balances and catalog')}</button>
     {message && <p role="status">{message}</p>}
-    {!summary && !error && <p>Cargando saldos...</p>}
+    {!summary && !error && <ContentSkeleton kind="medals" />}
     {summary && <>
-      <div className="medals-balances">{TIERS.map(([tier,name])=><div key={tier} className={`medal-card medal-card--${tier}`}><MedalIcon tier={tier} /><span className="medal-name">{name}</span><strong>{summary.medals[tier]}</strong><span className="medal-caption">{summary.medals[tier]===1?'medalla':'medallas'}</span></div>)}</div>
-      <section><h2>Convertir medallas</h2>
-        {TIERS.slice(0,-1).map(([tier,name],index)=><div className="medals-row" key={tier}><span className="medals-conversion"><MedalIcon tier={tier} />5 {name}<span aria-hidden="true">→</span><MedalIcon tier={TIERS[index+1][0]} />1 {TIERS[index+1][1]}</span><button disabled={busy || !!error || !!pending || summary.medals[tier]<5} onClick={()=>submit('exchange',tier)}>Canjear {name}</button></div>)}
+      <div className="medals-balances">{TIERS.map(([tier,name])=><div key={tier} className={`medal-card medal-card--${tier}`}><MedalIcon tier={tier} /><span className="medal-name">{name}</span><strong>{summary.medals[tier]}</strong><span className="medal-caption">{summary.medals[tier]===1?tr('medalla','medal'):tr('medallas','medals')}</span></div>)}</div>
+      <section><h2>{tr('Convertir medallas','Exchange medals')}</h2>
+        {TIERS.slice(0,-1).map(([tier,name],index)=><div className="medals-row" key={tier}><span className="medals-conversion"><MedalIcon tier={tier} />5 {name}<span aria-hidden="true">→</span><MedalIcon tier={TIERS[index+1][0]} />1 {TIERS[index+1][1]}</span><button disabled={busy || !!error || !!pending || summary.medals[tier]<5} onClick={()=>submit('exchange',tier)}>{tr('Canjear','Exchange')} {name}</button></div>)}
       </section>
-      {pending && !busy && <button onClick={()=>submit(pending.kind,pending.key)}>Reintentar solicitud pendiente</button>}
+      {pending && !busy && <button onClick={()=>submit(pending.kind,pending.key)}>{tr('Reintentar solicitud pendiente','Retry pending request')}</button>}
     </>}
-    <section><h2>Beneficios de patrocinadores</h2><p>El canje descuenta platino y reserva una unidad. La entrega queda pendiente; aquí no se emiten cupones automáticamente.</p>
-      {benefitError ? <p role="alert">{benefitError}</p> : !benefits ? <p>Cargando beneficios...</p> : benefits.length===0 ? <p>No hay beneficios activos en este momento.</p> : benefits.map(b=><article key={b.id}>
+    <MedalGifts onSent={load} />
+    <section><h2>{tr('Beneficios de patrocinadores','Brand benefits')}</h2><p>{tr('Los beneficios se habilitan desde 5 medallas de Platino.','Benefits become available from five platinum medals.')}</p><p>{tr('El canje descuenta platino y reserva una unidad. La entrega queda pendiente; aquí no se emiten cupones automáticamente.','Redeeming deducts platinum and reserves one item. Fulfillment is pending; coupons are not issued automatically.')}</p>
+      {benefitError ? <p role="alert">{benefitError}</p> : !benefits ? <ContentSkeleton kind="cards" /> : benefits.length===0 ? <p>{tr('No hay beneficios activos en este momento.','There are no active benefits right now.')}</p> : benefits.map(b=><article key={b.id}>
         <h3>{b.name}</h3><p>{b.sponsorName}</p><p>{b.description}</p>
         <p>{b.costPlatinum===null ? 'Costo no definido' : `${b.costPlatinum} medallas de Platino`} · {b.stock===null ? 'Disponibilidad no definida' : `${b.stock} disponibles`}</p>
-        <button disabled={busy || !!pending || !!error || !summary || !b.canRedeem || summary.medals.platinum<b.costPlatinum} onClick={()=>setConfirmation(b)}>Solicitar {b.name}</button>
+        <button disabled={busy || !!pending || !!error || !summary || !b.canRedeem || summary.medals.platinum<b.costPlatinum} onClick={()=>setConfirmation(b)}>{tr('Solicitar','Request')} {b.name}</button>
       </article>)}
-      {confirmation && <div role="group" aria-label="Confirmar canje de beneficio"><p>¿Solicitar {confirmation.name} por {confirmation.costPlatinum} medallas de Platino? La entrega estará pendiente.</p><button disabled={busy} onClick={()=>submit('benefit',confirmation.id)}>Confirmar solicitud</button><button disabled={busy} onClick={()=>setConfirmation(null)}>Cancelar</button></div>}
+      {confirmation && <div role="group" aria-label="Confirmar canje de beneficio"><p>¿Solicitar {confirmation.name} por {confirmation.costPlatinum} medallas de Platino? La entrega estará pendiente.</p><button disabled={busy} onClick={()=>submit('benefit',confirmation.id)}>{tr('Confirmar solicitud','Confirm request')}</button><button disabled={busy} onClick={()=>setConfirmation(null)}>{tr('Cancelar','Cancel')}</button></div>}
     </section>
     {summary && <>
-      <section><h2>Mis solicitudes de beneficios</h2><p>Últimas 50 solicitudes.</p>{summary.redemptions?.length ? summary.redemptions.map(r=><article key={r.id}><strong>{r.name}</strong><p>Referencia: {r.id}</p><p>{r.status==='pending' ? 'Entrega pendiente' : r.status} · {r.costPlatinum} Platino</p></article>) : <p>Aún no has solicitado beneficios.</p>}</section>
-      <section><h2>Historial de medallas</h2><p>Últimos 50 movimientos.</p>{summary.history.length ? <ul>{summary.history.map(h=><li key={h.id}>{h.amount>0 ? '+' : ''}{h.amount} {label(h.tier)} · {h.reason}{h.createdAt && <time dateTime={h.createdAt}> · {new Date(h.createdAt).toLocaleString('es-CL',{timeZone:'America/Santiago'})}</time>}</li>)}</ul> : <p>Aún no tienes movimientos.</p>}</section>
+      <section><h2>{tr('Mis solicitudes de beneficios','My benefit requests')}</h2><p>{tr('Últimas 50 solicitudes.','Latest 50 requests.')}</p>{summary.redemptions?.length ? summary.redemptions.map(r=><article key={r.id}><strong>{r.name}</strong><p>{tr('Referencia','Reference')}: {r.id}</p><p>{r.status==='pending' ? tr('Entrega pendiente','Fulfillment pending') : r.status} · {r.costPlatinum} Platino</p></article>) : <p>{tr('Aún no has solicitado beneficios.','No benefit requests yet.')}</p>}</section>
+      <section><h2>{tr('Historial de medallas','Medal history')}</h2><p>{tr('Últimos 50 movimientos.','Latest 50 transactions.')}</p>{summary.history.length ? <ul>{summary.history.map(h=><li key={h.id}>{h.amount>0 ? '+' : ''}{h.amount} {label(h.tier)} · {h.reason}{h.createdAt && <time dateTime={h.createdAt}> · {new Date(h.createdAt).toLocaleString(lang==='en'?'en-US':'es-CL',{timeZone:'America/Santiago'})}</time>}</li>)}</ul> : <p>{tr('Aún no tienes movimientos.','No transactions yet.')}</p>}</section>
     </>}
   </div>;
 }

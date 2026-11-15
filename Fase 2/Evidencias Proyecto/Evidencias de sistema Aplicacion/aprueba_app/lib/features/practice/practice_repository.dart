@@ -105,8 +105,18 @@ class PracticeRepository {
   }
 
   // ── Práctica ──
-  Future<NextQuestion> next() async {
+  Future<NextQuestion> next({String? similarTo}) async {
     try {
+      if (similarTo != null) {
+        final res = await ApiClient.dio.get(
+          '/practice/next',
+          queryParameters: {'similarTo': similarTo},
+        );
+        return NextQuestion.fromResponse(
+          Map<String, dynamic>.from(res.data['data']),
+          res.data['meta'] as Map?,
+        );
+      }
       final prefs = await fetchPrefs();
       var hasAvailable = false;
       for (final testId in prefs.selectedTests) {
@@ -195,11 +205,11 @@ class PracticeRepository {
   }
 
   // ── Desbloqueo de cuota ──
-  Future<void> unlockSchool(String school, int age) async {
+  Future<void> unlockSchool(String school, int age, String region) async {
     try {
-      await ApiClient.dio.post(
-        '/me/quota/unlock',
-        data: {'type': 'school', 'school': school, 'age': age},
+      await ApiClient.dio.patch(
+        '/auth/me',
+        data: {'school': school, 'age': age, 'region': region},
       );
     } on DioException catch (e) {
       throw _error(e, 'No se pudo desbloquear.');
@@ -208,13 +218,9 @@ class PracticeRepository {
 
   Future<void> unlockAddress(Address address) async {
     try {
-      await ApiClient.dio.post(
-        '/me/quota/unlock',
-        data: {
-          'type': 'address',
-          'region': address.commune,
-          'address': address.toJson(),
-        },
+      await ApiClient.dio.patch(
+        '/auth/me',
+        data: {'address': address.toJson()},
       );
     } on DioException catch (e) {
       throw _error(e, 'No se pudo desbloquear.');

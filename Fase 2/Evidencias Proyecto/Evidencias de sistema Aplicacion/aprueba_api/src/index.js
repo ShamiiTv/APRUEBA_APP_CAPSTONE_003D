@@ -17,7 +17,7 @@ import plansRoutes from './routes/plansRoutes.js';
 import skillsRoutes from './routes/skillsRoutes.js';
 import supportRoutes from './routes/supportRoutes.js';
 import tutorsRoutes from './routes/tutorsRoutes.js';
-import { validateAuthConfiguration, authenticateToken, requireOnboarding } from './middleware/auth.js';
+import { validateAuthConfiguration, authenticateToken, requireOnboarding, requireVerifiedEmail } from './middleware/auth.js';
 
 validateAuthConfiguration();
 const app = express();
@@ -56,7 +56,7 @@ app.get('/api/v1/health', async (req, res) => {
 
 // Rutas de Autenticación con su limiter específico
 app.use('/api/v1/auth', authRoutes);
-app.get('/api/v1/tests', authenticateToken, getTests);
+app.get('/api/v1/tests', authenticateToken, requireVerifiedEmail, getTests);
 
 // Rutas funcionales del sistema
 app.use(['/api/v1/progress', '/api/v1/practice', '/api/v1/medals', '/api/v1/groups', '/api/v1/posts', '/api/v1/plans', '/api/v1/skills', '/api/v1/support', '/api/v1/tutors'], authenticateToken, requireOnboarding);

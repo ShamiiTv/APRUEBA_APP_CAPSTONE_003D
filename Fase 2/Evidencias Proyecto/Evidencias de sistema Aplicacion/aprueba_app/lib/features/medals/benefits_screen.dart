@@ -1,3 +1,4 @@
+import '../../core/widgets/content_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -50,14 +51,20 @@ class BenefitsScreen extends ConsumerWidget {
       await showDialog<void>(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: Text(tr(ctx, '¡Beneficio canjeado!', 'Benefit redeemed!')),
+          title: Text(tr(ctx, 'Solicitud registrada', 'Request recorded')),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(r.benefit),
               const SizedBox(height: 10),
-              Text(tr(ctx, 'Tu código:', 'Your code:')),
+              Text(
+                tr(
+                  ctx,
+                  'Referencia · entrega pendiente:',
+                  'Reference · fulfillment pending:',
+                ),
+              ),
               SelectableText(
                 r.couponCode,
                 style: GoogleFonts.montserrat(
@@ -181,7 +188,7 @@ class BenefitsScreen extends ConsumerWidget {
           benefits.when(
             loading: () => const Padding(
               padding: EdgeInsets.all(24),
-              child: Center(child: CircularProgressIndicator()),
+              child: ContentSkeleton(kind: 'cards', inline: true),
             ),
             error: (e, _) => Padding(
               padding: const EdgeInsets.all(16),
@@ -233,7 +240,10 @@ class BenefitsScreen extends ConsumerWidget {
 
   Widget _benefitCard(BuildContext context, WidgetRef ref, Benefit b) {
     final c = WfColors.of(context);
-    final unlocked = b.unlocked;
+    final unlocked =
+        (ref.watch(profileProvider).value?.medals['platinum'] ?? 0) >=
+            b.costPlatinum &&
+        b.inStock;
 
     return Opacity(
       opacity: unlocked ? 1 : 0.65,

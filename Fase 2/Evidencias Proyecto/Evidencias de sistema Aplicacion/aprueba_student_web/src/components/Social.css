@@ -12,3 +12,11 @@
 .social-page time{font-size:12px}
 .social-page table{width:100%;border-collapse:collapse}.social-page th,.social-page td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}
 .social-page .social-table{overflow-x:auto}
+
+.groups-page > h1 { margin-bottom:8px; }
+.groups-page h2 { font-size:18px; margin-bottom:10px; }
+.groups-page button { font:inherit; font-weight:700; min-height:44px; border-radius:12px; padding:11px 18px; }
+.groups-page .social-actions > button:not(:first-child) { background:var(--soft); color:var(--ink); }
+.groups-page button:focus-visible { outline:2px solid var(--cta); outline-offset:3px; }
+.group-membership { display:inline-block; margin:8px 10px 8px 0; border-radius:20px; padding:5px 10px; background:var(--soft); color:var(--ink); font-size:12px; font-weight:700; }
+.groups-page article { box-shadow:var(--shadow); }

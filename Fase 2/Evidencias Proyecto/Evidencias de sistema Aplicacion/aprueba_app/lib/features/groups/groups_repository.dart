@@ -7,6 +7,11 @@ import '../../data/shared_models.dart';
 import '../../data/social_models.dart';
 
 class GroupsRepository {
+  Future<List<StudyGroup>> publicGroups() async {
+    final res = await ApiClient.dio.get('/groups/public');
+    return _list(res.data['data'], StudyGroup.fromJson);
+  }
+
   Future<Map<String, dynamic>> details(String id) async {
     final response = await ApiClient.dio.get('/groups/$id');
     return _map(response.data['data']);
@@ -48,22 +53,29 @@ class GroupsRepository {
     required String name,
     required String testId,
     required String colorHex,
+    String visibility = 'private',
+    String description = '',
   }) async {
     try {
       final res = await ApiClient.dio.post(
         '/groups',
         data: {
           'name': name,
+          'visibility': visibility,
+          'description': description,
           'subjectTestId': testId,
           'requestId': await PendingOperation.id(
             'create-group',
-            '$name:$testId',
+            '$name:$testId:$visibility:$description',
           ),
         },
       );
       await PendingOperation.complete('create-group');
       return await fetchGroup(res.data['data']['id'].toString());
     } on DioException catch (e) {
+      if (PendingOperation.definitiveRejection(e)) {
+        await PendingOperation.complete('create-group');
+      }
       throw apiFailureFrom(e, 'No se pudo crear el grupo.');
     }
   }
@@ -121,9 +133,17 @@ class GroupsRepository {
   /// Acepta una invitación con el token recibido por correo; devuelve el id del grupo.
   Future<String> acceptInvitation(String token) async {
     try {
+      final parsed = Uri.tryParse(token.trim());
+      final code =
+          parsed != null &&
+              parsed.scheme == 'https' &&
+              parsed.host == 'aprueba.shamiiplay.com' &&
+              parsed.path == '/invitacion'
+          ? parsed.queryParameters['codigo'] ?? ''
+          : token.trim();
       final res = await ApiClient.dio.post(
         '/groups/join',
-        data: {'groupId': token},
+        data: {'groupId': code},
       );
       return _map(res.data['data'])['id'].toString();
     } on DioException catch (e) {

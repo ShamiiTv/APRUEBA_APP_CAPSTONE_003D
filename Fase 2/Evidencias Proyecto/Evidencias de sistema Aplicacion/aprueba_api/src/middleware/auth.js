@@ -38,7 +38,7 @@ async function verifySession(token, type) {
   if (decoded.type !== type || typeof decoded.sub !== 'string' || !Number.isFinite(decoded.authTime)) throw new Error('Token inválido');
   const account = await auth.getUser(decoded.sub);
   if (account.disabled || decoded.authTime < Date.parse(account.tokensValidAfterTime || '1970-01-01')) throw new Error('Sesión revocada');
-  return decoded;
+  return {...decoded,firebaseAccount:account};
 }
 
 export async function authenticateToken(req, res, next) {
@@ -69,7 +69,15 @@ export async function refreshSession(req, res) {
   }
 }
 
+export function requireVerifiedEmail(req, res, next) {
+  if (req.user?.firebaseAccount?.emailVerified !== true) {
+    return res.fail('Confirma tu correo electrónico para continuar.', { code: 'EMAIL_VERIFICATION_REQUIRED' }, 403);
+  }
+  return next();
+}
+
 export async function requireOnboarding(req, res, next) {
+  if (req.user?.firebaseAccount?.emailVerified !== true) return requireVerifiedEmail(req, res, next);
   try {
     const profile = await db.collection('users').doc(req.user.sub).get();
     if (!profile.exists) return res.fail('Usuario no encontrado', null, 401);

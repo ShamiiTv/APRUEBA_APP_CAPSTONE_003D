@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aprueba · Wireframe web del alumno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* ── Manual de Marca ── */
+:root{
+  --azul:#1A365D;--oro:#F5B041;--fondo:#F8FAFC;--texto:#1E293B;--exito:#10B981;--error:#EF4444;
+  --bg:var(--fondo);--panel:#ffffff;--ink:var(--texto);--muted:#64748B;--line:#E2E8F0;--soft:#F1F5F9;
+  --brand:var(--azul);--cta:var(--oro);--cta-ink:var(--azul);--accent:var(--exito);--warn:var(--oro);--danger:var(--error);
+  --chip:#EEF4FF;--shadow:0 8px 24px rgba(26,54,93,.08);
+  --side:#1A365D;--side-ink:#E8EEF7;--side-mut:rgba(232,238,247,.6);--side-act:rgba(255,255,255,.12);
+  --bronze:#CD7F32;--silver:#94A3B8;--gold:#F5B041;--diamond:#38BDF8;--platinum:#A78BFA;
+}
+.dark{
+  --bg:#0B1220;--panel:#131C2E;--ink:#E2E8F0;--muted:#94A3B8;--line:#1E2D45;--soft:#1A2540;
+  --brand:#2D5A9E;--cta:#F5B041;--cta-ink:#1A365D;--accent:#34D399;--danger:#F87171;--chip:#1A2C4A;
+  --shadow:0 8px 24px rgba(0,0,0,.5);
+  --side:#0C1626;--side-ink:#E2E8F0;--side-mut:rgba(226,232,240,.55);--side-act:rgba(255,255,255,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);font-family:'Inter',system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.5;transition:background .25s}
+h1,h2,h3,.h,.logo,.price,.brandfont{font-family:'Montserrat',sans-serif}
+
+/* ── App shell ── */
+.app{display:flex;min-height:100vh}
+.sidebar{width:250px;background:var(--side);color:var(--side-ink);display:flex;flex-direction:column;flex-shrink:0;position:sticky;top:0;height:100vh;transition:transform .25s}
+.side-logo{display:flex;align-items:center;gap:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:19px;padding:20px 18px 16px}
+.side-logo svg{flex-shrink:0}
+.nav{flex:1;padding:6px 12px;overflow-y:auto}
+.nav-sec{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--side-mut);font-weight:700;padding:14px 10px 6px;font-family:'Montserrat',sans-serif}
+.nav-item{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;font-size:13.5px;font-weight:600;color:var(--side-ink);cursor:pointer;margin-bottom:2px;border-left:3px solid transparent;transition:background .15s}
+.nav-item:hover{background:var(--side-act)}
+.nav-item.act{background:var(--side-act);border-left-color:var(--cta)}
+.nav-item .ico{font-size:17px;width:20px;text-align:center;flex-shrink:0}
+.nav-item .badge{margin-left:auto;font-size:9px;font-weight:800;background:var(--cta);color:#1A365D;border-radius:6px;padding:2px 6px;font-family:'Montserrat',sans-serif}
+.side-foot{padding:12px;border-top:1px solid rgba(255,255,255,.08)}
+.side-user{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;cursor:pointer}
+.side-user:hover{background:var(--side-act)}
+.side-avatar{width:34px;height:34px;border-radius:50%;background:var(--cta);color:#1A365D;display:grid;place-items:center;font-weight:800;font-family:'Montserrat',sans-serif;flex-shrink:0}
+.side-user .nm{font-size:13px;font-weight:700}
+.side-user .pl{font-size:11px;color:var(--side-mut)}
+
+.main-wrap{flex:1;display:flex;flex-direction:column;min-width:0}
+.topbar{display:flex;align-items:center;gap:12px;padding:12px 24px;background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.hamb{display:none;background:var(--soft);border:1px solid var(--line);color:var(--ink);width:38px;height:38px;border-radius:9px;font-size:18px;cursor:pointer}
+.page-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;color:var(--ink)}
+.search{flex:1;max-width:340px;position:relative}
+.search input{width:100%;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:9px 12px 9px 34px;font-size:13px;color:var(--ink);font-family:'Inter',sans-serif;outline:none}
+.search::before{content:"🔍";position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.6}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--chip);border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;font-family:'Inter',sans-serif}
+.ctl{background:var(--panel);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:8px 10px;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif}
+.content{padding:24px;max-width:1180px;width:100%}
+
+/* ── Generic ── */
+.h{font-size:18px;font-weight:700;margin-bottom:4px}
+.sub{color:var(--muted);font-size:13px}
+.p{color:var(--muted);font-size:13px;margin:4px 0}
+.note{font-size:11.5px;color:var(--muted);line-height:1.5}
+.section-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--muted);margin:22px 0 8px;font-family:'Montserrat',sans-serif}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.card.flat{box-shadow:none;background:var(--soft)}
+.flex{display:flex;align-items:center;gap:10px}
+.between{justify-content:space-between}
+.divider{height:1px;background:var(--line);margin:14px 0}
+.tag{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:var(--chip);color:var(--muted)}
+.tag.g{background:rgba(16,185,129,.13);color:#059669}
+.tag.w{background:rgba(245,176,65,.18);color:#B45309}
+.bar{height:9px;border-radius:6px;background:var(--line);overflow:hidden;margin-top:8px}
+.bar>i{display:block;height:100%;background:var(--brand);border-radius:6px;transition:width .4s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:var(--cta);color:var(--cta-ink);border:none;border-radius:11px;padding:12px 18px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:opacity .15s,transform .1s}
+.btn:hover{opacity:.92}.btn:active{transform:scale(.98)}
+.btn.full{width:100%}
+.btn.sec{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.btn.pri{background:var(--brand);color:#fff}
+.btn.gho{background:transparent;color:var(--brand);border:none}
+input,textarea,select{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-size:13px;color:var(--ink);font-family:'Inter',sans-serif;width:100%;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--brand)}
+textarea{resize:none;min-height:74px}
+
+/* ── Dashboard grid ── */
+.dash{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.span2{grid-column:span 2}.span3{grid-column:span 3}
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat .big{font-size:30px;font-weight:800;font-family:'Montserrat',sans-serif;color:var(--brand)}
+.stat .lbl{font-size:12px;color:var(--muted);font-weight:600}
+.medal-coin{display:inline-grid;place-items:center;border-radius:50%;font-weight:800;font-family:'Montserrat',sans-serif;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.bronze{background:var(--bronze);color:#fff}.silver{background:var(--silver);color:#fff}.gold{background:var(--gold);color:#1A365D}.diamond{background:var(--diamond);color:#fff}.platinum{background:var(--platinum);color:#fff}
+.m-sm{width:30px;height:30px;font-size:14px}.m-md{width:42px;height:42px;font-size:19px}.m-lg{width:58px;height:58px;font-size:27px}
+.upgrade{background:linear-gradient(135deg,var(--brand),#264b80);color:#fff;border:none}
+.upgrade .h{color:#fff}.upgrade .note{color:rgba(255,255,255,.8)}
+
+/* ── Practice ── */
+.opt{border:1.5px solid var(--line);border-radius:12px;padding:14px;font-size:14px;margin-top:10px;cursor:pointer;display:flex;gap:11px;align-items:center;transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--brand)}
+.opt .k{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:12px;font-weight:700;flex-shrink:0;font-family:'Montserrat',sans-serif}
+.opt.sel{border-color:var(--brand);background:rgba(26,54,93,.06)}.opt.sel .k{background:var(--brand);color:#fff;border-color:var(--brand)}
+.opt.ok{border-color:var(--accent);background:rgba(16,185,129,.08)}.opt.ok .k{background:var(--accent);color:#fff;border-color:var(--accent)}
+.opt.no{border-color:var(--danger);background:rgba(239,68,68,.06)}.opt.no .k{background:var(--danger);color:#fff;border-color:var(--danger)}
+.timer{font-variant-numeric:tabular-nums;font-weight:800;font-family:'Montserrat',sans-serif}
+
+/* ── Misc rows ── */
+.row{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:12px;margin-top:10px;background:var(--panel)}
+.group-card{cursor:pointer;transition:border-color .15s}.group-card:hover{border-color:var(--brand)}
+.avatar-sq{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;color:#fff;font-weight:800;font-family:'Montserrat',sans-serif;flex-shrink:0}
+.mstack{display:flex}.mavatar{width:30px;height:30px;border-radius:50%;color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700;font-family:'Montserrat',sans-serif;border:2px solid var(--panel);margin-left:-8px}
+.seg{display:inline-flex;background:var(--soft);border:1px solid var(--line);border-radius:11px;padding:3px}
+.seg div{padding:8px 16px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;color:var(--muted);font-family:'Montserrat',sans-serif}
+.seg div.on{background:var(--brand);color:#fff}
+.paybtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border-radius:11px;padding:13px;font-size:15px;font-weight:700;cursor:pointer;border:none;font-family:'Inter',sans-serif;margin-top:10px}
+.paybtn.apple{background:#000;color:#fff}.paybtn.google{background:#fff;color:#3c4043;border:1px solid var(--line)}
+.or-sep{display:flex;align-items:center;gap:10px;margin:16px 0 6px;color:var(--muted);font-size:11px;font-weight:600;text-transform:uppercase}
+.or-sep::before,.or-sep::after{content:"";flex:1;height:1px;background:var(--line)}
+.plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+.skill-node{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:10px;margin-top:7px;font-size:13px}
+.skill-node.done{background:rgba(16,185,129,.09);border:1px solid rgba(16,185,129,.22)}
+.skill-node.active{background:rgba(26,54,93,.07);border:1.5px solid var(--brand)}
+.skill-node.locked{background:var(--soft);border:1px solid var(--line);opacity:.55}
+.scrim{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:25}
+
+/* ── Responsive ── */
+@media(max-width:1040px){.dash{grid-template-columns:repeat(2,1fr)}.span3{grid-column:span 2}.plan-grid{grid-template-columns:1fr}}
+@media(max-width:860px){
+  .sidebar{position:fixed;z-index:30;transform:translateX(-100%);box-shadow:0 0 40px rgba(0,0,0,.3)}
+  .sidebar.open{transform:translateX(0)}
+  .hamb{display:grid;place-items:center}
+  .scrim.open{display:block}
+  .search{display:none}
+}
+@media(max-width:620px){.dash{grid-template-columns:1fr}.span2,.span3{grid-column:span 1}.content{padding:16px}.topbar{padding:10px 14px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="side-logo">
+      <svg width="26" height="26" viewBox="0 0 30 30" fill="none"><polygon points="3,27 9,6 13,6 8,27" fill="#fff"/><polygon points="27,27 21,6 17,6 22,27" fill="#fff"/><rect x="7" y="14" width="16" height="4" rx="1" fill="#fff"/><rect x="12" y="14" width="6" height="10" rx="1" fill="#F5B041"/><polygon points="15,5 12,10 18,10" fill="#F5B041"/></svg>
+      Aprueba
+    </div>
+    <nav class="nav" id="nav"></nav>
+    <div class="side-foot">
+      <div class="side-user" onclick="go('ajustes')">
+        <div class="side-avatar" id="userInitial">E</div>
+        <div><div class="nm" id="userName">Estudiante</div><div class="pl" id="userPlan">Plan Gratis</div></div>
+      </div>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim" onclick="toggleSidebar(false)"></div>
+  <div class="main-wrap">
+    <header class="topbar">
+      <button class="hamb" onclick="toggleSidebar(true)">☰</button>
+      <div class="page-title" id="pageTitle">Inicio</div>
+      <div class="search"><input id="searchInp" placeholder=""></div>
+      <div class="tb-right">
+        <span class="chip" id="streakChip">🔥 4</span>
+        <select class="ctl" id="langSel" onchange="setLang(this.value)"><option value="es">🌐 ES</option><option value="en">🌐 EN</option></select>
+        <button class="ctl" id="themeBtn" onclick="toggleTheme()">🌙</button>
+      </div>
+    </header>
+    <main class="content" id="main"></main>
+  </div>
+</div>
+
+<script>
+// ── STATE ──
+const APP={
+  lang:'es',dark:false,view:'inicio',userName:'Estudiante',
+  medals:{bronze:14,silver:3,gold:1,diamond:0,platinum:0},
+  streak:4,quotaUsed:5,quotaMax:10,
+  tests:[
+    {id:'lectora',label:'C. Lectora',color:'#1A365D',pct:68},
+    {id:'m1',label:'Matemática M1',color:'#10B981',pct:54},
+    {id:'m2',label:'Matemática M2',color:'#6366F1',pct:41},
+    {id:'cien',label:'Ciencias',color:'#F5B041',pct:33}
+  ],
+  groups:[
+    {id:'g1',name:'Mates PAES 2025',subject:'Matemática M1',color:'#1A365D',members:[['CR','#1A365D'],['JL','#10B981'],['AM','#6366F1'],['YO','#F5B041']],avg:72,your:81,shared:12},
+    {id:'g2',name:'Lectura crítica',subject:'Comp. Lectora',color:'#6366F1',members:[['TG','#1A365D'],['MV','#EF4444'],['YO','#F5B041']],avg:58,your:63,shared:7}
+  ],
+  q:{text:'Si 3x + 7 = 22, ¿cuál es el valor de x?',textEn:'If 3x + 7 = 22, what is the value of x?',opts:['x = 3','x = 5','x = 7','x = 15'],correct:1},
+  practiceStep:'q',selectedOpt:null,
+  plan:'free',billing:'yr',checkoutPlan:'plan5',planCancelled:false,planStep:'overview',
+  openGroup:null,
+  tutStep:'market',tutSel:0
+};
+
+const PLANS={plan1:{nameKey:'plan1',featKey:'pf1',mo:1},plan5:{nameKey:'plan5',featKey:'pf5',mo:5}};
+function planPrice(p,c){return c==='yr'?PLANS[p].mo*10:PLANS[p].mo;}
+function priceStr(p,c){return '$'+planPrice(p,c)+(c==='yr'?L('yr'):L('mo'));}
+
+// ── i18n ──
+const T={
+es:{
+  nav_main:'Principal',nav_account:'Cuenta',
+  nav_inicio:'Inicio',nav_practicar:'Practicar',nav_medallas:'Medallas',nav_grupos:'Grupos',nav_tutores:'Tutores',nav_comunidad:'Comunidad',nav_plan:'Mi plan',nav_ajustes:'Ajustes',
+  search_ph:'Buscar pregunta, tema o grupo…',plan_free:'Plan Gratis',
+  greeting:'Hola',welcome_sub:'Esto es lo que tienes para hoy.',
+  quota:'Cuota diaria',used:'usadas',of:'de',quota_note:'10 base · +5 colegio · +5 dirección · 20 máx',
+  streak:'Racha',days:'días',keep_streak:'¡Sigue así! No pierdas tu racha.',
+  medals_title:'Tus medallas',view_all:'Ver todo',next_tier:'para',
+  continue_h:'Continuar practicando',continue_p:'Retoma donde quedaste. Matemática M1 · Intermedio.',start_practice:'Empezar a practicar',
+  progress:'Progreso por prueba',quick:'Accesos rápidos',
+  qa_practice:'Practicar',qa_groups:'Mis grupos',qa_medals:'Canjear medallas',qa_community:'Ver comunidad',
+  upgrade_h:'Desbloquea preguntas ilimitadas',upgrade_p:'Practica sin límite diario desde $1/mes.',upgrade_cta:'Mejorar plan',
+  // practice
+  q_of:'Pregunta 6 de 10',subject_m1:'Matemática M1',lvl_inter:'Intermedio',check:'Comprobar respuesta',
+  speed_note:'El cronómetro mide tu velocidad y se compara con tu cohorte.',
+  result:'Resultado',correct:'¡Correcto!',incorrect:'Incorrecto',
+  res_time:'Respondiste en 0:18 · más rápido que el 72% de tu cohorte.',
+  res_exp:'x = 5. Despejas restando 7 y divides por 3.',
+  see_exp:'Ver explicación detallada',share_group:'Compartir al grupo',next_q:'Siguiente pregunta',
+  exp_h:'Cómo se llega a x = 5',exp_sub:'Paso a paso · Mat M1 · Ecuaciones de primer grado',
+  setup:'Planteamiento',setup_p:'Partimos de 3x + 7 = 22. Queremos dejar x sola.',
+  step1:'Paso 1 · Restar 7',step1_p:'3x + 7 − 7 = 22 − 7 → 3x = 15',
+  step2:'Paso 2 · Dividir por 3',step2_p:'3x ÷ 3 = 15 ÷ 3 → x = 5',
+  verify:'Verificación',verify_p:'3·(5) + 7 = 22 ✓',
+  key_concept:'Concepto clave',key_p:'Lo que haces a un lado debes hacerlo al otro.',
+  skill_btn:'¿Qué necesito saber?',rc_btn:'Solicitar recorrección',related:'Practicar similares',back_result:'Volver al resultado',
+  skill_h:'Habilidad evaluada',skill_sub:'Resolver ecuaciones lineales de una incógnita',
+  sk_done:'Operaciones con enteros',sk_active:'Despeje de variable',sk_locked:'Sistemas de ecuaciones',
+  // medals
+  med_have:'Tienes',med_bronze:'Bronce',med_silver:'Plata',med_gold:'Oro',med_diamond:'Diamante',med_platinum:'Platino',
+  med_exchange:'Canje de medallas',med_exchange_p:'Cambia 5 medallas por una del siguiente nivel.',exchange_btn:'Canjear 5 →',
+  med_gift:'Regalar medallas',med_gift_p:'Regala hasta 10 bronces al día a amigos de tus grupos.',gift_btn:'Regalar',
+  med_benefits:'Beneficios de marca',med_benefits_p:'Canjea 5 medallas de Platino por un beneficio de nuestros socios.',locked:'Bloqueado',
+  earn_correct:'Respuesta correcta',earn_login:'Inicio de sesión diario',earn_rc:'Recorrección confirmada',how_earn:'Cómo ganar medallas',
+  // groups
+  grp_my:'Mis grupos',grp_create:'Crear grupo',grp_members:'miembros',grp_avg:'Promedio grupal',grp_your:'Tu resultado',
+  grp_name_ph:'Nombre del grupo',grp_subject:'Materia principal',grp_create_btn:'Crear e invitar',
+  grp_back:'Volver a grupos',grp_shared:'Preguntas compartidas',grp_stats:'Estadísticas del grupo',grp_invite:'Invitar miembros',
+  grp_best:'Mejor rendimiento',grp_weak:'Áreas a reforzar',
+  // community
+  com_h:'Comunidad Aprueba',post_ph:'Comparte una pregunta o duda…',publish:'Publicar',comment:'Comentar',
+  com_p1:'¿Alguien sabe por qué la respuesta es B y no C? Me confunde el enunciado.',
+  com_p2:'Tip: para ecuaciones, siempre verifica reemplazando el valor. Me salvó en el ensayo.',
+  // plan
+  plan_h:'Mi plan',plan_current:'Plan actual',cap_h:'Desbloquea todo Aprueba',cap_p:'Elige el plan que se ajuste a ti. Cancela cuando quieras.',
+  bill_mo:'Mensual',bill_yr:'Anual',bill_save:'2 meses gratis',mo:'/mes',yr:'/año',
+  plan1:'1 prueba ilimitada',plan5:'Todas las pruebas',pf1:'Preguntas ilimitadas de 1 prueba a elección',pf5:'Acceso ilimitado a todas las pruebas PAES',popular:'Más elegido',choose:'Elegir plan',
+  co_h:'Confirmar y pagar',co_summary:'Resumen',co_plan:'Plan',co_cycle:'Ciclo',co_total:'Total a pagar',
+  co_billed_mo:'Se cobra cada mes. Cancela cuando quieras.',co_billed_yr:'Se cobra una vez al año. Cancela cuando quieras.',
+  co_fast:'Pago rápido',co_or:'o paga con tarjeta',co_card_num:'Número de tarjeta',co_exp:'MM / AA',co_cvc:'CVC',co_name:'Nombre en la tarjeta',co_email:'Correo para el recibo',
+  co_pay:'Pagar',co_secure:'Pago cifrado y procesado por Stripe',co_back:'Volver a planes',
+  pay_ok_h:'¡Pago exitoso!',pay_ok_p:'Tu plan ya está activo. ¡A practicar sin límites!',pay_go:'Ir al inicio',
+  mng_next:'Próximo cobro',mng_method:'Método de pago',mng_change:'Cambiar plan',mng_cancel:'Cancelar suscripción',
+  mng_cancelled:'Suscripción cancelada. Tu plan sigue activo hasta el próximo cobro.',mng_free_p:'Estás en el plan gratis: 20 preguntas al día.',
+  // settings
+  set_h:'Ajustes',set_lang:'Idioma',set_theme:'Modo oscuro',set_notif:'Recordatorio diario',set_tests:'Mis pruebas',set_plan:'Mi plan',set_privacy:'Mis datos y privacidad',
+  set_danger:'Eliminar cuenta',set_danger_p:'Todos tus datos y medallas serán eliminados.',
+  on:'Activado',off:'Desactivado'
+},
+en:{
+  nav_main:'Main',nav_account:'Account',
+  nav_inicio:'Home',nav_practicar:'Practice',nav_medallas:'Medals',nav_grupos:'Groups',nav_tutores:'Tutors',nav_comunidad:'Community',nav_plan:'My plan',nav_ajustes:'Settings',
+  search_ph:'Search question, topic or group…',plan_free:'Free plan',
+  greeting:'Hi',welcome_sub:'Here is what you have for today.',
+  quota:'Daily quota',used:'used',of:'of',quota_note:'10 base · +5 school · +5 address · 20 max',
+  streak:'Streak',days:'days',keep_streak:'Keep it up! Don\'t lose your streak.',
+  medals_title:'Your medals',view_all:'View all',next_tier:'for',
+  continue_h:'Keep practicing',continue_p:'Pick up where you left off. Math M1 · Intermediate.',start_practice:'Start practicing',
+  progress:'Progress by test',quick:'Quick actions',
+  qa_practice:'Practice',qa_groups:'My groups',qa_medals:'Redeem medals',qa_community:'View community',
+  upgrade_h:'Unlock unlimited questions',upgrade_p:'Practice with no daily cap from $1/mo.',upgrade_cta:'Upgrade plan',
+  q_of:'Question 6 of 10',subject_m1:'Math M1',lvl_inter:'Intermediate',check:'Check answer',
+  speed_note:'The timer measures your speed against your cohort.',
+  result:'Result',correct:'Correct!',incorrect:'Incorrect',
+  res_time:'Answered in 0:18 · faster than 72% of your cohort.',
+  res_exp:'x = 5. Subtract 7, then divide by 3.',
+  see_exp:'See detailed explanation',share_group:'Share to group',next_q:'Next question',
+  exp_h:'How we reach x = 5',exp_sub:'Step-by-step · Math M1 · First-degree equations',
+  setup:'Setup',setup_p:'Start from 3x + 7 = 22. Isolate x.',
+  step1:'Step 1 · Subtract 7',step1_p:'3x + 7 − 7 = 22 − 7 → 3x = 15',
+  step2:'Step 2 · Divide by 3',step2_p:'3x ÷ 3 = 15 ÷ 3 → x = 5',
+  verify:'Check',verify_p:'3·(5) + 7 = 22 ✓',
+  key_concept:'Key concept',key_p:'Whatever you do to one side, do to the other.',
+  skill_btn:'What do I need to know?',rc_btn:'Request correction',related:'Practice similar',back_result:'Back to result',
+  skill_h:'Skill assessed',skill_sub:'Solve linear equations with one unknown',
+  sk_done:'Integer operations',sk_active:'Isolating a variable',sk_locked:'Systems of equations',
+  med_have:'You have',med_bronze:'Bronze',med_silver:'Silver',med_gold:'Gold',med_diamond:'Diamond',med_platinum:'Platinum',
+  med_exchange:'Medal exchange',med_exchange_p:'Trade 5 medals for one of the next tier.',exchange_btn:'Exchange 5 →',
+  med_gift:'Gift medals',med_gift_p:'Gift up to 10 bronze a day to friends in your groups.',gift_btn:'Gift',
+  med_benefits:'Brand benefits',med_benefits_p:'Redeem 5 Platinum medals for a partner benefit.',locked:'Locked',
+  earn_correct:'Correct answer',earn_login:'Daily login',earn_rc:'Confirmed correction',how_earn:'How to earn medals',
+  grp_my:'My groups',grp_create:'Create group',grp_members:'members',grp_avg:'Group average',grp_your:'Your result',
+  grp_name_ph:'Group name',grp_subject:'Main subject',grp_create_btn:'Create & invite',
+  grp_back:'Back to groups',grp_shared:'Shared questions',grp_stats:'Group statistics',grp_invite:'Invite members',
+  grp_best:'Best performing',grp_weak:'Areas to reinforce',
+  com_h:'Aprueba Community',post_ph:'Share a question or doubt…',publish:'Post',comment:'Comment',
+  com_p1:'Does anyone know why the answer is B and not C? The wording confuses me.',
+  com_p2:'Tip: for equations, always verify by substituting the value. Saved me on the mock.',
+  plan_h:'My plan',plan_current:'Current plan',cap_h:'Unlock all of Aprueba',cap_p:'Pick the plan that fits you. Cancel anytime.',
+  bill_mo:'Monthly',bill_yr:'Annual',bill_save:'2 months free',mo:'/mo',yr:'/yr',
+  plan1:'1 test unlimited',plan5:'All tests',pf1:'Unlimited questions for 1 test of your choice',pf5:'Unlimited access to all PAES tests',popular:'Most chosen',choose:'Choose plan',
+  co_h:'Confirm & pay',co_summary:'Summary',co_plan:'Plan',co_cycle:'Cycle',co_total:'Total due',
+  co_billed_mo:'Billed every month. Cancel anytime.',co_billed_yr:'Billed once a year. Cancel anytime.',
+  co_fast:'Fast checkout',co_or:'or pay by card',co_card_num:'Card number',co_exp:'MM / YY',co_cvc:'CVC',co_name:'Name on card',co_email:'Email for receipt',
+  co_pay:'Pay',co_secure:'Encrypted and processed by Stripe',co_back:'Back to plans',
+  pay_ok_h:'Payment successful!',pay_ok_p:'Your plan is now active. Practice with no limits!',pay_go:'Go to home',
+  mng_next:'Next charge',mng_method:'Payment method',mng_change:'Change plan',mng_cancel:'Cancel subscription',
+  mng_cancelled:'Subscription cancelled. Your plan stays active until the next charge.',mng_free_p:'You are on the free plan: 20 questions a day.',
+  set_h:'Settings',set_lang:'Language',set_theme:'Dark mode',set_notif:'Daily reminder',set_tests:'My tests',set_plan:'My plan',set_privacy:'My data & privacy',
+  set_danger:'Delete account',set_danger_p:'All your data and medals will be deleted.',
+  on:'On',off:'Off'
+}};
+function L(k){return (T[APP.lang]&&T[APP.lang][k])||k;}
+
+// ── helpers ──
+function coin(t,s){const e={bronze:'🥉',silver:'🥈',gold:'🥇',diamond:'💎',platinum:'⬡'};const c={sm:'m-sm',md:'m-md',lg:'m-lg'}[s]||'m-sm';return `<span class="medal-coin ${t} ${c}">${e[t]||'🏅'}</span>`;}
+function stars(n,sz){const s=sz||14;let h='';for(let i=1;i<=5;i++){h+=`<span style="color:${i<=Math.round(n)?'#F5B041':'var(--line)'};font-size:${s}px;line-height:1">★</span>`;}return `<span style="letter-spacing:1px;white-space:nowrap">${h}</span>`;}
+function starPick(){let h='<span style="white-space:nowrap">';for(let i=1;i<=5;i++){h+=`<span onclick="[...this.parentNode.children].forEach((s,j)=>s.style.color=j<=${i-1}?'#F5B041':'var(--line)')" style="font-size:30px;cursor:pointer;color:var(--line);padding:0 4px">★</span>`;}return h+'</span>';}
+const TUTORS=[
+  {ini:'MV',c:'#1A365D',name:'María Valdés',subj:'Matemática M1·M2',subjEn:'Math M1·M2',rate:4.9,nrev:128,price:'$12.000',mode:'Online · Presencial',modeEn:'Online · In-person',ver:true,exp:5,bio:'Ingeniera civil PUC. Preparo PAES Matemática con foco en álgebra y funciones. Método paso a paso y ensayos cronometrados.',bioEn:'PUC civil engineer. PAES Math prep focused on algebra and functions. Step-by-step method and timed mock tests.',crit:[4.9,4.8,5.0]},
+  {ini:'RC',c:'#10B981',name:'Rodrigo Cea',subj:'Comp. Lectora',subjEn:'Reading Comp.',rate:4.7,nrev:86,price:'$10.000',mode:'Online',modeEn:'Online',ver:true,exp:4,bio:'Profesor de Lenguaje. Estrategias de comprensión lectora y manejo del tiempo en el ensayo.',bioEn:'Language teacher. Reading comprehension strategies and time management.',crit:[4.8,4.6,4.7]},
+  {ini:'PS',c:'#6366F1',name:'Paula Soto',subj:'Ciencias · Biología',subjEn:'Science · Biology',rate:4.8,nrev:54,price:'$11.000',mode:'Presencial',modeEn:'In-person',ver:false,exp:6,bio:'Bióloga. Clases de Ciencias PAES con material propio y guías de práctica.',bioEn:'Biologist. PAES Science classes with own material and practice guides.',crit:[4.9,4.7,4.8]},
+  {ini:'JF',c:'#F5B041',name:'Javier Fuentes',subj:'Historia y C. Soc.',subjEn:'History',rate:4.6,nrev:41,price:'$9.500',mode:'Online',modeEn:'Online',ver:true,exp:3,bio:'Historiador. Preparación PAES Historia y Educación Ciudadana con foco en análisis de fuentes.',bioEn:'Historian. PAES History prep focused on source analysis.',crit:[4.6,4.7,4.5]},
+];
+function tutCrit(){return APP.lang==='es'?['Didáctica (claridad)','Puntualidad','Dominio del tema']:['Teaching (clarity)','Punctuality','Subject mastery'];}
+function tutGo(step){APP.tutStep=step;render();}
+function tutOpen(i){APP.tutSel=i;APP.tutStep='profile';render();}
+const NAV=[['inicio','🏠'],['practicar','✏️'],['medallas','🏅'],['grupos','👥'],['tutores','🎓'],['comunidad','💬'],['plan','💳'],['ajustes','⚙️']];
+
+// ── VIEWS ──
+const V={};
+
+V.inicio=()=>{
+  const free=APP.plan==='free';
+  const medalsCol=['bronze','silver','gold','diamond','platinum'].map(t=>`<div style="text-align:center;opacity:${APP.medals[t]>0?1:.4}">${coin(t,'md')}<div style="font-weight:800;font-family:'Montserrat',sans-serif;margin-top:4px">${APP.medals[t]}</div></div>`).join('');
+  return `
+  <div class="flex between" style="flex-wrap:wrap;gap:10px;margin-bottom:6px">
+    <div><div class="h" style="font-size:22px">${L('greeting')}, ${APP.userName} 👋</div><div class="sub">${L('welcome_sub')}</div></div>
+    <button class="btn" onclick="go('practicar')">${L('start_practice')} →</button>
+  </div>
+  <div class="dash" style="margin-top:16px">
+    <div class="card"><div class="flex between"><b>${L('quota')}</b><span class="note">${APP.quotaUsed} ${L('of')} ${APP.quotaMax} ${L('used')}</span></div>
+      <div class="bar"><i style="width:${APP.quotaUsed/APP.quotaMax*100}%"></i></div><p class="note" style="margin-top:8px">${L('quota_note')}</p></div>
+    <div class="card stat"><span class="lbl">${L('streak')} 🔥</span><span class="big">${APP.streak} <span style="font-size:15px;color:var(--muted)">${L('days')}</span></span><p class="note">${L('keep_streak')}</p></div>
+    <div class="card"><div class="flex between" style="margin-bottom:10px"><b>${L('medals_title')}</b><span class="note" style="color:var(--brand);cursor:pointer;font-weight:700" onclick="go('medallas')">${L('view_all')} →</span></div>
+      <div class="flex between">${medalsCol}</div>
+      <div class="divider"></div><span class="note">${coin('bronze','sm')} ${APP.medals.bronze%5}/5 ${L('next_tier')} ${coin('silver','sm')}</span>
+      <div class="bar" style="margin-top:6px"><i style="width:${APP.medals.bronze%5/5*100}%;background:var(--bronze)"></i></div></div>
+    <div class="card span2" style="display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,var(--brand),#264b80);color:#fff;border:none">
+      <div class="h" style="color:#fff;font-size:20px">${L('continue_h')}</div><p class="note" style="color:rgba(255,255,255,.8)">${L('continue_p')}</p>
+      <button class="btn" style="margin-top:14px;align-self:flex-start" onclick="go('practicar')">${L('start_practice')}</button></div>
+    <div class="card"><div class="section-label" style="margin:0 0 8px">${L('quick')}</div>
+      <div class="row" style="margin-top:6px;cursor:pointer" onclick="go('practicar')"><span style="font-size:18px">✏️</span> ${L('qa_practice')}</div>
+      <div class="row" style="cursor:pointer" onclick="go('grupos')"><span style="font-size:18px">👥</span> ${L('qa_groups')}</div>
+      <div class="row" style="cursor:pointer" onclick="go('medallas')"><span style="font-size:18px">🏅</span> ${L('qa_medals')}</div></div>
+    <div class="card span3"><div class="flex between"><b>${L('progress')}</b></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:12px">
+      ${APP.tests.map(t=>`<div><div class="flex between"><span style="font-size:13px">${t.label}</span><span class="note">${t.pct}%</span></div><div class="bar"><i style="width:${t.pct}%;background:${t.color}"></i></div></div>`).join('')}</div></div>
+    ${free?`<div class="card span3 upgrade"><div class="flex between" style="flex-wrap:wrap;gap:12px"><div class="flex" style="gap:14px"><span style="font-size:32px">🚀</span><div><div class="h">${L('upgrade_h')}</div><p class="note">${L('upgrade_p')}</p></div></div><button class="btn" onclick="go('plan')">${L('upgrade_cta')}</button></div></div>`:''}
+  </div>`;
+};
+
+V.practicar=()=>{
+  const q=APP.q;const qt=APP.lang==='es'?q.text:q.textEn;
+  if(APP.practiceStep==='q'){
+    return `<div style="max-width:680px;margin:0 auto">
+      <div class="flex between"><span class="note">${L('q_of')}</span><span class="flex" style="gap:6px;font-size:13px">⏱️ <span class="timer">0:18</span></span></div>
+      <div class="bar"><i style="width:60%"></i></div>
+      <span class="tag" style="margin-top:14px;display:inline-block">${L('subject_m1')} · ${L('lvl_inter')}</span>
+      <div class="card" style="margin-top:12px">
+        <div class="h" style="font-size:19px">${qt}</div>
+        ${q.opts.map((o,i)=>`<div class="opt" id="opt${i}" onclick="selectOpt(${i})"><span class="k">${'ABCD'[i]}</span>${o}</div>`).join('')}
+      </div>
+      <p class="note" style="margin-top:12px">${L('speed_note')}</p>
+      <button class="btn full" style="margin-top:12px" onclick="checkAnswer()">${L('check')}</button>
+    </div>`;
+  }
+  if(APP.practiceStep==='result'){
+    const ok=APP.selectedOpt===q.correct;
+    return `<div style="max-width:680px;margin:0 auto">
+      <div style="text-align:center;margin:10px 0 4px"><div style="font-size:46px">${ok?'✅':'❌'}</div>
+        <div class="h" style="color:${ok?'var(--accent)':'var(--danger)'}">${ok?L('correct'):L('incorrect')}</div></div>
+      <div class="card">
+        ${q.opts.map((o,i)=>`<div class="opt ${i===q.correct?'ok':(i===APP.selectedOpt&&!ok?'no':'')}"><span class="k">${'ABCD'[i]}</span>${o}</div>`).join('')}
+        <div class="divider"></div><p class="note" style="margin:0">${L('res_exp')}</p></div>
+      <div class="card flat" style="margin-top:12px;border-color:var(--accent)"><span class="note">⚡ ${L('res_time')}</span></div>
+      <div class="flex" style="gap:10px;margin-top:14px;flex-wrap:wrap">
+        <button class="btn sec" onclick="APP.practiceStep='explanation';render()">📖 ${L('see_exp')}</button>
+        <button class="btn sec" onclick="go('grupos')">👥 ${L('share_group')}</button>
+        <button class="btn" style="margin-left:auto" onclick="APP.practiceStep='q';APP.selectedOpt=null;render()">${L('next_q')} →</button></div>
+    </div>`;
+  }
+  // explanation + skill
+  return `<div style="display:grid;grid-template-columns:1.6fr 1fr;gap:18px;align-items:start">
+    <div class="card">
+      <div class="flex" style="gap:10px"><span style="font-size:26px">📖</span><div><div class="h" style="margin:0">${L('exp_h')}</div><p class="note">${L('exp_sub')}</p></div></div>
+      <div class="card flat" style="text-align:center;font-size:16px;font-weight:700;margin-top:14px">3x + 7 = 22</div>
+      <div class="card flat" style="margin-top:10px"><b>${L('setup')}</b><p class="note">${L('setup_p')}</p></div>
+      <div class="card flat" style="margin-top:10px"><b>${L('step1')}</b><p class="note">${L('step1_p')}</p></div>
+      <div class="card flat" style="margin-top:10px"><b>${L('step2')}</b><p class="note">${L('step2_p')}</p></div>
+      <div class="card flat" style="margin-top:10px;border-color:var(--accent)"><b>✅ ${L('verify')}</b><p class="note">${L('verify_p')}</p></div>
+      <div class="card flat" style="margin-top:10px;border-color:var(--brand)"><b>💡 ${L('key_concept')}</b><p class="note">${L('key_p')}</p></div>
+      <div class="flex" style="gap:10px;margin-top:14px;flex-wrap:wrap">
+        <button class="btn sec" onclick="APP.practiceStep='q';APP.selectedOpt=null;render()">🎯 ${L('related')}</button>
+        <button class="btn gho" onclick="APP.practiceStep='result';render()">← ${L('back_result')}</button></div>
+    </div>
+    <div>
+      <div class="card"><div class="section-label" style="margin:0 0 4px">🧠 ${L('skill_h')}</div><p class="note">${L('skill_sub')}</p>
+        <div class="skill-node done"><span>✅</span> ${L('sk_done')}</div>
+        <div class="skill-node active"><span>🎯</span> ${L('sk_active')}</div>
+        <div class="skill-node locked"><span>🔒</span> ${L('sk_locked')}</div></div>
+      <div class="card" style="margin-top:16px;border-color:var(--danger)"><div class="flex" style="gap:8px"><span style="font-size:18px">⚑</span><b style="font-size:13px">${L('rc_btn')}</b></div>
+        <p class="note" style="margin-top:6px">${APP.lang==='es'?'¿Crees que la pregunta o respuesta tiene un error? Avísanos y revisamos en 48 h.':'Think the question or answer is wrong? Tell us and we review within 48h.'}</p>
+        <button class="btn sec full" style="margin-top:10px;border-color:var(--danger);color:var(--danger)">${L('rc_btn')}</button></div>
+    </div>
+  </div>`;
+};
+
+V.medallas=()=>{
+  const tiers=[['bronze',14],['silver',3],['gold',1],['diamond',0],['platinum',0]];
+  return `
+  <div class="card"><div class="flex between"><b>${L('med_have')}</b></div>
+    <div class="flex" style="justify-content:space-around;margin-top:14px;flex-wrap:wrap;gap:14px">
+    ${tiers.map(([t,n])=>`<div style="text-align:center;opacity:${APP.medals[t]>0?1:.45}">${coin(t,'lg')}<div style="font-weight:800;font-family:'Montserrat',sans-serif;font-size:18px;margin-top:6px">${APP.medals[t]}</div><div class="note">${L('med_'+t)}</div></div>`).join('')}</div>
+  </div>
+  <div class="dash" style="grid-template-columns:repeat(2,1fr);margin-top:18px">
+    <div class="card"><b>${L('med_exchange')}</b><p class="note">${L('med_exchange_p')}</p>
+      <div class="row">${coin('bronze','sm')} 5 → ${coin('silver','sm')} 1 <button class="btn sec" style="margin-left:auto;padding:8px 12px" onclick="doExchange('bronze','silver')">${L('exchange_btn')}</button></div>
+      <div class="row">${coin('silver','sm')} 5 → ${coin('gold','sm')} 1 <button class="btn sec" style="margin-left:auto;padding:8px 12px" onclick="doExchange('silver','gold')">${L('exchange_btn')}</button></div></div>
+    <div class="card"><b>${L('med_gift')}</b><p class="note">${L('med_gift_p')}</p>
+      <div class="row"><div class="mavatar" style="background:#1A365D;margin:0">CR</div> Camila R. <button class="btn sec" style="margin-left:auto;padding:8px 12px">${L('gift_btn')}</button></div>
+      <div class="row"><div class="mavatar" style="background:#10B981;margin:0">JL</div> Juan L. <button class="btn sec" style="margin-left:auto;padding:8px 12px">${L('gift_btn')}</button></div></div>
+    <div class="card"><b>${L('how_earn')}</b>
+      <div class="row">${coin('bronze','sm')} +1 · ${L('earn_correct')}</div>
+      <div class="row">${coin('bronze','sm')} +1 · ${L('earn_login')}</div>
+      <div class="row">${coin('bronze','sm')} +250 · ${L('earn_rc')}</div></div>
+    <div class="card" style="border-color:var(--platinum)"><b>${L('med_benefits')}</b><p class="note">${L('med_benefits_p')}</p>
+      <div class="row" style="opacity:.6"><div class="avatar-sq" style="background:var(--platinum)">🎁</div><div><div style="font-weight:700;font-size:13px">${APP.lang==='es'?'Descuento preuniversitario':'Prep-course discount'}</div><span class="tag">${coin('platinum','sm')} 5 · ${L('locked')}</span></div></div></div>
+  </div>`;
+};
+
+V.grupos=()=>{
+  if(APP.openGroup!=null){
+    const g=APP.groups[APP.openGroup];
+    return `<button class="btn gho" onclick="APP.openGroup=null;render()">← ${L('grp_back')}</button>
+      <div class="card" style="margin-top:10px"><div class="flex" style="gap:14px"><div class="avatar-sq" style="background:${g.color};width:52px;height:52px;font-size:20px">${g.name[0]}</div>
+        <div><div class="h" style="margin:0">${g.name}</div><div class="note">${g.subject} · ${g.members.length} ${L('grp_members')}</div></div></div></div>
+      <div class="dash" style="grid-template-columns:repeat(2,1fr);margin-top:16px">
+        <div class="card"><b>${L('grp_stats')}</b>
+          <div class="flex between" style="margin-top:10px"><span class="note">${L('grp_avg')}</span><b>${g.avg}%</b></div><div class="bar"><i style="width:${g.avg}%"></i></div>
+          <div class="flex between" style="margin-top:12px"><span class="note">${L('grp_your')}</span><b style="color:var(--accent)">${g.your}%</b></div><div class="bar"><i style="width:${g.your}%;background:var(--accent)"></i></div></div>
+        <div class="card"><b>${L('grp_shared')}</b><p class="note">${g.shared} ${APP.lang==='es'?'preguntas':'questions'}</p>
+          <div class="row"><span style="font-size:18px">📐</span> ${APP.lang==='es'?'Ecuación de primer grado':'First-degree equation'}<span class="tag g" style="margin-left:auto">${APP.lang==='es'?'Resuelta':'Solved'}</span></div>
+          <div class="row"><span style="font-size:18px">📊</span> ${APP.lang==='es'?'Lectura de gráficos':'Reading charts'}<span class="tag w" style="margin-left:auto">${APP.lang==='es'?'Difícil':'Hard'}</span></div></div>
+      </div>`;
+  }
+  return `
+  <div class="flex between" style="flex-wrap:wrap;gap:10px"><div class="h">${L('grp_my')}</div><button class="btn" onclick="alert('${L('grp_create')}')">+ ${L('grp_create')}</button></div>
+  <div class="dash" style="grid-template-columns:repeat(2,1fr);margin-top:14px">
+    ${APP.groups.map((g,i)=>`<div class="card group-card" onclick="APP.openGroup=${i};render()">
+      <div class="flex" style="gap:12px"><div class="avatar-sq" style="background:${g.color}">${g.name[0]}</div>
+        <div style="flex:1"><div style="font-weight:700">${g.name}</div><div class="note">${g.subject}</div></div></div>
+      <div class="flex between" style="margin-top:12px"><div class="mstack">${g.members.map(m=>`<div class="mavatar" style="background:${m[1]}">${m[0]}</div>`).join('')}</div><span class="note">${g.members.length} ${L('grp_members')}</span></div>
+      <div class="divider"></div>
+      <div class="flex between"><span class="note">${L('grp_your')}: <b style="color:var(--accent)">${g.your}%</b></span><span class="note">${L('grp_avg')}: <b>${g.avg}%</b></span></div>
+    </div>`).join('')}
+    <div class="card flat" style="display:flex;flex-direction:column;justify-content:center;align-items:center;border-style:dashed;cursor:pointer;min-height:160px" onclick="alert('${L('grp_create')}')">
+      <div style="font-size:30px">➕</div><b style="margin-top:8px">${L('grp_create')}</b><p class="note">${L('grp_invite')}</p></div>
+  </div>`;
+};
+
+V.comunidad=()=>`
+  <div style="max-width:720px;margin:0 auto">
+    <div class="card"><div class="flex" style="gap:10px"><div class="side-avatar" style="background:var(--brand);color:#fff">${APP.userName[0]}</div>
+      <input placeholder="${L('post_ph')}" style="margin:0"></div>
+      <div class="flex between" style="margin-top:12px"><span class="note">📷 🔗 📊</span><button class="btn" style="padding:9px 16px">${L('publish')}</button></div></div>
+    <div class="card" style="margin-top:16px"><div class="flex" style="gap:10px"><div class="mavatar" style="background:#1A365D;margin:0">CR</div><div><b style="font-size:13px">Camila R.</b> <span class="note">· 2h</span></div></div>
+      <p style="margin-top:10px">${L('com_p1')}</p>
+      <div class="card flat" style="margin-top:10px"><span class="tag">Mat M1</span> <span style="font-size:13px">3x + 7 = 22 → x = ?</span></div>
+      <div class="flex" style="gap:18px;margin-top:10px"><span class="note">👍 12</span><span class="note">💬 4 ${L('comment')}</span></div></div>
+    <div class="card" style="margin-top:16px"><div class="flex" style="gap:10px"><div class="mavatar" style="background:#10B981;margin:0">JL</div><div><b style="font-size:13px">Juan L.</b> <span class="note">· 5h</span></div></div>
+      <p style="margin-top:10px">${L('com_p2')}</p>
+      <div class="flex" style="gap:18px;margin-top:10px"><span class="note">👍 28</span><span class="note">💬 6 ${L('comment')}</span></div></div>
+  </div>`;
+
+V.plan=()=>{
+  // active plan management
+  if(APP.plan!=='free'&&APP.planStep!=='checkout'&&APP.planStep!=='success'){
+    const pid=APP.plan;
+    return `<div style="max-width:640px"><div class="h">${L('plan_h')}</div>
+      <div class="card" style="margin-top:12px"><div class="flex between"><b>${L('plan_current')}</b><span class="tag g">${L(PLANS[pid].nameKey)}</span></div>
+        <div class="divider"></div>
+        <div class="flex between"><span class="note">${L('co_cycle')}</span><span class="note">${APP.billing==='yr'?L('bill_yr'):L('bill_mo')} · ${priceStr(pid,APP.billing)}</span></div>
+        <div class="flex between" style="margin-top:8px"><span class="note">${L('mng_next')}</span><span class="note">${APP.billing==='yr'?'04/06/2027':'04/07/2026'}</span></div>
+        <div class="flex between" style="margin-top:8px"><span class="note">${L('mng_method')}</span><span class="note">💳 •••• 4242</span></div></div>
+      ${APP.planCancelled?`<div class="card flat" style="margin-top:12px;border-color:var(--oro)"><p class="note" style="margin:0;color:#B45309">⏳ ${L('mng_cancelled')}</p></div>`:''}
+      <div class="flex" style="gap:10px;margin-top:14px"><button class="btn sec" onclick="APP.planStep='overview';APP.plan='free';render()">${L('mng_change')}</button>
+      ${APP.planCancelled?'':`<button class="btn gho" style="color:var(--danger)" onclick="APP.planCancelled=true;render()">${L('mng_cancel')}</button>`}</div>
+    </div>`;
+  }
+  if(APP.planStep==='success'){
+    const pid=APP.plan;
+    return `<div style="max-width:520px;margin:30px auto;text-align:center"><div style="font-size:60px">🎉</div>
+      <div class="h" style="color:var(--accent)">${L('pay_ok_h')}</div><p class="p">${L('pay_ok_p')}</p>
+      <div class="card" style="text-align:left;margin-top:16px;border-color:var(--accent)">
+        <div class="flex between"><span class="note">${L('co_plan')}</span><b>${L(PLANS[pid].nameKey)}</b></div>
+        <div class="flex between" style="margin-top:8px"><span class="note">${L('co_total')}</span><b>${priceStr(pid,APP.billing)}</b></div></div>
+      <button class="btn full" style="margin-top:16px" onclick="APP.planStep='overview';go('inicio')">${L('pay_go')}</button></div>`;
+  }
+  if(APP.planStep==='checkout'){
+    const pid=APP.checkoutPlan,c=APP.billing;
+    return `<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;max-width:860px">
+      <div class="card"><div class="section-label" style="margin:0 0 8px">${L('co_summary')}</div>
+        <div class="flex between"><span class="note">${L('co_plan')}</span><b>${L(PLANS[pid].nameKey)}</b></div><div class="divider"></div>
+        <div class="flex between"><span class="note">${L('co_cycle')}</span><b>${c==='yr'?L('bill_yr')+' · '+L('bill_save'):L('bill_mo')}</b></div><div class="divider"></div>
+        <div class="flex between"><b>${L('co_total')}</b><span class="price" style="font-size:24px;font-weight:800;color:var(--brand)">${priceStr(pid,c)}</span></div>
+        <p class="note" style="margin-top:8px">${c==='yr'?L('co_billed_yr'):L('co_billed_mo')}</p>
+        <button class="btn gho" style="margin-top:6px;padding-left:0" onclick="APP.planStep='overview';render()">← ${L('co_back')}</button></div>
+      <div class="card"><div class="section-label" style="margin:0 0 8px">${L('co_fast')}</div>
+        <button class="paybtn apple" onclick="payPlan()"><svg width="14" height="17" viewBox="0 0 17 21" fill="#fff"><path d="M14.1 11.1c0-2 1.6-2.9 1.7-3-0.9-1.4-2.4-1.5-2.9-1.6-1.2-0.1-2.4 0.7-3 0.7-0.6 0-1.6-0.7-2.6-0.7-1.3 0-2.6 0.8-3.3 2-1.4 2.4-0.4 6 1 8 0.7 1 1.5 2.1 2.5 2 1-0.04 1.4-0.6 2.6-0.6 1.2 0 1.5 0.6 2.6 0.6 1.1 0 1.8-1 2.4-2 0.8-1.1 1.1-2.2 1.1-2.3 0-0.02-2.1-0.8-2.1-3.1zM12.2 5.2c0.5-0.6 0.9-1.5 0.8-2.4-0.8 0.03-1.7 0.5-2.2 1.2-0.5 0.6-0.9 1.5-0.8 2.3 0.9 0.07 1.7-0.5 2.2-1.1z"/></svg>Pay</button>
+        <button class="paybtn google" onclick="payPlan()"><b><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></b> Pay</button>
+        <div class="or-sep">${L('co_or')}</div>
+        <input placeholder="${L('co_card_num')}" value="4242 4242 4242 4242"><div class="flex" style="gap:8px;margin-top:9px"><input placeholder="${L('co_exp')}" value="12 / 28"><input placeholder="${L('co_cvc')}" value="123"></div>
+        <input style="margin-top:9px" placeholder="${L('co_name')}" value="${APP.userName}"><input style="margin-top:9px" placeholder="${L('co_email')}">
+        <button class="btn full" style="margin-top:12px" onclick="payPlan()">${L('co_pay')} ${priceStr(pid,c)}</button>
+        <div class="note" style="text-align:center;margin-top:10px">🔒 ${L('co_secure')}</div></div>
+    </div>`;
+  }
+  // paywall / choose
+  const c=APP.billing;
+  const pcard=(pid,pop)=>`<div class="card" style="${pop?'border:2px solid var(--brand)':''}"><div class="flex between"><b>${L(PLANS[pid].nameKey)}</b>${pop?`<span class="tag g">${L('popular')}</span>`:''}</div>
+    <div class="price" style="font-size:30px;font-weight:800;color:var(--brand);margin:8px 0">$${planPrice(pid,c)}<small style="font-size:14px;color:var(--muted);font-weight:600">${c==='yr'?L('yr'):L('mo')}</small></div>
+    <p class="note">${L(PLANS[pid].featKey)}</p>
+    <button class="btn ${pop?'':'sec'} full" style="margin-top:12px" onclick="goCheckout('${pid}')">${L('choose')}</button></div>`;
+  return `<div style="max-width:760px">
+    <div class="h">${L('cap_h')}</div><p class="p">${L('cap_p')}</p>
+    <div class="seg" style="margin-top:10px"><div class="${c==='mo'?'on':''}" onclick="APP.billing='mo';render()">${L('bill_mo')}</div><div class="${c==='yr'?'on':''}" onclick="APP.billing='yr';render()">${L('bill_yr')} · ${L('bill_save')}</div></div>
+    <div class="plan-grid">${pcard('plan1',false)}${pcard('plan5',true)}</div>
+  </div>`;
+};
+
+V.ajustes=()=>{
+  const sw=(on,act)=>`<span onclick="${act}" style="cursor:pointer;display:inline-flex;align-items:center;width:42px;height:24px;border-radius:20px;background:${on?'var(--brand)':'var(--line)'};position:relative;transition:.2s"><span style="position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:3px;left:${on?'21px':'3px'};transition:.2s"></span></span>`;
+  const planLabel=APP.plan==='free'?L('plan_free'):L(PLANS[APP.plan].nameKey);
+  return `<div style="max-width:620px"><div class="h">${L('set_h')}</div>
+    <div class="card" style="margin-top:12px;padding:6px 18px">
+      <div class="flex between" style="padding:12px 0;border-bottom:1px solid var(--line)"><b style="font-size:13px">${L('set_theme')}</b>${sw(APP.dark,'toggleTheme()')}</div>
+      <div class="flex between" style="padding:12px 0;border-bottom:1px solid var(--line)"><b style="font-size:13px">${L('set_lang')}</b>
+        <select style="width:auto;background:none;border:none;color:var(--brand);font-weight:700;cursor:pointer" onchange="setLang(this.value)"><option value="es" ${APP.lang==='es'?'selected':''}>Español</option><option value="en" ${APP.lang==='en'?'selected':''}>English</option></select></div>
+      <div class="flex between" style="padding:12px 0;border-bottom:1px solid var(--line)"><b style="font-size:13px">${L('set_notif')}</b>${sw(true,'this.firstElementChild&&0')}</div>
+      <div class="flex between" style="padding:12px 0;border-bottom:1px solid var(--line)"><b style="font-size:13px">${L('set_tests')}</b><span class="note">C. Lectora, Mat M1 ›</span></div>
+      <div class="flex between" style="padding:12px 0;cursor:pointer" onclick="go('plan')"><b style="font-size:13px">${L('set_plan')}</b><span class="note">${planLabel} ›</span></div>
+    </div>
+    <div class="card" style="margin-top:14px;cursor:pointer"><div class="flex between"><b style="font-size:13px">${L('set_privacy')}</b><span class="note">›</span></div></div>
+    <div class="card" style="margin-top:14px;border-color:var(--danger);background:rgba(239,68,68,.05)"><b style="font-size:13px;color:var(--danger)">${L('set_danger')}</b><p class="note">${L('set_danger_p')}</p></div>
+  </div>`;
+};
+
+V.tutores=()=>{
+  const es=APP.lang==='es';const free=APP.plan==='free';const t=TUTORS[APP.tutSel]||TUTORS[0];const cn=tutCrit();
+  const backMarket=`<span class="note" style="cursor:pointer;color:var(--brand);font-weight:700" onclick="tutGo('market')">‹ ${es?'Volver a tutores':'Back to tutors'}</span>`;
+  const backProfile=`<span class="note" style="cursor:pointer;color:var(--brand);font-weight:700" onclick="tutGo('profile')">‹ ${es?'Volver al perfil':'Back to profile'}</span>`;
+
+  // MARKETPLACE
+  if(APP.tutStep==='market'){
+    return `
+    <div class="flex between" style="flex-wrap:wrap;gap:10px">
+      <div><div class="h" style="font-size:22px">${es?'Tutores particulares':'Private tutors'} <span class="tag w">⭐ Premium</span></div><div class="sub">${es?'Encuentra al profesor ideal según tus áreas débiles.':'Find the right tutor for your weak areas.'}</div></div>
+    </div>
+    <div style="margin-top:14px;max-width:420px"><input type="text" placeholder="🔍 ${es?'Buscar profesor o asignatura…':'Search tutor or subject…'}"></div>
+    <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">${APP.tests.map(tt=>`<span class="chip" style="cursor:pointer" onclick="this.classList.toggle('on')"><span style="width:8px;height:8px;border-radius:50%;background:${tt.color}"></span>${tt.label}</span>`).join('')}</div>
+    ${free?`<div class="card flat" style="margin-top:14px;border-color:var(--brand);display:flex;align-items:center;gap:12px;cursor:pointer" onclick="go('plan')"><span style="font-size:20px">🔓</span><span class="note" style="flex:1;color:var(--ink);font-weight:600">${es?'Contactar tutores y el análisis de falencias requieren plan Premium.':'Contacting tutors and gap analysis require Premium.'}</span><span class="tag g">${es?'Mejorar ›':'Upgrade ›'}</span></div>`:''}
+    <div class="dash" style="margin-top:16px">
+      <div class="card span3" style="background:linear-gradient(135deg,var(--brand),#264b80);color:#fff;border:none;cursor:pointer" onclick="tutGo('analysis')">
+        <div class="flex between" style="flex-wrap:wrap;gap:12px"><div class="flex" style="gap:14px"><span style="font-size:32px">🎯</span><div><div class="h" style="color:#fff">${es?'Análisis de falencias':'Gap analysis'}</div><p class="note" style="color:rgba(255,255,255,.8)">${es?'Detecta tus áreas débiles desde tu práctica PAES y recibe tutores recomendados.':'Spot weak areas from your PAES practice and get recommended tutors.'}</p></div></div><button class="btn" onclick="event.stopPropagation();tutGo('analysis')">${es?'Generar análisis →':'Generate analysis →'}</button></div>
+      </div>
+      ${TUTORS.map((tt,i)=>`
+      <div class="card group-card" style="cursor:pointer" onclick="tutOpen(${i})">
+        <div class="flex" style="gap:12px;align-items:flex-start">
+          <div class="avatar-sq" style="background:${tt.c}">${tt.ini}</div>
+          <div style="flex:1;min-width:0">
+            <div class="flex between"><b style="font-size:15px;font-family:'Montserrat',sans-serif">${tt.name}</b>${tt.ver?`<span class="tag g">✔ ${es?'Verificado':'Verified'}</span>`:''}</div>
+            <div class="note">${es?tt.subj:tt.subjEn} · ${es?tt.mode:tt.modeEn}</div>
+            <div class="flex" style="gap:6px;margin-top:5px">${stars(tt.rate,13)}<span style="font-size:12px;font-weight:700;font-family:'Montserrat',sans-serif">${tt.rate}</span><span class="note">(${tt.nrev})</span></div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="flex between"><span><b style="font-size:16px;font-family:'Montserrat',sans-serif;color:var(--brand)">${tt.price}</b><span class="note"> / ${es?'hora':'hr'}</span></span><span class="note">${es?'Ver perfil ›':'View profile ›'}</span></div>
+      </div>`).join('')}
+    </div>`;
+  }
+
+  // ANÁLISIS DE FALENCIAS (premium · datos PAES)
+  if(APP.tutStep==='analysis'){
+    const fal=[
+      {subj:es?'Matemática M1':'Math M1',col:'#10B981',m:58,weak:es?['Álgebra','Funciones']:['Algebra','Functions'],n:6},
+      {subj:es?'Comp. Lectora':'Reading Comp.',col:'#1A365D',m:71,weak:es?['Inferencias']:['Inference'],n:4},
+      {subj:es?'Ciencias':'Science',col:'#F5B041',m:44,weak:es?['Biología celular','Química']:['Cell biology','Chemistry'],n:5},
+    ];
+    return `<div style="max-width:880px">
+      ${backMarket}
+      <div class="h" style="font-size:20px;margin-top:10px">${es?'Análisis de falencias':'Gap analysis'} <span class="tag w">⭐ Premium</span></div>
+      <div class="card flat" style="margin-top:12px;border:1px solid var(--brand)"><div class="flex" style="gap:12px"><span style="font-size:24px">📊</span><div><b>${es?'Tu diagnóstico PAES':'Your PAES diagnosis'}</b><p class="note">${es?'Basado en 342 ejercicios resueltos en Aprueba. Ordenado de mayor a menor necesidad.':'Based on 342 exercises solved in Aprueba. Sorted by need.'}</p></div></div></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:16px">
+      ${fal.map(f=>`<div class="card"><div class="flex between"><b>${f.subj}</b><span class="tag ${f.m>=70?'g':'w'}">${f.m}% ${es?'dominio':'mastery'}</span></div><div class="bar"><i style="width:${f.m}%;background:${f.col}"></i></div><div class="note" style="margin-top:10px">${es?'Áreas a reforzar':'Areas to reinforce'}:</div><div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">${f.weak.map(w=>`<span class="tag w">⚠ ${w}</span>`).join('')}</div><button class="btn sec full" style="margin-top:12px" onclick="tutGo('market')">${es?`Ver ${f.n} tutores →`:`See ${f.n} tutors →`}</button></div>`).join('')}
+      </div>
+    </div>`;
+  }
+
+  // PERFIL DEL PROFESOR
+  if(APP.tutStep==='profile'){
+    return `<div>
+      ${backMarket}
+      <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:18px;align-items:start;margin-top:12px">
+        <div class="card">
+          <div class="flex" style="gap:14px;align-items:flex-start">
+            <div class="avatar-sq" style="background:${t.c};width:56px;height:56px;font-size:20px">${t.ini}</div>
+            <div style="flex:1"><div class="flex" style="gap:8px"><b style="font-size:18px;font-family:'Montserrat',sans-serif">${t.name}</b>${t.ver?`<span class="tag g">✔ ${es?'Verificado':'Verified'}</span>`:''}</div>
+              <div class="note">${es?t.subj:t.subjEn} · ${es?t.mode:t.modeEn}</div>
+              <div class="flex" style="gap:6px;margin-top:5px">${stars(t.rate,15)}<span style="font-weight:700;font-family:'Montserrat',sans-serif">${t.rate}</span><span class="note">(${t.nrev} ${es?'reseñas':'reviews'})</span></div>
+            </div>
+          </div>
+          <p class="p" style="margin-top:14px">${es?t.bio:t.bioEn}</p>
+          <div class="section-label">${es?'Valoración por criterio':'Rating by criterion'}</div>
+          ${cn.map((c,i)=>`<div class="flex between" style="margin-top:8px"><span style="font-size:13px">${c}</span><span class="flex" style="gap:8px">${stars(t.crit[i],13)}<b style="font-family:'Montserrat',sans-serif;font-size:13px">${t.crit[i].toFixed(1)}</b></span></div>`).join('')}
+          <div class="flex between" style="margin-top:18px"><div class="section-label" style="margin:0">${es?'Reseñas':'Reviews'}</div><span class="note" style="color:var(--brand);cursor:pointer;font-weight:700" onclick="tutGo('reviews')">${es?`Ver todas (${t.nrev}) →`:`See all (${t.nrev}) →`}</span></div>
+          <div class="card flat" style="margin-top:10px"><div class="flex between"><div class="flex" style="gap:8px"><div class="mavatar" style="background:#10B981;margin:0">CR</div><b style="font-size:13px">Camila R.</b></div>${stars(5,12)}</div><p class="note" style="margin-top:8px">${es?'"Explica increíble, subí 120 puntos en el ensayo. Muy puntual."':'"Explains amazingly, my mock score went up 120 points. Very punctual."'}</p></div>
+        </div>
+        <div class="card" style="position:sticky;top:84px">
+          <div class="flex between"><span><b style="font-size:24px;font-family:'Montserrat',sans-serif;color:var(--brand)">${t.price}</b><span class="note"> / ${es?'hora':'hr'}</span></span><span class="tag">🎓 ${t.exp} ${es?'años':'yrs'}</span></div>
+          <button class="btn full" style="margin-top:14px" onclick="tutGo('contact')">${es?'Contactar':'Contact'}</button>
+          <p class="note" style="text-align:center;margin-top:8px">⭐ ${es?'Requiere plan Premium':'Requires Premium plan'}</p>
+          <div class="divider"></div>
+          <div class="note">${es?'Modalidad':'Format'}: ${es?t.mode:t.modeEn}</div>
+          <div class="note" style="margin-top:6px">💳 ${es?'El pago de clases se acuerda directamente con el profesor.':'Lesson payment is arranged directly with the tutor.'}</div>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  // TODAS LAS RESEÑAS
+  if(APP.tutStep==='reviews'){
+    const rv=[
+      {ini:'CR',c:'#10B981',name:'Camila R.',date:es?'Hace 2 sem':'2 wk ago',ov:5,vals:[5,5,5],txt:es?'Explica increíble, subí 120 puntos. Muy puntual y paciente.':'Explains amazingly, +120 points. Punctual and patient.'},
+      {ini:'TG',c:'#1A365D',name:'Tomás G.',date:es?'Hace 1 mes':'1 mo ago',ov:5,vals:[5,4,5],txt:es?'Domina la materia. A veces se atrasaba unos minutos.':'Masters the subject. Sometimes a few minutes late.'},
+      {ini:'AM',c:'#6366F1',name:'Andrea M.',date:es?'Hace 1 mes':'1 mo ago',ov:4,vals:[4,5,4],txt:es?'Buena profe, me habría gustado más material de práctica.':'Good tutor, wish there were more practice material.'},
+    ];
+    return `<div style="max-width:760px">
+      ${backProfile}
+      <div class="card" style="margin-top:12px;text-align:center"><div style="font-size:34px;font-weight:800;font-family:'Montserrat',sans-serif;color:var(--brand)">${t.rate}</div>${stars(t.rate,18)}<div class="note" style="margin-top:6px">${t.nrev} ${es?'reseñas verificadas · '+t.name:'verified reviews · '+t.name}</div></div>
+      <div class="section-label">${es?'Promedio por criterio':'Average by criterion'}</div>
+      ${cn.map((c,i)=>`<div class="flex between" style="margin-top:8px"><span style="font-size:13px">${c}</span><span class="flex" style="gap:8px">${stars(t.crit[i],13)}<b style="font-family:'Montserrat',sans-serif;font-size:13px">${t.crit[i].toFixed(1)}</b></span></div>`).join('')}
+      <div class="section-label">${es?'Opiniones':'Opinions'}</div>
+      ${rv.map(r=>`<div class="card" style="margin-top:10px"><div class="flex between"><div class="flex" style="gap:8px"><div class="mavatar" style="background:${r.c};margin:0">${r.ini}</div><div><b style="font-size:13px">${r.name}</b><div class="note">${r.date}</div></div></div>${stars(r.ov,13)}</div><div class="flex" style="gap:14px;margin-top:8px;flex-wrap:wrap">${cn.map((c,i)=>`<span class="note">${c.split(' ')[0]}: <b>${r.vals[i]}</b></span>`).join('')}</div><p class="p" style="margin-top:6px">"${r.txt}"</p></div>`).join('')}
+    </div>`;
+  }
+
+  // CONTACTAR / SOLICITUD (premium)
+  if(APP.tutStep==='contact'){
+    return `<div style="max-width:680px">
+      ${backProfile}
+      <div class="h" style="font-size:20px;margin-top:10px">${es?'Contactar a '+t.name:'Contact '+t.name} <span class="tag w">⭐ Premium</span></div>
+      <p class="p">${es?t.name+' recibirá tu perfil para conocer tus necesidades antes de responder.':t.name+' will receive your profile to understand your needs before replying.'}</p>
+      <div class="section-label">${es?'Tu perfil (se compartirá)':'Your profile (will be shared)'}</div>
+      <div class="card"><div class="flex" style="gap:12px"><div class="avatar-sq" style="background:var(--cta);color:#1A365D">${(APP.userName[0]||'E')}</div><div><b>${APP.userName} · ${es?'4º Medio':'12th grade'}</b><div class="note">${es?'Objetivo: 700+ pts · Rinde PAES nov. 2026':'Goal: 700+ pts · PAES Nov 2026'}</div></div></div>
+        <div class="note" style="margin-top:12px">${es?'Áreas débiles (de tu análisis)':'Weak areas (from your analysis)'}:</div>
+        <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">${(es?['Álgebra','Funciones']:['Algebra','Functions']).map(w=>`<span class="tag w">⚠ ${w}</span>`).join('')}</div>
+      </div>
+      <div class="section-label">${es?'Mensaje':'Message'}</div>
+      <textarea placeholder="${es?'Hola '+t.name+', necesito reforzar álgebra para la PAES. ¿Tienes cupos en las tardes?':'Hi '+t.name+', I need to reinforce algebra for the PAES. Any afternoon slots?'}"></textarea>
+      <p class="note" style="margin-top:8px">💳 ${es?'El pago de clases se acuerda directamente con el profesor (pronto integrado en Aprueba).':'Lesson payment is arranged directly with the tutor (coming soon in Aprueba).'}</p>
+      <button class="btn full" style="margin-top:14px" onclick="tutGo('chat')">${es?'Enviar solicitud':'Send request'}</button>
+    </div>`;
+  }
+
+  // CHAT INTERNO (+ compartir contacto)
+  if(APP.tutStep==='chat'){
+    const msgs=[
+      {me:false,x:es?'¡Hola '+APP.userName+'! Vi tu perfil, podemos partir reforzando álgebra. Tengo cupo martes y jueves 18:00.':'Hi '+APP.userName+'! Saw your profile, we can start with algebra. I have Tue & Thu 6pm slots.'},
+      {me:true,x:es?'Perfecto, me sirve el martes. ¿Es online?':'Great, Tuesday works. Is it online?'},
+      {me:false,x:es?'Sí, por videollamada. La primera clase es de diagnóstico 👍':'Yes, by video call. First class is a diagnosis 👍'},
+    ];
+    return `<div style="max-width:680px">
+      <div class="flex between"><div class="flex" style="gap:10px"><span class="note" style="cursor:pointer;color:var(--brand);font-weight:700;font-size:18px" onclick="tutGo('profile')">‹</span><div class="avatar-sq" style="background:${t.c};width:40px;height:40px;font-size:15px">${t.ini}</div><div><b>${t.name}</b><div class="note" style="color:var(--accent);font-weight:600">● ${es?'En línea':'Online'}</div></div></div></div>
+      <div class="card flat" style="margin-top:12px;border:1px solid var(--cta);background:rgba(245,176,65,.1)"><div class="flex between"><b style="font-size:13px">🔒 ${es?'Compartir mi WhatsApp':'Share my WhatsApp'}</b><div class="seg"><div class="on">${es?'Sí':'On'}</div><div>${es?'No':'Off'}</div></div></div><p class="note" style="margin-top:6px">${es?'Se revela solo si ambos aceptan. Recomendamos coordinar aquí primero.':'Revealed only if both agree. We suggest coordinating here first.'}</p></div>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:10px">${msgs.map(m=>`<div style="max-width:75%;align-self:${m.me?'flex-end':'flex-start'};background:${m.me?'var(--brand)':'var(--soft)'};color:${m.me?'#fff':'var(--ink)'};border:1px solid ${m.me?'var(--brand)':'var(--line)'};border-radius:14px;padding:10px 14px;font-size:13px;line-height:1.45">${m.x}</div>`).join('')}</div>
+      <div class="flex" style="gap:10px;margin-top:14px"><input type="text" placeholder="${es?'Escribe un mensaje…':'Type a message…'}"><button class="btn">➤</button></div>
+      <button class="btn sec full" style="margin-top:10px" onclick="tutGo('review')">⭐ ${es?'Calificar a '+t.name:'Rate '+t.name}</button>
+    </div>`;
+  }
+
+  // DEJAR RESEÑA (1–5 ⭐ · 3 criterios)
+  if(APP.tutStep==='review'){
+    return `<div style="max-width:680px">
+      <span class="note" style="cursor:pointer;color:var(--brand);font-weight:700" onclick="tutGo('chat')">‹ ${es?'Volver al chat':'Back to chat'}</span>
+      <div class="h" style="font-size:20px;margin-top:10px">${es?'Calificar profesor':'Rate tutor'}</div>
+      <div class="flex" style="gap:12px;margin-top:8px"><div class="avatar-sq" style="background:${t.c}">${t.ini}</div><div><b>${t.name}</b><div class="note">${es?'8 clases tomadas · '+t.subj:'8 classes taken · '+t.subjEn}</div></div></div>
+      <p class="p" style="margin-top:10px">${es?'Califica de 1 a 5 estrellas cada criterio:':'Rate each criterion from 1 to 5 stars:'}</p>
+      ${cn.map(c=>`<div class="card" style="margin-top:10px"><b style="font-size:14px">${c}</b><div style="margin-top:8px">${starPick()}</div></div>`).join('')}
+      <div class="section-label">${es?'Comentario (opcional)':'Comment (optional)'}</div>
+      <textarea placeholder="${es?'Cuenta tu experiencia para ayudar a otros alumnos…':'Share your experience to help other students…'}"></textarea>
+      <button class="btn full" style="margin-top:14px" onclick="tutGo('profile')">${es?'Publicar reseña':'Publish review'}</button>
+    </div>`;
+  }
+  return '';
+};
+
+// ── actions ──
+function selectOpt(i){document.querySelectorAll('.opt').forEach((o,j)=>o.className='opt'+(j===i?' sel':''));APP.selectedOpt=i;}
+function checkAnswer(){if(APP.selectedOpt===null)return;APP.practiceStep='result';render();}
+function doExchange(from,to){if((APP.medals[from]||0)<5)return;APP.medals[from]-=5;APP.medals[to]=(APP.medals[to]||0)+1;render();}
+function goCheckout(pid){APP.checkoutPlan=pid;APP.planStep='checkout';render();}
+function payPlan(){APP.plan=APP.checkoutPlan;APP.planCancelled=false;APP.planStep='success';APP.quotaMax=9999;render();}
+
+// ── render / nav ──
+function go(view){APP.view=view;if(view==='practicar')APP.practiceStep='q',APP.selectedOpt=null;if(view==='plan'&&APP.plan==='free')APP.planStep='overview';if(view!=='grupos')APP.openGroup=null;if(view==='tutores')APP.tutStep='market';toggleSidebar(false);render();}
+function toggleSidebar(open){document.getElementById('sidebar').classList.toggle('open',open);document.getElementById('scrim').classList.toggle('open',open);}
+function setLang(l){APP.lang=l;document.getElementById('langSel').value=l;document.documentElement.lang=l;render();}
+function toggleTheme(){APP.dark=!APP.dark;document.body.classList.toggle('dark',APP.dark);document.getElementById('themeBtn').textContent=APP.dark?'☀️':'🌙';render();}
+
+function renderNav(){
+  document.getElementById('nav').innerHTML=
+    `<div class="nav-sec">${L('nav_main')}</div>`+
+    NAV.slice(0,6).map(([id,ic])=>navItem(id,ic)).join('')+
+    `<div class="nav-sec">${L('nav_account')}</div>`+
+    NAV.slice(6).map(([id,ic])=>navItem(id,ic)).join('');
+}
+function navItem(id,ic){
+  const badge=(id==='plan'&&APP.plan==='free')?`<span class="badge">PRO</span>`:'';
+  return `<div class="nav-item ${APP.view===id?'act':''}" onclick="go('${id}')"><span class="ico">${ic}</span>${L('nav_'+id)}${badge}</div>`;
+}
+function render(){
+  renderNav();
+  document.getElementById('pageTitle').textContent=L('nav_'+APP.view);
+  document.getElementById('searchInp').placeholder=L('search_ph');
+  document.getElementById('streakChip').textContent='🔥 '+APP.streak;
+  document.getElementById('userName').textContent=APP.userName;
+  document.getElementById('userInitial').textContent=APP.userName[0]||'E';
+  document.getElementById('userPlan').textContent=APP.plan==='free'?L('plan_free'):L(PLANS[APP.plan].nameKey);
+  document.getElementById('main').innerHTML=(V[APP.view]||V.inicio)();
+}
+render();
+</script>
+</body>
+</html>

@@ -1,76 +1,25 @@
 import { db } from '../config/firebase.js';
+import { fields, requestId, checkOperation, text, problem, fail, ok } from '../services/social.js';
 
-// 1. Obtener tutores directamente desde la colección de Firestore
-export async function getTutors(req, res) {
-  try {
-    const { testId } = req.query;
-    let query = db.collection('tutors').where('active', '==', true);
-
-    if (testId && testId !== 'all') {
-      query = query.where('subjectTestId', '==', testId);
-    }
-
-    const snapshot = await query.get();
-    const tutors = [];
-
-    snapshot.forEach((doc) => {
-      tutors.push({ id: doc.id, ...doc.data() });
-    });
-
-    return res.success(tutors);
-  } catch (error) {
-    return res.fail(error.message, null, 500);
-  }
+// Perfiles ficticios: nunca se presentan como docentes contratados o verificados.
+const CATALOG=[['m1','Matemática M1','Álgebra y números'],['m2','Matemática M2','Funciones y probabilidad'],['lectora','Competencia Lectora','Comprensión de textos'],['cien','Ciencias','Biología'],['hist','Historia','Formación ciudadana']].map(([subjectTestId,subjectLabel,specialty],index)=>({id:`demo-${subjectTestId}`,name:`Tutor de demostración ${index+1}`,subjectTestId,subjectLabel,specialty,bio:'Perfil ficticio para probar el flujo de tutorías.',mode:'online',hourlyRate:0,avatarColor:'#1A365D',simulated:true,verified:false}));
+export async function getTutors(req,res) {
+  return ok(res,CATALOG.filter(tutor=>!req.query.testId || req.query.testId==='all' || tutor.subjectTestId===req.query.testId),{simulated:true});
 }
-
-// 2. Registrar solicitud en supportTickets ({channel: 'tutor'}) con subcolección messages
-export async function requestTutorSession(req, res) {
+export async function requestTutorSession(req,res) {
   try {
-    const uid = req.user?.sub || req.user?.id;
-    const { tutorId, topic, message } = req.body;
-
-    if (!tutorId || !message) {
-      return res.fail('El tutor y el mensaje son obligatorios', null, 400);
-    }
-
-    const [userDoc, tutorDoc] = await Promise.all([
-      db.collection('users').doc(uid).get(),
-      db.collection('tutors').doc(tutorId).get(),
-    ]);
-
-    if (!userDoc.exists) return res.fail('Usuario no encontrado', null, 404);
-    if (!tutorDoc.exists) return res.fail('Tutor no encontrado', null, 404);
-
-    const userData = userDoc.data();
-    const tutorData = tutorDoc.data();
-    const now = new Date();
-    const ticketRef = db.collection('supportTickets').doc();
-
-    const ticketPayload = {
-      subject: `Tutoría: ${tutorData.name} (${tutorData.subjectLabel}) - ${topic || 'Refuerzo'}`,
-      userId: uid,
-      userName: userData.name || 'Estudiante',
-      priority: 'med',
-      status: 'open',
-      channel: 'tutor',
-      assigneeId: tutorId,
-      tutorName: tutorData.name,
-      createdAt: now,
-      updatedAt: now,
-    };
-
-    await ticketRef.set(ticketPayload);
-
-    // Mensaje en la subcolección supportTickets/{id}/messages
-    await ticketRef.collection('messages').add({
-      authorId: uid,
-      authorType: 'user',
-      body: message.trim(),
-      createdAt: now,
+    fields(req.body,['tutorId','topic','message','requestId']);
+    const id=requestId(req.body),uid=req.user.sub,tutor=CATALOG.find(item=>item.id===req.body.tutorId);
+    if (!tutor) throw problem('Tutor no disponible',404);
+    const topic=text(req.body.topic || 'Refuerzo',150),message=text(req.body.message,2000);
+    const signature=JSON.stringify([tutor.id,topic,message]);
+    const ref=db.collection('users').doc(uid).collection('tutorRequests').doc(id);
+    const result=await db.runTransaction(async tx=>{
+      const previous=await tx.get(ref);
+      if (checkOperation(previous,signature)) return {id,status:'simulated',simulated:true,replayed:true};
+      tx.set(ref,{signature,tutorId:tutor.id,tutorName:tutor.name,topic,message,status:'simulated',simulated:true,createdAt:new Date()});
+      return {id,status:'simulated',simulated:true,replayed:false};
     });
-
-    return res.success({ id: ticketRef.id, ...ticketPayload }, null, 201);
-  } catch (error) {
-    return res.fail(error.message, null, 500);
-  }
+    return ok(res,result,null,result.replayed?200:201);
+  } catch(error) {return fail(res,error);}
 }

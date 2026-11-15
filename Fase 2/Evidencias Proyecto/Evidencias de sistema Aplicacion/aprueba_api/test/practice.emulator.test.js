@@ -47,7 +47,7 @@ after(async () => {
 async function student(quota = {}) {
   const uid = `practice-${randomUUID()}`;
   users.push(uid);
-  await db.collection('users').doc(uid).set({ medals: { bronze: 0 }, quota: { date: practiceDate(), used: 0, max: 20, unlimited: false, ...quota }, streak: 1, lastActiveDate: practiceDate() });
+  await db.collection('users').doc(uid).set({school:'Liceo fixture',age:18,region:'Región fixture',address:{commune:'Comuna fixture',street:'Calle fixture 123'},...(quota.unlimited?{plan:'all',planStatus:'active',currentPeriodEnd:'2099-01-01T00:00:00Z'}:{}), medals: { bronze: 0 }, quota: { date: practiceDate(), used: 0, max: 20, unlimited: false, ...quota }, streak: 1, lastActiveDate: practiceDate() });
   return uid;
 }
 async function request(uid, path, body) {
