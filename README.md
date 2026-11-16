@@ -45,7 +45,7 @@ Pruebas API y web: `npm test` en cada proyecto. Web: `npm run dev`. App: `flutte
 - Web: https://aprueba.shamiiplay.com/
 - Interfaz móvil: https://aprueba.shamiiplay.com/movil/
 
-Desde el 13 de octubre de 2026 la VPS volvió a Firebase real. La demo del 12 de octubre usó emuladores aislados y sus cuentas y avances se conservaron separados de los reales. El recorrido web/móvil de login, práctica y progreso compartido fue comprobado. Las funciones señaladas como pendientes siguen en desarrollo; no se generó un APK/IPA nativo. El estado temporal y el procedimiento para volver a Firebase real se describen en `deploy/DEMO_PUBLICA.md`, dentro de las evidencias de sistema.
+Desde el 13 de octubre de 2026 la VPS volvió a Firebase real. La demo del 12 de octubre usó emuladores aislados y sus cuentas y avances se conservaron separados de los reales. El recorrido web/móvil de login, práctica y progreso compartido fue comprobado. Las funciones señaladas como pendientes siguen en desarrollo; hay un APK Android de pruebas; iOS sigue pendiente. El estado temporal y el procedimiento para volver a Firebase real se describen en `deploy/DEMO_PUBLICA.md`, dentro de las evidencias de sistema.
 
 ## Mejoras del 21 de octubre de 2026
 
@@ -56,3 +56,7 @@ Se incorporaron las funciones del wireframe de Alloxentric manteniendo la interf
 Se conservan las evidencias recibidas. Las carpetas que aún no tienen documentos mantienen `.gitkeep`; esto no implica que una fase esté completada. Según la estructura de entrega suministrada, todavía deben incorporarse cuando estén disponibles los diarios individuales de Fase 2, las planillas de evaluación de avance/final de Fase 2 y las presentaciones del proyecto. No se generaron resultados de evaluación ni documentos académicos ficticios.
 
 Los ZIP originales, herramientas descargadas, logs, datos de emuladores, credenciales y cachés permanecen fuera de Git mediante `.gitignore`.
+
+## Actualización del 16 de noviembre de 2026
+
+Se integró el trabajo de rediseño del equipo y se homologaron funciones web/móvil. Consultar deploy/HOMOLOGACION_2026-11-16.md dentro de las evidencias de sistema. APK de pruebas: https://aprueba.shamiiplay.com/descargas/Aprueba-Android-pruebas-20261116.apk. Facsímil permanece Próximamente y PayPal pendiente.

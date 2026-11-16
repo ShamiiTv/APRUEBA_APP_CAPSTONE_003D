@@ -18,7 +18,9 @@
     "seed:all": "node src/data/seedCatalogs.js && node src/data/seedData.js",
     "seed:catalogs": "node src/data/seedCatalogs.js",
     "seed:questions": "node src/data/seedData.js",
-    "emulators": "firebase emulators:start --import=./emulator_data --export-on-exit=./emulator_data"
+    "emulators": "firebase emulators:start --import=./emulator_data --export-on-exit=./emulator_data",
+    "test:account-deletion:emulator": "node --test test/accountDeletion.emulator.test.js",
+    "test:parity:emulator": "node --test test/parity.emulator.test.js"
   },
   "keywords": [
     "paes",

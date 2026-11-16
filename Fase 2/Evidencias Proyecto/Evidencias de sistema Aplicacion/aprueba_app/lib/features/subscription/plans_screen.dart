@@ -75,10 +75,16 @@ class _PlansState extends ConsumerState<PlansScreen> {
         ? tr(context, '1 prueba ilimitada', '1 unlimited test')
         : tr(context, 'Todas las pruebas', 'All tests');
     final desc = plan.id == 'uni'
-        ? tr(context, 'Preguntas ilimitadas de 1 prueba que elijas',
-            'Unlimited questions in 1 test of your choice')
-        : tr(context, 'Acceso ilimitado a todas las pruebas PAES, tutores y análisis de falencias',
-            'Unlimited access to all PAES tests, tutors and gap analysis');
+        ? tr(
+            context,
+            'Preguntas ilimitadas de 1 prueba que elijas',
+            'Unlimited questions in 1 test of your choice',
+          )
+        : tr(
+            context,
+            'Acceso ilimitado a todas las pruebas PAES, tutores y análisis de falencias',
+            'Unlimited access to all PAES tests, tutors and gap analysis',
+          );
 
     return Container(
       margin: const EdgeInsets.only(bottom: 14),
@@ -94,22 +100,33 @@ class _PlansState extends ConsumerState<PlansScreen> {
           Row(
             children: [
               Expanded(
-                child: Text(title,
-                    style: GoogleFonts.montserrat(
-                        fontSize: 16, fontWeight: FontWeight.w800, color: c.ink)),
+                child: Text(
+                  title,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                    color: c.ink,
+                  ),
+                ),
               ),
               if (all)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: const Color(0xFFD1F2E6),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Text(tr(context, 'Más elegido', 'Most popular'),
-                      style: GoogleFonts.inter(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w800,
-                          color: const Color(0xFF047857))),
+                  child: Text(
+                    tr(context, 'Más elegido', 'Most popular'),
+                    style: GoogleFonts.inter(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w800,
+                      color: const Color(0xFF047857),
+                    ),
+                  ),
                 ),
             ],
           ),
@@ -118,12 +135,18 @@ class _PlansState extends ConsumerState<PlansScreen> {
             TextSpan(
               text: formatClp(plan.monthly),
               style: GoogleFonts.montserrat(
-                  fontSize: 30, fontWeight: FontWeight.w800, color: _azul),
+                fontSize: 30,
+                fontWeight: FontWeight.w800,
+                color: _azul,
+              ),
               children: [
                 TextSpan(
                   text: tr(context, ' /mes', ' /mo'),
                   style: GoogleFonts.inter(
-                      fontSize: 14, fontWeight: FontWeight.w700, color: c.muted),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: c.muted,
+                  ),
                 ),
               ],
             ),
@@ -139,9 +162,15 @@ class _PlansState extends ConsumerState<PlansScreen> {
               items: const [
                 DropdownMenuItem(value: 'm1', child: Text('Matemática M1')),
                 DropdownMenuItem(value: 'm2', child: Text('Matemática M2')),
-                DropdownMenuItem(value: 'lectora', child: Text('Competencia Lectora')),
+                DropdownMenuItem(
+                  value: 'lectora',
+                  child: Text('Competencia Lectora'),
+                ),
                 DropdownMenuItem(value: 'cien', child: Text('Ciencias')),
-                DropdownMenuItem(value: 'hist', child: Text('Historia y C. Sociales')),
+                DropdownMenuItem(
+                  value: 'hist',
+                  child: Text('Historia y C. Sociales'),
+                ),
               ],
             ),
           ],
@@ -155,28 +184,38 @@ class _PlansState extends ConsumerState<PlansScreen> {
                       backgroundColor: _amarillo,
                       foregroundColor: _azul,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14)),
+                        borderRadius: BorderRadius.circular(14),
+                      ),
                       textStyle: GoogleFonts.montserrat(
-                          fontSize: 15, fontWeight: FontWeight.w800),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
                     onPressed: busy ? null : () => choose(plan.id),
-                    child: Text(busy
-                        ? tr(context, 'Guardando…', 'Saving…')
-                        : tr(context, 'Elegir plan', 'Choose plan')),
+                    child: Text(
+                      busy
+                          ? tr(context, 'Guardando…', 'Saving…')
+                          : tr(context, 'Elegir plan', 'Choose plan'),
+                    ),
                   )
                 : OutlinedButton(
                     style: OutlinedButton.styleFrom(
                       foregroundColor: _azul,
                       side: BorderSide(color: c.line),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14)),
+                        borderRadius: BorderRadius.circular(14),
+                      ),
                       textStyle: GoogleFonts.montserrat(
-                          fontSize: 15, fontWeight: FontWeight.w800),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
                     onPressed: busy ? null : () => choose(plan.id),
-                    child: Text(busy
-                        ? tr(context, 'Guardando…', 'Saving…')
-                        : tr(context, 'Elegir plan', 'Choose plan')),
+                    child: Text(
+                      busy
+                          ? tr(context, 'Guardando…', 'Saving…')
+                          : tr(context, 'Elegir plan', 'Choose plan'),
+                    ),
                   ),
           ),
         ],
@@ -189,14 +228,21 @@ class _PlansState extends ConsumerState<PlansScreen> {
     final c = WfColors.of(context);
     return Scaffold(
       appBar: AppBar(title: Text(tr(context, 'Planes', 'Plans'))),
-      body: ref.watch(plansProvider).when(
+      body: ref
+          .watch(plansProvider)
+          .when(
             loading: () => const ContentSkeleton(kind: 'plans'),
             error: (error, stack) => Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(tr(context, 'No se pudieron cargar los planes.',
-                      'Could not load plans.')),
+                  Text(
+                    tr(
+                      context,
+                      'No se pudieron cargar los planes.',
+                      'Could not load plans.',
+                    ),
+                  ),
                   const SizedBox(height: 16),
                   FilledButton(
                     onPressed: () => ref.invalidate(plansProvider),
@@ -206,7 +252,9 @@ class _PlansState extends ConsumerState<PlansScreen> {
               ),
             ),
             data: (plans) {
-              final paid = plans.where((p) => p.id == 'uni' || p.id == 'all').toList();
+              final paid = plans
+                  .where((p) => p.id == 'uni' || p.id == 'all')
+                  .toList();
               return ListView(
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
                 children: [
@@ -221,29 +269,55 @@ class _PlansState extends ConsumerState<PlansScreen> {
                   if (widget.limitReached) ...[
                     const SizedBox(height: 10),
                     Text(
-                      tr(context, 'Agotaste tu cuota diaria gratuita.',
-                          'You used your free daily quota.'),
+                      tr(
+                        context,
+                        'Agotaste tu cuota diaria gratuita.',
+                        'You used your free daily quota.',
+                      ),
                       style: GoogleFonts.inter(
-                          fontSize: 14, fontWeight: FontWeight.w700, color: c.ink),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: c.ink,
+                      ),
                     ),
                   ],
                   if (message != null)
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 12),
-                      child: Text(message!,
-                          style: GoogleFonts.inter(fontSize: 13, color: c.ink)),
+                      child: Text(
+                        message!,
+                        style: GoogleFonts.inter(fontSize: 13, color: c.ink),
+                      ),
                     ),
                   const SizedBox(height: 14),
                   if (paid.isEmpty)
-                    Text(tr(context, 'No hay planes disponibles.', 'No plans available.')),
+                    Text(
+                      tr(
+                        context,
+                        'No hay planes disponibles.',
+                        'No plans available.',
+                      ),
+                    ),
                   for (final plan in paid) _planCard(plan),
+                  OutlinedButton(
+                    onPressed: busy ? null : () => choose('free'),
+                    child: Text(
+                      tr(
+                        context,
+                        'Volver al plan gratuito (simulado)',
+                        'Return to free plan (demo)',
+                      ),
+                    ),
+                  ),
                   Center(
                     child: TextButton(
                       onPressed: () => context.go('/home'),
                       child: Text(
                         tr(context, 'Quizás más tarde', 'Maybe later'),
                         style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w800, color: _azul),
+                          fontWeight: FontWeight.w800,
+                          color: _azul,
+                        ),
                       ),
                     ),
                   ),

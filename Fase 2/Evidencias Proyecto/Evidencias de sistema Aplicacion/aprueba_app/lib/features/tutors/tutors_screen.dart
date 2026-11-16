@@ -54,7 +54,9 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
                   decoration: BoxDecoration(
                     color: dot,
                     shape: BoxShape.circle,
-                    border: on ? Border.all(color: Colors.white, width: 1.5) : null,
+                    border: on
+                        ? Border.all(color: Colors.white, width: 1.5)
+                        : null,
                   ),
                 ),
                 const SizedBox(width: 7),
@@ -134,10 +136,9 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
                 ),
               ),
               onPressed: () {
-                final plan = ref.read(profileProvider).value?.plan;
-                context.push(
-                  plan == 'all' ? '/tutors/analysis' : '/premium/tutors',
-                );
+                final allowed =
+                    ref.read(profileProvider).value?.hasTutorAccess == true;
+                context.push(allowed ? '/tutors/analysis' : '/premium/tutors');
               },
               child: Text(
                 tr(context, 'Generar mi análisis →', 'Generate my analysis →'),
@@ -335,7 +336,11 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
                   'TUTORES SIMULADOS · Explora los perfiles y prueba una solicitud. Son perfiles ficticios: no se contacta a un profesor real ni se realizan cobros.',
                   'SIMULATED TUTORS · Explore profiles and try a request. These profiles are fictional: no real teacher is contacted and no payment is made.',
                 ),
-                style: GoogleFonts.inter(fontSize: 12, color: c.ink, height: 1.5),
+                style: GoogleFonts.inter(
+                  fontSize: 12,
+                  color: c.ink,
+                  height: 1.5,
+                ),
               ),
             ),
             const SizedBox(height: 14),
@@ -351,7 +356,8 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
               ),
             ),
             tutorsAsync.when(
-              loading: () => const ContentSkeleton(kind: 'tutors', inline: true),
+              loading: () =>
+                  const ContentSkeleton(kind: 'tutors', inline: true),
               error: (e, _) => Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
@@ -378,7 +384,8 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
               data: (all) {
                 final list = all.where((t) {
                   final byTest = _testId == 'all' || t.subjectTestId == _testId;
-                  final byText = _query.isEmpty ||
+                  final byText =
+                      _query.isEmpty ||
                       t.name.toLowerCase().contains(_query) ||
                       t.subjectLabel.toLowerCase().contains(_query) ||
                       (t.specialty ?? '').toLowerCase().contains(_query);

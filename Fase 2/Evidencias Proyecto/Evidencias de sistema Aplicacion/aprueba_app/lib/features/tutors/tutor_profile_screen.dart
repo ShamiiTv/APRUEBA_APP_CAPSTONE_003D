@@ -17,17 +17,17 @@ class TutorProfileScreen extends ConsumerWidget {
   final Tutor tutor;
 
   Widget _label(BuildContext context, String text) => Padding(
-        padding: const EdgeInsets.only(top: 20, bottom: 8),
-        child: Text(
-          text,
-          style: GoogleFonts.montserrat(
-            fontSize: 11,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 0.8,
-            color: WfColors.of(context).muted,
-          ),
-        ),
-      );
+    padding: const EdgeInsets.only(top: 20, bottom: 8),
+    child: Text(
+      text,
+      style: GoogleFonts.montserrat(
+        fontSize: 11,
+        fontWeight: FontWeight.w700,
+        letterSpacing: 0.8,
+        color: WfColors.of(context).muted,
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -82,7 +82,10 @@ class TutorProfileScreen extends ConsumerWidget {
                       ],
                     ),
                     if (sub.isNotEmpty)
-                      Text(sub, style: GoogleFonts.inter(fontSize: 12, color: c.muted)),
+                      Text(
+                        sub,
+                        style: GoogleFonts.inter(fontSize: 12, color: c.muted),
+                      ),
                     if (t.rating != null) ...[
                       const SizedBox(height: 4),
                       Row(
@@ -91,12 +94,22 @@ class TutorProfileScreen extends ConsumerWidget {
                           const SizedBox(width: 6),
                           Text(
                             t.rating!.toStringAsFixed(1),
-                            style: GoogleFonts.montserrat(fontSize: 12, fontWeight: FontWeight.w700),
+                            style: GoogleFonts.montserrat(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                           if (t.reviewsCount != null)
                             Text(
-                              tr(context, ' (${t.reviewsCount} reseñas)', ' (${t.reviewsCount} reviews)'),
-                              style: GoogleFonts.inter(fontSize: 11, color: c.muted),
+                              tr(
+                                context,
+                                ' (${t.reviewsCount} reseñas)',
+                                ' (${t.reviewsCount} reviews)',
+                              ),
+                              style: GoogleFonts.inter(
+                                fontSize: 11,
+                                color: c.muted,
+                              ),
                             ),
                         ],
                       ),
@@ -113,22 +126,40 @@ class TutorProfileScreen extends ConsumerWidget {
                 if (t.priceLabel != null)
                   Text(
                     t.priceLabel!,
-                    style: GoogleFonts.montserrat(fontSize: 22, fontWeight: FontWeight.w800, color: c.ink),
+                    style: GoogleFonts.montserrat(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w800,
+                      color: c.ink,
+                    ),
                   ),
                 const Spacer(),
                 if (t.experienceYears != null)
                   WfTag(
-                    text: tr(context, '🎓 ${t.experienceYears} años exp.', '🎓 ${t.experienceYears} yrs exp.'),
+                    text: tr(
+                      context,
+                      '🎓 ${t.experienceYears} años exp.',
+                      '🎓 ${t.experienceYears} yrs exp.',
+                    ),
                   ),
               ],
             ),
           ],
           if (t.bio != null) ...[
             const SizedBox(height: 14),
-            Text(t.bio!, style: GoogleFonts.inter(fontSize: 13, color: c.muted, height: 1.5)),
+            Text(
+              t.bio!,
+              style: GoogleFonts.inter(
+                fontSize: 13,
+                color: c.muted,
+                height: 1.5,
+              ),
+            ),
           ],
           if (t.criteria.isNotEmpty) ...[
-            _label(context, tr(context, 'VALORACIÓN POR CRITERIO', 'RATING BY CRITERION')),
+            _label(
+              context,
+              tr(context, 'VALORACIÓN POR CRITERIO', 'RATING BY CRITERION'),
+            ),
             for (final e in criteriaLabels.entries)
               if (t.criteria[e.key] != null)
                 Padding(
@@ -136,7 +167,13 @@ class TutorProfileScreen extends ConsumerWidget {
                   child: Row(
                     children: [
                       Expanded(
-                        child: Text(e.value, style: GoogleFonts.inter(fontSize: 13, color: c.muted)),
+                        child: Text(
+                          e.value,
+                          style: GoogleFonts.inter(
+                            fontSize: 13,
+                            color: c.muted,
+                          ),
+                        ),
                       ),
                       TutorStars(rating: t.criteria[e.key]!, size: 13),
                       const SizedBox(width: 10),
@@ -145,7 +182,10 @@ class TutorProfileScreen extends ConsumerWidget {
                         child: Text(
                           t.criteria[e.key]!.toStringAsFixed(1),
                           textAlign: TextAlign.right,
-                          style: GoogleFonts.montserrat(fontSize: 13, fontWeight: FontWeight.w800),
+                          style: GoogleFonts.montserrat(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
                       ),
                     ],
@@ -168,7 +208,10 @@ class TutorProfileScreen extends ConsumerWidget {
                     children: [
                       Text(
                         t.reviewAuthor ?? '',
-                        style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w700),
+                        style: GoogleFonts.inter(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                       const Spacer(),
                       const TutorStars(rating: 5, size: 13),
@@ -177,7 +220,11 @@ class TutorProfileScreen extends ConsumerWidget {
                   const SizedBox(height: 6),
                   Text(
                     '"${t.reviewText}"',
-                    style: GoogleFonts.inter(fontSize: 13, color: c.muted, height: 1.4),
+                    style: GoogleFonts.inter(
+                      fontSize: 13,
+                      color: c.muted,
+                      height: 1.4,
+                    ),
                   ),
                 ],
               ),
@@ -190,26 +237,42 @@ class TutorProfileScreen extends ConsumerWidget {
               style: FilledButton.styleFrom(
                 backgroundColor: const Color(0xFFF5AF41),
                 foregroundColor: const Color(0xFF1A365D),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                textStyle: GoogleFonts.montserrat(fontSize: 16, fontWeight: FontWeight.w800),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                textStyle: GoogleFonts.montserrat(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
               onPressed: () {
-                final plan = ref.read(profileProvider).value?.plan;
-                context.push(plan == 'all' ? '/tutors/contact' : '/premium/tutors', extra: t);
+                final allowed =
+                    ref.read(profileProvider).value?.hasTutorAccess == true;
+                context.push(
+                  allowed ? '/tutors/contact' : '/premium/tutors',
+                  extra: t,
+                );
               },
-              child: Text(tr(context, 'Contactar a $firstName', 'Contact $firstName')),
+              child: Text(
+                tr(context, 'Contactar a $firstName', 'Contact $firstName'),
+              ),
             ),
           ),
           Center(
             child: TextButton(
               onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(tr(context, 'Guardado (demostración)', 'Saved (demo)')),
+                  content: Text(
+                    tr(context, 'Guardado (demostración)', 'Saved (demo)'),
+                  ),
                 ),
               ),
               child: Text(
                 tr(context, 'Guardar para después', 'Save for later'),
-                style: GoogleFonts.montserrat(fontWeight: FontWeight.w700, color: c.brand),
+                style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w700,
+                  color: c.brand,
+                ),
               ),
             ),
           ),

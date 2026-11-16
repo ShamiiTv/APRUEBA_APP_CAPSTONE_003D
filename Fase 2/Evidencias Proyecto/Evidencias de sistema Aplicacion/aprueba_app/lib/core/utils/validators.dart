@@ -10,7 +10,7 @@ final _streetRe = RegExp(
   unicode: true,
 );
 final _unitRe = RegExp(r"^[\p{L}\p{N}][\p{L}\p{N}\s°#-]{0,9}$", unicode: true);
-final _emailRe = RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]{2,}$');
+final _emailRe = RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+$');
 
 String _clean(String? v) => (v ?? '').trim().replaceAll(RegExp(r'\s+'), ' ');
 
@@ -50,8 +50,14 @@ String? vLetters(
   return null;
 }
 
-String? vName(BuildContext c, String? v) =>
-    vLetters(c, v, es: 'tu nombre', en: 'your name');
+String? vName(BuildContext c, String? value) {
+  final name = (value ?? '').trim();
+  if (name.isEmpty) return tr(c, 'Ingresa tu nombre', 'Enter your name');
+  if (name.length > 120) {
+    return tr(c, 'Máximo 120 caracteres', 'Max 120 characters');
+  }
+  return null;
+}
 
 String? vEmail(BuildContext c, String? v) {
   final s = (v ?? '').trim();
@@ -60,18 +66,13 @@ String? vEmail(BuildContext c, String? v) {
   return null;
 }
 
-String? vPassword(BuildContext c, String? v) {
-  final s = v ?? '';
-  if (s.isEmpty) return tr(c, 'Ingresa una contraseña', 'Enter a password');
-  if (s.length < 8) {
-    return tr(c, 'Mínimo 8 caracteres', 'At least 8 characters');
-  }
-  if (!RegExp(r'\p{L}', unicode: true).hasMatch(s) ||
-      !RegExp(r'\d').hasMatch(s)) {
+String? vPassword(BuildContext c, String? value) {
+  final password = value ?? '';
+  if (password.length < 8 || password.length > 128) {
     return tr(
       c,
-      'Debe incluir una letra y un número',
-      'Must include a letter and a number',
+      'Usa entre 8 y 128 caracteres',
+      'Use between 8 and 128 characters',
     );
   }
   return null;

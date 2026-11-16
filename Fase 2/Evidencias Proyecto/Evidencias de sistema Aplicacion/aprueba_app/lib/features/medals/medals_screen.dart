@@ -78,6 +78,7 @@ class MedalsScreen extends ConsumerWidget {
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
       children: [
+        TextButton(onPressed:()=>context.push('/activity'),child:Text(tr(context,'Historial de medallas','Medal history'))),
         Row(
           children: [
             Text(

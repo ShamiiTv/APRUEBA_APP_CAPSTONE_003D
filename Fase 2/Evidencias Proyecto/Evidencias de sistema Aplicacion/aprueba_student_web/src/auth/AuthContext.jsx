@@ -5,10 +5,12 @@ import { AuthContext } from './context';
 import { useTheme } from '../context/useTheme';
 
 export function AuthProvider({ children }) {
+  const [reward,setReward]=useState(null);
+  const dismissReward=useCallback(()=>setReward(null),[]);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(() => Boolean(localStorage.getItem('token')));
   const [sessionError, setSessionError] = useState(null);
-  const { applyPreferences } = useTheme();
+  const { applyPreferences,lang } = useTheme();
   const sessionRevision = useRef(0);
   const uid = user?.uid;
   const profileTheme = user?.theme;
@@ -41,12 +43,13 @@ export function AuthProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    const endSession = () => { sessionRevision.current++; setUser(null); setSessionError(null); };
+    const endSession = () => { sessionRevision.current++; setReward(null);setUser(null); setSessionError(null); };
     window.addEventListener('aprueba:session-ended', endSession);
     return () => window.removeEventListener('aprueba:session-ended', endSession);
   }, []);
 
   const loginUser = async (email, password) => {
+    setReward(null);
     const res = await apiFetch('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
@@ -56,25 +59,29 @@ export function AuthProvider({ children }) {
     sessionRevision.current++;
     setSessionError(null);
     setUser(res.data.user);
+    if(res.data.dailyLoginReward)setReward({...res.data.dailyLoginReward,welcome:res.data.rewards?.some(r=>r.type==='welcome')===true});
     return res.data;
   };
 
-  const registerUser = async (name, email, password) => {
+  const registerUser = async (name, email, password, consent) => {
+    setReward(null);
     const res = await apiFetch('/auth/register', {
       method: 'POST',
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ name, email, password, consent, locale:lang }),
     });
 
     saveTokens(res.data.tokens);
     sessionRevision.current++;
     setSessionError(null);
     setUser(res.data.user);
+    if(res.data.dailyLoginReward)setReward({...res.data.dailyLoginReward,welcome:res.data.rewards?.some(r=>r.type==='welcome')===true});
     return res.data;
   };
 
   const logout = () => {
     sessionRevision.current++;
     clearSession();
+    setReward(null);
     setSessionError(null);
     setUser(null);
   };
@@ -93,7 +100,7 @@ export function AuthProvider({ children }) {
   return (
     <AuthContext.Provider
       value={{
-        user,
+        user, reward, dismissReward,
         loading,
         sessionError,
         loginUser,

@@ -33,7 +33,7 @@ after(async () => {
 });
 async function user(plan='all') {
   const id=randomUUID();userIds.push(id);
-  await db.collection('users').doc(id).set({ name:'Nombre fixture',email:'private@example.test',school:'Colegio privado',plan,planStatus:plan==='free'?'none':'active' });
+  await db.collection('users').doc(id).set({ name:'Nombre fixture',email:'private@example.test',school:'Colegio privado',plan,currentPeriodEnd:new Date(Date.now()+86400000),planStatus:plan==='free'?'none':'active' });
   return id;
 }
 async function request(uid,path,body) {

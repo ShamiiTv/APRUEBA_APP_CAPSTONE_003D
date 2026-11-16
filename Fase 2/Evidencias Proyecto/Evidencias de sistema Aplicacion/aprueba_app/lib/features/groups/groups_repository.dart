@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 
+import '../community/community_repository.dart';
+
 import '../../core/storage/pending_operation.dart';
 import '../../core/network/api_client.dart';
 import '../../core/network/api_error.dart';
@@ -7,6 +9,17 @@ import '../../data/shared_models.dart';
 import '../../data/social_models.dart';
 
 class GroupsRepository {
+  Future<FeedPage> groupPostsPage(String id, {String? cursor}) async {
+    final res = await ApiClient.dio.get(
+      '/posts',
+      queryParameters: {'groupId': id, 'cursor': ?cursor},
+    );
+    return FeedPage(
+      posts: _list(res.data['data'], Post.fromJson),
+      nextCursor: res.data['meta']?['nextCursor']?.toString(),
+    );
+  }
+
   Future<List<StudyGroup>> publicGroups() async {
     final res = await ApiClient.dio.get('/groups/public');
     return _list(res.data['data'], StudyGroup.fromJson);

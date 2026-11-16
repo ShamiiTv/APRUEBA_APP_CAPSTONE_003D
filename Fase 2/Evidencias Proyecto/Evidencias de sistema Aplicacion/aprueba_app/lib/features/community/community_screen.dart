@@ -9,10 +9,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../core/network/api_error.dart';
 import '../../core/theme/wf_colors.dart';
-import '../../core/utils/format_utils.dart';
 import '../../core/widgets/avatar_circle.dart';
+import '../../core/utils/format_utils.dart';
 import '../../data/social_models.dart';
 import 'community_providers.dart';
+import 'post_comments_sheet.dart';
 
 class CommunityScreen extends ConsumerStatefulWidget {
   const CommunityScreen({super.key});
@@ -96,18 +97,19 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
   }
 
   Future<void> _openComments(Post p) async {
-    if (p.commentCount == 0 || p.comments.isNotEmpty) return;
-    try {
-      final list = await ref
-          .read(communityRepositoryProvider)
-          .fetchComments(p.id);
-      _replace(
-        p.id,
-        (x) => x.copyWith(comments: list, commentCount: list.length),
-      );
-    } on ApiFailure catch (e) {
-      _snack(e.message);
-    }
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (_) => PostCommentsSheet(
+        postId: p.id,
+        onCountChanged: (count) {
+          if (mounted) {
+            _replace(p.id, (post) => post.copyWith(commentCount: count));
+          }
+        },
+      ),
+    );
   }
 
   void _replace(String id, Post Function(Post) change) {
@@ -145,25 +147,6 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
       );
     } on ApiFailure catch (e) {
       _snack(e.message);
-    }
-  }
-
-  Future<bool> _comment(Post p, String text) async {
-    try {
-      final c = await ref
-          .read(communityRepositoryProvider)
-          .addComment(p.id, text);
-      _replace(
-        p.id,
-        (x) => x.copyWith(
-          comments: [...x.comments, c],
-          commentCount: x.commentCount + 1,
-        ),
-      );
-      return true;
-    } on ApiFailure catch (e) {
-      _snack(e.message);
-      return false;
     }
   }
 
@@ -268,7 +251,6 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
                 key: ValueKey(p.id),
                 post: p,
                 onLike: () => _like(p),
-                onComment: (t) => _comment(p, t),
                 onOpen: () => _openComments(p),
               ),
             if (_nextCursor != null)
@@ -300,48 +282,19 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
   }
 }
 
-class _PostCard extends StatefulWidget {
+class _PostCard extends StatelessWidget {
   const _PostCard({
     super.key,
     required this.post,
     required this.onLike,
-    required this.onComment,
     required this.onOpen,
   });
-
   final Post post;
-  final Future<void> Function() onLike;
-  final Future<bool> Function(String text) onComment;
-  final Future<void> Function() onOpen;
-
-  @override
-  State<_PostCard> createState() => _PostCardState();
-}
-
-class _PostCardState extends State<_PostCard> {
-  bool _open = false;
-  bool _sending = false;
-  final _ctrl = TextEditingController();
-
-  @override
-  void dispose() {
-    _ctrl.dispose();
-    super.dispose();
-  }
-
-  Future<void> _send() async {
-    final t = _ctrl.text.trim();
-    if (t.isEmpty || _sending) return;
-    setState(() => _sending = true);
-    final ok = await widget.onComment(t);
-    if (ok) _ctrl.clear();
-    if (mounted) setState(() => _sending = false);
-  }
-
+  final Future<void> Function() onLike, onOpen;
   @override
   Widget build(BuildContext context) {
     final c = WfColors.of(context);
-    final p = widget.post;
+    final p = post;
 
     return Padding(
       padding: const EdgeInsets.only(top: 11),
@@ -408,7 +361,7 @@ class _PostCardState extends State<_PostCard> {
                 children: [
                   InkWell(
                     borderRadius: BorderRadius.circular(8),
-                    onTap: widget.onLike,
+                    onTap: onLike,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         vertical: 4,
@@ -429,10 +382,7 @@ class _PostCardState extends State<_PostCard> {
                   const SizedBox(width: 14),
                   InkWell(
                     borderRadius: BorderRadius.circular(8),
-                    onTap: () {
-                      setState(() => _open = !_open);
-                      if (_open) widget.onOpen();
-                    },
+                    onTap: onOpen,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         vertical: 4,
@@ -446,64 +396,6 @@ class _PostCardState extends State<_PostCard> {
                   ),
                 ],
               ),
-              if (_open) ...[
-                Divider(color: c.line, height: 18),
-                for (final cm in p.comments)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AvatarCircle(
-                          name: cm.authorName,
-                          color: cm.authorColor,
-                          size: 24,
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '${cm.authorName} · ${timeAgo(cm.createdAt)}',
-                                style: GoogleFonts.inter(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w700,
-                                  color: c.muted,
-                                ),
-                              ),
-                              Text(
-                                cm.text,
-                                style: GoogleFonts.inter(fontSize: 12.5),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: _ctrl,
-                        onSubmitted: (_) => _send(),
-                        decoration: InputDecoration(
-                          hintText: tr(
-                            context,
-                            'Escribe un comentario…',
-                            'Write a comment…',
-                          ),
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: _sending ? null : _send,
-                      icon: Icon(Icons.send_rounded, color: c.brand),
-                    ),
-                  ],
-                ),
-              ],
             ],
           ),
         ),

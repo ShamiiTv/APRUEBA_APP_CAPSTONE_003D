@@ -10,7 +10,8 @@ import '../../core/network/api_client.dart';
 import '../auth/auth_providers.dart';
 
 class LevelsScreen extends ConsumerStatefulWidget {
-  const LevelsScreen({super.key});
+  const LevelsScreen({super.key, this.initialTest = 'm1'});
+  final String initialTest;
   @override
   ConsumerState<LevelsScreen> createState() => _LevelsState();
 }
@@ -29,6 +30,7 @@ class _LevelsState extends ConsumerState<LevelsScreen> {
   @override
   void initState() {
     super.initState();
+    test = widget.initialTest;
     levels = load();
   }
 
@@ -62,6 +64,7 @@ class _LevelsState extends ConsumerState<LevelsScreen> {
           ],
           onChanged: (value) => setState(() {
             test = value!;
+            test = widget.initialTest;
             levels = load();
           }),
         ),

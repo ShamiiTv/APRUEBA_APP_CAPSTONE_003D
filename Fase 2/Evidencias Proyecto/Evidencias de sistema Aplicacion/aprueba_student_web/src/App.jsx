@@ -15,6 +15,8 @@ import PasswordRecovery from './pages/PasswordRecovery';
 // Vistas Privadas
 import Onboarding from './pages/Onboarding';
 
+const Notifications = lazy(() => import('./pages/Notifications'));
+const TutorAnalysis = lazy(() => import('./pages/TutorAnalysis'));
 const Home = lazy(() => import('./pages/Home'));
 const Practice = lazy(() => import('./pages/Practice'));
 const Medals = lazy(() => import('./pages/Medals'));
@@ -111,6 +113,8 @@ export default function App() {
             <Route path="medallas" element={<Medals />} />
             <Route path="grupos" element={<Groups />} />
             <Route path="tutores" element={<Tutors />} />
+            <Route path="tutores/analisis" element={<TutorAnalysis />} />
+            <Route path="notificaciones" element={<Notifications />} />
             <Route path="comunidad" element={<Community />} />
             <Route path="plan" element={<Plan />} />
             <Route path="plan-estudio" element={<StudyPlan />} />

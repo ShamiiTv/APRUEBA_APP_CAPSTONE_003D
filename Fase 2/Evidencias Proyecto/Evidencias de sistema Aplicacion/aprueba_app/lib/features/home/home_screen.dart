@@ -92,6 +92,7 @@ class HomeScreen extends ConsumerWidget {
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
       children: [
+        Wrap(spacing:12,children:[TextButton(onPressed:()=>context.push('/study-plan'),child:Text(tr(context,'Plan de estudio','Study plan'))),TextButton(onPressed:()=>context.push('/activity'),child:Text(tr(context,'Últimas respuestas','Recent answers')))]),
         // Encabezado: logo + racha
         Row(
           children: [

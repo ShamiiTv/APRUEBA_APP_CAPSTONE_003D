@@ -303,7 +303,7 @@ class BenefitsScreen extends ConsumerWidget {
                       : WfTag(
                           text: b.inStock
                               ? '🔒 Necesitas ${b.costPlatinum} ⬡ Platino'
-                              : '⛔ Agotado',
+                              : tr(context,'No disponible para canjear','Not available to redeem'),
                           bg: const Color(0x24A78BFA),
                           fg: const Color(0xFF7C3AED),
                         ),

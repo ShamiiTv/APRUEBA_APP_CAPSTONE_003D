@@ -4,6 +4,7 @@ import ContentSkeleton from './ContentSkeleton';
 import { useAuth } from '../auth/useAuth';
 import { useTheme } from '../context/useTheme';
 import './Layout.css';
+import NotificationBell from './NotificationBell';
 
 export default function Layout() {
   const { user, logout, saveProfile } = useAuth();
@@ -248,6 +249,7 @@ export default function Layout() {
               {theme === 'dark' ? '☀️' : '🌙'}
             </button>
 
+            <NotificationBell />
             {/* Racha */}
             <span style={{
               display: 'inline-flex',

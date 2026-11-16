@@ -17,9 +17,16 @@ class PremiumGateScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = WfColors.of(context);
     final benefits = [
-      tr(context, 'Análisis de falencias por asignatura', 'Gap analysis by subject'),
-      tr(context, 'Contacto y chat con profesores', 'Contact and chat with teachers'),
-      tr(context, 'Ensayos facsímil ilimitados', 'Unlimited mock exams'),
+      tr(
+        context,
+        'Análisis de falencias por asignatura',
+        'Gap analysis by subject',
+      ),
+      tr(
+        context,
+        'Solicitudes de tutoría simuladas',
+        'Simulated tutoring requests',
+      ),
       tr(context, 'Sin límite de preguntas diarias', 'No daily question limit'),
     ];
 
@@ -35,7 +42,11 @@ class PremiumGateScreen extends StatelessWidget {
             Text(
               tr(context, 'Desbloquea los Tutores', 'Unlock Tutors'),
               textAlign: TextAlign.center,
-              style: GoogleFonts.montserrat(fontSize: 22, fontWeight: FontWeight.w800, color: c.ink),
+              style: GoogleFonts.montserrat(
+                fontSize: 22,
+                fontWeight: FontWeight.w800,
+                color: c.ink,
+              ),
             ),
             const SizedBox(height: 8),
             Text(
@@ -45,7 +56,11 @@ class PremiumGateScreen extends StatelessWidget {
                 'Contacting teachers and gap analysis are part of Aprueba Premium.',
               ),
               textAlign: TextAlign.center,
-              style: GoogleFonts.inter(fontSize: 14, color: c.muted, height: 1.4),
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                color: c.muted,
+                height: 1.4,
+              ),
             ),
             const SizedBox(height: 18),
             Container(
@@ -62,9 +77,24 @@ class PremiumGateScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 6),
                       child: Row(
                         children: [
-                          const Text('✓', style: TextStyle(color: Color(0xFF10B981), fontWeight: FontWeight.w900, fontSize: 16)),
+                          const Text(
+                            '✓',
+                            style: TextStyle(
+                              color: Color(0xFF10B981),
+                              fontWeight: FontWeight.w900,
+                              fontSize: 16,
+                            ),
+                          ),
                           const SizedBox(width: 10),
-                          Expanded(child: Text(b, style: GoogleFonts.inter(fontSize: 13, color: c.ink))),
+                          Expanded(
+                            child: Text(
+                              b,
+                              style: GoogleFonts.inter(
+                                fontSize: 13,
+                                color: c.ink,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -81,25 +111,38 @@ class PremiumGateScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Text(tr(context, 'Plan mensual', 'Monthly plan'),
-                      style: GoogleFonts.inter(fontSize: 12, color: c.muted)),
+                  Text(
+                    tr(context, 'Plan mensual', 'Monthly plan'),
+                    style: GoogleFonts.inter(fontSize: 12, color: c.muted),
+                  ),
                   const SizedBox(height: 4),
                   Text.rich(
                     TextSpan(
                       text: '\$4.990',
-                      style: GoogleFonts.montserrat(fontSize: 32, fontWeight: FontWeight.w800, color: _azul),
+                      style: GoogleFonts.montserrat(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w800,
+                        color: _azul,
+                      ),
                       children: [
                         TextSpan(
                           text: tr(context, ' /mes', ' /mo'),
-                          style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w700, color: c.muted),
+                          style: GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700,
+                            color: c.muted,
+                          ),
                         ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    tr(context, 'Demostración: no se realiza ningún cobro real',
-                        'Demo: no real charge is made'),
+                    tr(
+                      context,
+                      'Demostración: no se realiza ningún cobro real',
+                      'Demo: no real charge is made',
+                    ),
                     style: GoogleFonts.inter(fontSize: 11, color: c.muted),
                   ),
                 ],
@@ -112,8 +155,13 @@ class PremiumGateScreen extends StatelessWidget {
                 style: FilledButton.styleFrom(
                   backgroundColor: _amarillo,
                   foregroundColor: _azul,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                  textStyle: GoogleFonts.montserrat(fontSize: 16, fontWeight: FontWeight.w800),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  textStyle: GoogleFonts.montserrat(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
                 onPressed: () => context.push('/plans'),
                 child: Text(tr(context, 'Hazte Premium', 'Go Premium')),
@@ -124,7 +172,10 @@ class PremiumGateScreen extends StatelessWidget {
                 onPressed: () => context.pop(),
                 child: Text(
                   tr(context, 'Ahora no', 'Not now'),
-                  style: GoogleFonts.montserrat(fontWeight: FontWeight.w800, color: _azul),
+                  style: GoogleFonts.montserrat(
+                    fontWeight: FontWeight.w800,
+                    color: _azul,
+                  ),
                 ),
               ),
             ),

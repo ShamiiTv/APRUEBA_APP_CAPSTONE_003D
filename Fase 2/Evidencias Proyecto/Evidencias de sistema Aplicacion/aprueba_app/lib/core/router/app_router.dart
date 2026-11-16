@@ -1,4 +1,6 @@
 import '../widgets/private_beta_notice.dart';
+import '../../features/study/study_plan_screen.dart';
+import '../../features/activity/activity_screen.dart';
 import '../../features/practice/levels_screen.dart';
 import '../storage/token_storage.dart';
 
@@ -8,6 +10,7 @@ import '../../features/auth/auth_providers.dart';
 import '../../features/auth/verify_email_screen.dart';
 
 import 'package:go_router/go_router.dart';
+
 import '../../features/splash/splash_screen.dart';
 import '../../data/practice_models.dart';
 import '../../data/social_models.dart';
@@ -106,7 +109,12 @@ final appRouter = GoRouter(
       path: '/verify-email',
       builder: (context, state) => const VerifyEmailScreen(),
     ),
-    GoRoute(path: '/levels', builder: (context, state) => const LevelsScreen()),
+    GoRoute(
+      path: '/levels',
+      builder: (context, state) => LevelsScreen(
+        initialTest: state.uri.queryParameters['testId'] ?? 'm1',
+      ),
+    ),
     GoRoute(
       path: '/private-beta-info',
       builder: (context, state) => PrivateBetaNotice(
@@ -273,6 +281,14 @@ final appRouter = GoRouter(
         if (extra is! Tutor) return const TutorsScreen();
         return TutorContactScreen(tutor: extra);
       },
+    ),
+    GoRoute(
+      path: '/study-plan',
+      builder: (context, state) => const StudyPlanScreen(),
+    ),
+    GoRoute(
+      path: '/activity',
+      builder: (context, state) => const ActivityScreen(),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) =>

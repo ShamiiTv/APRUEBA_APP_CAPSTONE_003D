@@ -158,8 +158,8 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
               Text(
                 tr(
                   context,
-                  'Si el correo existe, te enviamos un código para restablecer tu contraseña. (En esta versión de desarrollo el código se muestra en la consola de la API.)',
-                  'If the email exists, we sent you a code to reset your password. (In this development build the code is printed in the API console.)',
+                  'Si el correo existe, recibirás un enlace para restablecer tu contraseña. Puedes abrirlo en el navegador o pegar aquí el enlace completo.',
+                  'If the email exists, you will receive a password reset link. Open it in your browser or paste the full link here.',
                 ),
                 style: GoogleFonts.inter(
                   fontSize: 13,
@@ -177,8 +177,8 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                       decoration: InputDecoration(
                         hintText: tr(
                           context,
-                          'Código de recuperación',
-                          'Recovery code',
+                          'Enlace o código de recuperación',
+                          'Recovery link or code',
                         ),
                       ),
                       validator: (v) => (v == null || v.trim().isEmpty)
@@ -192,8 +192,8 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                       decoration: InputDecoration(
                         hintText: tr(
                           context,
-                          'Nueva contraseña (mín. 8, con letra y número)',
-                          'New password (min. 8, letter and number)',
+                          'Nueva contraseña (8 a 128 caracteres)',
+                          'New password (8 to 128 characters)',
                         ),
                       ),
                       validator: (v) => vPassword(context, v),

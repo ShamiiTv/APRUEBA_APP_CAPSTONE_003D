@@ -8,6 +8,22 @@ Future<void> showApruebaMenu(BuildContext context) async {
   final c = WfColors.of(context);
   final entries = [
     (
+      Icons.calendar_today_outlined,
+      tr(context, 'Plan de estudio', 'Study plan'),
+      tr(context, 'Meta y recomendaciones', 'Goal and recommendations'),
+      '/study-plan',
+    ),
+    (
+      Icons.history,
+      tr(context, 'Mi actividad', 'My activity'),
+      tr(
+        context,
+        'Respuestas y movimientos de medallas',
+        'Answers and medal transactions',
+      ),
+      '/activity',
+    ),
+    (
       Icons.home_outlined,
       tr(context, 'Inicio', 'Home'),
       tr(

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../auth/useAuth';
 import { useTheme } from '../context/useTheme';
 import './Settings.css';
+import AccountSecurity from '../components/AccountSecurity';
 import { apiFetch } from '../api/client';
 
 const TESTS = [['m1','Matemática M1'],['m2','Matemática M2'],['lectora','Competencia Lectora'],['cien','Ciencias'],['hist','Historia']];
@@ -12,7 +13,7 @@ const COPY = {
 };
 function profileDraft(user) {
   const selected = Array.isArray(user?.selectedTests) ? [...new Set(user.selectedTests.filter(id => TESTS.some(([testId]) => testId === id)))] : [];
-  return { name:user?.name || '',school:user?.school || '',region:user?.region || '',age:user?.age ?? '',phone:user?.phone || '',address:user?.address || {commune:'',street:''},selectedTests:selected.length ? selected : ['lectora','m1'],difficulty:['d1','d2','d3'].includes(user?.difficulty) ? user.difficulty : 'd2',theme:user?.theme === 'dark' ? 'dark' : 'light',locale:user?.locale === 'en' ? 'en' : 'es',dailyReminder:user?.dailyReminder === true };
+  return { name:user?.name || '',school:user?.school || '',region:user?.region || '',age:user?.age ?? '',phone:user?.phone || '',address:user?.address || {commune:'',street:''},selectedTests:selected.length ? selected : ['lectora','m1'],difficulty:['d1','d2','d3'].includes(user?.difficulty) ? user.difficulty : 'd2',theme:user?.theme === 'dark' ? 'dark' : 'light',locale:user?.locale === 'en' ? 'en' : 'es',dailyReminder:user?.dailyReminder === true,reminderTime:user?.reminderTime || '20:00' };
 }
 
 export default function Settings() {
@@ -77,7 +78,7 @@ export default function Settings() {
         <p>{lang==='en'?'10 base + 5 school/age/region + 5 address · 20 free max':'10 base + 5 colegio/edad/región + 5 dirección · 20 máx gratis'}</p>
         <label>{lang==='en'?'Commune':'Comuna'}<input maxLength={200} value={values.address.commune || ''} onChange={e=>change('address',{...values.address,commune:e.target.value})} /></label>
         <label>{lang==='en'?'Street and number':'Calle y número'}<input maxLength={200} value={values.address.street || ''} onChange={e=>change('address',{...values.address,street:e.target.value})} /></label>
-        <p className="settings-hint">{copy.accountHint}</p><Link to="/recuperar-contrasena">{copy.password}</Link>
+        <label>{lang==='en'?'Country':'País'}<input maxLength={200} value={values.address.country || ''} onChange={e=>change('address',{...values.address,country:e.target.value})}/></label><label>{lang==='en'?'Housing type':'Tipo de vivienda'}<select value={values.address.housingType || 'casa'} onChange={e=>change('address',{...values.address,housingType:e.target.value})}>{['casa','departamento','condominio','otro'].map(v=><option key={v}>{v}</option>)}</select></label><label>{lang==='en'?'Unit (optional)':'Unidad (opcional)'}<input maxLength={200} value={values.address.unit || ''} onChange={e=>change('address',{...values.address,unit:e.target.value})}/></label><p className="settings-hint">{copy.accountHint}</p><Link to="/recuperar-contrasena">{copy.password}</Link>
       </fieldset>
       <fieldset disabled={saving}><legend>{copy.practice}</legend>
         <div role="group" aria-label={copy.tests}><p>{copy.tests}</p>{TESTS.map(([id,label]) => <label className="settings-check" key={id}><input type="checkbox" checked={values.selectedTests.includes(id)} onChange={e => change('selectedTests',e.target.checked ? [...values.selectedTests,id] : values.selectedTests.filter(test => test !== id))} />{label}</label>)}</div>
@@ -88,10 +89,11 @@ export default function Settings() {
         <div><label htmlFor="profile-theme">{copy.theme}</label><select id="profile-theme" value={values.theme} onChange={e => change('theme',e.target.value)}><option value="light">{copy.light}</option><option value="dark">{copy.dark}</option></select></div>
         <div><label htmlFor="profile-language">{copy.language}</label><select id="profile-language" value={values.locale} onChange={e => change('locale',e.target.value)}><option value="es">Español</option><option value="en">English</option></select></div>
         <p className="settings-hint">{copy.applyHint}</p>
-        <label className="settings-check"><input type="checkbox" checked={values.dailyReminder} onChange={e => change('dailyReminder',e.target.checked)} />{copy.reminder}</label><p className="settings-hint">{copy.reminderHint}</p>
+        <label className="settings-check"><input type="checkbox" checked={values.dailyReminder} onChange={e => change('dailyReminder',e.target.checked)} />{copy.reminder}</label><label>{lang==='en'?'Reminder time':'Hora del recordatorio'}<input type="time" value={values.reminderTime} onChange={e=>change('reminderTime',e.target.value)}/></label><p className="settings-hint">{lang==='en'?'This preference syncs with Android. Browsers do not schedule the native reminder.':'Esta preferencia se sincroniza con Android. El navegador no programa el recordatorio nativo.'}</p>
       </fieldset>
       {dirty && <p className="settings-hint">{copy.pending}</p>}
       <div className="settings-actions"><button type="submit" disabled={saving || !dirty}>{saving ? copy.saving : copy.save}</button><button type="button" disabled={saving || !dirty} onClick={discard}>{copy.discard}</button></div>
     </form>
+    <AccountSecurity />
   </div>;
 }

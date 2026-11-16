@@ -78,7 +78,8 @@ export default function Onboarding() {
         boxShadow: '0 8px 30px rgba(26,54,93,0.06)',
       }}>
         {skipNotice && <div className="ui-dialog-backdrop"><section className="ui-dialog" role="alertdialog" aria-modal="true" aria-labelledby="skip-title" aria-describedby="skip-description"><h2 id="skip-title">¿Omitir estos datos?</h2><p id="skip-description">Tendrás tus 10 preguntas diarias base. No se desbloquearán las 10 preguntas extra hasta completar colegio, edad y región (+5) y dirección (+5). Puedes hacerlo después en tu perfil.</p><div className="ui-actions"><button autoFocus className="ui-button" onClick={()=>setSkipNotice(false)}>Completar mis datos</button><button className="ui-button secondary" onClick={()=>{setSkipContext(true);setSkipNotice(false);setStep(2);}}>Sí, omitir por ahora</button></div></section></div>}
-        {/* Barra de progreso */}
+                  <p role="note">Facsímil · Próximamente. Por ahora practicarás en formato aleatorio.</p>
+          {/* Barra de progreso */}
         <div style={{ display: 'flex', gap: '8px', marginBottom: '28px' }}>
           {[1, 2].map((s) => (
             <div

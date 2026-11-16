@@ -16,6 +16,7 @@ import '../../data/social_models.dart';
 import '../auth/auth_providers.dart';
 import '../practice/practice_providers.dart';
 import 'tutors_providers.dart';
+import 'tutor_access_gate.dart';
 
 class TutorContactScreen extends ConsumerStatefulWidget {
   const TutorContactScreen({super.key, required this.tutor});
@@ -84,7 +85,10 @@ class _TutorContactScreenState extends ConsumerState<TutorContactScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) =>
+      TutorAccessGate(builder: (context, ref) => _contact(context));
+
+  Widget _contact(BuildContext context) {
     final c = WfColors.of(context);
     final t = widget.tutor;
     final profile = ref.watch(profileProvider).value;

@@ -192,14 +192,17 @@ class ProgressItem {
   final int answered;
   final int correct;
   final int percent;
+  final int? accuracy;
 
   const ProgressItem({
     required this.answered,
     required this.correct,
     required this.percent,
+    this.accuracy,
   });
 
   factory ProgressItem.fromJson(Map<String, dynamic> j) => ProgressItem(
+    accuracy: (j['accuracy'] as num?)?.round(),
     answered: (j['answered'] as num?)?.toInt() ?? 0,
     correct: (j['correct'] as num?)?.toInt() ?? 0,
     percent:
@@ -312,6 +315,7 @@ class SkillInfo {
   final int level;
   final int maxLevel;
   final int percent;
+  final int? accuracy;
   final int correct;
   final int total;
   final String status; // not_started | in_progress | mastered
@@ -324,6 +328,7 @@ class SkillInfo {
     required this.level,
     required this.maxLevel,
     required this.percent,
+    this.accuracy,
     required this.correct,
     required this.total,
     required this.status,

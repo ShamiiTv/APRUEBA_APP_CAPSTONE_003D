@@ -11,24 +11,22 @@ import '../../core/theme/wf_colors.dart';
 import '../../core/widgets/wf_widgets.dart';
 import '../../data/practice_models.dart';
 import '../auth/auth_providers.dart';
+import 'tutor_access_gate.dart';
 import '../practice/practice_providers.dart';
 
 class GapAnalysisScreen extends ConsumerWidget {
   const GapAnalysisScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) =>
+      TutorAccessGate(builder: _analysis);
+
+  Widget _analysis(BuildContext context, WidgetRef ref) {
     final c = WfColors.of(context);
     final progress =
         ref.watch(progressProvider).value ?? const <String, ProgressItem>{};
     final tests = ref.watch(testsProvider).value ?? const <PracticeTest>[];
     final profile = ref.watch(profileProvider).value;
-        if (profile != null && profile.plan != 'all') {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (context.mounted) context.go('/premium/tutors');
-      });
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
-    }
     final chosen = profile?.selectedTests ?? const <String>[];
 
     final rows =
@@ -39,10 +37,10 @@ class GapAnalysisScreen extends ConsumerWidget {
         ]..sort((a, b) {
           final pa = (a.item == null || a.item!.answered == 0)
               ? 101
-              : a.item!.percent;
+              : (a.item!.accuracy ?? 101);
           final pb = (b.item == null || b.item!.answered == 0)
               ? 101
-              : b.item!.percent;
+              : (b.item!.accuracy ?? 101);
           return pa.compareTo(pb);
         });
 
@@ -135,7 +133,7 @@ class GapAnalysisScreen extends ConsumerWidget {
   Widget _row(BuildContext context, PracticeTest t, ProgressItem? item) {
     final c = WfColors.of(context);
     final has = item != null && item.answered > 0;
-    final pct = has ? item.percent : 0;
+    final pct = has ? item.accuracy ?? 0 : 0;
 
     Color bg;
     Color fg;
@@ -174,7 +172,7 @@ class GapAnalysisScreen extends ConsumerWidget {
                   ),
                   WfTag(
                     text: has
-                        ? tr(context, '$pct% dominio', '$pct% mastery')
+                        ? tr(context, '$pct% de aciertos', '$pct% accuracy')
                         : tr(context, 'Sin datos aún', 'No data yet'),
                     bg: bg,
                     fg: fg,

@@ -4,6 +4,7 @@ import { passwordRequest, validEmail, validPassword } from '../services/password
 import { practiceDate, dailyQuota } from '../services/practice.js';
 import { profilePatch } from '../services/profileSettings.js';
 import { balances } from '../services/medals.js';
+import { leaveGroupsOnDelete, removeUserReactions } from '../services/accountDeletion.js';
 
 // Día calendario en hora de Chile (YYYY-MM-DD), para que el "día" no cambie a las 21:00.
 function chileDate(date = new Date()) {
@@ -17,7 +18,8 @@ function previousDay(day) {
 
 export async function register(req, res) {
   try {
-    const { name, email, password } = req.body || {};
+    const { name, email, password, consent, locale = 'es' } = req.body || {};
+    if ((consent !== undefined && consent !== true) || !['es','en'].includes(locale)) return res.fail('Revisa el consentimiento y el idioma de tu cuenta', null, 400);
 
     if (typeof name !== 'string' || !name.trim() || name.trim().length > 120 || !validEmail(email) || !validPassword(password)) {
       return res.fail('Ingresa un nombre, correo válido y contraseña de entre 8 y 128 caracteres', null, 400);
@@ -44,7 +46,8 @@ export async function register(req, res) {
       authProvider: 'password',
       onboardingCompleted: false,
       avatarColor: '#1A365D',
-      locale: 'es',
+      locale,
+      ...(consent === true ? { dataConsent: { accepted: true, version: '2026-11-16', acceptedAt: new Date() } } : {}),
       theme: 'light',
       plan: 'free',
       planStatus: 'none',
@@ -352,34 +355,6 @@ export async function changePassword(req,res) {
 }
 
 
-// Saca al usuario de sus grupos. Si era el único integrante, borra el grupo.
-// Si era el dueño, traspasa la propiedad a otro integrante.
-// Saca al usuario de sus grupos con la misma regla que usa la app al salir:
-// si era dueño pasa la propiedad a otro integrante; si queda vacío, se archiva.
-async function leaveGroupsOnDelete(uid) {
-  const groups = await db.collection('groups').where('memberIds', 'array-contains', uid).get();
-  for (const doc of groups.docs) {
-    const data = doc.data();
-    const members = (data.memberIds || []).filter(id => id !== uid);
-    const nextOwner = data.ownerId === uid ? members[0] || null : data.ownerId;
-    const now = new Date();
-    const batch = db.batch();
-    batch.update(doc.ref, {
-      memberIds: members,
-      memberCount: members.length,
-      ownerId: nextOwner,
-      archived: members.length === 0,
-      updatedAt: now,
-      lastActivityAt: now,
-    });
-    batch.delete(doc.ref.collection('members').doc(uid));
-    if (nextOwner && nextOwner !== data.ownerId) {
-      batch.set(doc.ref.collection('members').doc(nextOwner), { role: 'owner' }, { merge: true });
-    }
-    await batch.commit();
-  }
-}
-
 // Borra los tickets de soporte del usuario (y sus mensajes).
 async function deleteSupportTickets(uid) {
   const tickets = await db.collection('supportTickets').where('userId', '==', uid).get();
@@ -398,7 +373,7 @@ async function anonymizePosts(uid) {
   for (let i = 0; i < posts.docs.length; i += 400) {
     const batch = db.batch();
     for (const doc of posts.docs.slice(i, i + 400)) {
-      batch.update(doc.ref, { author: 'Usuario eliminado', authorUid: null });
+      batch.update(doc.ref, { author: { name: 'Usuario eliminado' }, authorUid: null });
     }
     await batch.commit();
   }
@@ -410,7 +385,7 @@ async function anonymizeComments(uid) {
   for (let i = 0; i < comments.docs.length; i += 400) {
     const batch = db.batch();
     for (const doc of comments.docs.slice(i, i + 400)) {
-      batch.update(doc.ref, { author: 'Usuario eliminado', authorUid: null });
+      batch.update(doc.ref, { author: { name: 'Usuario eliminado' }, authorUid: null });
     }
     await batch.commit();
   }
@@ -426,6 +401,7 @@ export async function deleteAccount(req, res) {
 
     // Limpia lo que el usuario dejó en otras colecciones.
     await leaveGroupsOnDelete(uid);
+    await removeUserReactions(uid);
     await deleteSupportTickets(uid);
     await deleteCorrections(uid);
     await anonymizePosts(uid);

@@ -429,7 +429,6 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
             children: [
               TextFormField(
                 controller: _name,
-                inputFormatters: [lettersFormatter],
                 decoration: InputDecoration(
                   hintText: tr(context, 'Nombre completo', 'Full name'),
                 ),
@@ -581,10 +580,10 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
                 context,
                 'Guardamos solo los datos necesarios para tu cuenta: nombre, correo, celular, colegio, edad y domicilio. '
                     'Se usan para ampliar tu cuota diaria y personalizar tu experiencia. '
-                    'Firebase Authentication protege tu contraseña. Contacta al equipo de Aprueba si necesitas solicitar la eliminación de tu cuenta.',
+                    'Firebase Authentication protege tu contraseña. Puedes eliminar tu cuenta desde Ajustes.',
                 'We only store the data needed for your account: name, email, phone, school, age and address. '
                     'It is used to extend your daily quota and personalize your experience. '
-                    'Firebase Authentication protects your password. Contact the Aprueba team to request deletion of your account.',
+                    'Firebase Authentication protects your password. You can delete your account from Settings.',
               ),
               style: GoogleFonts.inter(
                 fontSize: 12,

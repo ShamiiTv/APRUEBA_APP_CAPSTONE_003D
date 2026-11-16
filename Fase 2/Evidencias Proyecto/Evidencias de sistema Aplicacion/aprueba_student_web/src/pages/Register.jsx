@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/useAuth';
 
 export default function Register() {
+  const [consent,setConsent]=useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,12 +17,13 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;
+    if(!consent){setError('Debes aceptar el tratamiento de tus datos para continuar.');return;}
     setError(null);
     if (password !== confirmation) { setError('Las contraseñas no coinciden.'); return; }
     setLoading(true);
 
     try {
-      await registerUser(name, email, password);
+      await registerUser(name, email, password, consent);
       navigate('/onboarding');
     } catch (err) {
       setError(err.message || 'Error al crear la cuenta');
@@ -188,7 +190,7 @@ export default function Register() {
           >
             {loading ? 'Creando cuenta...' : 'Crear Cuenta Estudiante'}
           </button>
-        </form>
+        <label style={{display:'block',marginTop:16}}><input type="checkbox" required checked={consent} onChange={e=>setConsent(e.target.checked)}/> Acepto los términos y el tratamiento de mis datos para mi cuenta y práctica en Aprueba. Puedo eliminar mi cuenta desde Ajustes.</label></form>
 
         <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '13px', color: 'var(--muted)' }}>
           ¿Ya tienes cuenta?{' '}

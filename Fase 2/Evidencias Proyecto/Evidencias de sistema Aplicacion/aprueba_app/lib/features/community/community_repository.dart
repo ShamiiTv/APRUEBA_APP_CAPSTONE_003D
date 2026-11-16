@@ -12,7 +12,61 @@ class FeedPage {
   const FeedPage({required this.posts, required this.nextCursor});
 }
 
+class CommentsPage {
+  const CommentsPage({required this.comments, required this.nextCursor});
+  final List<PostComment> comments;
+  final String? nextCursor;
+}
+
 class CommunityRepository {
+  Future<CommentsPage> fetchCommentsPage(
+    String postId, {
+    String? cursor,
+  }) async {
+    try {
+      final res = await ApiClient.dio.get(
+        '/posts/$postId/comments',
+        queryParameters: {'cursor': ?cursor},
+      );
+      return CommentsPage(
+        comments: [
+          for (final row in res.data['data'] as List)
+            PostComment.fromJson(Map<String, dynamic>.from(row)),
+        ],
+        nextCursor: res.data['meta']?['nextCursor']?.toString(),
+      );
+    } on DioException catch (e) {
+      throw apiFailureFrom(e, 'No se pudieron cargar los comentarios.');
+    }
+  }
+
+  Future<({PostComment comment, int count})> addCommentWithCount(
+    String postId,
+    String text,
+  ) async {
+    try {
+      final res = await ApiClient.dio.post(
+        '/posts/$postId/comments',
+        data: {
+          'text': text,
+          'requestId': await PendingOperation.id('comment:$postId', text),
+        },
+      );
+      await PendingOperation.complete('comment:$postId');
+      return (
+        comment: PostComment.fromJson(
+          Map<String, dynamic>.from(res.data['data']),
+        ),
+        count: (res.data['meta']['commentCount'] as num).toInt(),
+      );
+    } on DioException catch (e) {
+      if (PendingOperation.definitiveRejection(e)) {
+        await PendingOperation.complete('comment:$postId');
+      }
+      throw apiFailureFrom(e, 'No se pudo comentar.');
+    }
+  }
+
   /// GET /feed paginado por cursor.
   Future<FeedPage> fetchFeed({String? cursor, int limit = 20}) async {
     try {
@@ -34,18 +88,25 @@ class CommunityRepository {
     }
   }
 
-  Future<Post> createPost(String text) async {
+  Future<Post> createPost(String text, {String? groupId}) async {
     try {
       final res = await ApiClient.dio.post(
         '/posts',
         data: {
           'text': text,
-          'requestId': await PendingOperation.id('post', text),
+          'groupId': ?groupId,
+          'requestId': await PendingOperation.id(
+            'post:${groupId ?? 'public'}',
+            text,
+          ),
         },
       );
-      await PendingOperation.complete('post');
+      await PendingOperation.complete('post:${groupId ?? 'public'}');
       return Post.fromJson(Map<String, dynamic>.from(res.data['data']));
     } on DioException catch (e) {
+      if (PendingOperation.definitiveRejection(e)) {
+        await PendingOperation.complete('post:${groupId ?? 'public'}');
+      }
       throw apiFailureFrom(e, 'No se pudo publicar.');
     }
   }

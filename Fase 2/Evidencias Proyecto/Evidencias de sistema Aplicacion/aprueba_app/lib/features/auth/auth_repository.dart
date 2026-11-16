@@ -79,6 +79,8 @@ class AuthRepository {
         '/auth/register',
         data: {
           'name': name.trim(),
+          'consent': consent,
+          'locale': locale,
           'email': email.trim(),
           'password': password,
         },
@@ -115,7 +117,7 @@ class AuthRepository {
     try {
       await ApiClient.dio.post(
         '/auth/reset-password',
-        data: {'oobCode': token.trim(), 'password': password},
+        data: {'oobCode': Uri.tryParse(token.trim())?.queryParameters['oobCode'] ?? token.trim(), 'password': password},
       );
     } on DioException catch (e) {
       throw _error(e, 'No se pudo cambiar la contraseña.');

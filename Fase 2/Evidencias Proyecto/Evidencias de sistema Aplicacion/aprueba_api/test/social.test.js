@@ -16,10 +16,10 @@ test('operation and document IDs cannot contain paths or unbounded content', () 
 });
 test('group limits follow active plan rights and fall back to free for inactive plans', () => {
   assert.equal(groupLimit({}), 1);
-  assert.equal(groupLimit({ plan: 'uni', planStatus: 'active' }), 3);
-  assert.equal(groupLimit({ plan: 'all', planStatus: 'active' }), 0);
+  assert.equal(groupLimit({ plan: 'uni', subscriptionTestId:'m1', planStatus: 'active', currentPeriodEnd:new Date(Date.now()+86400000) }), 3);
+  assert.equal(groupLimit({ plan: 'all', planStatus: 'active', currentPeriodEnd:new Date(Date.now()+86400000) }), 0);
   assert.equal(groupLimit({ plan: 'all', planStatus: 'canceled' }), 1);
-  assert.equal(groupLimit({ plan: 'unknown', planStatus: 'active' }), 1);
+  assert.equal(groupLimit({ plan: 'unknown', planStatus: 'active', currentPeriodEnd:new Date(Date.now()+86400000) }), 1);
 });
 test('public projection never returns stored answer keys, explanations or private account fields', () => {
   const result = postView({ id: 'post', data: () => ({ authorUid:'user', author:{name:'Alumna',email:'private@example.test'},text:'Duda',question:{id:'q',statement:'Pregunta',testId:'m1',correctAnswer:'A',explanation:'Secreto',options:[{id:'A',text:'Alternativa',correct:true}]},createdAt:new Date('2026-10-09T12:00:00Z') }) });

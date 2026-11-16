@@ -109,7 +109,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 autofillHints: const [AutofillHints.name],
                 textCapitalization: TextCapitalization.words,
                 textInputAction: TextInputAction.next,
-                inputFormatters: [lettersFormatter],
                 decoration: fieldDecoration(
                   tr(context, 'Nombre completo', 'Full name'),
                 ),

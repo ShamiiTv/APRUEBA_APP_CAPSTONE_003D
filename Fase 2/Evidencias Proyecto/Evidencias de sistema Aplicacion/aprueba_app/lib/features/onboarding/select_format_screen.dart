@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../../core/l10n/l10n.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/wf_colors.dart';
@@ -41,8 +42,8 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
   @override
   void initState() {
     super.initState();
-    // En plan básico el formato siempre es aleatorio.
-    _format = widget.paid ? widget.initialFormat : 'random';
+    // Facsímil aún no está implementado; no restaurar una selección antigua.
+    _format = 'random';
   }
 
   Future<void> _save() async {
@@ -52,12 +53,16 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
       _error = null;
     });
     try {
-      await ref.read(practiceRepositoryProvider).savePrefs(PracticePrefs(
-            selectedTests: widget.selectedTests,
-            format: _format,
-            difficulty: widget.initialDifficulty,
-          ));
-         ref.invalidate(profileProvider);
+      await ref
+          .read(practiceRepositoryProvider)
+          .savePrefs(
+            PracticePrefs(
+              selectedTests: widget.selectedTests,
+              format: _format,
+              difficulty: widget.initialDifficulty,
+            ),
+          );
+      ref.invalidate(profileProvider);
       try {
         await ref.read(profileProvider.future);
       } catch (_) {}
@@ -70,15 +75,7 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
   }
 
   void _selectFormat(String value) {
-    if (value == 'facsim' && !widget.paid) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(tr(
-            context,
-            'El formato facsímil requiere un plan de pago.',
-            'The mock exam format requires a paid plan.')),
-      ));
-      return;
-    }
+    if (value != 'random') return;
     setState(() => _format = value);
   }
 
@@ -101,7 +98,7 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
             Expanded(
               child: InkWell(
                 borderRadius: BorderRadius.circular(11),
-                onTap: () => onChanged(e.key),
+                onTap: e.key == 'facsim' ? null : () => onChanged(e.key),
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   decoration: BoxDecoration(
@@ -161,8 +158,10 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
               ),
               if (premium)
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 5,
+                  ),
                   decoration: BoxDecoration(
                     color: const Color(0xFFFBEBD0),
                     borderRadius: BorderRadius.circular(10),
@@ -170,10 +169,10 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.star, size: 14, color: _amarillo),
+                      const Icon(Icons.schedule, size: 14, color: _amarillo),
                       const SizedBox(width: 4),
                       Text(
-                        'Premium',
+                        tr(context, 'Próximamente', 'Coming soon'),
                         style: GoogleFonts.inter(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,
@@ -223,15 +222,19 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(22, 6, 22, 16),
                 children: [
-                  _title(tr(context, 'Formato de preguntas', 'Question format')),
+                  _title(
+                    tr(context, 'Formato de preguntas', 'Question format'),
+                  ),
                   _segmented(
                     items: [
                       MapEntry('random', tr(context, 'Aleatorio', 'Random')),
                       MapEntry(
                         'facsim',
-                        widget.paid
-                            ? tr(context, 'Facsímil', 'Mock exam')
-                            : '🔒 ${tr(context, 'Facsímil', 'Mock exam')}',
+                        tr(
+                          context,
+                          'Facsímil · Próximamente',
+                          'Mock exam · Coming soon',
+                        ),
                       ),
                     ],
                     selected: _format,
@@ -241,29 +244,38 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
                   _infoCard(
                     title: tr(context, 'Aleatorio', 'Random'),
                     text: tr(
-                        context,
-                        'Preguntas mezcladas de todos los ejes.',
-                        'Questions mixed from all topics.'),
+                      context,
+                      'Preguntas mezcladas de todos los ejes.',
+                      'Questions mixed from all topics.',
+                    ),
                     selected: _format == 'random',
                   ),
                   const SizedBox(height: 12),
                   _infoCard(
                     title: tr(context, 'Facsímil', 'Mock exam'),
                     text: tr(
-                        context,
-                        'Simula un ensayo real, ordenado como el examen. El puntaje oficial requiere plan premium.',
-                        'Simulates a real exam, ordered like the test. The official score requires a premium plan.'),
+                      context,
+                      'Próximamente: ensayo con formato de examen. Todavía no está disponible en ningún plan.',
+                      'Coming soon: an exam-style practice test. Not available on any plan yet.',
+                    ),
                     premium: true,
                     selected: _format == 'facsim',
                   ),
-                  _title(tr(context, 'Nivel de dificultad', 'Difficulty level'),
-                      top: 26),
+                  _title(
+                    tr(context, 'Nivel de dificultad', 'Difficulty level'),
+                    top: 26,
+                  ),
                   _infoCard(
-                    title: tr(context, 'Empiezas en Básico', 'You start at Basic'),
+                    title: tr(
+                      context,
+                      'Empiezas en Básico',
+                      'You start at Basic',
+                    ),
                     text: tr(
-                        context,
-                        'Subirás de nivel automáticamente a medida que respondas bien.',
-                        'You will level up automatically as you answer correctly.'),
+                      context,
+                      'Subirás de nivel automáticamente a medida que respondas bien.',
+                      'You will level up automatically as you answer correctly.',
+                    ),
                   ),
                   if (_error != null) ...[
                     const SizedBox(height: 10),
@@ -282,7 +294,8 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
                     backgroundColor: _amarillo,
                     foregroundColor: AppColors.azul,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16)),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                     textStyle: GoogleFonts.montserrat(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,

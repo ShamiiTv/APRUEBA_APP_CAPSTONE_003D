@@ -73,6 +73,15 @@ class UserProfile {
   final bool dailyReminder;
   final String reminderTime; // HH:mm
   final String plan;
+  final DateTime? currentPeriodEnd;
+
+  // La API valida el estado/entorno del plan al calcular quota.unlimited.
+  // La fecha evita conservar acceso si el perfil permanece en memoria al vencer.
+  bool get hasTutorAccess =>
+      plan == 'all' &&
+      unlimited &&
+      currentPeriodEnd != null &&
+      currentPeriodEnd!.isAfter(DateTime.now());
   final int streak;
   final int quotaUsed;
   final int quotaMax;
@@ -100,6 +109,7 @@ class UserProfile {
     required this.dailyReminder,
     required this.reminderTime,
     required this.plan,
+    this.currentPeriodEnd,
     required this.streak,
     required this.quotaUsed,
     required this.quotaMax,
@@ -122,6 +132,21 @@ class UserProfile {
       return (s == null || s.isEmpty) ? null : s;
     }
 
+    DateTime? subscriptionEnd(dynamic value) {
+      if (value is DateTime) return value;
+      if (value is String) return DateTime.tryParse(value);
+      if (value is Map) {
+        final seconds = value['_seconds'] ?? value['seconds'];
+        if (seconds is num) {
+          return DateTime.fromMillisecondsSinceEpoch(
+            (seconds * 1000).toInt(),
+            isUtc: true,
+          );
+        }
+      }
+      return null;
+    }
+
     return UserProfile(
       uid: (json['uid'] ?? json['id'] ?? '').toString(),
       onboardingCompleted: json['onboardingCompleted'] == true,
@@ -141,6 +166,7 @@ class UserProfile {
       dailyReminder: json['dailyReminder'] != false,
       reminderTime: text(json['reminderTime']) ?? '20:00',
       plan: (json['plan'] ?? 'free').toString(),
+      currentPeriodEnd: subscriptionEnd(json['currentPeriodEnd']),
       streak: ((json['streak'] ?? 0) as num).toInt(),
       quotaUsed: ((quota['used'] ?? 0) as num).toInt(),
       quotaMax: ((quota['max'] ?? 10) as num).toInt(),

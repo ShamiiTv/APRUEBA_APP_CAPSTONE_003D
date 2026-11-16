@@ -1,3 +1,4 @@
+import { dailyQuota } from './practice.js';
 import { FieldPath, Timestamp } from 'firebase-admin/firestore';
 import { createHash } from 'node:crypto';
 
@@ -21,8 +22,8 @@ export function text(value, max) {
   return value.trim();
 }
 export function groupLimit(user) {
-  if (!['active', 'trialing'].includes(user.planStatus)) return 1;
-  return user.plan === 'all' ? 0 : user.plan === 'uni' ? 3 : 1;
+  const quota=dailyQuota(user);
+  return user.plan==='all' && quota.unlimited ? 0 : user.plan==='uni' && quota.unlimitedTestId ? 3 : 1;
 }
 export const stableId = (uid, id) => createHash('sha256').update(JSON.stringify([uid, id])).digest('hex');
 export const author = user => ({ name: typeof user.name === 'string' ? user.name : 'Estudiante' });
