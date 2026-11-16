@@ -4,35 +4,40 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../core/l10n/l10n.dart';
+import '../../core/network/api_error.dart';
 import '../../core/theme/wf_colors.dart';
 import '../../core/utils/test_colors.dart';
+import '../../core/utils/tier_names.dart';
 import '../../core/widgets/avatar_circle.dart';
 import '../../core/widgets/content_skeleton.dart';
 import '../../core/widgets/wf_widgets.dart';
+import '../../data/practice_models.dart';
 import '../../data/social_models.dart';
+import '../auth/auth_providers.dart';
+import '../practice/practice_providers.dart';
 import 'tutor_widgets.dart';
 import 'tutors_providers.dart';
-import '../auth/auth_providers.dart';
 
 class TutorsScreen extends ConsumerStatefulWidget {
   const TutorsScreen({super.key});
+
   @override
-  ConsumerState<TutorsScreen> createState() => _TutorsState();
+  ConsumerState<TutorsScreen> createState() => _TutorsScreenState();
 }
 
-class _TutorsState extends ConsumerState<TutorsScreen> {
+class _TutorsScreenState extends ConsumerState<TutorsScreen> {
   static const _amarillo = Color(0xFFF5AF41);
-  String subject = 'all';
+  String _query = '';
+  String _testId = 'all';
 
-  Widget _filter(String id, String label) {
-    final c = WfColors.of(context);
-    final on = subject == id;
-    final dot = id == 'all' ? null : testDotColor(id, id, c.muted);
+  Widget _chip(String label, String id, WfColors c) {
+    final on = _testId == id;
+    final dot = id == 'all' ? null : testDotColor(id, label, c.muted);
     return Padding(
       padding: const EdgeInsets.only(right: 8),
       child: InkWell(
         borderRadius: BorderRadius.circular(22),
-        onTap: () => setState(() => subject = id),
+        onTap: () => setState(() => _testId = id),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
           decoration: BoxDecoration(
@@ -69,8 +74,7 @@ class _TutorsState extends ConsumerState<TutorsScreen> {
     );
   }
 
-  Widget _gapCard() {
-    final c = WfColors.of(context);
+  Widget _gapCard(WfColors c) {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -94,7 +98,7 @@ class _TutorsState extends ConsumerState<TutorsScreen> {
                       style: GoogleFonts.montserrat(
                         fontSize: 15,
                         fontWeight: FontWeight.w800,
-                        color: c.ink,
+                        color: const Color(0xFF1A365D),
                       ),
                     ),
                     Text(
@@ -103,7 +107,10 @@ class _TutorsState extends ConsumerState<TutorsScreen> {
                         'Detecta tus áreas débiles desde tu práctica PAES',
                         'Find your weak areas from your PAES practice',
                       ),
-                      style: GoogleFonts.inter(fontSize: 12, color: c.muted),
+                      style: GoogleFonts.inter(
+                        fontSize: 12,
+                        color: const Color(0xFF475569),
+                      ),
                     ),
                   ],
                 ),
@@ -128,7 +135,9 @@ class _TutorsState extends ConsumerState<TutorsScreen> {
               ),
               onPressed: () {
                 final plan = ref.read(profileProvider).value?.plan;
-                context.push(plan == 'all' ? '/tutors/analysis' : '/premium/tutors');
+                context.push(
+                  plan == 'all' ? '/tutors/analysis' : '/premium/tutors',
+                );
               },
               child: Text(
                 tr(context, 'Generar mi análisis →', 'Generate my analysis →'),
@@ -140,14 +149,15 @@ class _TutorsState extends ConsumerState<TutorsScreen> {
     );
   }
 
-  Widget _tutorCard(Tutor t) {
+  Widget _card(BuildContext context, Tutor t) {
     final c = WfColors.of(context);
     final sub = [
       if (t.subjectLabel.isNotEmpty) t.subjectLabel,
       if (t.mode != null) t.mode!,
     ].join(' · ');
+
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: const EdgeInsets.only(top: 11),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: c.chip,
@@ -160,7 +170,7 @@ class _TutorsState extends ConsumerState<TutorsScreen> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AvatarCircle(name: t.name, color: t.color, size: 50),
+              AvatarCircle(name: t.name, color: t.color, size: 48),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -172,7 +182,7 @@ class _TutorsState extends ConsumerState<TutorsScreen> {
                           child: Text(
                             t.name,
                             style: GoogleFonts.montserrat(
-                              fontSize: 16,
+                              fontSize: 15,
                               fontWeight: FontWeight.w800,
                               color: c.ink,
                             ),
@@ -189,7 +199,15 @@ class _TutorsState extends ConsumerState<TutorsScreen> {
                       ],
                     ),
                     if (sub.isNotEmpty)
-                      Text(sub, style: GoogleFonts.inter(fontSize: 12, color: c.muted)),
+                      Text(
+                        sub,
+                        style: GoogleFonts.inter(fontSize: 12, color: c.muted),
+                      ),
+                    if (t.specialty != null)
+                      Text(
+                        t.specialty!,
+                        style: GoogleFonts.inter(fontSize: 12, color: c.muted),
+                      ),
                     if (t.rating != null) ...[
                       const SizedBox(height: 4),
                       Row(
@@ -206,7 +224,10 @@ class _TutorsState extends ConsumerState<TutorsScreen> {
                           if (t.reviewsCount != null)
                             Text(
                               ' (${t.reviewsCount})',
-                              style: GoogleFonts.inter(fontSize: 11, color: c.muted),
+                              style: GoogleFonts.inter(
+                                fontSize: 11,
+                                color: c.muted,
+                              ),
                             ),
                         ],
                       ),
@@ -220,31 +241,33 @@ class _TutorsState extends ConsumerState<TutorsScreen> {
           Row(
             children: [
               if (t.priceLabel != null)
-                Text(
-                  t.priceLabel!,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
-                    color: c.ink,
+                Flexible(
+                  child: Text(
+                    t.priceLabel!,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800,
+                      color: c.ink,
+                    ),
                   ),
                 ),
               const Spacer(),
               FilledButton(
                 style: FilledButton.styleFrom(
-                  minimumSize: const Size(0, 44),
+                  minimumSize: const Size(0, 42),
                   backgroundColor: c.brand,
                   foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
                   textStyle: GoogleFonts.montserrat(
                     fontSize: 13,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
                 onPressed: () => context.push('/tutors/profile', extra: t),
-                child: Text(tr(context, 'Ver perfil', 'View profile')),
+                child: Text(tr(context, 'Ver perfil ›', 'View profile ›')),
               ),
             ],
           ),
@@ -256,65 +279,139 @@ class _TutorsState extends ConsumerState<TutorsScreen> {
   @override
   Widget build(BuildContext context) {
     final c = WfColors.of(context);
-    final filters = <(String, String)>[
-      ('all', tr(context, 'Todas', 'All')),
-      ('lectora', tr(context, 'Comp. Lectora', 'Reading')),
-      ('m1', 'Matemática M1'),
-      ('m2', 'Matemática M2'),
-      ('cien', tr(context, 'Ciencias', 'Science')),
-      ('hist', tr(context, 'Historia', 'History')),
-    ];
+    final tt = Theme.of(context).textTheme;
+    final tutorsAsync = ref.watch(tutorsProvider);
+    final tests = ref.watch(testsProvider).value ?? const <PracticeTest>[];
 
     return Scaffold(
-      appBar: AppBar(title: Text(tr(context, 'Tutores', 'Tutors'))),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
-        children: [
-          Text(
-            tr(
-              context,
-              'Perfiles ficticios de demostración. No se contacta a un profesor real ni se cobra una sesión.',
-              'Fictional demo profiles. No real teacher is contacted or charged.',
-            ),
-            style: GoogleFonts.inter(fontSize: 11, color: c.muted),
-          ),
-          const SizedBox(height: 12),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [for (final f in filters) _filter(f.$1, f.$2)],
-            ),
-          ),
-          const SizedBox(height: 14),
-          _gapCard(),
-          const SizedBox(height: 18),
-          Text(
-            tr(context, 'PROFESORES DESTACADOS', 'FEATURED TEACHERS'),
-            style: GoogleFonts.montserrat(
-              fontSize: 11,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 0.8,
-              color: c.muted,
-            ),
-          ),
-          const SizedBox(height: 10),
-          ref.watch(tutorsProvider).when(
-                loading: () => const ContentSkeleton(kind: 'tutors', inline: true),
-                error: (e, s) => TextButton(
-                  onPressed: () => ref.invalidate(tutorsProvider),
-                  child: Text(tr(context, 'Reintentar', 'Retry')),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
+          children: [
+            Row(
+              children: [
+                Text(tr(context, 'Tutores', 'Tutors'), style: tt.headlineSmall),
+                const Spacer(),
+                const WfTag(
+                  text: 'Demo',
+                  bg: Color(0x2EF5B041),
+                  fg: Color(0xFFB45309),
                 ),
-                data: (tutors) => Column(
+              ],
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              onChanged: (v) => setState(() => _query = v.trim().toLowerCase()),
+              decoration: InputDecoration(
+                hintText: tr(
+                  context,
+                  '🔍 Buscar profesor o asignatura…',
+                  '🔍 Search teacher or subject…',
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  _chip(tr(context, 'Todos', 'All'), 'all', c),
+                  for (final t in tests)
+                    _chip(testName(context, t.id, t.label), t.id, c),
+                ],
+              ),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.all(13),
+              decoration: BoxDecoration(
+                color: c.brand.withValues(alpha: 0.08),
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(color: c.line),
+              ),
+              child: Text(
+                tr(
+                  context,
+                  'TUTORES SIMULADOS · Explora los perfiles y prueba una solicitud. Son perfiles ficticios: no se contacta a un profesor real ni se realizan cobros.',
+                  'SIMULATED TUTORS · Explore profiles and try a request. These profiles are fictional: no real teacher is contacted and no payment is made.',
+                ),
+                style: GoogleFonts.inter(fontSize: 12, color: c.ink, height: 1.5),
+              ),
+            ),
+            const SizedBox(height: 14),
+            _gapCard(c),
+            const SizedBox(height: 16),
+            Text(
+              tr(context, 'PROFESORES DESTACADOS', 'FEATURED TEACHERS'),
+              style: GoogleFonts.montserrat(
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.8,
+                color: c.muted,
+              ),
+            ),
+            tutorsAsync.when(
+              loading: () => const ContentSkeleton(kind: 'tutors', inline: true),
+              error: (e, _) => Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
                   children: [
-                    for (final t in tutors.where(
-                      (t) => subject == 'all' || t.subjectTestId == subject,
-                    ))
-                      _tutorCard(t),
+                    Text(
+                      e is ApiFailure
+                          ? e.message
+                          : tr(
+                              context,
+                              'No se pudieron cargar los tutores.',
+                              'Could not load tutors.',
+                            ),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: c.danger),
+                    ),
+                    const SizedBox(height: 10),
+                    FilledButton(
+                      onPressed: () => ref.invalidate(tutorsProvider),
+                      child: Text(tr(context, 'Reintentar', 'Retry')),
+                    ),
                   ],
                 ),
               ),
-        ],
+              data: (all) {
+                final list = all.where((t) {
+                  final byTest = _testId == 'all' || t.subjectTestId == _testId;
+                  final byText = _query.isEmpty ||
+                      t.name.toLowerCase().contains(_query) ||
+                      t.subjectLabel.toLowerCase().contains(_query) ||
+                      (t.specialty ?? '').toLowerCase().contains(_query);
+                  return byTest && byText;
+                }).toList();
+
+                if (list.isEmpty) {
+                  return Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Text(
+                      all.isEmpty
+                          ? tr(
+                              context,
+                              'Todavía no hay tutores disponibles.',
+                              'There are no tutors available yet.',
+                            )
+                          : tr(
+                              context,
+                              'No hay tutores que coincidan con tu búsqueda.',
+                              'No tutors match your search.',
+                            ),
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.inter(fontSize: 13, color: c.muted),
+                    ),
+                  );
+                }
+                return Column(
+                  children: [for (final t in list) _card(context, t)],
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
