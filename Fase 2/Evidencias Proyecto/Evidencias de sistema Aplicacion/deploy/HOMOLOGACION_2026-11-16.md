@@ -24,3 +24,9 @@ APK 1.0.6+20261116, compatible desde Android 7 y con la misma firma de pruebas q
 - APK: https://aprueba.shamiiplay.com/descargas/Aprueba-Android-pruebas-20261116.apk
 
 Se publica únicamente código y compilaciones de Aprueba, con respaldo previo del servidor. No se ejecutan seeds, migraciones de usuarios ni borrados de datos de producción. Se conservan credenciales, dependencias y APK anteriores.
+
+### Resultado verificado
+
+Publicación completada el 16-11-2026. Web, móvil, API health y APK responden HTTPS 200; API conectada a Firebase. Versión móvil 1.0.6+20261116. Servicios aprueba-api, nginx y shamii-tournaments activos. Respaldo: /opt/shamii/aprueba-backups/aprueba-20261116-060836.tar.gz.
+
+SHA-256 APK: 11a524a1a73075027e087aff39a576f7eb9fc6e08420d903b0e89a3914c9d5dc. SHA-256 Flutter main.dart.js: 3113e6529c013559cca4671ff5c0a129ca6c11b93a239e17fa0d3426e6bcd9c2. Ambos coinciden entre compilación local y servidor. No se realizaron recorridos autenticados con cuentas reales durante esta publicación; esas funciones se validaron en emuladores y navegador con API simulada.
