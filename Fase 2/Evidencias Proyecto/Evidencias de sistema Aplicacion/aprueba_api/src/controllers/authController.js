@@ -1,3 +1,5 @@
+import {clientTokens} from '../services/browserSession.js';
+import {profileView} from '../services/profileView.js';
 import { db, auth } from '../config/firebase.js';
 import { generateTokens } from '../middleware/auth.js';
 import { passwordRequest, validEmail, validPassword } from '../services/passwordAuth.js';
@@ -101,9 +103,9 @@ export async function register(req, res) {
       console.warn('No se pudo enviar el correo inicial de verificación');
     }
     return res.success({
-      user: { uid, ...userData, emailVerified: false },
+      user: { uid, ...profileView(userData), emailVerified: false },
       verificationEmailSent,
-      tokens,
+      tokens:clientTokens(req,res,tokens),
       rewards: [{ type: 'welcome', tier: 'bronze', amount: 1, reason: 'Bienvenida a Aprueba', streak: 1 }],
             dailyLoginReward: { tier: 'bronze', amount: 1, streak: 1 },
     }, null, 201);
@@ -179,8 +181,8 @@ export async function login(req, res) {
         const daily = rewards.find(r => r.type === 'daily_login');
 
     return res.success({
-      user: { uid, ...userData, emailVerified: account.emailVerified === true },
-      tokens,
+      user: { uid, ...profileView(userData), emailVerified: account.emailVerified === true },
+      tokens:clientTokens(req,res,tokens),
       rewards,
       dailyLoginReward: daily
         ? { tier: daily.tier, amount: daily.amount, streak: daily.streak }
@@ -204,7 +206,7 @@ export async function getProfile(req, res) {
     }
 
     const account = req.user.firebaseAccount || await auth.getUser(uid);
-    return res.success({ uid: doc.id, ...doc.data(), quota:dailyQuota(doc.data()), emailVerified:account.emailVerified, phoneVerified:!!account.phoneNumber && account.phoneNumber===doc.data().phone, linkedProviders:account.providerData.map(provider => provider.providerId),availableSocialProviders:(process.env.FIREBASE_SOCIAL_PROVIDERS || 'google.com').split(',').map(value=>value.trim()).filter(value=>['google.com','facebook.com'].includes(value)) });
+    return res.success({ uid: doc.id, ...profileView(doc.data()), quota:dailyQuota(doc.data()), emailVerified:account.emailVerified, phoneVerified:!!account.phoneNumber && account.phoneNumber===doc.data().phone, linkedProviders:account.providerData.map(provider => provider.providerId),availableSocialProviders:(process.env.FIREBASE_SOCIAL_PROVIDERS || 'google.com').split(',').map(value=>value.trim()).filter(value=>['google.com','facebook.com'].includes(value)) });
   } catch (error) {
     return res.fail(error.code === 8 ? 'Firebase alcanzó su cuota de servicio. Intenta más tarde.' : 'No se pudo cargar el perfil. Intenta nuevamente.', { code: error.code === 8 ? 'DATABASE_QUOTA_EXCEEDED' : 'PROFILE_UNAVAILABLE' }, 503);
   }
@@ -226,7 +228,7 @@ export async function updateProfile(req, res) {
       transaction.update(userRef,update);
       return { ...doc.data(),...update,uid };
     });
-    return res.success(profile);
+    return res.success({...profileView(profile),uid});
   } catch (error) {
     return res.fail(error.status ? error.message : 'No se pudo guardar el perfil. Intenta nuevamente.', { code:error.code || 'PROFILE_UNAVAILABLE',field:error.field }, error.status || 503);
   }
@@ -270,7 +272,7 @@ export async function completeOnboarding(req, res) {
     await userRef.update(updatePayload);
 
     const updatedDoc = await userRef.get();
-    return res.success({ uid: updatedDoc.id, ...updatedDoc.data() });
+    return res.success({ uid: updatedDoc.id, ...profileView(updatedDoc.data()) });
   } catch (error) {
     return res.fail(error.code === 8 ? 'Firebase alcanzó su cuota de servicio. Intenta más tarde.' : 'No se pudo cargar el perfil. Intenta nuevamente.', { code: error.code === 8 ? 'DATABASE_QUOTA_EXCEEDED' : 'PROFILE_UNAVAILABLE' }, 503);
   }
@@ -417,10 +419,10 @@ export async function deleteAccount(req, res) {
 
     return res.success({ deleted: true });
   } catch (error) {
-    if (error.status === 400) return res.fail(error.message, null, 400);
     if (['INVALID_LOGIN_CREDENTIALS', 'INVALID_PASSWORD'].includes(error.code)) {
       return res.fail('Contraseña incorrecta', {code:'AUTH_INVALID_CREDENTIALS'}, 401);
     }
+    if (error.status === 400) return res.fail(error.message, null, 400);
     return res.fail('No se pudo eliminar la cuenta. Intenta nuevamente.', null, 503);
   }
 }

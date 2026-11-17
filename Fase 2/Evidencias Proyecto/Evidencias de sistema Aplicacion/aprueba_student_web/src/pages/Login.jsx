@@ -89,8 +89,8 @@ export default function Login() {
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
           <div>
-            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Correo electrónico")} </label>
-            <input
+            <label htmlFor="login-email" style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Correo electrónico")} </label>
+            <input id="login-email"
               type="email"
               required
               maxLength={254}
@@ -112,8 +112,8 @@ export default function Login() {
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Contraseña")} </label>
-            <input
+            <label htmlFor="login-password" style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Contraseña")} </label>
+            <input id="login-password"
               type="password"
               required
               maxLength={128}

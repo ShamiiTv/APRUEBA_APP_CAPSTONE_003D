@@ -1,4 +1,6 @@
+import {clientTokens,refreshCredential,clearBrowserSession} from '../services/browserSession.js';
 import jwt from 'jsonwebtoken';
+import {randomUUID} from 'node:crypto';
 import { auth, db } from '../config/firebase.js';
 const verifiedSession = Symbol('verifiedSession');
 
@@ -11,6 +13,8 @@ function secret(type) {
 export function validateAuthConfiguration() {
   secret('access');
   secret('refresh');
+  if(process.env.NODE_ENV==='production'&&(secret('access').length<32||secret('refresh').length<32||secret('access')===secret('refresh')))throw new Error('Usa dos secretos de autenticación distintos de al menos 32 caracteres');
+  if(process.env.NODE_ENV==='production'&&process.env.FIRESTORE_EMULATOR_HOST)throw new Error('No se permite Firestore Emulator en producción');
   if (process.env.NODE_ENV === 'production' && process.env.FIREBASE_AUTH_EMULATOR_HOST) {
     throw new Error('No se permite Firebase Auth Emulator en producción');
   }
@@ -26,6 +30,7 @@ export function generateTokens(payload) {
     role: payload.role || 'student',
     plan: payload.plan || 'free',
     authTime: payload.authTime ?? Date.now(),
+    sid: payload.sid || randomUUID(),
   };
   return {
     accessToken: jwt.sign({ ...common, type: 'access' }, secret('access'), { algorithm: 'HS256', expiresIn: '15m' }),
@@ -36,6 +41,11 @@ export function generateTokens(payload) {
 async function verifySession(token, type) {
   const decoded = jwt.verify(token, secret(type), { algorithms: ['HS256'] });
   if (decoded.type !== type || typeof decoded.sub !== 'string' || !Number.isFinite(decoded.authTime)) throw new Error('Token inválido');
+  if(decoded.sid!==undefined){
+    if(typeof decoded.sid!=='string'||!/^[a-f0-9-]{36}$/.test(decoded.sid))throw new Error('Sesión inválida');
+    const revoked=await db.collection('users').doc(decoded.sub).collection('revokedSessions').doc(decoded.sid).get();
+    if(revoked.exists&&revoked.data()?.revoked===true)throw new Error('Sesión cerrada');
+  }
   const account = await auth.getUser(decoded.sub);
   if (account.disabled || decoded.authTime < Date.parse(account.tokensValidAfterTime || '1970-01-01')) throw new Error('Sesión revocada');
   return {...decoded,firebaseAccount:account};
@@ -57,12 +67,13 @@ export async function authenticateToken(req, res, next) {
 }
 
 export async function refreshSession(req, res) {
-  if (typeof req.body?.refreshToken !== 'string') return res.fail('Sesión inválida', null, 401);
+  const credential=refreshCredential(req);
+  if (!credential) return res.fail('Sesión inválida', null, 401);
   try {
-    const decoded = await verifySession(req.body.refreshToken, 'refresh');
+    const decoded = await verifySession(credential, 'refresh');
     const profile = await db.collection('users').doc(decoded.sub).get();
     if (!profile.exists) return res.fail('Sesión inválida', null, 401);
-    return res.success({ tokens: generateTokens({ ...decoded, plan: profile.data().plan }) });
+    return res.success({ tokens: clientTokens(req,res,generateTokens({ ...decoded, plan: profile.data().plan })) });
   } catch (error) {
     if (error.code && error.code !== 'auth/user-not-found') return res.fail('No se pudo renovar la sesión', null, 503);
     return res.fail('Sesión inválida o expirada. Inicia sesión nuevamente.', null, 401);
@@ -86,4 +97,20 @@ export async function requireOnboarding(req, res, next) {
   } catch {
     return res.fail('No se pudo verificar tu configuración inicial', null, 503);
   }
+}
+
+export async function logoutSession(req,res){
+ try{
+  const refresh=refreshCredential(req);
+  const access=/^Bearer (\S+)$/i.exec(req.headers?.authorization||'')?.[1];
+  if(!refresh&&!access){clearBrowserSession(req,res);return res.fail('Sesión inválida',null,401);}
+  const session=await verifySession(refresh||access,refresh?'refresh':'access');
+  if(session.sid){await db.collection('users').doc(session.sub).collection('revokedSessions').doc(session.sid).set({revoked:true,expiresAt:new Date(Date.now()+31*86400000)});}
+  else {await auth.revokeRefreshTokens(session.sub);}
+  clearBrowserSession(req,res);
+  return res.success({loggedOut:true});
+ }catch(error){
+  if(error.code&&!['auth/user-not-found','auth/id-token-revoked'].includes(error.code))return res.fail('No se pudo cerrar la sesión en el servidor. Reintenta.',null,503);
+  clearBrowserSession(req,res);return res.fail('Sesión inválida',null,401);
+ }
 }

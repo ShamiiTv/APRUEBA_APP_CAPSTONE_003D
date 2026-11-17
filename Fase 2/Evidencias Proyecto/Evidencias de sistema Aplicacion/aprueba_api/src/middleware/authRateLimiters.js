@@ -1,4 +1,4 @@
-import rateLimit from 'express-rate-limit';
+import rateLimit,{ipKeyGenerator} from 'express-rate-limit';
 export function createAuthLimiters(production = process.env.NODE_ENV === 'production') {
 const limiterOptions = { windowMs: 15 * 60 * 1000, standardHeaders: true, legacyHeaders: false,
   message: { data: null, error: { code: 'AUTH_RATE_LIMITED', message: 'Demasiados intentos. Intenta más tarde.' }, meta: null } };
@@ -8,9 +8,10 @@ const loginLimiter = rateLimit({ ...limiterOptions, max: production ? 10 : 1000,
   skipSuccessfulRequests: true,
   keyGenerator: req => typeof req.body?.email === 'string' ? req.body.email.trim().toLowerCase().slice(0, 254) : 'invalid-email' });
 const registerLimiter = rateLimit({ ...limiterOptions, max: production ? 30 : 1000 });
-const recoveryLimiter = rateLimit({ ...limiterOptions, max: production ? 10 : 1000 });
+const recoveryLimiter = rateLimit({ ...limiterOptions, max: production ? 10 : 1000,keyGenerator:req=>req.user?.sub||ipKeyGenerator(req.ip) });
+const refreshLimiter=rateLimit({...limiterOptions,max:production?120:1000});
 const verificationLimiter = rateLimit({ ...limiterOptions, windowMs:60_000, max:production ? 1 : 1000,
   keyGenerator:req => req.user.sub,
   message:{data:null,error:{code:'VERIFICATION_RATE_LIMITED',message:'Espera un minuto antes de solicitar otro correo.'},meta:null} });
-return { loginLimiter, registerLimiter, recoveryLimiter, verificationLimiter };
+return { loginLimiter, registerLimiter, recoveryLimiter, verificationLimiter, refreshLimiter };
 }

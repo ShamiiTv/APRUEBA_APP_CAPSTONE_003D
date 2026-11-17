@@ -1,3 +1,4 @@
+import {hasSession} from './api/client';
 import { lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './auth/AuthContext';
@@ -30,7 +31,7 @@ const Settings = lazy(() => import('./pages/Settings'));
 // Protege /login y /register: si ya hay sesión activa, redirige
 function PublicOnlyRoute({ children }) {
   const { user, loading } = useAuth();
-  const hasToken = Boolean(localStorage.getItem('token'));
+  const hasToken = Boolean(hasSession());
 
   // Si aún está resolviendo la petición con el servidor pero hay token
   if (loading && hasToken) {

@@ -347,6 +347,6 @@ final appRouter = GoRouter(
   ],
 );
 Future<bool> _hasSession() async {
-  final token = await TokenStorage.read();
+  final token = (await TokenStorage.hasSession() ? 'session' : null);
   return token != null && token.isNotEmpty;
 }

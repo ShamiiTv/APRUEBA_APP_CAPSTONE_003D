@@ -93,8 +93,8 @@ export default function Register() {
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
           <div>
-            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Nombre y Apellido")} </label>
-            <input
+            <label htmlFor="register-name" style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Nombre y Apellido")} </label>
+            <input id="register-name"
               type="text"
               required
               maxLength={120}
@@ -116,8 +116,8 @@ export default function Register() {
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Correo electrónico")} </label>
-            <input
+            <label htmlFor="register-email" style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Correo electrónico")} </label>
+            <input id="register-email"
               type="email"
               required
               maxLength={254}
@@ -139,8 +139,8 @@ export default function Register() {
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Contraseña")} </label>
-            <input
+            <label htmlFor="register-password" style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Contraseña")} </label>
+            <input id="register-password"
               type="password"
               required
               minLength={8}

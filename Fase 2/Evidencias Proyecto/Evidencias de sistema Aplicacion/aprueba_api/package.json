@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "test": "node --test test/auth.test.js test/practice.test.js test/progress.test.js test/studyPlan.test.js test/profileSettings.test.js test/social.test.js test/bankCache.test.js test/authRateLimiters.test.js test/historyCache.test.js test/accessPolicy.test.js test/similarQuestions.test.js",
+    "test": "node --test test/auth.test.js test/practice.test.js test/progress.test.js test/studyPlan.test.js test/profileSettings.test.js test/social.test.js test/bankCache.test.js test/authRateLimiters.test.js test/historyCache.test.js test/accessPolicy.test.js test/similarQuestions.test.js test/security.test.js",
     "test:emulator": "node --test test/auth.emulator.test.js",
     "test:practice": "node --test test/practice.test.js",
     "test:practice:emulator": "node --test test/practice.emulator.test.js",
@@ -13,14 +13,15 @@
     "test:improvements:emulator": "node --test test/improvements.emulator.test.js",
     "test:social:emulator": "node --test test/social.emulator.test.js",
     "questions:check": "node src/data/seedData.js --check",
-    "dev": "nodemon src/index.js",
+    "dev": "node --watch src/index.js",
     "start": "node src/index.js",
     "seed:all": "node src/data/seedCatalogs.js && node src/data/seedData.js",
     "seed:catalogs": "node src/data/seedCatalogs.js",
     "seed:questions": "node src/data/seedData.js",
     "emulators": "firebase emulators:start --import=./emulator_data --export-on-exit=./emulator_data",
     "test:account-deletion:emulator": "node --test test/accountDeletion.emulator.test.js",
-    "test:parity:emulator": "node --test test/parity.emulator.test.js"
+    "test:parity:emulator": "node --test test/parity.emulator.test.js",
+    "test:security:emulator": "node --test test/security.emulator.test.js"
   },
   "keywords": [
     "paes",
@@ -41,7 +42,11 @@
     "jsonwebtoken": "^9.0.3",
     "zod": "^4.6.5"
   },
-  "devDependencies": {
-    "nodemon": "^3.1.14"
+  "overrides": {
+    "rimraf": "6.1.4",
+    "uuid": "11.1.1"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

@@ -1,0 +1,21 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /Fase 2/Evidencias Proyecto/Evidencias de sistema Aplicacion/aprueba_api
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: npm
+    directory: /Fase 2/Evidencias Proyecto/Evidencias de sistema Aplicacion/aprueba_student_web
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: pub
+    directory: /Fase 2/Evidencias Proyecto/Evidencias de sistema Aplicacion/aprueba_app
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

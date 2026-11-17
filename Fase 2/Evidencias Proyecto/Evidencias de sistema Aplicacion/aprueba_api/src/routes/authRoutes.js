@@ -12,18 +12,19 @@ import {
   createSocialSession,
   deleteAccount,
 } from '../controllers/authController.js';
-import { authenticateToken, refreshSession, requireVerifiedEmail } from '../middleware/auth.js';
+import { authenticateToken, refreshSession, requireVerifiedEmail, logoutSession } from '../middleware/auth.js';
 import { createAuthLimiters } from '../middleware/authRateLimiters.js';
 
 const router = Router();
 
 // Rutas públicas
-const { loginLimiter, registerLimiter, recoveryLimiter, verificationLimiter } = createAuthLimiters();
+const { loginLimiter, registerLimiter, recoveryLimiter, verificationLimiter, refreshLimiter } = createAuthLimiters();
 router.post('/register', registerLimiter, register);
 router.post('/login', loginLimiter, login);
 router.post('/forgot-password', recoveryLimiter, forgotPassword);
 router.post('/reset-password', recoveryLimiter, resetPassword);
-router.post('/refresh', refreshSession);
+router.post('/refresh', refreshLimiter, refreshSession);
+router.post('/logout', recoveryLimiter, logoutSession);
 router.post('/verify-email', authenticateToken, verificationLimiter, sendVerification);
 router.post('/password', authenticateToken, recoveryLimiter, changePassword);
 router.post('/social-session', authenticateToken, recoveryLimiter, createSocialSession);

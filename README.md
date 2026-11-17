@@ -59,6 +59,8 @@ Los ZIP originales, herramientas descargadas, logs, datos de emuladores, credenc
 
 ## Actualización del 16 de noviembre de 2026
 
-Se integró el trabajo de rediseño del equipo y se homologaron funciones web/móvil. Consultar deploy/HOMOLOGACION_2026-11-16.md dentro de las evidencias de sistema. APK de pruebas: https://aprueba.shamiiplay.com/descargas/Aprueba-Android-pruebas-20261117.apk. Facsímil permanece Próximamente y PayPal pendiente.
+Se integró el trabajo de rediseño del equipo y se homologaron funciones web/móvil. Consultar deploy/HOMOLOGACION_2026-11-16.md dentro de las evidencias de sistema. APK de pruebas: https://aprueba.shamiiplay.com/descargas/Aprueba-Android-pruebas-20261117-seguridad.apk. Facsímil permanece Próximamente y PayPal pendiente.
 
 Correcciones del 17 de noviembre: navegación, grupos, contraste y traducciones. Detalle en deploy/REVISION_VISUAL_IDIOMA_2026-11-17.md dentro de las evidencias de sistema. APK de pruebas actualizado a 1.0.7.
+
+Revisión de ciberseguridad del 17 de noviembre: versión 1.0.8, sesiones de navegador con cookies HttpOnly, revocación por dispositivo, dependencias corregidas y servicio VPS aislado. Alcance, pruebas y pendientes de producción en deploy/REVISION_CIBERSEGURIDAD_2026-11-17.md, dentro de las evidencias de sistema. No equivale a certificación ni auditoría externa.

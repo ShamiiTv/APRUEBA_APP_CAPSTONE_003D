@@ -22,7 +22,7 @@ test('email guard rejects missing and forged verification and accepts only Fireb
   let allowed=false;requireVerifiedEmail({user:{firebaseAccount:{emailVerified:true}}},response(),()=>{allowed=true;});assert.equal(allowed,true);
 });
 function profile(data = { plan: 'free', onboardingCompleted: false }) {
-  const ref = { id: 'test-user', get: async () => ({ id: 'test-user', exists: true, data: () => data }), collection: () => ({ doc: () => ({}) }), update: async () => {} };
+  const ref = { id: 'test-user', get: async () => ({ id: 'test-user', exists: true, data: () => data }), collection: () => ({ doc: () => ({get:async()=>({exists:false})}) }), update: async () => {} };
   db.collection = () => ({ doc: () => ref, where: () => ({ limit: () => ({ get: async () => ({ empty: true, docs: [] }) }) }) });
   return ref;
 }

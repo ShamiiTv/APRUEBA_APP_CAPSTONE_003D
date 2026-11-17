@@ -1,0 +1,2 @@
+const PUBLIC_FIELDS=['name','email','school','region','age','phone','address','authProvider','onboardingCompleted','avatarColor','locale','theme','plan','planStatus','paymentMode','subscriptionTestId','currentPeriodEnd','selectedTests','practiceFormat','difficulty','dailyReminder','reminderTime','medals','quota','streak','lastActiveDate','loginStreak','lastLoginDate','targetTestId','createdAt','updatedAt','dataConsent'];
+export function profileView(data){return Object.fromEntries(PUBLIC_FIELDS.filter(k=>Object.hasOwn(data,k)).map(k=>[k,data[k]]));}

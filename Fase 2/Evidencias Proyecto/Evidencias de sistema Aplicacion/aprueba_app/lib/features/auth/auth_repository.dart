@@ -117,7 +117,12 @@ class AuthRepository {
     try {
       await ApiClient.dio.post(
         '/auth/reset-password',
-        data: {'oobCode': Uri.tryParse(token.trim())?.queryParameters['oobCode'] ?? token.trim(), 'password': password},
+        data: {
+          'oobCode':
+              Uri.tryParse(token.trim())?.queryParameters['oobCode'] ??
+              token.trim(),
+          'password': password,
+        },
       );
     } on DioException catch (e) {
       throw _error(e, 'No se pudo cambiar la contraseña.');
@@ -178,7 +183,10 @@ class AuthRepository {
 
   Future<void> deleteAccount(String password) async {
     try {
-      await ApiClient.dio.delete('/auth/me', data: {'currentPassword': password});
+      await ApiClient.dio.delete(
+        '/auth/me',
+        data: {'currentPassword': password},
+      );
       // La cuenta ya no existe: limpia la sesión local.
       pendingMedalReward.value = null;
       await ReminderService.cancel();
@@ -189,12 +197,23 @@ class AuthRepository {
   }
 
   Future<bool> hasSession() async {
-    final token = await TokenStorage.read();
+    final token = await TokenStorage.hasSession() ? 'session' : null;
     return token != null && token.isNotEmpty;
   }
 
   /// Borra la sesión de este dispositivo.
   Future<void> logout() async {
+    try {
+      await ApiClient.dio.post(
+        '/auth/logout',
+        data: {
+          if (await TokenStorage.readRefresh() != null)
+            'refreshToken': await TokenStorage.readRefresh(),
+        },
+      );
+    } on DioException {
+      /* Offline: clear device session anyway. */
+    }
     pendingMedalReward.value = null;
     await ReminderService.cancel();
     await TokenStorage.clear();

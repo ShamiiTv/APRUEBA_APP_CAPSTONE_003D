@@ -1,3 +1,7 @@
+import 'package:flutter/foundation.dart';
+
+import 'browser_credentials.dart';
+
 import 'package:dio/dio.dart';
 
 import '../storage/token_storage.dart';
@@ -13,6 +17,7 @@ class ApiClient {
     '/auth/refresh',
     '/auth/forgot-password',
     '/auth/reset-password',
+    '/auth/logout',
   ];
 
   /// Códigos de error (documento de API) que significan "tu sesión no sirve".
@@ -47,27 +52,34 @@ class ApiClient {
 
   /// Dio "limpio" (sin interceptores). Sirve para pedir el refresh
   /// y para reintentar la petición que falló.
-  static final Dio _bare = Dio(
-    BaseOptions(
-      baseUrl: _baseUrl,
-      connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 60),
-    ),
-  );
+  static final Dio _bare = _buildBare();
+  static Dio _buildBare() {
+    final client = Dio(
+      BaseOptions(
+        baseUrl: _baseUrl,
+        connectTimeout: const Duration(seconds: 10),
+        receiveTimeout: const Duration(seconds: 60),
+        headers: kIsWeb ? {'X-Aprueba-Client': 'mobile-browser'} : null,
+      ),
+    );
+    configureBrowserCredentials(client);
+    return client;
+  }
 
-  /// Pide tokens nuevos usando el refresh token (rotación: el anterior queda
-  /// invalidado). Devuelve true si funcionó.
+  /// Renueva con cookie HttpOnly en web y almacenamiento seguro en Android.
   static Future<bool> _refresh() async {
     final refresh = await TokenStorage.readRefresh();
-    if (refresh == null || refresh.isEmpty) return false;
+    final revision = TokenStorage.revision;
+    if (!kIsWeb && (refresh == null || refresh.isEmpty)) return false;
+    if (kIsWeb && !await TokenStorage.hasSession()) return false;
     try {
       final res = await _bare.post(
         '/auth/refresh',
-        data: {'refreshToken': refresh},
+        data: {'refreshToken': ?refresh},
       );
       final d = res.data['data'];
       final t = (d['tokens'] ?? d) as Map;
-      if (await TokenStorage.readRefresh() != refresh) return false;
+      if (TokenStorage.revision != revision) return false;
       await TokenStorage.save(
         t['accessToken'] as String,
         refresh: t['refreshToken'] as String?,
@@ -89,11 +101,18 @@ class ApiClient {
       ),
     );
 
+    configureBrowserCredentials(client);
+    if (kIsWeb) client.options.headers['X-Aprueba-Client'] = 'mobile-browser';
     client.interceptors.add(
       QueuedInterceptorsWrapper(
         onRequest: (options, handler) async {
           if (_publicPaths.contains(options.path)) {
             return handler.next(options);
+          }
+          if (kIsWeb &&
+              await TokenStorage.hasSession() &&
+              await TokenStorage.read() == null) {
+            await _refresh();
           }
           final token = await TokenStorage.read();
           if (token != null && token.isNotEmpty) {

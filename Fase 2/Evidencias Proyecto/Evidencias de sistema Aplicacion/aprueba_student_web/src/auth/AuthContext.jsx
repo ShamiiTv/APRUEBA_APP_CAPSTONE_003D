@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { apiFetch, clearSession, saveTokens } from '../api/client';
+import { apiFetch, clearSession, saveTokens, hasSession, logoutRemote } from '../api/client';
 
 import { AuthContext } from './context';
 import { useTheme } from '../context/useTheme';
@@ -8,7 +8,7 @@ export function AuthProvider({ children }) {
   const [reward,setReward]=useState(null);
   const dismissReward=useCallback(()=>setReward(null),[]);
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(() => Boolean(localStorage.getItem('token')));
+  const [loading, setLoading] = useState(() => Boolean(hasSession()));
   const [sessionError, setSessionError] = useState(null);
   const { applyPreferences,lang } = useTheme();
   const sessionRevision = useRef(0);
@@ -21,7 +21,7 @@ export function AuthProvider({ children }) {
 
   // Restaurar sesión al refrescar la página
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = hasSession();
     if (!token) return;
     let active = true;
 
@@ -79,6 +79,7 @@ export function AuthProvider({ children }) {
   };
 
   const logout = () => {
+    if(hasSession())void logoutRemote().catch(()=>{});
     sessionRevision.current++;
     clearSession();
     setReward(null);
@@ -92,7 +93,7 @@ export function AuthProvider({ children }) {
   const saveProfile = useCallback(async patch => {
     const revision = sessionRevision.current;
     const res = await apiFetch('/auth/profile',{ method:'PATCH',body:JSON.stringify(patch) });
-    if (revision !== sessionRevision.current || !localStorage.getItem('token')) throw new Error('La sesión cambió. Vuelve a iniciar sesión.');
+    if (revision !== sessionRevision.current || !hasSession()) throw new Error('La sesión cambió. Vuelve a iniciar sesión.');
     updateUserState(res.data);
     return res.data;
   },[updateUserState]);

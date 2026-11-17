@@ -1,3 +1,4 @@
+import {profileView} from '../services/profileView.js';
 import { db } from '../config/firebase.js';
 import { dailyQuota } from '../services/practice.js';
 import { fields, requestId, checkOperation, problem } from '../services/social.js';
@@ -23,7 +24,7 @@ export async function subscribePlan(req,res) {
     const result=await db.runTransaction(async tx=>{
       const [user,previous]=await Promise.all([tx.get(ref),tx.get(op)]);
       if (!user.exists) throw problem('Usuario no encontrado',404);
-      if (checkOperation(previous,signature)) return {user:{uid,...user.data(),quota:dailyQuota(user.data())},simulated:true,replayed:true};
+      if (checkOperation(previous,signature)) return {user:{uid,...profileView(user.data()),quota:dailyQuota(user.data())},simulated:true,replayed:true};
       const now=new Date(),end=new Date(now);
       const day=now.getUTCDate();end.setUTCDate(1);end.setUTCMonth(end.getUTCMonth()+1);
       const lastDay=new Date(Date.UTC(end.getUTCFullYear(),end.getUTCMonth()+1,0)).getUTCDate();end.setUTCDate(Math.min(day,lastDay));
@@ -32,7 +33,7 @@ export async function subscribePlan(req,res) {
       patch.quota=dailyQuota({...user.data(),...patch});
       tx.update(ref,patch);
       tx.set(op,{signature,simulated:true,amountCharged:0,createdAt:now});
-      return {user:{uid,...user.data(),...patch},simulated:true,replayed:false};
+      return {user:{uid,...profileView(user.data()),...patch},simulated:true,replayed:false};
     });
     return res.success({...result,message:'Demostración: plan simulado. No se realizó ningún cobro.'});
   } catch(error) { return res.fail(error.status ? error.message : 'No se pudo simular el plan',{code:'PLAN_UNAVAILABLE'},error.status || 503); }

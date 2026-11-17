@@ -7,7 +7,7 @@ globalThis.localStorage = { getItem: key => values.get(key) ?? null, setItem: (k
 globalThis.window = new EventTarget();
 const originalFetch = globalThis.fetch;
 const vite = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
-const { apiFetch, saveTokens, clearSession } = await vite.ssrLoadModule('/src/api/client.js');
+const { apiFetch, saveTokens, clearSession, hasSession, readAccessToken } = await vite.ssrLoadModule('/src/api/client.js');
 after(async () => { globalThis.fetch = originalFetch; delete globalThis.localStorage; delete globalThis.window; await vite.close(); });
 const reply = (status, data) => ({ status, ok: status >= 200 && status < 300, json: async () => data });
 
@@ -56,7 +56,7 @@ test('temporary renewal failure preserves tokens for retry', async () => {
   saveTokens({ accessToken: 'expired', refreshToken: 'valid-refresh' });
   globalThis.fetch = async url => reply(url.endsWith('/auth/refresh') ? 503 : 401, { error: { message: 'Unavailable' } });
   await assert.rejects(apiFetch('/auth/me'), /renovar/);
-  assert.equal(localStorage.getItem('refreshToken'), 'valid-refresh');
+  assert.equal(hasSession(),true);assert.equal(readAccessToken(),'expired');assert.equal(localStorage.getItem('refreshToken'),null);
 });
 
 test('in-flight renewal cannot restore session after logout', async () => {
@@ -83,5 +83,5 @@ test('wrong deletion password preserves session without refresh or repeated dele
   let calls=0;
   globalThis.fetch=async url=>{calls++;assert.ok(url.endsWith('/auth/me'));return reply(401,{error:{message:'Contraseña incorrecta',details:{code:'AUTH_INVALID_CREDENTIALS'}}});};
   await assert.rejects(apiFetch('/auth/me',{method:'DELETE',body:JSON.stringify({currentPassword:'wrong'})}),/Contraseña incorrecta/);
-  assert.equal(calls,1);assert.equal(localStorage.getItem('token'),'valid-access');assert.equal(localStorage.getItem('refreshToken'),'valid-refresh');
+  assert.equal(calls,1);assert.equal(readAccessToken(),'valid-access');assert.equal(hasSession(),true);assert.equal(localStorage.getItem('token'),null);assert.equal(localStorage.getItem('refreshToken'),null);
 });
