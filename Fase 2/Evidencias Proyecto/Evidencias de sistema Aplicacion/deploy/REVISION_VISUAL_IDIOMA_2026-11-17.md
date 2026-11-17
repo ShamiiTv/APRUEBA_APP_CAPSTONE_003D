@@ -24,3 +24,5 @@ Se revisaron los mensajes y cinco capturas reportados por el equipo sobre la ver
 - APK: https://aprueba.shamiiplay.com/descargas/Aprueba-Android-pruebas-20261117.apk
 
 El despliegue conserva datos, dependencias, credenciales y APK anteriores. No ejecuta semillas ni elimina cuentas reales. Facsímil y PayPal mantienen el estado pendiente acordado.
+
+Publicación verificada: web, móvil, API y APK nuevo/anterior responden HTTPS 200; versión móvil pública 1.0.7+20261117 y Firebase conectado. Servicios aprueba-api, nginx y shamii-tournaments activos. Respaldo: /opt/shamii/aprueba-backups/aprueba-20261117-001608.tar.gz. SHA-256 del APK: f7761056907704f5260200dee95d05ceb4cbfb4f6f7a7292f2fd38e53555090e. SHA-256 de main.dart.js: ce0448abf0385d057411086428b0603c19dedd212baeb25cf44088d6f82b475a. Hashes iguales entre local y VPS.
