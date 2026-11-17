@@ -401,6 +401,21 @@ export async function deleteAccount(req, res) {
     // Pide la contraseña actual y verifica que sea de esta cuenta.
     await reauthenticate(req);
 
+    // Stop the sandbox subscription before removing its owner.
+    const paypalUser=await db.collection('users').doc(uid).get();
+    if(paypalUser.data()?.paypalSubscriptionId){
+      const {cancelPaypalPlan}=await import('../services/paypalPlans.js');
+      await cancelPaypalPlan(uid);
+    }
+    const paypalRecords=await db.collection('paypalSandboxSubscriptions').where('uid','==',uid).get();
+    for(const record of paypalRecords.docs){
+      if(record.data().abandoned)await record.ref.update({uid:null});
+      else await record.ref.delete();
+    }
+
+    const paypalSales=await db.collection('paypalSandboxSales').where('uid','==',uid).get();
+    for(const sale of paypalSales.docs)await sale.ref.delete();
+
     // Limpia lo que el usuario dejó en otras colecciones.
     await leaveGroupsOnDelete(uid);
     await removeUserReactions(uid);

@@ -66,3 +66,7 @@ Correcciones del 17 de noviembre: navegación, grupos, contraste y traducciones.
 Revisión de ciberseguridad del 17 de noviembre: versión 1.0.8, sesiones de navegador con cookies HttpOnly, revocación por dispositivo, dependencias corregidas y servicio VPS aislado. Alcance, pruebas y pendientes de producción en deploy/REVISION_CIBERSEGURIDAD_2026-11-17.md, dentro de las evidencias de sistema. No equivale a certificación ni auditoría externa.
 
 Mantenimiento Ubuntu autorizado y completado el 17 de noviembre: 178 paquetes actualizados, 26 nuevos y kernel 6.8.0-149 activo. Aprueba y los servicios compartidos fueron verificados después del reinicio. Ver deploy/MANTENIMIENTO_UBUNTU_2026-11-17.md dentro de las evidencias de sistema; snapd mantiene un aplazamiento gradual gestionado por Ubuntu.
+
+## PayPal Sandbox — 17 de noviembre de 2026
+
+Se publicó la integración de suscripciones mensuales de prueba en web y Flutter, con confirmación del servidor, cancelación y webhook verificado. APK 1.0.9: https://aprueba.shamiiplay.com/descargas/Aprueba-Android-pruebas-20261117-paypal.apk. Falta completar una compra aprobada con comprador Sandbox y probarla en teléfono físico; el recorrido hasta PayPal y el regreso sin pagar ya fueron comprobados. Ver deploy/PAYPAL_SANDBOX_2026-11-17.md dentro de las evidencias de sistema. Solo pagos ficticios, nunca dinero real.

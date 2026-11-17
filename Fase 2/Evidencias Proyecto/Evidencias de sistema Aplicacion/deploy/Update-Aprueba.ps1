@@ -54,5 +54,7 @@ if (-not (Test-Path -LiteralPath $identity)) { throw 'Falta la clave SSH autoriz
 $connection = @('-i',$identity,'-p','10047','-o','BatchMode=yes','-o','StrictHostKeyChecking=yes','-o',"UserKnownHostsFile=$knownHosts",'root@93.127.139.145')
 Invoke-Checked $scp @('-i',$identity,'-P','10047','-o','BatchMode=yes','-o','StrictHostKeyChecking=yes','-o',"UserKnownHostsFile=$knownHosts",$archive,"root@93.127.139.145:/tmp/aprueba-$stamp.tar.gz")
 # Prepare dependencies separately, activate atomically, preserve prior APK/assets and hardened ownership.
-Invoke-Checked $scp @('-i',$identity,'-P','10047','-o','BatchMode=yes','-o','StrictHostKeyChecking=yes','-o',"UserKnownHostsFile=$knownHosts",(Join-Path $PSScriptRoot 'Install-ApruebaRelease.sh'),"root@93.127.139.145:/tmp/install-aprueba-$stamp.sh")
+$linuxInstaller = Join-Path $staging 'Install-ApruebaRelease.sh'
+[System.IO.File]::WriteAllText($linuxInstaller,[System.IO.File]::ReadAllText((Join-Path $PSScriptRoot 'Install-ApruebaRelease.sh')).Replace("`r`n","`n"),[System.Text.UTF8Encoding]::new($false))
+Invoke-Checked $scp @('-i',$identity,'-P','10047','-o','BatchMode=yes','-o','StrictHostKeyChecking=yes','-o',"UserKnownHostsFile=$knownHosts",$linuxInstaller,"root@93.127.139.145:/tmp/install-aprueba-$stamp.sh")
 Invoke-Checked $ssh ($connection + @("bash /tmp/install-aprueba-$stamp.sh /tmp/aprueba-$stamp.tar.gz"))

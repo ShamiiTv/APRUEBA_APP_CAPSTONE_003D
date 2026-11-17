@@ -12,7 +12,7 @@ export function dailyQuota(user, now = new Date(), testId = null) {
   const bonusSchool = typeof user.school === 'string' && user.school.trim() && Number.isInteger(user.age) && user.age >= 10 && user.age <= 99 && typeof user.region === 'string' && user.region.trim() ? 5 : 0;
   const bonusAddress = bonusSchool && typeof user.address?.commune === 'string' && user.address.commune.trim() && typeof user.address?.street === 'string' && user.address.street.trim() ? 5 : 0;
   const end = user.currentPeriodEnd?.toDate?.() || new Date(user.currentPeriodEnd || 0);
-  const active = (user.planStatus === 'active' || (user.planStatus === 'simulated' && process.env.PAYMENTS_MODE === 'simulation')) && end > now;
+  const active = (user.planStatus === 'active' || (user.planStatus === 'simulated' && ['simulation','paypal-sandbox'].includes(process.env.PAYMENTS_MODE))) && end > now;
   const unlimited = active && (user.plan === 'all' || (user.plan === 'uni' && testId && user.subscriptionTestId === testId));
   return { date, max: 10 + bonusSchool + bonusAddress, bonusSchool, bonusAddress, used: old.date === date && Number.isInteger(old.used) && old.used >= 0 ? old.used : 0, unlimited: !!unlimited, unlimitedTestId: active && user.plan === 'uni' ? user.subscriptionTestId || null : null, nextStep: !bonusSchool ? 'school' : !bonusAddress ? 'address' : 'upgrade' };
 }

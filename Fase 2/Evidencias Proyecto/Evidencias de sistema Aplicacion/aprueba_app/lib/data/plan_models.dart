@@ -23,6 +23,8 @@ Color _parseColor(String? hex) {
 
 class Plan {
   final String id;
+  final String paymentMode;
+  final String? sandboxAmount;
   final String name;
   final int monthly;
   final int yearly;
@@ -34,6 +36,8 @@ class Plan {
   const Plan({
     required this.id,
     required this.name,
+    this.paymentMode = 'simulation',
+    this.sandboxAmount,
     required this.monthly,
     required this.yearly,
     required this.color,
@@ -58,6 +62,10 @@ class Plan {
     return Plan(
       id: j['id'].toString(),
       name: (j['name'] ?? j['id']).toString(),
+      paymentMode: (j['paymentMode'] ?? 'unavailable').toString(),
+      sandboxAmount: j['sandboxPrice'] is Map
+          ? j['sandboxPrice']['amount']?.toString()
+          : null,
       monthly: (price['monthly'] as num?)?.toInt() ?? 0,
       yearly: (price['yearly'] as num?)?.toInt() ?? 0,
       color: _parseColor(j['color']?.toString()),

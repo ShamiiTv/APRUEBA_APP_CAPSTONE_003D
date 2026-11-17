@@ -1,3 +1,4 @@
+import {paypalEnabled,paypalCatalog} from '../services/paypalSandbox.js';
 import {profileView} from '../services/profileView.js';
 import { db } from '../config/firebase.js';
 import { dailyQuota } from '../services/practice.js';
@@ -9,7 +10,7 @@ export const PLANS = [
   {id:'all',name:'Acceso completo',nameEn:'Full access',price:{monthly:4990},popular:true,order:2,featureDetails:[{name:'Todas las pruebas PAES por un mes'}]},
 ];
 export async function getPlans(req,res) {
-  return res.success(PLANS.map(plan=>({...plan,paymentMode:process.env.PAYMENTS_MODE === 'simulation' ? 'simulation' : 'unavailable'})));
+  return res.success(PLANS.map(plan=>({...plan,paymentMode:paypalEnabled()?'paypal-sandbox':process.env.PAYMENTS_MODE === 'simulation' ? 'simulation' : 'unavailable',sandboxPrice:plan.id==='free'?null:paypalEnabled()?{amount:paypalCatalog()[plan.id].amount,currency:'USD'}:null})));
 }
 // Modo demostración explícito, sin pasarela, tarjeta ni boletas ficticias.
 export async function subscribePlan(req,res) {

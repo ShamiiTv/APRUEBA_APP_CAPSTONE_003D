@@ -1,4 +1,5 @@
 ﻿import express from 'express';
+import {paypalWebhook} from './services/paypalPlans.js';
 import {restrictedCors,privateResponses,rejectUnsupportedContent,mutationLimiter,safeError} from './middleware/security.js';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
@@ -57,6 +58,9 @@ app.get('/api/v1/health', async (req, res) => {
     return res.fail('No se pudo consultar Firebase. Intenta más tarde.', { code: error.code === 8 ? 'DATABASE_QUOTA_EXCEEDED' : 'DATABASE_UNAVAILABLE' }, 503);
   }
 });
+
+// PayPal validates the event signature; browser redirects never grant access.
+app.post('/api/v1/payments/paypal/webhook',paypalWebhook);
 
 // Rutas de Autenticación con su limiter específico
 app.use('/api/v1/auth', authRoutes);
