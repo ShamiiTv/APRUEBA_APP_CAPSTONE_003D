@@ -1,3 +1,5 @@
+import {useTheme} from '../context/useTheme';
+import {uiText} from '../i18n/uiText';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiFetch } from '../api/client';
@@ -12,6 +14,9 @@ const AVAILABLE_TESTS = [
 ];
 
 export default function Onboarding() {
+  const {lang}=useTheme();
+  const localize = value => uiText(lang,value);
+
   const { user, updateUserState } = useAuth();
   const navigate = useNavigate();
 
@@ -77,8 +82,8 @@ export default function Onboarding() {
         border: '1px solid var(--line)',
         boxShadow: '0 8px 30px rgba(26,54,93,0.06)',
       }}>
-        {skipNotice && <div className="ui-dialog-backdrop"><section className="ui-dialog" role="alertdialog" aria-modal="true" aria-labelledby="skip-title" aria-describedby="skip-description"><h2 id="skip-title">¿Omitir estos datos?</h2><p id="skip-description">Tendrás tus 10 preguntas diarias base. No se desbloquearán las 10 preguntas extra hasta completar colegio, edad y región (+5) y dirección (+5). Puedes hacerlo después en tu perfil.</p><div className="ui-actions"><button autoFocus className="ui-button" onClick={()=>setSkipNotice(false)}>Completar mis datos</button><button className="ui-button secondary" onClick={()=>{setSkipContext(true);setSkipNotice(false);setStep(2);}}>Sí, omitir por ahora</button></div></section></div>}
-                  <p role="note">Facsímil · Próximamente. Por ahora practicarás en formato aleatorio.</p>
+        {skipNotice && <div className="ui-dialog-backdrop"><section className="ui-dialog" role="alertdialog" aria-modal="true" aria-labelledby="skip-title" aria-describedby="skip-description"><h2 id="skip-title"> {localize("¿Omitir estos datos?")} </h2><p id="skip-description"> {localize("Tendrás tus 10 preguntas diarias base. No se desbloquearán las 10 preguntas extra hasta completar colegio, edad y región (+5) y dirección (+5). Puedes hacerlo después en tu perfil.")} </p><div className="ui-actions"><button autoFocus className="ui-button" onClick={()=>setSkipNotice(false)}> {localize("Completar mis datos")} </button><button className="ui-button secondary" onClick={()=>{setSkipContext(true);setSkipNotice(false);setStep(2);}}> {localize("Sí, omitir por ahora")} </button></div></section></div>}
+                  <p role="note"> {localize("Facsímil · Próximamente. Por ahora practicarás en formato aleatorio.")} </p>
           {/* Barra de progreso */}
         <div style={{ display: 'flex', gap: '8px', marginBottom: '28px' }}>
           {[1, 2].map((s) => (
@@ -111,24 +116,16 @@ export default function Onboarding() {
 
         {step === 1 ? (
           <div>
-            <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--oro)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Paso 1 de 2
-            </span>
-            <h1 style={{ fontFamily: 'Montserrat', fontSize: '22px', fontWeight: 800, color: 'var(--ink)', marginTop: '4px' }}>
-              Tu contexto académico
-            </h1>
-            <p style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '4px' }}>
-              Personalizamos los ensayos y cuotas según tu institución educativa.
-            </p>
+            <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--oro)', textTransform: 'uppercase', letterSpacing: '0.05em' }}> {localize("Paso 1 de 2")} </span>
+            <h1 style={{ fontFamily: 'Montserrat', fontSize: '22px', fontWeight: 800, color: 'var(--ink)', marginTop: '4px' }}> {localize("Tu contexto académico")} </h1>
+            <p style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '4px' }}> {localize("Personalizamos los ensayos y cuotas según tu institución educativa.")} </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '24px' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '6px' }}>
-                  Colegio / Liceo / Preuniversitario
-                </label>
+                <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '6px' }}> {localize("Colegio / Liceo / Preuniversitario")} </label>
                 <input
                   type="text"
-                  placeholder="Ej: Instituto Nacional"
+                  placeholder={localize("Ej: Instituto Nacional")}
                   value={school}
                   onChange={(e) => setSchool(e.target.value)}
                   style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', border: '1px solid var(--line)', color: 'var(--ink)', background: 'var(--soft)', fontSize: '13px' }}
@@ -136,9 +133,7 @@ export default function Onboarding() {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '6px' }}>
-                  Región
-                </label>
+                <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '6px' }}> {localize("Región")} </label>
                 <select
                   value={region}
                   onChange={(e) => setRegion(e.target.value)}
@@ -165,7 +160,7 @@ export default function Onboarding() {
             </div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'flex-end', marginTop: '28px' }}>
-              <button className="ui-button secondary" onClick={()=>setSkipNotice(true)}>Omitir por ahora</button>
+              <button className="ui-button secondary" onClick={()=>setSkipNotice(true)}> {localize("Omitir por ahora")} </button>
               <button
                 type="button"
                 onClick={() => {setSkipContext(false);setStep(2);}}
@@ -180,22 +175,14 @@ export default function Onboarding() {
                   fontSize: '13px',
                   cursor: 'pointer',
                 }}
-              >
-                Siguiente Paso →
-              </button>
+              > {localize("Siguiente Paso →")} </button>
             </div>
           </div>
         ) : (
           <div>
-            <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--oro)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Paso 2 de 2
-            </span>
-            <h1 style={{ fontFamily: 'Montserrat', fontSize: '22px', fontWeight: 800, color: 'var(--ink)', marginTop: '4px' }}>
-              Pruebas PAES que rendirás
-            </h1>
-            <p style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '4px' }}>
-              Selecciona las asignaturas que componen tu postulación universitaria.
-            </p>
+            <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--oro)', textTransform: 'uppercase', letterSpacing: '0.05em' }}> {localize("Paso 2 de 2")} </span>
+            <h1 style={{ fontFamily: 'Montserrat', fontSize: '22px', fontWeight: 800, color: 'var(--ink)', marginTop: '4px' }}> {localize("Pruebas PAES que rendirás")} </h1>
+            <p style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '4px' }}> {localize("Selecciona las asignaturas que componen tu postulación universitaria.")} </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '20px' }}>
               {AVAILABLE_TESTS.map((t) => {
@@ -217,7 +204,7 @@ export default function Onboarding() {
                     }}
                   >
                     <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink)' }}>
-                      {t.label}
+                      {localize(t.label)}
                     </span>
                     <span style={{
                       width: '20px',
@@ -250,9 +237,7 @@ export default function Onboarding() {
                   fontSize: '13px',
                   cursor: 'pointer',
                 }}
-              >
-                ← Volver
-              </button>
+              > {localize("← Volver")} </button>
 
               <button
                 type="button"
@@ -271,7 +256,7 @@ export default function Onboarding() {
                   opacity: loading ? 0.7 : 1,
                 }}
               >
-                {loading ? 'Guardando perfil...' : 'Comenzar a Practicar 🚀'}
+                {loading ? localize("Guardando perfil...") : localize("Comenzar a Practicar 🚀")}
               </button>
             </div>
           </div>

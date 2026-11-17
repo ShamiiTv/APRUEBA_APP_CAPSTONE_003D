@@ -1,3 +1,4 @@
+import {uiText} from '../i18n/uiText';
 import ContentSkeleton from '../components/ContentSkeleton';
 import './Home.css';
 import './Settings.css';
@@ -25,11 +26,11 @@ export default function Plan() {
   return <div className="settings-page plan-page"><h1>{en?'Your plan':'Tu plan'}</h1>
     <p>Facsímil · {en?'Coming soon; not included as an available feature.':'Próximamente; aún no está disponible en ningún plan.'}</p>
     <p role="note">{en?'PAYMENT DEMO · No charge, no real subscription or receipt.':'DEMOSTRACIÓN DE PAGOS · Sin cobros, suscripciones reales ni boletas.'}</p>
-    <p>{en?'Current plan':'Plan actual'}: {user?.plan || 'free'} {user?.planStatus==='simulated' && (en?'(simulated)':'(simulado)')}</p>
+    <p>{en?'Current plan':'Plan actual'}: {uiText(lang,user?.plan || 'free')} {user?.planStatus==='simulated' && (en?'(simulated)':'(simulado)')}</p>
     {message && <p role="status">{message}</p>}
     {loading ? <ContentSkeleton kind="plans" /> : loadError ? <div role="alert"><p>{loadError}</p><button className="ui-button" onClick={()=>{setLoading(true);setLoadError('');setRevision(v=>v+1);}}>{en?'Retry':'Reintentar'}</button></div> : plans.length===0 ? <p>{en?'No plans available.':'No hay planes disponibles.'}</p> : <div className="home-grid">{plans.map(plan=><section className={`home-panel plan-card plan-card--${plan.id} ${plan.popular ? 'plan-card--featured' : ''}`} key={plan.id}><h2>{en?plan.nameEn:plan.name}</h2>{plan.popular && <span className="plan-badge">{en?'All tests':'Todas las pruebas'}</span>}<p className="plan-price"><strong>${plan.price.monthly.toLocaleString('es-CL')} CLP</strong> {en?'/ month':'/ mes'}</p>
       <p>{plan.id==='free'?(en?'10 base + 5 school + 5 address · 20 daily max':'10 base + 5 colegio + 5 dirección · 20 máximo diario'):plan.id==='uni'?(en?'Unlimited questions in your chosen test for one month.':'Preguntas ilimitadas en una prueba elegida por un mes.'):(en?'Unlimited questions in all tests for one month.':'Preguntas ilimitadas en todas las pruebas por un mes.')}</p>
-      {plan.id==='uni' && <label>{en?'Test':'Prueba'}<select value={testId} disabled={busy} onChange={e=>setTestId(e.target.value)}>{TESTS.map(([id,label])=><option key={id} value={id}>{label}</option>)}</select></label>}
+      {plan.id==='uni' && <label>{en?'Test':'Prueba'}<select value={testId} disabled={busy} onChange={e=>setTestId(e.target.value)}>{TESTS.map(([id,label])=><option key={id} value={id}>{uiText(lang,label)}</option>)}</select></label>}
       <button disabled={busy || plan.paymentMode!=='simulation'} onClick={()=>choose(plan.id)}>{en?'Simulate selection':'Simular selección'}</button>
     </section>)}</div>}</div>;
 }

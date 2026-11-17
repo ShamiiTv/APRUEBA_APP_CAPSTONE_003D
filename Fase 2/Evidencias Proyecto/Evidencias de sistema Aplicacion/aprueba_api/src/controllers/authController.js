@@ -419,7 +419,7 @@ export async function deleteAccount(req, res) {
   } catch (error) {
     if (error.status === 400) return res.fail(error.message, null, 400);
     if (['INVALID_LOGIN_CREDENTIALS', 'INVALID_PASSWORD'].includes(error.code)) {
-      return res.fail('Contraseña incorrecta', null, 401);
+      return res.fail('Contraseña incorrecta', {code:'AUTH_INVALID_CREDENTIALS'}, 401);
     }
     return res.fail('No se pudo eliminar la cuenta. Intenta nuevamente.', null, 503);
   }

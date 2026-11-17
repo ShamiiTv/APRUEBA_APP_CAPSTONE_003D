@@ -1,8 +1,13 @@
+import {useTheme} from '../context/useTheme';
+import {uiText} from '../i18n/uiText';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/useAuth';
 
 export default function Login() {
+  const {lang}=useTheme();
+  const localize = value => uiText(lang,value);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -22,7 +27,7 @@ export default function Login() {
       const invitation=sessionStorage.getItem('aprueba:group-invitation');
       navigate(data.user.onboardingCompleted === true ? (invitation ? '/grupos?invite='+encodeURIComponent(invitation) : '/') : '/onboarding', { replace: true });
     } catch (err) {
-      setError(err.message || 'Credenciales inválidas');
+      setError(err.message || localize("Credenciales inválidas"));
     } finally {
       setLoading(false);
     }
@@ -65,12 +70,8 @@ export default function Login() {
           </span>
         </div>
 
-        <h1 style={{ fontFamily: 'Montserrat', fontSize: '20px', fontWeight: 800, color: 'var(--ink)' }}>
-          Ingresa a tu cuenta
-        </h1>
-        <p style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '4px', marginBottom: '20px' }}>
-          Continúa con tu racha de preparación PAES 2026.
-        </p>
+        <h1 style={{ fontFamily: 'Montserrat', fontSize: '20px', fontWeight: 800, color: 'var(--ink)' }}> {localize("Ingresa a tu cuenta")} </h1>
+        <p style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '4px', marginBottom: '20px' }}> {localize("Continúa con tu racha de preparación PAES 2026.")} </p>
 
         {error && (
           <div style={{
@@ -88,9 +89,7 @@ export default function Login() {
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
           <div>
-            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}>
-              Correo electrónico
-            </label>
+            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Correo electrónico")} </label>
             <input
               type="email"
               required
@@ -113,15 +112,13 @@ export default function Login() {
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}>
-              Contraseña
-            </label>
+            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Contraseña")} </label>
             <input
               type="password"
               required
               maxLength={128}
               autoComplete="current-password"
-              placeholder="Tu contraseña"
+              placeholder={localize("Tu contraseña")}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               style={{
@@ -143,7 +140,7 @@ export default function Login() {
             style={{
               marginTop: '10px',
               backgroundColor: 'var(--brand)',
-              color: '#FFFFFF',
+              color: 'var(--on-brand, #fff)',
               border: 'none',
               borderRadius: '10px',
               padding: '13px',
@@ -154,16 +151,13 @@ export default function Login() {
               opacity: loading ? 0.7 : 1
             }}
           >
-            {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+            {loading ? localize("Iniciando sesión...") : localize("Iniciar Sesión")}
           </button>
         </form>
 
-        <p style={{ marginTop: '16px', textAlign: 'center' }}><Link to="/recuperar-contrasena" style={{ color: 'var(--brand)', fontWeight: 700 }}>¿Olvidaste tu contraseña?</Link></p>
-        <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '13px', color: 'var(--muted)' }}>
-          ¿No tienes cuenta?{' '}
-          <Link to="/register" style={{ color: 'var(--cta)', fontWeight: 700, textDecoration: 'none' }}>
-            Regístrate aquí
-          </Link>
+        <p style={{ marginTop: '16px', textAlign: 'center' }}><Link to="/recuperar-contrasena" style={{ color: 'var(--brand)', fontWeight: 700 }}> {localize("¿Olvidaste tu contraseña?")} </Link></p>
+        <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '13px', color: 'var(--muted)' }}> {localize("¿No tienes cuenta?")} {' '}
+          <Link to="/register" style={{ color: 'var(--cta)', fontWeight: 700, textDecoration: 'none' }}> {localize("Regístrate aquí")} </Link>
         </div>
       </div>
     </div>

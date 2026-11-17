@@ -83,6 +83,10 @@ class _QuotaUnlockScreenState extends ConsumerState<QuotaUnlockScreen> {
     final isSchool = widget.step == 'school';
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(tr(context, 'Amplía tu práctica', 'Extend your practice')),
+        leading: BackButton(onPressed: () => context.go('/home')),
+      ),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(16, 32, 16, 24),
@@ -234,15 +238,27 @@ class _QuotaUnlockScreenState extends ConsumerState<QuotaUnlockScreen> {
                           title: Text(
                             tr(context, '¿Omitir por ahora?', 'Skip for now?'),
                           ),
-                          content: Text(
-                            tr(
-                              context,
-                              'Conservas tus 10 preguntas diarias base. Para obtener las 10 extra debes completar colegio, edad y región (+5) y dirección (+5). Puedes hacerlo después desde tu perfil.',
-                              'You keep your 10 base daily questions. Unlock 10 extra by completing school, age and region (+5) and address (+5). You can do this later in your profile.',
+                          content: SingleChildScrollView(
+                            child: Text(
+                              tr(
+                                context,
+                                isSchool
+                                    ? 'Conservas tus 10 preguntas diarias base. Puedes sumar 5 al completar colegio, edad y región, y otras 5 con tu dirección. Puedes hacerlo después desde tu perfil.'
+                                    : 'Conservas tus 15 preguntas diarias. Puedes sumar las últimas 5 al completar tu dirección, ahora o después desde tu perfil.',
+                                isSchool
+                                    ? 'You keep your 10 base daily questions. Add 5 with school, age and region, and another 5 with your address. You can do this later in your profile.'
+                                    : 'You keep your 15 daily questions. Add the final 5 by completing your address, now or later in your profile.',
+                              ),
                             ),
                           ),
+                          actionsPadding: const EdgeInsets.fromLTRB(
+                            24,
+                            0,
+                            24,
+                            24,
+                          ),
                           actions: [
-                            TextButton(
+                            OutlinedButton(
                               onPressed: () => Navigator.pop(ctx, false),
                               child: Text(
                                 tr(

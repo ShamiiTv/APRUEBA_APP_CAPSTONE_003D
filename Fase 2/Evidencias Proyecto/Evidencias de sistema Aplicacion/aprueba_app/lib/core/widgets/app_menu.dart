@@ -117,7 +117,10 @@ Future<void> showApruebaMenu(BuildContext context) async {
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () {
                   Navigator.pop(sheet);
-                  if (entry.$4 == '/my-data' || entry.$4 == '/plans') {
+                  if (entry.$4 == '/my-data' ||
+                      entry.$4 == '/plans' ||
+                      entry.$4 == '/study-plan' ||
+                      entry.$4 == '/activity') {
                     context.push(entry.$4);
                   } else {
                     context.go(entry.$4);

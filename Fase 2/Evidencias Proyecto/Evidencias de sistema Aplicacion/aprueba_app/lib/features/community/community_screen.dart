@@ -324,7 +324,7 @@ class _PostCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          timeAgo(p.createdAt),
+                          timeAgo(p.createdAt, english: isEnglish(context)),
                           style: GoogleFonts.inter(
                             fontSize: 10,
                             color: c.muted,

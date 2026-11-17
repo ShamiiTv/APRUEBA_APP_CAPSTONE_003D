@@ -1,10 +1,12 @@
+import {useTheme} from '../context/useTheme';
 import { useState } from 'react';
 import { useAuth } from '../auth/useAuth';
 import { apiFetch } from '../api/client';
 
 export default function VerifyEmail() {
   const { user, updateUserState, logout } = useAuth();
-  const en = user?.locale === 'en';
+  const {lang}=useTheme();
+  const en = lang === 'en';
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState('');

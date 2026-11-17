@@ -1,8 +1,13 @@
+import {useTheme} from '../context/useTheme';
+import {uiText} from '../i18n/uiText';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/useAuth';
 
 export default function Register() {
+  const {lang}=useTheme();
+  const localize = value => uiText(lang,value);
+
   const [consent,setConsent]=useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -17,16 +22,16 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;
-    if(!consent){setError('Debes aceptar el tratamiento de tus datos para continuar.');return;}
+    if(!consent){setError(localize("Debes aceptar el tratamiento de tus datos para continuar."));return;}
     setError(null);
-    if (password !== confirmation) { setError('Las contraseñas no coinciden.'); return; }
+    if (password !== confirmation) { setError(localize("Las contraseñas no coinciden.")); return; }
     setLoading(true);
 
     try {
       await registerUser(name, email, password, consent);
       navigate('/onboarding');
     } catch (err) {
-      setError(err.message || 'Error al crear la cuenta');
+      setError(err.message || localize("Error al crear la cuenta"));
     } finally {
       setLoading(false);
     }
@@ -69,12 +74,8 @@ export default function Register() {
           </span>
         </div>
 
-        <h1 style={{ fontFamily: 'Montserrat', fontSize: '20px', fontWeight: 800, color: 'var(--ink)' }}>
-          Crea tu cuenta de estudiante
-        </h1>
-        <p style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '4px', marginBottom: '20px' }}>
-          Prepárate para la PAES con cuota diaria, medallas y grupos de estudio.
-        </p>
+        <h1 style={{ fontFamily: 'Montserrat', fontSize: '20px', fontWeight: 800, color: 'var(--ink)' }}> {localize("Crea tu cuenta de estudiante")} </h1>
+        <p style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '4px', marginBottom: '20px' }}> {localize("Prepárate para la PAES con cuota diaria, medallas y grupos de estudio.")} </p>
 
         {error && (
           <div style={{
@@ -92,15 +93,13 @@ export default function Register() {
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
           <div>
-            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}>
-              Nombre y Apellido
-            </label>
+            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Nombre y Apellido")} </label>
             <input
               type="text"
               required
               maxLength={120}
               autoComplete="name"
-              placeholder="Ej: Sofía Morales"
+              placeholder={localize("Ej: Sofía Morales")}
               value={name}
               onChange={(e) => setName(e.target.value)}
               style={{
@@ -117,9 +116,7 @@ export default function Register() {
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}>
-              Correo electrónico
-            </label>
+            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Correo electrónico")} </label>
             <input
               type="email"
               required
@@ -142,16 +139,14 @@ export default function Register() {
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}>
-              Contraseña
-            </label>
+            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Contraseña")} </label>
             <input
               type="password"
               required
               minLength={8}
               maxLength={128}
               autoComplete="new-password"
-              placeholder="Mínimo 8 caracteres"
+              placeholder={localize("Mínimo 8 caracteres")}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               style={{
@@ -168,7 +163,7 @@ export default function Register() {
           </div>
 
           <div>
-            <label htmlFor="register-confirmation" style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '6px' }}>Repite tu contraseña</label>
+            <label htmlFor="register-confirmation" style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '6px' }}> {localize("Repite tu contraseña")} </label>
             <input id="register-confirmation" type="password" required minLength={8} maxLength={128} autoComplete="new-password" value={confirmation} onChange={e => setConfirmation(e.target.value)} style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', border: '1px solid var(--line)', backgroundColor: 'var(--soft)', color: 'var(--ink)', fontSize: '13px' }} />
           </div>
           <button
@@ -188,15 +183,12 @@ export default function Register() {
               opacity: loading ? 0.7 : 1
             }}
           >
-            {loading ? 'Creando cuenta...' : 'Crear Cuenta Estudiante'}
+            {loading ? localize("Creando cuenta...") : localize("Crear Cuenta Estudiante")}
           </button>
-        <label style={{display:'block',marginTop:16}}><input type="checkbox" required checked={consent} onChange={e=>setConsent(e.target.checked)}/> Acepto los términos y el tratamiento de mis datos para mi cuenta y práctica en Aprueba. Puedo eliminar mi cuenta desde Ajustes.</label></form>
+        <label style={{display:'block',marginTop:16}}><input type="checkbox" required checked={consent} onChange={e=>setConsent(e.target.checked)}/> {localize("Acepto los términos y el tratamiento de mis datos para mi cuenta y práctica en Aprueba. Puedo eliminar mi cuenta desde Ajustes.")} </label></form>
 
-        <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '13px', color: 'var(--muted)' }}>
-          ¿Ya tienes cuenta?{' '}
-          <Link to="/login" style={{ color: 'var(--cta)', fontWeight: 700, textDecoration: 'none' }}>
-            Inicia sesión aquí
-          </Link>
+        <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '13px', color: 'var(--muted)' }}> {localize("¿Ya tienes cuenta?")} {' '}
+          <Link to="/login" style={{ color: 'var(--cta)', fontWeight: 700, textDecoration: 'none' }}> {localize("Inicia sesión aquí")} </Link>
         </div>
       </div>
     </div>

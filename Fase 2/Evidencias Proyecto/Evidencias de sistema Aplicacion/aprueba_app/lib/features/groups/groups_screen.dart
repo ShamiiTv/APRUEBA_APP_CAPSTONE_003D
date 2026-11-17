@@ -20,7 +20,7 @@ class GroupsScreen extends ConsumerWidget {
 
   static const _azul = Color(0xFF1A365D);
 
-    Future<void> _join(BuildContext context, WidgetRef ref) async {
+  Future<void> _join(BuildContext context, WidgetRef ref) async {
     final control = TextEditingController();
     String? error;
     bool busy = false;
@@ -57,7 +57,11 @@ class GroupsScreen extends ConsumerWidget {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
-                      tr(context, 'Te uniste al grupo ✓', 'You joined the group ✓'),
+                      tr(
+                        context,
+                        'Te uniste al grupo ✓',
+                        'You joined the group ✓',
+                      ),
                     ),
                   ),
                 );
@@ -126,7 +130,7 @@ class GroupsScreen extends ConsumerWidget {
                     child: FilledButton(
                       style: FilledButton.styleFrom(
                         backgroundColor: const Color(0xFFF5AF41),
-                        foregroundColor: _azul,
+                        foregroundColor: c.brand,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
                         ),
@@ -155,7 +159,7 @@ class GroupsScreen extends ConsumerWidget {
                         tr(ctx, 'Cancelar', 'Cancel'),
                         style: GoogleFonts.montserrat(
                           fontWeight: FontWeight.w800,
-                          color: _azul,
+                          color: c.brand,
                         ),
                       ),
                     ),
@@ -283,7 +287,13 @@ class GroupsScreen extends ConsumerWidget {
             error: (error, _) => Center(
               child: TextButton(
                 onPressed: () => ref.invalidate(groupsProvider),
-                child: Text('$error. Reintentar'),
+                child: Text(
+                  tr(
+                    context,
+                    'No se pudieron cargar tus grupos. Reintentar',
+                    'Could not load your groups. Retry',
+                  ),
+                ),
               ),
             ),
             data: (groups) => ListView(
@@ -325,7 +335,7 @@ class GroupsScreen extends ConsumerWidget {
                 OutlinedButton.icon(
                   style: OutlinedButton.styleFrom(
                     minimumSize: const Size(double.infinity, 46),
-                    foregroundColor: _azul,
+                    foregroundColor: c.brand,
                     side: BorderSide(color: c.line),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
@@ -404,19 +414,23 @@ class GroupsScreen extends ConsumerWidget {
                                         : () async {
                                             try {
                                               await ref
-                                                  .read(groupsRepositoryProvider)
+                                                  .read(
+                                                    groupsRepositoryProvider,
+                                                  )
                                                   .acceptInvitation(group.id);
                                               ref.invalidate(groupsProvider);
-                                              ref.invalidate(publicGroupsProvider);
+                                              ref.invalidate(
+                                                publicGroupsProvider,
+                                              );
                                             } catch (e) {
                                               if (context.mounted) {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                      SnackBar(
-                                                        content:
-                                                            Text(e.toString()),
-                                                      ),
-                                                    );
+                                                ScaffoldMessenger.of(
+                                                  context,
+                                                ).showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(e.toString()),
+                                                  ),
+                                                );
                                               }
                                             }
                                           },
@@ -426,7 +440,7 @@ class GroupsScreen extends ConsumerWidget {
                                           : tr(context, 'Unirme', 'Join'),
                                       style: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w800,
-                                        color: _azul,
+                                        color: c.brand,
                                       ),
                                     ),
                                   ),

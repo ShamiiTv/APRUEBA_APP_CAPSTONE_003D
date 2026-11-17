@@ -1,3 +1,4 @@
+import {uiText} from '../i18n/uiText';
 import ContentSkeleton from '../components/ContentSkeleton';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -76,14 +77,14 @@ export default function Home() {
         <section className="home-section">
           <h2>{copy.bank}</h2><p className="home-hint">{copy.bankHint}</p>
           <div className="home-grid">{progress.subjects.map(subject => <article className="home-panel" key={subject.testId}>
-            <h3>{subject.label}</h3>
-            {subject.available > 0 ? <><p><strong>{subject.completed} / {subject.available}</strong> {copy.available}</p><progress aria-label={`${subject.label}: ${subject.completed} / ${subject.available}`} value={subject.completed} max={subject.available} /><p className="home-hint">{subject.coverage}%</p></> : <p>{copy.emptyBank}</p>}
+            <h3>{uiText(lang,subject.label)}</h3>
+            {subject.available > 0 ? <><p><strong>{subject.completed} / {subject.available}</strong> {copy.available}</p><progress aria-label={`${uiText(lang,subject.label)}: ${subject.completed} / ${subject.available}`} value={subject.completed} max={subject.available} /><p className="home-hint">{subject.coverage}%</p></> : <p>{copy.emptyBank}</p>}
             <p className="home-hint">{subject.answered} {copy.history} · {subject.correct} {copy.hits}{subject.accuracy !== null ? ` (${subject.accuracy}%)` : ''}</p>
             <button disabled={!subject.available || (quotaReached && progress.quota.unlimitedTestId!==subject.testId)} onClick={() => goPractice(subject.testId)}>{copy.practice}</button>
           </article>)}</div>
         </section>
         <section className="home-banner home-section"><div><h2>{copy.ready}</h2><p>{quotaReached ? copy.limit : copy.readyHint}</p></div><button disabled={!preferred || (quotaReached && progress.quota.unlimitedTestId!==preferred?.testId)} onClick={() => goPractice(preferred.testId)}>{copy.practice}</button></section>
-        {progress.recent.length > 0 && <section className="home-panel home-section"><h2>{copy.recent}</h2><ul className="home-recent">{progress.recent.map((answer, index) => <li key={index}><span>{progress.subjects.find(s => s.testId === answer.testId)?.label} · {answer.isCorrect ? copy.right : copy.wrong}</span><time dateTime={answer.answeredAt}>{dateFormat(answer.answeredAt)}</time></li>)}</ul></section>}
+        {progress.recent.length > 0 && <section className="home-panel home-section"><h2>{copy.recent}</h2><ul className="home-recent">{progress.recent.map((answer, index) => <li key={index}><span>{uiText(lang,progress.subjects.find(s => s.testId === answer.testId)?.label)} · {answer.isCorrect ? copy.right : copy.wrong}</span><time dateTime={answer.answeredAt}>{dateFormat(answer.answeredAt)}</time></li>)}</ul></section>}
         <p className="home-hint">{copy.updated}: <time dateTime={progress.updatedAt}>{dateFormat(progress.updatedAt)}</time> · America/Santiago</p>
       </>}
   </div>;

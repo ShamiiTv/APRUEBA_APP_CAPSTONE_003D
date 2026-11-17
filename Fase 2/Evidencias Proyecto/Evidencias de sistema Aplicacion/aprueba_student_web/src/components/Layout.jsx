@@ -23,8 +23,8 @@ export default function Layout() {
 
   const initial = user?.name ? user.name.charAt(0).toUpperCase() : 'E';
   const planLabel = user?.plan === 'all'
-    ? 'Todas las Pruebas'
-    : (user?.plan === 'uni' ? '1 Prueba Ilimitada' : 'Plan Gratis');
+    ? (lang==='en'?'All tests':'Todas las Pruebas')
+    : (user?.plan === 'uni' ? (lang==='en'?'1 unlimited test':'1 Prueba Ilimitada') : (lang==='en'?'Free plan':'Plan Gratis'));
 
   const handleLogout = () => {
     logout();
@@ -201,7 +201,7 @@ export default function Layout() {
           zIndex: 10
         }}>
           <span style={{ fontSize: '12px', color: 'var(--muted)', fontWeight: 500 }}>
-            Ecosistema Digital PAES 2026
+            {lang==='en'?'PAES 2026 Digital Ecosystem':'Ecosistema Digital PAES 2026'}
           </span>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>

@@ -77,3 +77,11 @@ test('a session revoked during renewal ends after failed retry', async () => {
   await assert.rejects(apiFetch('/auth/me'), /revocada/);
   assert.equal(localStorage.getItem('token'), null);
 });
+
+test('wrong deletion password preserves session without refresh or repeated delete', async () => {
+  saveTokens({accessToken:'valid-access',refreshToken:'valid-refresh'});
+  let calls=0;
+  globalThis.fetch=async url=>{calls++;assert.ok(url.endsWith('/auth/me'));return reply(401,{error:{message:'Contraseña incorrecta',details:{code:'AUTH_INVALID_CREDENTIALS'}}});};
+  await assert.rejects(apiFetch('/auth/me',{method:'DELETE',body:JSON.stringify({currentPassword:'wrong'})}),/Contraseña incorrecta/);
+  assert.equal(calls,1);assert.equal(localStorage.getItem('token'),'valid-access');assert.equal(localStorage.getItem('refreshToken'),'valid-refresh');
+});

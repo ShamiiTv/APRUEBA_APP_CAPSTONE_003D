@@ -78,92 +78,100 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, setDialog) {
           final c = WfColors.of(ctx);
-          return AlertDialog(
-            title: Text(tr(ctx, 'Eliminar cuenta', 'Delete account')),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  tr(
-                    ctx,
-                    'Se borrarán tu cuenta, tus medallas y tu progreso. Esta acción no se puede deshacer.',
-                    'Your account, medals and progress will be deleted. This cannot be undone.',
-                  ),
-                ),
-                const SizedBox(height: 14),
-                TextField(
-                  controller: ctrl,
-                  obscureText: true,
-                  enabled: !busy,
-                  decoration: InputDecoration(
-                    hintText: tr(
-                      ctx,
-                      'Confirma con tu contraseña',
-                      'Confirm with your password',
+          return PopScope(
+            canPop: !busy,
+            child: AlertDialog(
+              title: Text(tr(ctx, 'Eliminar cuenta', 'Delete account')),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      tr(
+                        ctx,
+                        'Se borrarán tu cuenta, tus medallas y tu progreso. Esta acción no se puede deshacer.',
+                        'Your account, medals and progress will be deleted. This cannot be undone.',
+                      ),
                     ),
-                  ),
+                    const SizedBox(height: 14),
+                    TextField(
+                      controller: ctrl,
+                      obscureText: true,
+                      enabled: !busy,
+                      decoration: InputDecoration(
+                        hintText: tr(
+                          ctx,
+                          'Confirma con tu contraseña',
+                          'Confirm with your password',
+                        ),
+                      ),
+                    ),
+                    if (error != null) ...[
+                      const SizedBox(height: 10),
+                      Text(error!, style: TextStyle(color: c.danger)),
+                    ],
+                  ],
                 ),
-                if (error != null) ...[
-                  const SizedBox(height: 10),
-                  Text(error!, style: TextStyle(color: c.danger)),
-                ],
+              ),
+              actionsPadding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              actionsOverflowDirection: VerticalDirection.down,
+              actions: [
+                OutlinedButton(
+                  onPressed: busy ? null : () => Navigator.of(ctx).pop(false),
+                  child: Text(tr(ctx, 'Cancelar', 'Cancel')),
+                ),
+                FilledButton(
+                  style: FilledButton.styleFrom(
+                    backgroundColor: c.danger,
+                    foregroundColor: Colors.white,
+                  ),
+                  onPressed: busy
+                      ? null
+                      : () async {
+                          if (ctrl.text.isEmpty) {
+                            setDialog(
+                              () => error = tr(
+                                ctx,
+                                'Ingresa tu contraseña',
+                                'Enter your password',
+                              ),
+                            );
+                            return;
+                          }
+                          setDialog(() {
+                            busy = true;
+                            error = null;
+                          });
+                          try {
+                            await repository.deleteAccount(ctrl.text);
+                            if (ctx.mounted) Navigator.of(ctx).pop(true);
+                          } on ApiException catch (e) {
+                            setDialog(() {
+                              busy = false;
+                              error = e.message;
+                            });
+                          }
+                        },
+                  child: busy
+                      ? const SizedBox(
+                          height: 18,
+                          width: 18,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
+                        )
+                      : Text(tr(ctx, 'Eliminar', 'Delete')),
+                ),
               ],
             ),
-            actions: [
-              TextButton(
-                onPressed: busy ? null : () => Navigator.of(ctx).pop(false),
-                child: Text(tr(ctx, 'Cancelar', 'Cancel')),
-              ),
-              FilledButton(
-                style: FilledButton.styleFrom(
-                  backgroundColor: c.danger,
-                  foregroundColor: Colors.white,
-                ),
-                onPressed: busy
-                    ? null
-                    : () async {
-                        if (ctrl.text.isEmpty) {
-                          setDialog(
-                            () => error = tr(
-                              ctx,
-                              'Ingresa tu contraseña',
-                              'Enter your password',
-                            ),
-                          );
-                          return;
-                        }
-                        setDialog(() {
-                          busy = true;
-                          error = null;
-                        });
-                        try {
-                          await repository.deleteAccount(ctrl.text);
-                          if (ctx.mounted) Navigator.of(ctx).pop(true);
-                        } on ApiException catch (e) {
-                          setDialog(() {
-                            busy = false;
-                            error = e.message;
-                          });
-                        }
-                      },
-                child: busy
-                    ? const SizedBox(
-                        height: 18,
-                        width: 18,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          color: Colors.white,
-                        ),
-                      )
-                    : Text(tr(ctx, 'Eliminar', 'Delete')),
-              ),
-            ],
           );
         },
       ),
     );
 
+    ctrl.dispose();
     if (deleted == true) {
       ref.invalidate(profileProvider);
       ref.invalidate(progressProvider);
@@ -391,15 +399,16 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               onTap: () => context.push('/corrections'),
               child: Row(
                 children: [
-                  Text(
-                    tr(
-                      context,
-                      'Mis recorrecciones · próximamente',
-                      'My corrections · coming soon',
+                  Expanded(
+                    child: Text(
+                      tr(
+                        context,
+                        'Mis recorrecciones · próximamente',
+                        'My corrections · coming soon',
+                      ),
+                      style: bold,
                     ),
-                    style: bold,
                   ),
-                  const Spacer(),
                   Text('›', style: small),
                 ],
               ),

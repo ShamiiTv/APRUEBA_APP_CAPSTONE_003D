@@ -1,4 +1,6 @@
+import '../../core/l10n/system_text.dart';
 import '../../core/widgets/content_skeleton.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -116,7 +118,7 @@ class NotificationsScreen extends ConsumerWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  n.title,
+                                  systemText(context, n.title),
                                   style: GoogleFonts.inter(
                                     fontSize: 13,
                                     fontWeight: n.read
@@ -126,7 +128,7 @@ class NotificationsScreen extends ConsumerWidget {
                                 ),
                                 const SizedBox(height: 2),
                                 Text(
-                                  n.body,
+                                  systemText(context, n.body),
                                   style: GoogleFonts.inter(
                                     fontSize: 12,
                                     color: c.muted,
@@ -134,7 +136,10 @@ class NotificationsScreen extends ConsumerWidget {
                                 ),
                                 const SizedBox(height: 2),
                                 Text(
-                                  timeAgo(n.createdAt),
+                                  timeAgo(
+                                    n.createdAt,
+                                    english: isEnglish(context),
+                                  ),
                                   style: GoogleFonts.inter(
                                     fontSize: 10,
                                     color: c.muted,

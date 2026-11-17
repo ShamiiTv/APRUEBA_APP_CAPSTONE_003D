@@ -11,6 +11,7 @@ import '../../core/widgets/avatar_circle.dart';
 import '../../core/widgets/content_skeleton.dart';
 import '../../data/social_models.dart';
 import 'groups_providers.dart';
+import 'groups_screen.dart' show publicGroupsProvider;
 import '../community/post_comments_sheet.dart';
 import '../community/community_repository.dart';
 
@@ -206,7 +207,7 @@ class _GroupDetailState extends ConsumerState<GroupDetailScreen> {
                     tr(ctx, 'Cancelar', 'Cancel'),
                     style: GoogleFonts.montserrat(
                       fontWeight: FontWeight.w800,
-                      color: _azul,
+                      color: c.brand,
                     ),
                   ),
                 ),
@@ -222,6 +223,7 @@ class _GroupDetailState extends ConsumerState<GroupDetailScreen> {
           .read(groupsRepositoryProvider)
           .removeMember(widget.group.id, '');
       ref.invalidate(groupsProvider);
+      ref.invalidate(publicGroupsProvider);
       if (mounted) context.go('/groups');
     } catch (e) {
       if (mounted) setState(() => error = e.toString());
@@ -687,7 +689,7 @@ class _GroupDetailState extends ConsumerState<GroupDetailScreen> {
                               .toDouble(),
                           minHeight: 8,
                           backgroundColor: c.line,
-                          color: _azul,
+                          color: c.brand,
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -822,7 +824,7 @@ class _GroupDetailState extends ConsumerState<GroupDetailScreen> {
                                     style: GoogleFonts.montserrat(
                                       fontSize: 13,
                                       fontWeight: FontWeight.w800,
-                                      color: _azul,
+                                      color: c.brand,
                                     ),
                                   ),
                                 ],
@@ -852,7 +854,7 @@ class _GroupDetailState extends ConsumerState<GroupDetailScreen> {
                       tr(context, 'Salir del grupo', 'Leave group'),
                       style: GoogleFonts.montserrat(
                         fontWeight: FontWeight.w800,
-                        color: _azul,
+                        color: c.brand,
                       ),
                     ),
                   ),

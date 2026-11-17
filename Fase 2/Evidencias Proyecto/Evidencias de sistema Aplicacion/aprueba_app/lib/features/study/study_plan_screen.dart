@@ -1,3 +1,5 @@
+import '../../core/utils/tier_names.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -105,6 +107,15 @@ class _StudyPlanState extends ConsumerState<StudyPlanScreen> {
     final p = plan;
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(
+          onPressed: () {
+            if (context.canPop()) {
+              context.pop();
+            } else {
+              context.go('/home');
+            }
+          },
+        ),
         title: Text(tr(context, 'Plan de estudio', 'Study plan')),
         actions: [
           IconButton(
@@ -127,59 +138,72 @@ class _StudyPlanState extends ConsumerState<StudyPlanScreen> {
                   ),
                 ],
                 if (p != null) ...[
-                  Text(
-                    tr(context, 'Configura tu meta', 'Set your goal'),
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  Text(
-                    tr(
-                      context,
-                      'La meta organiza tu estudio; no cambia la cuota diaria.',
-                      'Your goal organizes practice; it does not change your daily quota.',
-                    ),
-                  ),
-                  Text(
-                    '${tr(context, 'Preguntas diarias', 'Daily questions')}: $goal',
-                  ),
-                  Slider(
-                    value: goal.toDouble(),
-                    min: 1,
-                    max: 20,
-                    divisions: 19,
-                    label: '$goal',
-                    onChanged: saving
-                        ? null
-                        : (v) => setState(() => goal = v.round()),
-                  ),
-                  for (final entry in subjects.entries)
-                    CheckboxListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(entry.value),
-                      value: tests.contains(entry.key),
-                      onChanged: saving
-                          ? null
-                          : (v) => setState(
-                              () => v == true
-                                  ? tests.add(entry.key)
-                                  : tests.remove(entry.key),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            tr(context, 'Configura tu meta', 'Set your goal'),
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          Text(
+                            tr(
+                              context,
+                              'La meta organiza tu estudio; no cambia la cuota diaria.',
+                              'Your goal organizes practice; it does not change your daily quota.',
                             ),
-                    ),
-                  FilledButton(
-                    onPressed: saving || tests.isEmpty ? null : _save,
-                    child: Text(
-                      saving
-                          ? tr(context, 'Guardando…', 'Saving…')
-                          : tr(context, 'Guardar plan', 'Save plan'),
-                    ),
-                  ),
-                  if (dirty)
-                    Text(
-                      tr(
-                        context,
-                        'Guarda los cambios para actualizar las recomendaciones.',
-                        'Save changes to update recommendations.',
+                          ),
+                          Text(
+                            '${tr(context, 'Preguntas diarias', 'Daily questions')}: $goal',
+                          ),
+                          Slider(
+                            value: goal.toDouble(),
+                            min: 1,
+                            max: 20,
+                            divisions: 19,
+                            label: '$goal',
+                            onChanged: saving
+                                ? null
+                                : (v) => setState(() => goal = v.round()),
+                          ),
+                          for (final entry in subjects.entries)
+                            CheckboxListTile(
+                              contentPadding: EdgeInsets.zero,
+                              title: Text(
+                                testName(context, entry.key, entry.value),
+                              ),
+                              value: tests.contains(entry.key),
+                              onChanged: saving
+                                  ? null
+                                  : (v) => setState(
+                                      () => v == true
+                                          ? tests.add(entry.key)
+                                          : tests.remove(entry.key),
+                                    ),
+                            ),
+                          FilledButton(
+                            onPressed: saving || tests.isEmpty ? null : _save,
+                            child: Text(
+                              saving
+                                  ? tr(context, 'Guardando…', 'Saving…')
+                                  : tr(context, 'Guardar plan', 'Save plan'),
+                            ),
+                          ),
+                          if (dirty)
+                            Text(
+                              tr(
+                                context,
+                                'Guarda los cambios para actualizar las recomendaciones.',
+                                'Save changes to update recommendations.',
+                              ),
+                            ),
+                        ],
                       ),
                     ),
+                  ),
+                  const SizedBox(height: 20),
                   Card(
                     child: Padding(
                       padding: const EdgeInsets.all(16),
@@ -194,9 +218,22 @@ class _StudyPlanState extends ConsumerState<StudyPlanScreen> {
                             ),
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
+                          const SizedBox(height: 12),
                           Text(
                             '${p['completedToday']} / ${p['settings']['dailyGoal']}',
+                            style: Theme.of(context).textTheme.headlineMedium,
                           ),
+                          const SizedBox(height: 12),
+                          LinearProgressIndicator(
+                            value:
+                                ((p['completedToday'] as num) /
+                                        (p['settings']['dailyGoal'] as num))
+                                    .clamp(0.0, 1.0)
+                                    .toDouble(),
+                            minHeight: 8,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          const SizedBox(height: 12),
                           Text(
                             '${tr(context, 'Día de estudio', 'Study day')}: ${p['date']} · Chile',
                           ),
@@ -223,6 +260,7 @@ class _StudyPlanState extends ConsumerState<StudyPlanScreen> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 24),
                   Text(
                     tr(
                       context,
@@ -276,7 +314,11 @@ class _StudyPlanState extends ConsumerState<StudyPlanScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  task['label'].toString(),
+                                  testName(
+                                    context,
+                                    task['testId'].toString(),
+                                    task['label'].toString(),
+                                  ),
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium,

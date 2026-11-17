@@ -128,6 +128,8 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: c.brand,
+          minimumSize: const Size(48, 48),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           textStyle: GoogleFonts.montserrat(
             fontSize: 13,
             fontWeight: FontWeight.w700,

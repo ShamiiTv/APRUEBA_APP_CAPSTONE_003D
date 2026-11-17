@@ -1,3 +1,4 @@
+import {uiText} from '../i18n/uiText';
 // Production always uses the API on the same origin, even when no build-time
 // environment file is available. Local development keeps its separate API port.
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? '/api/v1' : 'http://localhost:4000/api/v1');
@@ -32,7 +33,9 @@ export async function apiFetch(endpoint, options = {}, retry = true) {
     },
   });
 
-  if (response.status === 401 && token && retry && !['/auth/login', '/auth/register', '/auth/forgot-password', '/auth/reset-password'].includes(endpoint)) {
+  const json = await response.json();
+  const credentialRejected = (json.error?.code || json.error?.details?.code) === 'AUTH_INVALID_CREDENTIALS';
+  if (response.status === 401 && !credentialRejected && token && retry && !['/auth/login', '/auth/register', '/auth/forgot-password', '/auth/reset-password'].includes(endpoint)) {
     const refreshToken = localStorage.getItem('refreshToken');
     if (refreshToken) {
       refreshPending ||= fetch(`${API_BASE_URL}/auth/refresh`, {
@@ -53,15 +56,14 @@ export async function apiFetch(endpoint, options = {}, retry = true) {
     clearSession();
     window.dispatchEvent(new Event('aprueba:session-ended'));
   }
-  if (response.status === 401 && token && !retry) {
+  if (response.status === 401 && !credentialRejected && token && !retry) {
     clearSession();
     window.dispatchEvent(new Event('aprueba:session-ended'));
   }
-  const json = await response.json();
 
   if (!response.ok || json.error) {
     const errorMsg = json.error?.message || json.error || 'Error en la petición al servidor';
-    throw Object.assign(new Error(errorMsg), { status: response.status, code: json.error?.code || json.error?.details?.code });
+    throw Object.assign(new Error(uiText(localStorage.getItem('lang'),errorMsg)), { status: response.status, code: json.error?.code || json.error?.details?.code });
   }
 
   return json;

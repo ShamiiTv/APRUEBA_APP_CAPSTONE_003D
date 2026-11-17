@@ -1,8 +1,13 @@
+import '../../core/l10n/system_text.dart';
+import '../../core/utils/tier_names.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/l10n/l10n.dart';
 import '../../core/network/api_client.dart';
+import '../../core/utils/format_utils.dart';
 import '../../core/widgets/content_skeleton.dart';
 
 class ActivityRepository {
@@ -65,6 +70,15 @@ class _ActivityState extends ConsumerState<ActivityScreen> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
+      leading: BackButton(
+        onPressed: () {
+          if (context.canPop()) {
+            context.pop();
+          } else {
+            context.go('/home');
+          }
+        },
+      ),
       title: Text(tr(context, 'Tu actividad', 'Your activity')),
       actions: [
         IconButton(
@@ -96,8 +110,14 @@ class _ActivityState extends ConsumerState<ActivityScreen> {
                   ),
                 for (final row in data!.progress['recent'] as List)
                   ListTile(
-                    title: Text(row['testId'].toString().toUpperCase()),
-                    subtitle: Text('${row['answeredAt']}'),
+                    title: Text(
+                      testName(
+                        context,
+                        row['testId'].toString(),
+                        row['testId'].toString().toUpperCase(),
+                      ),
+                    ),
+                    subtitle: Text(activityDate(context, row['answeredAt'])),
                     leading: Icon(
                       row['isCorrect'] == true
                           ? Icons.check_circle
@@ -109,6 +129,7 @@ class _ActivityState extends ConsumerState<ActivityScreen> {
                           : tr(context, 'Incorrecta', 'Incorrect'),
                     ),
                   ),
+                const SizedBox(height: 24),
                 Text(
                   tr(context, 'Historial de medallas', 'Medal history'),
                   style: Theme.of(context).textTheme.titleLarge,
@@ -131,12 +152,13 @@ class _ActivityState extends ConsumerState<ActivityScreen> {
                 for (final row in data!.medals['history'] as List)
                   ListTile(
                     title: Text(
-                      '${(row['amount'] as num) > 0 ? '+' : ''}${row['amount']} ${row['tier']}',
+                      '${(row['amount'] as num) > 0 ? '+' : ''}${row['amount']} ${tierName(context, row['tier'].toString())}',
                     ),
                     subtitle: Text(
-                      '${row['reason']}\n${row['createdAt'] ?? ''}',
+                      '${systemText(context, row['reason']?.toString() ?? '')}\n${activityDate(context, row['createdAt'])}',
                     ),
                   ),
+                const SizedBox(height: 24),
                 Text(
                   tr(context, 'Solicitudes de beneficios', 'Benefit requests'),
                   style: Theme.of(context).textTheme.titleLarge,
@@ -153,7 +175,7 @@ class _ActivityState extends ConsumerState<ActivityScreen> {
                   ListTile(
                     title: Text(row['name'].toString()),
                     subtitle: Text(
-                      '${tr(context, 'Referencia', 'Reference')}: ${row['id']} · ${row['status']}',
+                      '${tr(context, 'Referencia', 'Reference')}: ${row['id']} · ${systemText(context, row['status'].toString())}',
                     ),
                   ),
               ],
