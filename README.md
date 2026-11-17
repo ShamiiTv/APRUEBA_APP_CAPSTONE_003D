@@ -64,3 +64,5 @@ Se integró el trabajo de rediseño del equipo y se homologaron funciones web/m�
 Correcciones del 17 de noviembre: navegación, grupos, contraste y traducciones. Detalle en deploy/REVISION_VISUAL_IDIOMA_2026-11-17.md dentro de las evidencias de sistema. APK de pruebas actualizado a 1.0.7.
 
 Revisión de ciberseguridad del 17 de noviembre: versión 1.0.8, sesiones de navegador con cookies HttpOnly, revocación por dispositivo, dependencias corregidas y servicio VPS aislado. Alcance, pruebas y pendientes de producción en deploy/REVISION_CIBERSEGURIDAD_2026-11-17.md, dentro de las evidencias de sistema. No equivale a certificación ni auditoría externa.
+
+Mantenimiento Ubuntu autorizado y completado el 17 de noviembre: 178 paquetes actualizados, 26 nuevos y kernel 6.8.0-149 activo. Aprueba y los servicios compartidos fueron verificados después del reinicio. Ver deploy/MANTENIMIENTO_UBUNTU_2026-11-17.md dentro de las evidencias de sistema; snapd mantiene un aplazamiento gradual gestionado por Ubuntu.

@@ -6,7 +6,7 @@ Fecha: 17 de noviembre de 2026. Alcance: API Express/Firebase, React, Flutter we
 
 Se corrigieron riesgos de dependencias, almacenamiento de sesiones del navegador, revocación al cerrar sesión, validación, exposición de campos internos, permisos Linux, aislamiento del proceso y cabeceras HTTP. Las correcciones de aplicación se compilaron y publicaron como versión 1.0.8+202611170, con respaldo y conservación de las cuentas, datos y APK anteriores. Los pagos continúan simulados por decisión del proyecto.
 
-Quedan tareas de producción que requieren mantenimiento del host o intervención del propietario: actualizar y reiniciar Ubuntu, revisar IAM completo, activar/verificar MFA administrativo, definir firma de producción Android y acreditar restauración externa de respaldos. No se debe presentar el sistema como listo para producción comercial mientras estas tareas sigan abiertas.
+Quedan tareas de producción que requieren mantenimiento del host o intervención del propietario: revisar IAM completo, activar/verificar MFA administrativo, definir firma de producción Android y acreditar restauración externa de respaldos. No se debe presentar el sistema como listo para producción comercial mientras estas tareas sigan abiertas.
 
 ## Hallazgos y tratamiento
 
@@ -25,7 +25,7 @@ Quedan tareas de producción que requieren mantenimiento del host o intervenció
 | SEC-11 | Media | Runtime Node de Aprueba 22.23.3 y autenticación SSH por contraseña habilitada para cuentas no root. | Node 22.23.5 LTS verificado contra SHA-256 oficial e instalado aparte, sin cambiar Node de otros servicios. SSH solo por clave, validación previa, temporizador de reversión y conexión nueva comprobada. |
 | SEC-12 | Media | Política de contraseña Firebase no declarada, aunque la API exigía 8–128. | Política Firebase ENFORCE 8–128 sin forzar actualización al inicio de sesión de cuentas existentes; configuración previa respaldada. No se añadieron requisitos de composición incompatibles con las aplicaciones. |
 | SEC-13 | Media | Secret scanning, push protection y actualizaciones de seguridad Dependabot estaban deshabilitados. | Activados mediante API de GitHub. Se incorporaron flujos CI y configuración Dependabot con acciones fijadas a SHA. El resultado del primer CI se registra aparte. |
-| SEC-14 | Alta, pendiente | Ubuntu ejecuta kernel 6.8.0-36 y existe `reboot-required`; simulación de upgrade identifica 174 paquetes. | Requiere ventana de mantenimiento del host compartido. No se ejecutaron upgrade ni reboot sin coordinar la interrupción de Torneos y retransmisión. |
+| SEC-14 | Alta, atendida el 17-11-2026 | Ubuntu ejecuta kernel 6.8.0-36 y existe `reboot-required`; simulación de upgrade identifica 174 paquetes. | Mantenimiento autorizado y completado: 178 paquetes actualizados, 26 nuevos y 0 eliminados; reinicio con kernel 6.8.0-149. Servicios, datos e integridad verificados. snapd quedó aplazado por phasing de Ubuntu; ver informe de mantenimiento. |
 
 ## Pruebas y evidencias
 
@@ -56,7 +56,7 @@ La entrega excluye secretos, usuarios, datos de emuladores y backups privados. L
 
 ## Pendientes antes de producción comercial
 
-1. **Mantenimiento Ubuntu (operador):** confirmar disponibilidad de consola del proveedor y respaldo, aplicar parches pendientes en una ventana acordada, reiniciar, comprobar kernel y servicios/puertos, HTTPS, login/práctica y retransmisión. La existencia de copias no demuestra una restauración externa exitosa.
+1. **Mantenimiento continuo (operador):** la actualización/reinicio autorizados del 17-11-2026 están completados y verificados. Seguir el aplazamiento gradual de snapd y futuras actualizaciones. La existencia de copias no demuestra una restauración externa exitosa; no se hizo una emisión real ni una prueba autenticada con cuentas de producción durante el reinicio.
 2. **IAM completo y MFA (propietario):** la cuenta de servicio devuelve 403 al leer la política IAM del proyecto. Revisar en la consola los roles de usuarios/cuentas de servicio y MFA de Google/GitHub. No se le otorgó Owner a la aplicación para facilitar una auditoría.
 3. **Firma Android de producción (equipo):** gestionar un keystore de producción protegido y un plan de transición/Play App Signing. No sustituir automáticamente la firma actual porque impediría actualizar los APK de prueba instalados. Probar instalación y sesión en teléfono físico.
 4. **Continuidad y datos personales (equipo/operador):** verificar una restauración aislada, cifrado y copia fuera del servidor; fijar RPO/RTO, retención de logs y política de borrado. No publicar respaldos ni datos reales en el repositorio.
@@ -78,4 +78,6 @@ La entrega excluye secretos, usuarios, datos de emuladores y backups privados. L
 
 El commit de aplicación 82d42c3 pasó los cinco trabajos de CI (API, web, autorización, Flutter y CodeQL): https://github.com/ShamiiTv/APRUEBA_APP_CAPSTONE_003D/actions/runs/44016661025. Dependabot y secret scanning no mostraron alertas abiertas en la consulta final. CodeQL generó nueve avisos de missing-rate-limiting en test/auth.emulator.test.js y test/parity.emulator.test.js; se verificó su guardia demo-, escucha loopback y exclusión de releases, y se clasificaron individualmente como used in tests con justificación en alertas 1 a 9. No se excluyeron reglas ni rutas de producción; la consulta posterior de CodeQL no mostró alertas abiertas. La clasificación no significa que se hayan corregido nueve fallos explotables en producción.
 
-Se consolidaron las cabeceras de la API para evitar valores duplicados de X-Frame-Options (respuesta final DENY). Respaldo adicional: /opt/shamii/aprueba-backups/security-headers-20261117T042316Z. El mantenimiento de Ubuntu permanece pendiente; procedimiento concreto en MANTENIMIENTO_UBUNTU_2026-11-17.md.
+Se consolidaron las cabeceras de la API para evitar valores duplicados de X-Frame-Options (respuesta final DENY). Respaldo adicional: /opt/shamii/aprueba-backups/security-headers-20261117T042316Z. El mantenimiento de Ubuntu fue autorizado y completado posteriormente; resultados concretos en MANTENIMIENTO_UBUNTU_2026-11-17.md.
+
+Cierre del mantenimiento: kernel 6.8.0-149-generic activo, sin reinicio adicional requerido; 178 paquetes actualizados, 26 nuevos, 0 eliminados. Se conservaron configuraciones, APK, datos y servicios. Detalle y limitaciones en MANTENIMIENTO_UBUNTU_2026-11-17.md.
