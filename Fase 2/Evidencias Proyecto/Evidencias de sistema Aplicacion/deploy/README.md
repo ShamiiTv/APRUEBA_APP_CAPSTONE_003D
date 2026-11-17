@@ -5,8 +5,8 @@ Configuración recuperada del chat «Revisar y escalar torneos», relacionado co
 - Database Mart, Ubuntu 24.04; host compartido 93.127.139.145, SSH 10047.
 - Dominio principal: https://aprueba.shamiiplay.com; móvil: https://aprueba.shamiiplay.com/movil/ (gateway hacia puerto 8081). El alias anterior se conserva como referencia histórica.
 - Código API: /opt/shamii/aprueba/api; interfaz: /opt/shamii/aprueba/web/dist.
-- Servicio: aprueba-api, ejecutado como shamii con /opt/node/bin/node y /etc/shamii/aprueba.env.
-- Configuración Firebase: /etc/shamii/aprueba-firebase.json, instalada y validada para aprueba-app-9d317. Permisos 640, root:shamii; GOOGLE_APPLICATION_CREDENTIALS y clave web configuradas en /etc/shamii/aprueba.env.
+- Servicio: aprueba-api, usuario exclusivo aprueba-api, Node /opt/aprueba-node-v22.23.5/bin/node y configuración /etc/aprueba/api.env (desde 17-11-2026).
+- Configuración Firebase actual: /etc/aprueba/firebase.json para aprueba-app-9d317, permisos 640 root:aprueba-api; /etc/aprueba/api.env es 600 root:root. Las rutas anteriores se conservan privadas para recuperación; no volver a dar acceso al usuario compartido shamii.
 - Torneos usa otros directorios/servicio y puerto 8080. El despliegue de Aprueba no reinicia ni modifica ese proyecto.
 
 La clave y known_hosts existentes se referencian desde C:/Users/Shamii/Desktop/Torneo-GTA. No se copian a este repositorio ni se muestran en informes. No desactivar StrictHostKeyChecking. .deployment está ignorado por Git.
@@ -17,7 +17,7 @@ Desde PowerShell, ejecutar & './Fase 2/Evidencias Proyecto/Evidencias de sistema
 
 Para actualizar también Flutter web, usar `-IncludeMobile -FlutterPath "ruta/a/flutter.bat"`. La compilación usa el dominio nuevo y se incluye bajo `/movil/`. Sin ese parámetro se conserva la app móvil que ya está en la VPS.
 
-El paquete contiene solo fuente API, manifests, dist e índices/reglas. No contiene .env, credenciales, datos de usuarios ni emuladores. Mantiene node_modules y configuración del servidor. Si cambia el lockfile, el script se detiene y requiere revisar la instalación de dependencias. Los respaldos quedan en /opt/shamii/aprueba-backups; el script no borra copias ni datos Firebase.
+El paquete contiene solo fuente API, manifests, dist e índices/reglas. No contiene .env, credenciales, datos de usuarios ni emuladores. Conserva configuración del servidor y prepara dependencias de producción en un directorio nuevo, validando audit y salud; mantiene la versión anterior completa para reversión. Los respaldos quedan en /opt/shamii/aprueba-backups; el script no borra copias ni datos Firebase.
 
 Los despliegues se ejecutan durante el trabajo autorizado en este chat, después de validar cambios. Este procedimiento no crea una automatización periódica ni publica silenciosamente cambios sin revisar.
 
@@ -30,3 +30,5 @@ Actualización posterior del 10-10-2026: API habilitada con Firebase real; Fires
 Testeo posterior: reglas desplegadas y 19 índices solicitados con el rol Cloud Datastore Index Admin agregado por el usuario. La validación final aprobó 44 comprobaciones de API con 0 fallos, incluidos feeds público/privado y listado de planes. Chrome validó HTTPS y el recorrido público de registro/onboarding/práctica/login. Consultar TESTEO_VPS.md para resultados y límites: prueba privada del flujo gratuito, pagos pendientes y catálogos comerciales sin datos de demostración.
 
 El proveedor presentó anteriormente una cadena TLS incompleta. Chrome validó HTTPS en esta revisión; no desactivar TLS para las llamadas de aplicación.
+
+Desde 17-11-2026 puede incluirse APK con -IncludeMobile -IncludeApk -FlutterPath explícito. Consultar REVISION_CIBERSEGURIDAD_2026-11-17.md y MANTENIMIENTO_UBUNTU_2026-11-17.md para el estado de seguridad y mantenimiento pendiente.

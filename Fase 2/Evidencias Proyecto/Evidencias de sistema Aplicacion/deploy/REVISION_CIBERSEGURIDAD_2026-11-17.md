@@ -73,3 +73,9 @@ La entrega excluye secretos, usuarios, datos de emuladores y backups privados. L
 - [Android: configuración de seguridad de red](https://developer.android.com/privacy-and-security/security-config).
 - [Node 22.23.5 LTS](https://nodejs.org/en/blog/release/v22.23.5).
 - [GitHub: seguridad y análisis del repositorio](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository).
+
+## Cierre de CI y clasificación de resultados
+
+El commit de aplicación 82d42c3 pasó los cinco trabajos de CI (API, web, autorización, Flutter y CodeQL): https://github.com/ShamiiTv/APRUEBA_APP_CAPSTONE_003D/actions/runs/44016661025. Dependabot y secret scanning no mostraron alertas abiertas en la consulta final. CodeQL generó nueve avisos de missing-rate-limiting en test/auth.emulator.test.js y test/parity.emulator.test.js; se verificó su guardia demo-, escucha loopback y exclusión de releases, y se clasificaron individualmente como used in tests con justificación en alertas 1 a 9. No se excluyeron reglas ni rutas de producción; la consulta posterior de CodeQL no mostró alertas abiertas. La clasificación no significa que se hayan corregido nueve fallos explotables en producción.
+
+Se consolidaron las cabeceras de la API para evitar valores duplicados de X-Frame-Options (respuesta final DENY). Respaldo adicional: /opt/shamii/aprueba-backups/security-headers-20261117T042316Z. El mantenimiento de Ubuntu permanece pendiente; procedimiento concreto en MANTENIMIENTO_UBUNTU_2026-11-17.md.
