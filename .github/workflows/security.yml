@@ -25,7 +25,10 @@ jobs:
         with:
           node-version: '22'
       - run: npm ci --ignore-scripts
-      - run: npm audit --audit-level=low
+      - if: matrix.component != 'aprueba_student_web'
+        run: npm audit --audit-level=low
+      - if: matrix.component == 'aprueba_student_web'
+        run: npm run audit:security
       - run: npm test
       - if: matrix.component == 'aprueba_student_web'
         run: npm run lint && npm run build

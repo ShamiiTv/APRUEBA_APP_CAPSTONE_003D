@@ -59,3 +59,7 @@ También falta comprobar renovaciones y reembolsos emitidos realmente por Sandbo
 Para desactivar la integración, retirar el drop-in zz-paypal-sandbox.conf con respaldo, recargar systemd y reiniciar solo aprueba-api; comprobar el modo efectivo resultante. Volver a simulation reabre la activación interna de demostración, por lo que no equivale a deshabilitar compras por completo. Para bloquear todas las compras, establecer PAYMENTS_MODE=unavailable en una configuración aplicada después de security.conf y verificar el proceso.
 
 Las fuentes de referencia de PayPal son la API Subscriptions v1 y la verificación de firmas Webhooks v1. La integración necesita todavía la prueba externa anterior antes de considerarse validada de extremo a extremo.
+
+## Hallazgo posterior de CI
+
+La auditoría completa de desarrollo de la web detectó GHSA-fc5q-39xc-vjpf, revisado el 17 de noviembre, sin versión corregida publicada. La auditoría de producción de la web no tiene vulnerabilidades. Se documentó una excepción temporal exacta para picomatch 4.0.7 hasta el 2 de diciembre, con advertencia visible y controles que siguen bloqueando otros avisos y cualquier vulnerabilidad de producción. Ver aprueba_student_web/DEPENDENCY_EXCEPTION_2026-11-17.md. No se modificaron paquetes, dependencias del navegador ni la compilación desplegada para ocultar el aviso.
