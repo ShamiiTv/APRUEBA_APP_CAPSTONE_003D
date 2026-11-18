@@ -1,8 +1,11 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+
 import '../../core/l10n/l10n.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/wf_colors.dart';
 import '../practice/practice_providers.dart';
@@ -23,7 +26,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   final _emailCtrl = TextEditingController();
   final _passCtrl = TextEditingController();
-  bool _loading = false;   bool _obscure = true;
+  bool _loading = false;
+  bool _obscure = true;
   String? _error;
 
   @override
@@ -44,6 +48,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           .read(authRepositoryProvider)
           .login(_emailCtrl.text, _passCtrl.text);
       ref.invalidate(profileProvider);
+      ref.invalidate(progressSnapshotProvider);
       ref.invalidate(progressProvider);
       if (mounted) context.go('/home');
     } on ApiException catch (e) {
@@ -135,7 +140,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     _miniLogo(),
                     const SizedBox(height: 28),
                     Text(
-                      tr(context, 'Ingresa a tu cuenta', 'Log in to your account'),
+                      tr(
+                        context,
+                        'Ingresa a tu cuenta',
+                        'Log in to your account',
+                      ),
                       style: GoogleFonts.montserrat(
                         fontSize: 24,
                         fontWeight: FontWeight.w800,
@@ -158,7 +167,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
-                        hintText: tr(context, 'tucorreo@ejemplo.cl', 'youremail@example.com'),
+                        hintText: tr(
+                          context,
+                          'tucorreo@ejemplo.cl',
+                          'youremail@example.com',
+                        ),
                         hintStyle: GoogleFonts.inter(
                           fontSize: 14,
                           color: const Color(0xFF94A3B8),
@@ -167,7 +180,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                     const SizedBox(height: 16),
                     _label(tr(context, 'Contraseña', 'Password')),
-                                        TextField(
+                    TextField(
                       controller: _passCtrl,
                       obscureText: _obscure,
                       onSubmitted: (_) {
@@ -181,8 +194,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ),
                         suffixIcon: IconButton(
                           tooltip: _obscure
-                              ? tr(context, 'Mostrar contraseña', 'Show password')
-                              : tr(context, 'Ocultar contraseña', 'Hide password'),
+                              ? tr(
+                                  context,
+                                  'Mostrar contraseña',
+                                  'Show password',
+                                )
+                              : tr(
+                                  context,
+                                  'Ocultar contraseña',
+                                  'Hide password',
+                                ),
                           icon: Icon(
                             _obscure
                                 ? Icons.visibility_outlined
@@ -230,7 +251,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       child: TextButton(
                         onPressed: () => context.go('/forgot-password'),
                         child: Text(
-                          tr(context, '¿Olvidaste tu contraseña?', 'Forgot your password?'),
+                          tr(
+                            context,
+                            '¿Olvidaste tu contraseña?',
+                            'Forgot your password?',
+                          ),
                           style: GoogleFonts.inter(
                             fontSize: 13,
                             color: c.muted,
@@ -244,7 +269,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         children: [
                           Text(
                             tr(context, '¿No tienes cuenta? ', 'No account? '),
-                            style: GoogleFonts.inter(fontSize: 14, color: c.muted),
+                            style: GoogleFonts.inter(
+                              fontSize: 14,
+                              color: c.muted,
+                            ),
                           ),
                           GestureDetector(
                             onTap: () => context.go('/register'),

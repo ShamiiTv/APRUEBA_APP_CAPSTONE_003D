@@ -117,7 +117,7 @@ export default function Practice() {
         gap: '12px'
       }}>
         <div>
-          <h1 style={{ fontFamily: 'Montserrat', fontSize: '24px', fontWeight: 800, color: 'var(--brand)' }}>
+          <h1 style={{ fontFamily: 'Montserrat', fontSize: '24px', fontWeight: 800, color: 'var(--brand-ink)' }}>
             {t.practice.title}
           </h1>
           <p style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '4px' }}>
@@ -197,7 +197,7 @@ export default function Practice() {
             fontFamily: 'Montserrat',
             fontSize: '22px',
             fontWeight: 800,
-            color: 'var(--brand)',
+            color: 'var(--brand-ink)',
             marginBottom: '10px'
           }}>
             {t.practice.quotaTitle}
@@ -222,7 +222,7 @@ export default function Practice() {
             textAlign: 'left',
             border: '1px solid var(--line)'
           }}>
-            <div style={{ fontWeight: 800, fontSize: '13px', color: 'var(--brand)', marginBottom: '8px' }}>
+            <div style={{ fontWeight: 800, fontSize: '13px', color: 'var(--brand-ink)', marginBottom: '8px' }}>
               {t.practice.proBenefits}
             </div>
             <ul style={{ margin: 0, paddingLeft: '18px', fontSize: '13px', color: 'var(--ink)', lineHeight: 1.6 }}>
@@ -271,7 +271,7 @@ export default function Practice() {
           boxShadow: 'var(--shadow)'
         }}>
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>🏆</div>
-          <h2 style={{ fontFamily: 'Montserrat', fontSize: '20px', fontWeight: 800, color: 'var(--brand)', marginBottom: '8px' }}>
+          <h2 style={{ fontFamily: 'Montserrat', fontSize: '20px', fontWeight: 800, color: 'var(--brand-ink)', marginBottom: '8px' }}>
             {t.practice.completedTitle}
           </h2>
           <p style={{ color: 'var(--muted)', fontSize: '14px', maxWidth: '480px', margin: '0 auto' }}>
@@ -291,7 +291,7 @@ export default function Practice() {
             <span style={{
               fontSize: '12px',
               fontWeight: 800,
-              color: 'var(--brand)',
+              color: 'var(--brand-ink)',
               backgroundColor: 'var(--chip)',
               padding: '6px 12px',
               borderRadius: '20px'
@@ -299,7 +299,7 @@ export default function Practice() {
               {question.axis || 'PAES'}
             </span>
 
-            <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--cta)' }}>
+            <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--gold-ink)' }}>
               {t.practice.rewardNotice}
             </span>
           </div>
@@ -397,7 +397,7 @@ export default function Practice() {
               {result.keyConcept && (
                 <div style={{
                   fontSize: '12px',
-                  color: 'var(--brand)',
+                  color: 'var(--brand-ink)',
                   backgroundColor: 'var(--soft)',
                   padding: '10px 14px',
                   borderRadius: '8px',

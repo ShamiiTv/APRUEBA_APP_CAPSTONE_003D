@@ -141,9 +141,9 @@ class _StudyPlanState extends ConsumerState<StudyPlanScreen> {
   static const accents = {
     'm1': Color(0xFF7C5CCE),
     'm2': Color(0xFF3876C5),
-    'lectora': Color(0xFFC06C2E),
+    'lectora': Color(0xFFA45B25),
     'cien': Color(0xFF16856B),
-    'hist': Color(0xFFB65C7C),
+    'hist': Color(0xFFA65372),
   };
 
   Widget _panel(Widget child, {Color? accent}) {

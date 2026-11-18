@@ -155,9 +155,9 @@ export default function Login() {
           </button>
         </form>
 
-        <p style={{ marginTop: '16px', textAlign: 'center' }}><Link to="/recuperar-contrasena" style={{ color: 'var(--brand)', fontWeight: 700 }}> {localize("¿Olvidaste tu contraseña?")} </Link></p>
+        <p style={{ marginTop: '16px', textAlign: 'center' }}><Link to="/recuperar-contrasena" style={{ color: 'var(--brand-ink)', fontWeight: 700 }}> {localize("¿Olvidaste tu contraseña?")} </Link></p>
         <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '13px', color: 'var(--muted)' }}> {localize("¿No tienes cuenta?")} {' '}
-          <Link to="/register" style={{ color: 'var(--cta)', fontWeight: 700, textDecoration: 'none' }}> {localize("Regístrate aquí")} </Link>
+          <Link to="/register" style={{ color: 'var(--gold-ink)', fontWeight: 700, textDecoration: 'none' }}> {localize("Regístrate aquí")} </Link>
         </div>
       </div>
     </div>

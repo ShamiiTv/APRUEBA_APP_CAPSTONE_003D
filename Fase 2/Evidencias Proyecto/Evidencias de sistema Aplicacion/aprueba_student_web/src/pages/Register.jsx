@@ -188,7 +188,7 @@ export default function Register() {
         <label style={{display:'block',marginTop:16}}><input type="checkbox" required checked={consent} onChange={e=>setConsent(e.target.checked)}/> {localize("Acepto los términos y el tratamiento de mis datos para mi cuenta y práctica en Aprueba. Puedo eliminar mi cuenta desde Ajustes.")} </label></form>
 
         <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '13px', color: 'var(--muted)' }}> {localize("¿Ya tienes cuenta?")} {' '}
-          <Link to="/login" style={{ color: 'var(--cta)', fontWeight: 700, textDecoration: 'none' }}> {localize("Inicia sesión aquí")} </Link>
+          <Link to="/login" style={{ color: 'var(--gold-ink)', fontWeight: 700, textDecoration: 'none' }}> {localize("Inicia sesión aquí")} </Link>
         </div>
       </div>
     </div>

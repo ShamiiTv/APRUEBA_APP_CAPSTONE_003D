@@ -89,20 +89,26 @@ class PracticeRepository {
     }
   }
 
-  Future<Map<String, ProgressItem>> fetchProgress() async {
+  Future<Map<String, dynamic>> fetchProgressData() async {
     try {
       final res = await ApiClient.dio.get('/progress');
-      final list = (res.data['data']['subjects'] as List?) ?? const [];
-      return {
-        for (final e in list)
-          (e as Map)['testId'].toString(): ProgressItem.fromJson(
-            Map<String, dynamic>.from(e),
-          ),
-      };
+      return Map<String, dynamic>.from(res.data['data']);
     } on DioException catch (e) {
       throw _error(e, 'No se pudo cargar tu progreso.');
     }
   }
+
+  Future<Map<String, ProgressItem>> fetchProgress() async {
+    final data = await fetchProgressData();
+    return progressItems(data);
+  }
+
+  static Map<String, ProgressItem> progressItems(Map<String, dynamic> data) => {
+    for (final raw in (data['subjects'] as List?) ?? const [])
+      (raw as Map)['testId'].toString(): ProgressItem.fromJson(
+        Map<String, dynamic>.from(raw),
+      ),
+  };
 
   // ── Práctica ──
   Future<NextQuestion> next({String? similarTo}) async {

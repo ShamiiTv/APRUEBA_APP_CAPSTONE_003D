@@ -10,10 +10,11 @@
   --bg: var(--fondo);
   --panel: #ffffff;
   --ink: var(--texto);
-  --muted: #64748B;
+  --muted: #5B6B81;
   --line: #E2E8F0;
   --soft: #F1F5F9;
   --brand: var(--azul);
+  --brand-ink: #1A365D;
   --cta: var(--oro);
   --cta-ink: var(--azul);
   --accent: var(--exito);
@@ -27,6 +28,7 @@
   --bronze: #CD7F32;
   --silver: #94A3B8;
   --gold: #F5B041;
+  --gold-ink: #885700;
   --diamond: #38BDF8;
   --platinum: #A78BFA;
 }
@@ -39,6 +41,8 @@
   --line: #1E2D45;
   --soft: #1A2540;
   --brand: #2D5A9E;
+  --brand-ink: #9BC4FF;
+  --gold-ink: #FFD07A;
   --cta: #F5B041;
   --cta-ink: #1A365D;
   --accent: #34D399;
@@ -73,7 +77,7 @@ h1, h2, h3, .h, .logo, .price, .brandfont {
 
 .auth-screen { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
 .auth-card { width: 100%; max-width: 460px; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 32px; box-shadow: var(--shadow); }
-.auth-brand { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 800; color: var(--brand); margin-bottom: 24px; }
+.auth-brand { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 800; color: var(--brand-ink); margin-bottom: 24px; }
 .auth-card h1 { font-size: 22px; }
 .auth-description { color: var(--muted); margin: 10px 0 20px; }
 .auth-form { display: flex; flex-direction: column; gap: 10px; }
@@ -85,12 +89,12 @@ h1, h2, h3, .h, .logo, .price, .brandfont {
 .auth-button.secondary { background: var(--soft); color: var(--ink); }
 .auth-error { color: var(--danger); margin-bottom: 16px; }
 .auth-success { color: var(--accent); margin-bottom: 16px; }
-.auth-back { display: block; margin-top: 24px; color: var(--brand); font-weight: 700; }
+.auth-back { display: block; margin-top: 24px; color: var(--brand-ink); font-weight: 700; }
 
 /* Email activation uses the same authentication card and theme tokens. */
 .verification-card { max-width: 460px; }
 .verification-brand { display: flex; align-items: center; gap: 8px; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 22px; margin-bottom: 24px; }
-.verification-brand span { color: var(--cta); }
+.verification-brand span { color: var(--gold-ink); }
 .verification-icon { width: 64px; height: 64px; display: grid; place-items: center; border-radius: 20px; background: var(--soft); color: var(--ink); margin-bottom: 20px; }
 .verification-address { padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--soft); display: grid; gap: 5px; }
 .verification-address span, .verification-help { color: var(--muted); font-size: 13px; }
@@ -158,4 +162,4 @@ h1, h2, h3, .h, .logo, .price, .brandfont {
 .skeleton-question .question-options-space { display:flex; flex-direction:column; gap:12px; margin-bottom:28px; }
 @media(max-width:600px) { .plan-card { min-height:340px; } .plan-card--uni { min-height:400px; } }
 
-html.theme-reveal::view-transition-old(root),html.theme-reveal::view-transition-new(root){animation:none;mix-blend-mode:normal}html.theme-reveal::view-transition-new(root){z-index:1}html.theme-reveal body{transition:none}.theme-color-transition body,.theme-color-transition body *{transition-property:background-color,color,border-color,fill,stroke!important;transition-duration:320ms!important;transition-timing-function:ease-in-out!important}@media(prefers-reduced-motion:reduce){body{transition:none!important}html.theme-reveal::view-transition-group(root){animation:none!important}}
+html.theme-reveal::view-transition-old(root),html.theme-reveal::view-transition-new(root){animation:none;mix-blend-mode:normal}html.theme-reveal::view-transition-new(root){z-index:1}html.theme-reveal body{transition:none}.theme-color-transition body,.theme-color-transition body *{transition-property:background-color,color,border-color,fill,stroke!important;transition-duration:450ms!important;transition-timing-function:ease-in-out!important}@media(prefers-reduced-motion:reduce){body{transition:none!important}html.theme-reveal::view-transition-group(root){animation:none!important}}

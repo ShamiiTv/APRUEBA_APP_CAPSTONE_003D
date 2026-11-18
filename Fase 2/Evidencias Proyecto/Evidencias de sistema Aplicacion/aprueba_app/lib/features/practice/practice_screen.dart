@@ -184,6 +184,7 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
       }
       // Actualiza cuota, medallas y progreso en Inicio.
       ref.read(profileProvider.notifier).refresh();
+      ref.invalidate(progressSnapshotProvider);
       ref.invalidate(progressProvider);
     } on PracticeException catch (e) {
       if (!mounted) return;

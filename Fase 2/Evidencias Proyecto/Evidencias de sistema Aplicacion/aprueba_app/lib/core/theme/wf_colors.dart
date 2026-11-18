@@ -31,7 +31,7 @@ class WfColors extends ThemeExtension<WfColors> {
     soft: Color(0xFFF1F5F9),
     line: Color(0xFFCBD5E1),
     ink: Color(0xFF1E293B),
-    muted: Color(0xFF64748B),
+    muted: Color(0xFF5B6B81),
     brand: Color(0xFF1A365D),
     onBrand: Colors.white,
     chip: Color(0xFFEEF4FF),

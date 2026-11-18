@@ -7,7 +7,7 @@
 .home-header p, .home-hint { color: var(--muted); font-size: 13px; line-height: 1.6; }
 .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 16px; }
 .home-panel { padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
-.home-value { color: var(--brand); font: 800 30px Montserrat, sans-serif; margin: 10px 0; }
+.home-value { color: var(--brand-ink); font: 800 30px Montserrat, sans-serif; margin: 10px 0; }
 .home-section { margin: 24px 0; }
 .home-section > .home-hint { margin: 8px 0 16px; }
 .home-medals { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }

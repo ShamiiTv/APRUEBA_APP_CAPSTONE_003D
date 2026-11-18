@@ -84,3 +84,7 @@ Versión 1.1.1: objetivo de hoy destacado, configuración simplificada, tarjetas
 Versión 1.1.2: skeleton de lateral/cabecera al restaurar sesión, revelación circular del tema en web y colores interpolados en Flutter. Informe deploy/CARGA_TEMA_1_1_2_2026-11-18.md. APK: https://aprueba.shamiiplay.com/descargas/Aprueba-1.1.2.apk. La especificación de Arena queda en deploy/ARENA_PROPUESTA_V1.md; todavía no está implementada.
 
 La entrega 1.1.2 también corrige metas según cuota/plan, continuidad tras cumplir el objetivo y presentación de acceso ilimitado. Ver deploy/CUOTAS_Y_METAS_2026-11-18.md para reglas y pruebas.
+
+## Inicio y revisión de flujos — 18 de noviembre de 2026
+
+Versión 1.1.3: Inicio rediseñado, contraste de texto separado del azul de superficies, transición de tema más perceptible con alternativa si falla la captura y progreso móvil basado en el resumen actual del servidor. Revisión ampliada: 57 pruebas de integración en diez suites. Detalle en deploy/INICIO_CONTRASTE_LOGICA_1_1_3_2026-11-18.md. APK: https://aprueba.shamiiplay.com/descargas/Aprueba-1.1.3.apk.

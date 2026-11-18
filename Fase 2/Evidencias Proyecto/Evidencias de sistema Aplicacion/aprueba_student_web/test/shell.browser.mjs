@@ -6,12 +6,13 @@ const captureDir=process.env.SHELL_CAPTURE_DIR;
 const webUrl=process.env.WEB_TEST_URL || 'http://127.0.0.1:5179';
 const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 try{
-for(const [width,reduced,fallback] of [[1440,false,false],[390,false,false],[1440,true,false],[1440,false,true]]){
+for(const [width,reduced,fallback] of [[1440,false,false],[390,false,false],[1440,true,false],[1440,false,true],[1440,false,'rejected']]){
  const context=await browser.newContext({viewport:{width,height:1000},reducedMotion:reduced?'reduce':'no-preference'});
  await context.addInitScript(({fallback})=>{
   localStorage.setItem('aprueba:session','1');if(!localStorage.getItem('theme'))localStorage.setItem('theme','light');localStorage.setItem('lang','es');
   window._themeCalls=0;
-  if(fallback)document.startViewTransition=undefined;
+  if(fallback===true)document.startViewTransition=undefined;
+  else if(fallback==='rejected')document.startViewTransition=()=>{window._themeCalls++;return {ready:Promise.reject(new Error('Isolated snapshot failure')),finished:Promise.resolve(),skipTransition(){}};};
   else{const start=document.startViewTransition.bind(document);document.startViewTransition=callback=>{window._themeCalls++;return start(callback);};}
  },{fallback});
  let release;const gate=new Promise(resolve=>release=resolve);let fail=false;
@@ -46,7 +47,7 @@ for(const [width,reduced,fallback] of [[1440,false,false],[390,false,false],[144
  }
  await page.waitForFunction(()=>!document.documentElement.classList.contains('theme-reveal')&&!document.documentElement.classList.contains('theme-color-transition'));
  assert.equal(await page.evaluate(()=>localStorage.getItem('theme')),'dark');
- if(reduced||fallback)assert.equal(await page.evaluate(()=>window._themeCalls),0);
+ if(reduced||fallback)assert.equal(await page.evaluate(()=>window._themeCalls),fallback==='rejected'?1:0);
  await page.reload();await page.locator('.study-task').waitFor();
  assert.equal(await page.evaluate(()=>document.body.classList.contains('dark')),true);
  assert.equal(await page.evaluate(()=>window._themeCalls),0);

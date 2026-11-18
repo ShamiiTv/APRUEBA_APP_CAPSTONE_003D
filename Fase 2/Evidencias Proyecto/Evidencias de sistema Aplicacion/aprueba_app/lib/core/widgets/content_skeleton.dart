@@ -120,29 +120,42 @@ class ContentSkeleton extends StatelessWidget {
       gap();
       items.add(bar(44));
     } else if (kind == 'home') {
-      items.add(bar(32, width: 210));
-      gap(12);
-      items.add(tile(120));
-      gap();
-      items.add(tile(168));
-      gap();
-      items.add(tile(80));
-      gap();
-      items.add(bar(48));
-      gap(20);
-      items.add(bar(24, width: 190));
-      gap();
-      for (var i = 0; i < 3; i++) {
+      items.add(bar(32, width: 200));
+      gap(18);
+      items.add(tile(350));
+      gap(16);
+      for (var row = 0; row < 2; row++) {
         items.add(
           Row(
             children: [
-              Expanded(child: tile(100)),
-              const SizedBox(width: 12),
-              Expanded(child: tile(100)),
+              Expanded(child: tile(160)),
+              const SizedBox(width: 10),
+              Expanded(child: tile(160)),
             ],
           ),
         );
-        gap(12);
+        gap(10);
+      }
+      gap(10);
+      items.add(tile(180));
+      gap(16);
+      items.add(tile(160));
+      gap(18);
+      items.add(bar(48));
+      gap(24);
+      items.add(bar(24, width: 190));
+      gap(16);
+      for (var row = 0; row < 3; row++) {
+        items.add(
+          Row(
+            children: [
+              Expanded(child: tile(135)),
+              const SizedBox(width: 10),
+              Expanded(child: tile(135)),
+            ],
+          ),
+        );
+        gap(10);
       }
     } else if (kind == 'question') {
       items.add(bar(26, width: 180));

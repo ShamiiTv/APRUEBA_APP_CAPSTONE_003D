@@ -245,7 +245,7 @@ export default function Onboarding() {
                 onClick={handleFinish}
                 style={{
                   backgroundColor: 'var(--oro)',
-                  color: 'var(--brand)',
+                  color: 'var(--brand-ink)',
                   border: 'none',
                   borderRadius: '10px',
                   padding: '12px 26px',

@@ -60,6 +60,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   Future<void> _logout(BuildContext context, WidgetRef ref) async {
     await ref.read(authRepositoryProvider).logout();
     ref.invalidate(profileProvider);
+    ref.invalidate(progressSnapshotProvider);
     ref.invalidate(progressProvider);
     ref.invalidate(testsProvider);
     if (context.mounted) context.go('/login');
@@ -174,6 +175,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     ctrl.dispose();
     if (deleted == true) {
       ref.invalidate(profileProvider);
+      ref.invalidate(progressSnapshotProvider);
       ref.invalidate(progressProvider);
       ref.invalidate(testsProvider);
       if (mounted) context.go('/splash');

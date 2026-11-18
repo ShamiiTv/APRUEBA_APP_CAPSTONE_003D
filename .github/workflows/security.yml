@@ -38,6 +38,11 @@ jobs:
       run:
         working-directory: Fase 2/Evidencias Proyecto/Evidencias de sistema Aplicacion/aprueba_api
     env:
+      AUTH_TEST_PROJECT_ID: demo-aprueba-ci
+      PRACTICE_TEST_PROJECT_ID: demo-aprueba-ci
+      MEDALS_TEST_PROJECT_ID: demo-aprueba-ci
+      IMPROVEMENTS_TEST_PROJECT_ID: demo-aprueba-ci
+      SOCIAL_TEST_PROJECT_ID: demo-aprueba-ci
       SECURITY_TEST_PROJECT_ID: demo-aprueba-ci
       ACCOUNT_DELETION_TEST_PROJECT_ID: demo-aprueba-ci
       PARITY_TEST_PROJECT_ID: demo-aprueba-ci
@@ -54,7 +59,7 @@ jobs:
           java-version: '21'
       - run: npm ci --ignore-scripts
       - name: Isolated authorization, deletion and shared-contract tests
-        run: npx --yes firebase-tools@15.31.0 emulators:exec --project demo-aprueba-ci --only auth,firestore --config ../database/firebase.json "npm run test:security:emulator && npm run test:account-deletion:emulator && npm run test:parity:emulator && npm run test:paypal:emulator && npm run test:quota:emulator"
+        run: npx --yes firebase-tools@15.31.0 emulators:exec --project demo-aprueba-ci --only auth,firestore --config ../database/firebase.json "npm run test:emulator && npm run test:practice:emulator && npm run test:medals:emulator && npm run test:improvements:emulator && npm run test:social:emulator && npm run test:security:emulator && npm run test:account-deletion:emulator && npm run test:parity:emulator && npm run test:paypal:emulator && npm run test:quota:emulator"
   flutter:
     runs-on: ubuntu-latest
     defaults:

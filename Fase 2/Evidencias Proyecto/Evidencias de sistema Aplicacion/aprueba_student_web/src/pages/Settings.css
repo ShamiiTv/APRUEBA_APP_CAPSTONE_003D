@@ -9,7 +9,7 @@
 .settings-page .settings-check { display: flex; align-items: center; gap: 10px; font-weight: 400; }
 .settings-check input { width: 18px; height: 18px; accent-color: var(--brand); }
 .settings-hint { color: var(--muted); line-height: 1.6; font-size: 13px; margin: 10px 0; }
-.settings-page a { color: var(--brand); text-decoration: underline; }
+.settings-page a { color: var(--brand-ink); text-decoration: underline; }
 .settings-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .settings-page .settings-actions button { padding: 12px 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--brand); color: white; cursor: pointer; font-weight: 700; }
 .settings-page .settings-actions button:disabled { opacity: .55; cursor: default; }
@@ -28,5 +28,5 @@
 .plan-card p { font-size: 14px; line-height: 1.6; }
 .plan-card > button { margin-top: auto; }
 .plan-card--featured { border: 2px solid var(--cta); }
-.plan-price strong { font: 800 30px Montserrat, sans-serif; color: var(--brand); }
-.plan-badge { align-self: flex-start; background: var(--chip); color: var(--brand); padding: 5px 9px; border-radius: 8px; font-size: 12px; font-weight: 700; }
+.plan-price strong { font: 800 30px Montserrat, sans-serif; color: var(--brand-ink); }
+.plan-badge { align-self: flex-start; background: var(--chip); color: var(--brand-ink); padding: 5px 9px; border-radius: 8px; font-size: 12px; font-weight: 700; }

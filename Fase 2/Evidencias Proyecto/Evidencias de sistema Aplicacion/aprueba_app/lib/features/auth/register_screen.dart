@@ -64,6 +64,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
             locale: ref.read(localeProvider).languageCode,
           );
       ref.invalidate(profileProvider);
+      ref.invalidate(progressSnapshotProvider);
       ref.invalidate(progressProvider);
       if (mounted) context.go('/verify-email');
     } on ApiException catch (e) {

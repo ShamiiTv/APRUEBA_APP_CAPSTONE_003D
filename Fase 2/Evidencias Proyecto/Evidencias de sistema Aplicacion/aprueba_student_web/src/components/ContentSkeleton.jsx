@@ -2,6 +2,7 @@ import '../pages/Home.css';
 import '../pages/Plan.css';
 import '../pages/Tutors.css';
 import '../pages/StudyPlan.css';
+import '../pages/Dashboard.css';
 import {useTheme} from '../context/useTheme';
 const Bar = ({height=14,width='100%',className=''}) => <div className={`skeleton-block ${className}`} style={{height,width}}/>;
 const Tile = ({height=150,children,className=''}) => <div className={`skeleton-layout-tile ${className}`} style={{minHeight:height}}>{children || <><Bar height={22} width="60%"/><Bar width="85%"/><Bar height={44}/></>}</div>;
@@ -13,7 +14,7 @@ export default function ContentSkeleton({kind='question',minHeight}) {
  else if(kind==='study-plan') body=<><div className="study-overview"><Tile height={350}/><Tile height={440}/></div><div className="study-task-grid">{[0,1].map(i=><Tile key={i} height={330}/>)}</div></>;
  else if(kind==='analysis') body=<div className="skeleton-list"><Tile height={160}/><div className="home-grid">{[0,1,2].map(i=><Tile key={i} height={200}/>)}</div></div>;
  else if(kind==='notifications') body=<div className="skeleton-list">{[0,1,2].map(i=><Tile key={i} height={140}/>)}</div>;
- else if(kind==='home') body=<><div className="home-grid skeleton-metrics">{[0,1,2,3].map(i=><Tile key={i} height={160}><Bar width="70%"/><Bar height={36} width="40%"/><Bar width="90%"/></Tile>)}</div><div className="home-grid home-section">{[0,1].map(i=><Tile key={i} height={260}/>)}</div><Tile height={130}/><div className="home-section"><Bar height={22} width="40%"/></div><div className="home-grid">{[0,1,2].map(i=><Tile key={i} height={180}/>)}</div></>;
+ else if(kind==='home') body=<><Tile height={250}/><div className="dashboard-metrics" style={{marginTop:22}}>{[0,1,2,3].map(i=><Tile key={i} height={160}><Bar width="70%"/><Bar height={36} width="40%"/><Bar width="90%"/></Tile>)}</div><div className="dashboard-summary-grid">{[0,1].map(i=><Tile key={i} height={230}/>)}</div><Bar height={24} width="45%"/><div className="dashboard-subject-grid" style={{marginTop:18}}>{[0,1,2,3,4].map(i=><Tile key={i} height={270}/>)}</div></>;
  else if(kind==='medals') body=<><div className="medals-balances">{[0,1,2,3,4].map(i=><div className="medal-card skeleton-medal" key={i}><Bar height={74} width={60}/><Bar height={20} width="70%"/><Bar height={30} width="40%"/><Bar height={14} width="60%"/></div>)}</div><Tile height={300}><Bar height={24} width="55%"/>{[0,1,2,3].map(i=><Bar key={i} height={44}/>)}</Tile></>;
  else if(kind==='question') body=<div className="question-surface"><div className="skeleton-question-top"><Bar height={30} width="35%"/><Bar height={20} width="35%"/></div><div className="question-statement-space"><Bar height={24}/><Bar height={24} width="80%"/><Bar height={24} width="90%"/></div><div className="question-options-space">{[0,1,2,3,4].map(i=><Bar height={63} key={i}/>)}</div><Bar height={48}/></div>;
  else if(kind==='form') body=<Tile height={620}><Bar height={24} width="60%"/>{[0,1,2,3,4].map(i=><div key={i} className="skeleton-field"><Bar width="40%"/><Bar height={48}/></div>)}<Bar height={44}/></Tile>;

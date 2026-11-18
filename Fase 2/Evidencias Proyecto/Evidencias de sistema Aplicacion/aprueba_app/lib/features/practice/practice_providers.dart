@@ -11,8 +11,14 @@ final testsProvider = FutureProvider<List<PracticeTest>>(
   (ref) => ref.read(practiceRepositoryProvider).fetchTests(),
 );
 
+final progressSnapshotProvider = FutureProvider<Map<String, dynamic>>(
+  (ref) => ref.read(practiceRepositoryProvider).fetchProgressData(),
+);
+
 final progressProvider = FutureProvider<Map<String, ProgressItem>>(
-  (ref) => ref.read(practiceRepositoryProvider).fetchProgress(),
+  (ref) async => PracticeRepository.progressItems(
+    await ref.watch(progressSnapshotProvider.future),
+  ),
 );
 
 final correctionsProvider = FutureProvider<List<CorrectionItem>>(

@@ -72,7 +72,7 @@ export default function StudyPlan() {
     return {...current,testIds,dailyGoal:Math.min(Number(current.dailyGoal)||1,maxGoalFor(testIds))};
   });
 
-  const subjects = [['m1','Matemática M1','Mathematics M1','M1','#7c5cce'],['m2','Matemática M2','Mathematics M2','M2','#3876c5'],['lectora','Competencia Lectora','Reading Comprehension','CL','#c06c2e'],['cien','Ciencias','Science','CI','#16856b'],['hist','Historia','History','HI','#b65c7c']];
+  const subjects = [['m1','Matemática M1','Mathematics M1','M1','#7c5cce'],['m2','Matemática M2','Mathematics M2','M2','#3876c5'],['lectora','Competencia Lectora','Reading Comprehension','CL','#a45b25'],['cien','Ciencias','Science','CI','#16856b'],['hist','Historia','History','HI','#a65372']];
   const subject = id => subjects.find(item => item[0]===id) || [id,id,id,'PAES','#3876c5'];
   const goal = plan?.settings.dailyGoal || 1;
   const percent = plan ? Math.min(100,Math.round(plan.completedToday/goal*100)) : 0;

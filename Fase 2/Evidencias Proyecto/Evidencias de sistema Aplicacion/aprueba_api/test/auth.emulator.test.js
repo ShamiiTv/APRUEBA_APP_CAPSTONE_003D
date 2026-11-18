@@ -130,7 +130,11 @@ test('legacy Firestore account recovers password without losing UID or profile',
   const login = await request('/auth/login', { email, password: 'Legacy-password-123' });
   assert.equal(login.status, 200);
   assert.equal(login.data.user.uid, uid);
-  assert.equal(login.data.user.medals.bronze, 17);
+  assert.equal(login.data.dailyLoginReward.amount, 1);
+  assert.equal(login.data.user.medals.bronze, 18);
+  const again=await request('/auth/login',{email,password:'Legacy-password-123'});
+  assert.equal(again.data.dailyLoginReward,null);
+  assert.equal(again.data.user.medals.bronze,18);
   assert.equal((await request('/protected', undefined, login.data.tokens.accessToken)).status, 403);
 });
 
@@ -153,7 +157,8 @@ test('profile PATCH persists preferences across login while protecting rewards a
   assert.equal((await request('/auth/profile',{ name:{} },token,'PATCH')).status,400);
   const stored=(await db.collection('users').doc(uid).get()).data();
   assert.equal(stored.quota.unlimited,false);
-  assert.equal(stored.medals.bronze,0);
+  assert.equal(reg.data.user.medals.bronze,1);
+  assert.equal(stored.medals.bronze,reg.data.user.medals.bronze);
   assert.equal(stored.plan,'free');
   const signedIn=await request('/auth/login',{ email,password });
   assert.equal(signedIn.data.user.theme,'dark');
