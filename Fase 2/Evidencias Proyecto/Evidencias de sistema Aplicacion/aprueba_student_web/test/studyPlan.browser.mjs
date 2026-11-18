@@ -42,7 +42,7 @@ for(const [lang,theme,width] of [['es','light',1440],['en','dark',1440],['es','l
  assert.equal(settings.dailyGoal,5);assert.equal(saves,1);
  failSave=true;await page.getByRole('spinbutton').fill('7');await page.getByRole('button',{name:lang==='en'?'Save plan':'Guardar plan',exact:true}).click();await page.getByRole('alert').waitFor();assert.equal(await page.getByRole('spinbutton').inputValue(),'7');assert.equal(settings.dailyGoal,5);failSave=false;
  complete=true;await page.reload();await page.getByText(lang==='en'?"You reached today's goal!":'¡Cumpliste tu meta de hoy!',{exact:true}).waitFor();
- assert.equal(await page.getByRole('button',{name:lang==='en'?'Practice Mathematics M1':'Practicar Matemática M1',exact:true}).isDisabled(),true);
+ assert.equal(await page.getByRole('button',{name:lang==='en'?'Practice Mathematics M1':'Practicar Matemática M1',exact:true}).isDisabled(),false);
  failLoad=true;await page.reload();await page.getByRole('alert').waitFor();assert.equal(await page.locator('.study-task').count(),0);failLoad=false;await page.getByRole('button',{name:lang==='en'?'Retry':'Reintentar',exact:true}).click();await page.locator('.study-task').first().waitFor();
  assert.deepEqual(errors,[]);console.log(JSON.stringify({lang,theme,width,save:true,failedSaveDraftPreserved:true,goalComplete:true,loadRecovery:true,noOverflow:true}));
  await context.close();

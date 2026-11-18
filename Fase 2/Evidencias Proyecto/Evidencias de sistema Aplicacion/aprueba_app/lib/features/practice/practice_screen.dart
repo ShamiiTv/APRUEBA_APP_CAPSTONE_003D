@@ -211,7 +211,11 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
     }
     final n = q.used + 1;
     return (q.unlimited || q.max == null)
-        ? tr(context, 'Pregunta $n', 'Question $n')
+        ? tr(
+            context,
+            'Práctica sin límite diario',
+            'Practice without a daily limit',
+          )
         : tr(context, 'Pregunta $n de ${q.max}', 'Question $n of ${q.max}');
   }
 
@@ -392,10 +396,14 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
     final c = WfColors.of(context);
     final q = _question!;
     final quota = _quota;
-    final max = quota?.max;
+    final max = quota?.unlimited == true ? null : quota?.max;
     final n = (quota?.used ?? 0) + 1;
     final counter = max == null
-        ? tr(context, 'Pregunta $n', 'Question $n')
+        ? tr(
+            context,
+            'Práctica sin límite diario',
+            'Practice without a daily limit',
+          )
         : tr(context, 'Pregunta $n de $max', 'Question $n of $max');
     final level = difficultyName(context, q.difficulty);
     final tag = [

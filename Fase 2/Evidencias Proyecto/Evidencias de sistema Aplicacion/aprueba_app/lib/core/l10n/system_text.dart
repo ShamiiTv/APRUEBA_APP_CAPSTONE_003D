@@ -3,6 +3,10 @@ import 'package:flutter/widgets.dart';
 import 'l10n.dart';
 
 const _englishSystemText = <String, String>{
+  "La meta supera la cuota disponible para las pruebas seleccionadas.":
+      "Your goal exceeds the available quota for the selected tests.",
+  "Elige al menos una prueba y una meta de entre 1 y 100 preguntas diarias.":
+      "Choose at least one test and a daily goal between 1 and 100 questions.",
   "Acceso denegado. Token no proporcionado.": "Access denied. Please sign in.",
   "Alcanzaste el límite de grupos de tu plan":
       "You reached your plan's group limit",

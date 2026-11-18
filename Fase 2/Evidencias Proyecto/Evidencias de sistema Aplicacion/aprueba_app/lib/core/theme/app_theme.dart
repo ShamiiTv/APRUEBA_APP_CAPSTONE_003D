@@ -66,6 +66,7 @@ class AppTheme {
 
     return ThemeData(
       useMaterial3: true,
+      extensions: [c],
       brightness: b,
       colorScheme: scheme,
       scaffoldBackgroundColor: pageBg,

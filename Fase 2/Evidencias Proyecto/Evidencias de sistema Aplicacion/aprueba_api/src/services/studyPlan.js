@@ -1,13 +1,20 @@
 import { SUBJECTS } from './progress.js';
 
-export function validateStudyPlan(value) {
-  return Boolean(value && Object.keys(value).every(k => ['dailyGoal','testIds'].includes(k)) && Number.isInteger(value.dailyGoal) && value.dailyGoal >= 1 && value.dailyGoal <= 20 && Array.isArray(value.testIds) && value.testIds.length > 0 && value.testIds.length <= SUBJECTS.length && new Set(value.testIds).size === value.testIds.length && value.testIds.every(id => SUBJECTS.some(([testId]) => id === testId)));
+export function validateStudyPlan(value, maxGoal = 100) {
+  return Boolean(value && Object.keys(value).every(k => ['dailyGoal','testIds'].includes(k)) && Number.isInteger(value.dailyGoal) && value.dailyGoal >= 1 && value.dailyGoal <= maxGoal && Array.isArray(value.testIds) && value.testIds.length > 0 && value.testIds.length <= SUBJECTS.length && new Set(value.testIds).size === value.testIds.length && value.testIds.every(id => SUBJECTS.some(([testId]) => id === testId)));
+}
+
+export function studyPlanLimits(quota, testIds) {
+  const unlimitedSelected = !!quota.unlimited || !!(quota.unlimitedTestId && testIds.includes(quota.unlimitedTestId));
+  return { minGoal:1,maxGoal:unlimitedSelected ? 100 : quota.max,freeDailyMax:quota.max,paidGoalMax:100,unlimitedAll:!!quota.unlimited,unlimitedTestId:quota.unlimitedTestId || null,unlimitedSelected };
 }
 
 export function buildStudyPlan(user, progress) {
   const saved = validateStudyPlan(user.studyPlan);
   const fallback = [...new Set((user.selectedTests || []).filter(id => SUBJECTS.some(([testId]) => id === testId)))];
-  const settings = saved ? user.studyPlan : { dailyGoal: 10, testIds: fallback.length ? fallback : ['m1','lectora'] };
+  const requested = saved ? user.studyPlan : { dailyGoal: 10, testIds: fallback.length ? fallback : ['m1','lectora'] };
+  const limits=studyPlanLimits(progress.quota,requested.testIds);
+  const settings={...requested,dailyGoal:Math.min(requested.dailyGoal,limits.maxGoal)};
   const subjects = progress.subjects.filter(s => settings.testIds.includes(s.testId));
   const completedToday = subjects.reduce((sum,s) => sum + (s.today?.answered || 0), 0);
   const remainingGoal = Math.max(0,settings.dailyGoal - completedToday);
@@ -24,5 +31,5 @@ export function buildStudyPlan(user, progress) {
     }
     if (!assigned) break;
   }
-  return { settings, saved, date: progress.quota.date, completedToday, remainingGoal, quotaRemaining, tasks, scheduled: tasks.reduce((n,s) => n+s.scheduled,0), updatedAt: progress.updatedAt };
+  return { settings, saved, limits, requestedGoal:requested.dailyGoal,goalAdjusted:settings.dailyGoal!==requested.dailyGoal, date: progress.quota.date, completedToday, remainingGoal, quotaRemaining, tasks, scheduled: tasks.reduce((n,s) => n+s.scheduled,0), updatedAt: progress.updatedAt };
 }

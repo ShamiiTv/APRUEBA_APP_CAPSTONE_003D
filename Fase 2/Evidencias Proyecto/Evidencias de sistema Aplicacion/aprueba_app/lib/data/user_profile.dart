@@ -86,6 +86,7 @@ class UserProfile {
   final int quotaUsed;
   final int quotaMax;
   final bool unlimited;
+  final String? unlimitedTestId;
   final Map<String, int> medals;
   final List<String> selectedTests;
   final String theme; // light | dark
@@ -114,6 +115,7 @@ class UserProfile {
     required this.quotaUsed,
     required this.quotaMax,
     required this.unlimited,
+    this.unlimitedTestId,
     required this.medals,
     required this.selectedTests,
     required this.theme,
@@ -171,6 +173,7 @@ class UserProfile {
       quotaUsed: ((quota['used'] ?? 0) as num).toInt(),
       quotaMax: ((quota['max'] ?? 10) as num).toInt(),
       unlimited: quota['unlimited'] == true,
+      unlimitedTestId: text(quota['unlimitedTestId']),
       medals: {for (final t in tiers) t: ((medals[t] ?? 0) as num).toInt()},
       selectedTests: tests.map((e) => e.toString()).toList(),
       theme: (json['theme'] ?? 'light').toString() == 'dark' ? 'dark' : 'light',

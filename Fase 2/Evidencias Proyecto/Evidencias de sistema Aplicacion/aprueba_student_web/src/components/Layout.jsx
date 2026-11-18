@@ -7,10 +7,10 @@ import { useTheme } from '../context/useTheme';
 import './Layout.css';
 import NotificationBell from './NotificationBell';
 
-export default function Layout() {
+export default function Layout({restoring=false}) {
   const {pathname}=useLocation();
   const { user, logout, saveProfile } = useAuth();
-  const { theme, lang, t } = useTheme();
+  const { theme, lang, t, prepareThemeChange } = useTheme();
   const [appearanceSaving,setAppearanceSaving] = useState(false);
   const [appearanceError,setAppearanceError] = useState('');
   const appearanceRequest = useRef(false);
@@ -46,7 +46,7 @@ export default function Layout() {
   ];
 
   return (
-    <div className="student-layout" style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--bg)', color: 'var(--ink)' }}>
+    <div className={`student-layout${restoring?' shell-restoring':''}`} aria-busy={restoring} style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--bg)', color: 'var(--ink)' }}>
       {/* Sidebar Oficial con tokens semánticos */}
       <aside style={{
         width: '260px',
@@ -98,7 +98,7 @@ export default function Layout() {
             {t.nav.principal}
           </div>
 
-          {NAV_ITEMS.map((item) => (
+          {restoring ? <div className="shell-nav-skeleton" aria-hidden="true">{NAV_ITEMS.map(item=><div className="shell-nav-slot" key={item.path}><span className="shell-placeholder shell-icon-placeholder"/><span className="shell-placeholder shell-label-placeholder"/></div>)}</div> : NAV_ITEMS.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}
@@ -126,6 +126,7 @@ export default function Layout() {
           ))}
         </nav>
 
+        {restoring ? <div className="shell-profile-skeleton" aria-hidden="true"><span className="shell-placeholder shell-avatar-placeholder"/><div><span className="shell-placeholder shell-name-placeholder"/><span className="shell-placeholder shell-plan-placeholder"/></div></div> : <>
         {/* Footer del usuario en el sidebar */}
         <div style={{
           padding: '16px',
@@ -186,6 +187,7 @@ export default function Layout() {
             </svg>
           </button>
         </div>
+        </>}
       </aside>
 
       {/* Main Container */}
@@ -206,7 +208,7 @@ export default function Layout() {
             {lang==='en'?'PAES 2026 Digital Ecosystem':'Ecosistema Digital PAES 2026'}
           </span>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+          {restoring ? <div className="shell-toolbar-skeleton" aria-hidden="true"><span className="skeleton-block"/><span className="skeleton-block"/><span className="skeleton-block"/></div> : <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
             {/* Selector de Idioma */}
             <select
               value={lang}
@@ -231,10 +233,10 @@ export default function Layout() {
 
             {/* Alternador Modo Claro / Oscuro */}
             <button
-              onClick={() => saveAppearance({ theme:theme === 'dark' ? 'light' : 'dark' })}
+              onClick={event => {prepareThemeChange(event);saveAppearance({ theme:theme === 'dark' ? 'light' : 'dark' });}}
               disabled={appearanceSaving}
               aria-label={lang === 'en' ? 'Change theme' : 'Cambiar tema'}
-              title={theme === 'dark' ? 'Modo Claro' : 'Modo Oscuro'}
+              title={theme === 'dark' ? (lang==='en'?'Light mode':'Modo claro') : (lang==='en'?'Dark mode':'Modo oscuro')}
               style={{
                 background: 'var(--soft)',
                 border: '1px solid var(--line)',
@@ -268,12 +270,13 @@ export default function Layout() {
               🔥 {user?.streak ?? 0} {t.nav.streak}
             </span>
           </div>
-          {appearanceError && <p role="alert" style={{ color:'var(--danger)',fontSize:13 }}>{appearanceError}</p>}
+          }
+          {appearanceError && <p role="alert" className="appearance-error">{appearanceError}</p>}
         </header>
 
         <main style={{ padding: '32px', maxWidth: '1100px', width: '100%', margin: '0 auto', flex: 1 }}>
           <Suspense fallback={<ContentSkeleton kind={skeletonForPath(pathname)} />}>
-            <Outlet />
+            {restoring ? <ContentSkeleton kind={skeletonForPath(pathname)} /> : <Outlet />}
           </Suspense>
         </main>
       </div>

@@ -74,6 +74,41 @@ class _StudyPlanState extends ConsumerState<StudyPlanScreen> {
     }
   }
 
+  int get maxGoal {
+    final limits = plan?['limits'];
+    if (limits == null) return 20;
+    final unlimited =
+        limits['unlimitedAll'] == true ||
+        tests.contains(limits['unlimitedTestId']);
+    return ((unlimited ? limits['paidGoalMax'] : limits['freeDailyMax']) as num)
+        .toInt();
+  }
+
+  String get quotaDescription {
+    final limits = plan?['limits'];
+    if (limits?['unlimitedAll'] == true) {
+      return tr(
+        context,
+        'Práctica sin límite diario en todas las pruebas. La meta es solo tu objetivo personal.',
+        'Practice without a daily limit in all tests. The goal is only your personal target.',
+      );
+    }
+    final id = limits?['unlimitedTestId'];
+    if (id != null) {
+      final name = testName(context, id, subjects[id] ?? id);
+      return tr(
+        context,
+        'Sin límite en $name. Las otras pruebas comparten ${limits['freeDailyMax']} preguntas al día.',
+        'Unlimited $name. Other tests share ${limits['freeDailyMax']} questions per day.',
+      );
+    }
+    return tr(
+      context,
+      'Tu cuota habilitada es de $maxGoal preguntas al día, compartidas entre todas las pruebas.',
+      'Your daily quota is $maxGoal questions, shared across all tests.',
+    );
+  }
+
   bool get dirty {
     final settings = plan?['settings'];
     return settings != null &&
@@ -182,7 +217,7 @@ class _StudyPlanState extends ConsumerState<StudyPlanScreen> {
             '¡Cumpliste tu meta de hoy!',
             'You reached your goal today!',
           )
-        : p['quotaRemaining'] == 0
+        : p['quotaRemaining'] == 0 && p['scheduled'] == 0
         ? tr(
             context,
             'Llegaste a tu cuota diaria. Mañana podrás continuar.',
@@ -394,7 +429,11 @@ class _StudyPlanState extends ConsumerState<StudyPlanScreen> {
                           ),
                           const SizedBox(height: 5),
                           Text(
-                            tr(context, 'Entre 1 y 20', 'Between 1 and 20'),
+                            tr(
+                              context,
+                              'Entre 1 y $maxGoal',
+                              'Between 1 and $maxGoal',
+                            ),
                             style: TextStyle(fontSize: 11, color: c.muted),
                           ),
                         ],
@@ -413,8 +452,8 @@ class _StudyPlanState extends ConsumerState<StudyPlanScreen> {
                 Slider(
                   value: goal.toDouble(),
                   min: 1,
-                  max: 20,
-                  divisions: 19,
+                  max: maxGoal.toDouble(),
+                  divisions: maxGoal - 1,
                   label: '$goal',
                   onChanged: saving
                       ? null
@@ -446,21 +485,20 @@ class _StudyPlanState extends ConsumerState<StudyPlanScreen> {
                   selected: tests.contains(entry.key),
                   onSelected: saving
                       ? null
-                      : (selected) => setState(
-                          () => selected
-                              ? tests.add(entry.key)
-                              : tests.remove(entry.key),
-                        ),
+                      : (selected) => setState(() {
+                          if (selected) {
+                            tests.add(entry.key);
+                          } else {
+                            tests.remove(entry.key);
+                          }
+                          if (goal > maxGoal) goal = maxGoal;
+                        }),
                 ),
             ],
           ),
           const SizedBox(height: 16),
           Text(
-            tr(
-              context,
-              'La meta organiza tu práctica; no aumenta tu cuota diaria. Dificultad intermedia.',
-              'Your goal organizes practice; it does not increase your daily quota. Intermediate difficulty.',
-            ),
+            '$quotaDescription ${tr(context, 'La meta no modifica tu acceso a la práctica.', 'Your goal does not change your practice access.')}',
             style: TextStyle(fontSize: 11, height: 1.7, color: c.muted),
           ),
           const SizedBox(height: 18),
@@ -474,7 +512,13 @@ class _StudyPlanState extends ConsumerState<StudyPlanScreen> {
           ),
           const SizedBox(height: 12),
           Text(
-            dirty
+            plan?['goalAdjusted'] == true && !dirty
+                ? tr(
+                    context,
+                    'Tu meta guardada de ${plan?['requestedGoal']} se ajustó a $goal según tu acceso actual.',
+                    'Your saved goal of ${plan?['requestedGoal']} was adjusted to $goal for your current access.',
+                  )
+                : dirty
                 ? tr(
                     context,
                     'Tienes cambios sin guardar. Guarda para actualizar las recomendaciones.',
@@ -505,6 +549,16 @@ class _StudyPlanState extends ConsumerState<StudyPlanScreen> {
     final count = (task['scheduled'] as num).toInt();
     final available = (task['available'] as num?)?.toInt();
     final completed = (task['completed'] as num?)?.toInt() ?? 0;
+    final remaining =
+        (task['remaining'] as num?)?.toInt() ??
+        (available == null ? count : available - completed);
+    final quota = plan?['quotaRemaining'];
+    final canPractice =
+        remaining > 0 &&
+        (plan?['limits']?['unlimitedAll'] == true ||
+            plan?['limits']?['unlimitedTestId'] == id ||
+            quota == null ||
+            (quota as num) > 0);
     final descriptions = {
       'unavailable': tr(
         context,
@@ -687,10 +741,12 @@ class _StudyPlanState extends ConsumerState<StudyPlanScreen> {
                 ),
               ),
               FilledButton(
-                onPressed: dirty || saving || count == 0
+                onPressed: dirty || saving || !canPractice
                     ? null
                     : () => context.push('/levels?testId=$id'),
-                child: Text('${tr(context, 'Practicar', 'Practice')} →'),
+                child: Text(
+                  '${plan?['remainingGoal'] == 0 ? tr(context, 'Seguir practicando', 'Keep practicing') : tr(context, 'Practicar', 'Practice')} →',
+                ),
               ),
             ],
           ),

@@ -1,6 +1,7 @@
+import {dailyQuota} from '../services/practice.js';
 import { db } from '../config/firebase.js';
 import { loadStudentProgress } from '../services/studentProgress.js';
-import { buildStudyPlan, validateStudyPlan } from '../services/studyPlan.js';
+import { buildStudyPlan, validateStudyPlan, studyPlanLimits } from '../services/studyPlan.js';
 
 const fail = (res,error) => res.status(error.status || 503).json({ data:null,error:{ code:error.code || 'STUDY_PLAN_UNAVAILABLE',message:error.status ? error.message : 'No se pudo cargar tu plan de estudio. Intenta nuevamente.' },meta:null });
 export async function getStudyPlan(req,res) {
@@ -10,13 +11,15 @@ export async function getStudyPlan(req,res) {
   } catch(error) { return fail(res,error); }
 }
 export async function saveStudyPlan(req,res) {
-  if (!validateStudyPlan(req.body)) return fail(res,{ status:400,code:'BAD_REQUEST',message:'Elige al menos una prueba y una meta de entre 1 y 20 preguntas diarias.' });
+  if (!validateStudyPlan(req.body)) return fail(res,{ status:400,code:'BAD_REQUEST',message:'Elige al menos una prueba y una meta de entre 1 y 100 preguntas diarias.' });
   try {
     const settings = { dailyGoal:req.body.dailyGoal,testIds:[...req.body.testIds] };
     const ref = db.collection('users').doc(req.user.sub);
     await db.runTransaction(async transaction => {
       const user = await transaction.get(ref);
       if (!user.exists) throw Object.assign(new Error('Estudiante no encontrado'),{ status:404,code:'USER_NOT_FOUND' });
+      const limits=studyPlanLimits(dailyQuota(user.data()),settings.testIds);
+      if(!validateStudyPlan(settings,limits.maxGoal))throw Object.assign(new Error('La meta supera la cuota disponible para las pruebas seleccionadas.'),{status:400,code:'STUDY_GOAL_EXCEEDS_QUOTA'});
       transaction.update(ref,{ studyPlan:settings,updatedAt:new Date() });
     });
     return res.json({ data:{ settings },error:null,meta:null });

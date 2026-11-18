@@ -64,6 +64,15 @@ class ApruebaApp extends ConsumerWidget {
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
       themeMode: mode,
+      themeAnimationDuration:
+          WidgetsBinding
+              .instance
+              .platformDispatcher
+              .accessibilityFeatures
+              .disableAnimations
+          ? Duration.zero
+          : const Duration(milliseconds: 420),
+      themeAnimationCurve: Curves.easeInOutCubic,
       locale: locale,
       supportedLocales: const [Locale('es'), Locale('en')],
       localizationsDelegates: const [

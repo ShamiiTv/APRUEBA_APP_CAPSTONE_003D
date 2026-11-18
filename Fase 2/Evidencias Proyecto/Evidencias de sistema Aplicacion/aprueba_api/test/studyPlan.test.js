@@ -39,6 +39,22 @@ test('completed and empty banks are distinct and never receive impossible assign
   assert.equal(plan.scheduled,0);
 });
 test('settings reject invalid goals, duplicates, unknown tests and attempts to update another user', () => {
-  for (const value of [null,{}, { dailyGoal:0,testIds:['m1'] },{ dailyGoal:21,testIds:['m1'] },{ dailyGoal:1.5,testIds:['m1'] },{ dailyGoal:10,testIds:[] },{ dailyGoal:10,testIds:['m1','m1'] },{ dailyGoal:10,testIds:['fake'] },{ dailyGoal:10,testIds:['m1'],userId:'other' }]) assert.equal(validateStudyPlan(value),false);
+  for (const value of [null,{}, { dailyGoal:0,testIds:['m1'] },{ dailyGoal:101,testIds:['m1'] },{ dailyGoal:1.5,testIds:['m1'] },{ dailyGoal:10,testIds:[] },{ dailyGoal:10,testIds:['m1','m1'] },{ dailyGoal:10,testIds:['fake'] },{ dailyGoal:10,testIds:['m1'],userId:'other' }]) assert.equal(validateStudyPlan(value),false);
   assert.equal(validateStudyPlan({ dailyGoal:20,testIds:['m1','hist'] }),true);
+});
+
+test('free targets follow unlocked quota and retain larger stored targets after a downgrade',()=>{
+ for(const max of [10,15,20]){
+  const plan=buildStudyPlan({studyPlan:{dailyGoal:50,testIds:['m1']}},progress([subject('m1')],{quota:{date:'2026-11-18',max,used:0,unlimited:false}}));
+  assert.equal(plan.settings.dailyGoal,max);assert.equal(plan.requestedGoal,50);assert.equal(plan.goalAdjusted,true);assert.equal(plan.limits.maxGoal,max);
+ }
+});
+test('paid targets allow up to 100 only when selected tests include unlimited access',()=>{
+ for(const quota of [{max:10,used:10,unlimited:true},{max:10,used:10,unlimited:false,unlimitedTestId:'m1'}]){
+  const plan=buildStudyPlan({studyPlan:{dailyGoal:50,testIds:['m1','m2']}},progress([subject('m1',{remaining:100}),subject('m2',{remaining:100})],{quota:{...quota,date:'2026-11-18'}}));
+  assert.equal(plan.settings.dailyGoal,50);assert.equal(plan.limits.maxGoal,100);assert.equal(plan.scheduled,50);
+  if(!quota.unlimited)assert.equal(plan.tasks.find(t=>t.testId==='m2').scheduled,0);
+ }
+ const plan=buildStudyPlan({studyPlan:{dailyGoal:50,testIds:['m2']}},progress([subject('m2')],{quota:{max:10,used:0,unlimited:false,unlimitedTestId:'m1',date:'2026-11-18'}}));
+ assert.equal(plan.settings.dailyGoal,10);assert.equal(plan.limits.unlimitedSelected,false);
 });

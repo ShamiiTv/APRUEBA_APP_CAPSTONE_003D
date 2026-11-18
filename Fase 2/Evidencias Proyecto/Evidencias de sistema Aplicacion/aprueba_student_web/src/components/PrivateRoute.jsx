@@ -1,17 +1,16 @@
 import {useTheme} from '../context/useTheme';
 import {hasSession} from '../api/client';
 import ContentSkeleton from './ContentSkeleton';
-import {skeletonForPath} from './routeSkeleton';
-import { Navigate, useLocation } from 'react-router-dom';
+import Layout from './Layout';
+import { Navigate } from 'react-router-dom';
 import { useAuth } from '../auth/useAuth';
 
 export default function PrivateRoute({ children, onboarding = false, verification = false }) {
   const { user, loading, sessionError, logout } = useAuth();
-  const {pathname}=useLocation();
   const {lang}=useTheme();
 
   if (loading) {
-    return <main style={{maxWidth:960,margin:'24px auto',padding:20}}><ContentSkeleton kind={skeletonForPath(pathname)} /></main>;
+    return onboarding || verification ? <main style={{maxWidth:960,margin:'24px auto',padding:20}}><ContentSkeleton kind="form" /></main> : <Layout restoring />;
   }
 
   if (!user && sessionError && hasSession()) {

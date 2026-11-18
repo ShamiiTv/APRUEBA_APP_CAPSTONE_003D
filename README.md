@@ -78,3 +78,9 @@ Suscripción con ventana emergente y actualización automática, condiciones men
 ## Plan de estudio — 18 de noviembre de 2026
 
 Versión 1.1.1: objetivo de hoy destacado, configuración simplificada, tarjetas por prueba, textos completos en español/inglés y skeletons ajustados en web y Flutter. Ver deploy/PLAN_ESTUDIO_1_1_1_2026-11-18.md dentro de las evidencias de sistema. APK: https://aprueba.shamiiplay.com/descargas/Aprueba-1.1.1.apk.
+
+## Carga y tema — 18 de noviembre de 2026
+
+Versión 1.1.2: skeleton de lateral/cabecera al restaurar sesión, revelación circular del tema en web y colores interpolados en Flutter. Informe deploy/CARGA_TEMA_1_1_2_2026-11-18.md. APK: https://aprueba.shamiiplay.com/descargas/Aprueba-1.1.2.apk. La especificación de Arena queda en deploy/ARENA_PROPUESTA_V1.md; todavía no está implementada.
+
+La entrega 1.1.2 también corrige metas según cuota/plan, continuidad tras cumplir el objetivo y presentación de acceso ilimitado. Ver deploy/CUOTAS_Y_METAS_2026-11-18.md para reglas y pruebas.

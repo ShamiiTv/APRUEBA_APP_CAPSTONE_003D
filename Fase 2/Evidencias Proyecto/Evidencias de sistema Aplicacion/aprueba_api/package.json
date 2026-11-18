@@ -22,7 +22,8 @@
     "test:account-deletion:emulator": "node --test test/accountDeletion.emulator.test.js",
     "test:parity:emulator": "node --test test/parity.emulator.test.js",
     "test:security:emulator": "node --test test/security.emulator.test.js",
-    "test:paypal:emulator": "node --test test/paypal.emulator.test.js"
+    "test:paypal:emulator": "node --test test/paypal.emulator.test.js",
+    "test:quota:emulator": "node --test test/quota.emulator.test.js"
   },
   "keywords": [
     "paes",

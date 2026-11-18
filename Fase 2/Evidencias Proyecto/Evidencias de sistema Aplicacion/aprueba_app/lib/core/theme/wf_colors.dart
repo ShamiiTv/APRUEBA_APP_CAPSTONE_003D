@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// Colores del wireframe (Aprueba_App.html), en claro y oscuro.
-class WfColors {
+class WfColors extends ThemeExtension<WfColors> {
   final Color bg;
   final Color soft;
   final Color line;
@@ -52,8 +52,51 @@ class WfColors {
     danger: Color(0xFFF87171),
   );
 
+  @override
+  WfColors copyWith({
+    Color? bg,
+    Color? soft,
+    Color? line,
+    Color? ink,
+    Color? muted,
+    Color? brand,
+    Color? onBrand,
+    Color? chip,
+    Color? success,
+    Color? danger,
+  }) => WfColors._(
+    bg: bg ?? this.bg,
+    soft: soft ?? this.soft,
+    line: line ?? this.line,
+    ink: ink ?? this.ink,
+    muted: muted ?? this.muted,
+    brand: brand ?? this.brand,
+    onBrand: onBrand ?? this.onBrand,
+    chip: chip ?? this.chip,
+    success: success ?? this.success,
+    danger: danger ?? this.danger,
+  );
+
+  @override
+  WfColors lerp(covariant WfColors? other, double t) {
+    if (other == null) return this;
+    return WfColors._(
+      bg: Color.lerp(bg, other.bg, t)!,
+      soft: Color.lerp(soft, other.soft, t)!,
+      line: Color.lerp(line, other.line, t)!,
+      ink: Color.lerp(ink, other.ink, t)!,
+      muted: Color.lerp(muted, other.muted, t)!,
+      brand: Color.lerp(brand, other.brand, t)!,
+      onBrand: Color.lerp(onBrand, other.onBrand, t)!,
+      chip: Color.lerp(chip, other.chip, t)!,
+      success: Color.lerp(success, other.success, t)!,
+      danger: Color.lerp(danger, other.danger, t)!,
+    );
+  }
+
   static WfColors of(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark ? dark : light;
+      Theme.of(context).extension<WfColors>() ??
+      (Theme.of(context).brightness == Brightness.dark ? dark : light);
 
   static Color readableForeground(Color preferred, Color background) {
     final a = preferred.computeLuminance(), b = background.computeLuminance();

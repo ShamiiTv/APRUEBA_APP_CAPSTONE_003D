@@ -92,7 +92,19 @@ class HomeScreen extends ConsumerWidget {
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
       children: [
-        Wrap(spacing:12,children:[TextButton(onPressed:()=>context.push('/study-plan'),child:Text(tr(context,'Plan de estudio','Study plan'))),TextButton(onPressed:()=>context.push('/activity'),child:Text(tr(context,'Últimas respuestas','Recent answers')))]),
+        Wrap(
+          spacing: 12,
+          children: [
+            TextButton(
+              onPressed: () => context.push('/study-plan'),
+              child: Text(tr(context, 'Plan de estudio', 'Study plan')),
+            ),
+            TextButton(
+              onPressed: () => context.push('/activity'),
+              child: Text(tr(context, 'Últimas respuestas', 'Recent answers')),
+            ),
+          ],
+        ),
         // Encabezado: logo + racha
         Row(
           children: [
@@ -201,7 +213,9 @@ class HomeScreen extends ConsumerWidget {
                 Row(
                   children: [
                     Text(
-                      tr(context, 'Cuota diaria', 'Daily quota'),
+                      user.unlimitedTestId != null
+                          ? tr(context, 'Otras pruebas', 'Other tests')
+                          : tr(context, 'Cuota diaria', 'Daily quota'),
                       style: GoogleFonts.inter(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
@@ -222,6 +236,13 @@ class HomeScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 8),
                 WfBar(value: quotaProgress),
+                if (user.unlimitedTestId != null) ...[
+                  const SizedBox(height: 8),
+                  Text(
+                    '${testName(context, user.unlimitedTestId!, user.unlimitedTestId!)} · ${tr(context, 'Sin límite diario', 'No daily limit')}',
+                    style: TextStyle(fontSize: 12, color: c.ink),
+                  ),
+                ],
                 if (!user.unlimited) ...[
                   const SizedBox(height: 6),
                   Text(
@@ -334,7 +355,11 @@ class HomeScreen extends ConsumerWidget {
               (
                 Icons.school_outlined,
                 tr(context, 'Tutores', 'Tutors'),
-                tr(context, 'Encuentra apoyo para estudiar', 'Find study support'),
+                tr(
+                  context,
+                  'Encuentra apoyo para estudiar',
+                  'Find study support',
+                ),
                 '/tutors',
               ),
               (

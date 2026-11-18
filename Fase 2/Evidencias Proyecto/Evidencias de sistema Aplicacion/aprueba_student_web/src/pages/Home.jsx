@@ -59,7 +59,7 @@ export default function Home() {
       <div><h1>{t.home.greeting.replace('{name}', user?.name || 'Estudiante')}</h1><p>{copy.title}</p></div>
       <button onClick={refresh} disabled={!progress && !error}>{copy.refresh}</button>
     </header>
-    <p>{lang === 'en' ? '10 base + 5 school + 5 address · 20 free max' : '10 base + 5 colegio + 5 dirección · 20 máx gratis'} <button onClick={() => navigate('/ajustes')}>{lang === 'en' ? 'Complete my profile' : 'Completar mis datos'}</button></p><p className="home-section"><button onClick={() => navigate('/plan-estudio')}>{lang === 'en' ? 'Open my study plan' : 'Ver mi plan de estudio'}</button></p>
+    {progress && !progress.quota.unlimited && <p>{progress.quota.unlimitedTestId ? (lang==='en'?'For other tests: ':'Para otras pruebas: ') : ''}{lang === 'en' ? '10 base + 5 school + 5 address · 20 free max' : '10 base + 5 colegio + 5 dirección · 20 máx gratis'} <button onClick={() => navigate('/ajustes')}>{lang === 'en' ? 'Complete my profile' : 'Completar mis datos'}</button></p>}<p className="home-section"><button onClick={() => navigate('/plan-estudio')}>{lang === 'en' ? 'Open my study plan' : 'Ver mi plan de estudio'}</button></p>
     {error ? <div className="home-panel" role="alert"><p>{copy.error}</p><button onClick={refresh}>{copy.retry}</button></div>
       : !progress ? <ContentSkeleton kind="home" />
       : <>
@@ -71,7 +71,7 @@ export default function Home() {
           <Metric label={t.home.studyStreak} value={progress.streak} detail={`${copy.days}. ${progress.streak === 0 ? copy.startStreak : progress.practicedToday ? copy.practiced : copy.continueStreak}`} />
         </section>
         <section className="home-grid home-section">
-          <Metric label={copy.quota} value={`${progress.quota.used} / ${progress.quota.unlimited ? '∞' : progress.quota.max}`} detail={progress.quota.unlimited ? copy.unlimited : `${copy.today}: ${progress.today.correct} ${copy.hits} / ${progress.today.answered}`} />
+          <Metric label={progress.quota.unlimitedTestId?(lang==='en'?'Quota for other tests':'Cuota para otras pruebas'):copy.quota} value={`${progress.quota.unlimited?progress.today.answered:progress.quota.used} / ${progress.quota.unlimited ? '∞' : progress.quota.max}`} detail={progress.quota.unlimitedTestId ? `${uiText(lang,progress.subjects.find(s=>s.testId===progress.quota.unlimitedTestId)?.label || '')} · ${copy.unlimited}` : progress.quota.unlimited ? copy.unlimited : `${copy.today}: ${progress.today.correct} ${copy.hits} / ${progress.today.answered}`} />
           <div className="home-panel"><h2>{copy.medals}</h2><div className="home-medals">{['bronze','silver','gold','diamond','platinum'].map(tier => <span className="home-medal" key={tier}><MedalIcon tier={tier} /><span>{copy[tier]}: <strong>{progress.medals[tier] ?? 0}</strong></span></span>)}</div><button onClick={() => navigate('/medallas')}>{copy.medalLink}</button></div>
         </section>
         <section className="home-section">
@@ -83,7 +83,7 @@ export default function Home() {
             <button disabled={!subject.available || (quotaReached && progress.quota.unlimitedTestId!==subject.testId)} onClick={() => goPractice(subject.testId)}>{copy.practice}</button>
           </article>)}</div>
         </section>
-        <section className="home-banner home-section"><div><h2>{copy.ready}</h2><p>{quotaReached ? copy.limit : copy.readyHint}</p></div><button disabled={!preferred || (quotaReached && progress.quota.unlimitedTestId!==preferred?.testId)} onClick={() => goPractice(preferred.testId)}>{copy.practice}</button></section>
+        <section className="home-banner home-section"><div><h2>{copy.ready}</h2><p>{quotaReached && progress.quota.unlimitedTestId!==preferred?.testId ? copy.limit : copy.readyHint}</p></div><button disabled={!preferred || (quotaReached && progress.quota.unlimitedTestId!==preferred?.testId)} onClick={() => goPractice(preferred.testId)}>{copy.practice}</button></section>
         {progress.recent.length > 0 && <section className="home-panel home-section"><h2>{copy.recent}</h2><ul className="home-recent">{progress.recent.map((answer, index) => <li key={index}><span>{uiText(lang,progress.subjects.find(s => s.testId === answer.testId)?.label)} · {answer.isCorrect ? copy.right : copy.wrong}</span><time dateTime={answer.answeredAt}>{dateFormat(answer.answeredAt)}</time></li>)}</ul></section>}
         <p className="home-hint">{copy.updated}: <time dateTime={progress.updatedAt}>{dateFormat(progress.updatedAt)}</time> · America/Santiago</p>
       </>}

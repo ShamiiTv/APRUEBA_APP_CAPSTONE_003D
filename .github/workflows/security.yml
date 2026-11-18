@@ -42,6 +42,7 @@ jobs:
       ACCOUNT_DELETION_TEST_PROJECT_ID: demo-aprueba-ci
       PARITY_TEST_PROJECT_ID: demo-aprueba-ci
       PAYPAL_TEST_PROJECT_ID: demo-aprueba-ci
+      QUOTA_TEST_PROJECT_ID: demo-aprueba-ci
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
@@ -53,7 +54,7 @@ jobs:
           java-version: '21'
       - run: npm ci --ignore-scripts
       - name: Isolated authorization, deletion and shared-contract tests
-        run: npx --yes firebase-tools@15.31.0 emulators:exec --project demo-aprueba-ci --only auth,firestore --config ../database/firebase.json "npm run test:security:emulator && npm run test:account-deletion:emulator && npm run test:parity:emulator && npm run test:paypal:emulator"
+        run: npx --yes firebase-tools@15.31.0 emulators:exec --project demo-aprueba-ci --only auth,firestore --config ../database/firebase.json "npm run test:security:emulator && npm run test:account-deletion:emulator && npm run test:parity:emulator && npm run test:paypal:emulator && npm run test:quota:emulator"
   flutter:
     runs-on: ubuntu-latest
     defaults:

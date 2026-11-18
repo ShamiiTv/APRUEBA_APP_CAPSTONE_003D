@@ -157,3 +157,5 @@ h1, h2, h3, .h, .logo, .price, .brandfont {
 .question-options-space { min-height:363px; }
 .skeleton-question .question-options-space { display:flex; flex-direction:column; gap:12px; margin-bottom:28px; }
 @media(max-width:600px) { .plan-card { min-height:340px; } .plan-card--uni { min-height:400px; } }
+
+html.theme-reveal::view-transition-old(root),html.theme-reveal::view-transition-new(root){animation:none;mix-blend-mode:normal}html.theme-reveal::view-transition-new(root){z-index:1}html.theme-reveal body{transition:none}.theme-color-transition body,.theme-color-transition body *{transition-property:background-color,color,border-color,fill,stroke!important;transition-duration:320ms!important;transition-timing-function:ease-in-out!important}@media(prefers-reduced-motion:reduce){body{transition:none!important}html.theme-reveal::view-transition-group(root){animation:none!important}}

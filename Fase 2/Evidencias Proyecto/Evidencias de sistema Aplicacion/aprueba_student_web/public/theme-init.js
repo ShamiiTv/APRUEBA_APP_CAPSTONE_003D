@@ -1,0 +1,1 @@
+try{const dark=localStorage.getItem('theme')==='dark';document.body.classList.toggle('dark',dark);document.documentElement.style.colorScheme=dark?'dark':'light';}catch{/* Use the default theme when storage is unavailable. */}
