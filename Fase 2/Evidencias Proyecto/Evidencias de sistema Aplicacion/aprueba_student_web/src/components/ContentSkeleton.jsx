@@ -1,6 +1,7 @@
 import '../pages/Home.css';
 import '../pages/Plan.css';
 import '../pages/Tutors.css';
+import '../pages/StudyPlan.css';
 import {useTheme} from '../context/useTheme';
 const Bar = ({height=14,width='100%',className=''}) => <div className={`skeleton-block ${className}`} style={{height,width}}/>;
 const Tile = ({height=150,children,className=''}) => <div className={`skeleton-layout-tile ${className}`} style={{minHeight:height}}>{children || <><Bar height={22} width="60%"/><Bar width="85%"/><Bar height={44}/></>}</div>;
@@ -9,7 +10,7 @@ export default function ContentSkeleton({kind='question',minHeight}) {
  let body;
  if(kind==='plans') body=<><Tile height={190}><Bar height={24} width="28%"/><Bar height={24} width="45%"/><Bar height={14} width="80%"/></Tile><div className="home-grid subscription-plans" style={{marginTop:24}}>{['free','uni','all'].map(id=><section key={id} className={`home-panel plan-card plan-card--${id}`}><Bar height={26} width="70%"/><Bar height={48} width="80%"/><Bar height={70}/>{id==='uni' && <Bar height={60}/>}<Bar height={44} className="skeleton-bottom"/></section>)}</div></>;
  else if(kind==='feed') body=<div className="skeleton-list"><Tile height={220}><Bar height={18} width="60%"/><Bar height={84}/><Bar height={40} width="25%"/></Tile>{[0,1].map(i=><Tile key={i} height={180}><Bar height={18} width="35%"/><Bar height={35}/><Bar height={38} width="45%"/></Tile>)}</div>;
- else if(kind==='study-plan') body=<div className="skeleton-list"><Tile height={380}/><Tile height={160}/><div className="home-grid">{[0,1].map(i=><Tile key={i} height={250}/>)}</div></div>;
+ else if(kind==='study-plan') body=<><div className="study-overview"><Tile height={350}/><Tile height={440}/></div><div className="study-task-grid">{[0,1].map(i=><Tile key={i} height={330}/>)}</div></>;
  else if(kind==='analysis') body=<div className="skeleton-list"><Tile height={160}/><div className="home-grid">{[0,1,2].map(i=><Tile key={i} height={200}/>)}</div></div>;
  else if(kind==='notifications') body=<div className="skeleton-list">{[0,1,2].map(i=><Tile key={i} height={140}/>)}</div>;
  else if(kind==='home') body=<><div className="home-grid skeleton-metrics">{[0,1,2,3].map(i=><Tile key={i} height={160}><Bar width="70%"/><Bar height={36} width="40%"/><Bar width="90%"/></Tile>)}</div><div className="home-grid home-section">{[0,1].map(i=><Tile key={i} height={260}/>)}</div><Tile height={130}/><div className="home-section"><Bar height={22} width="40%"/></div><div className="home-grid">{[0,1,2].map(i=><Tile key={i} height={180}/>)}</div></>;

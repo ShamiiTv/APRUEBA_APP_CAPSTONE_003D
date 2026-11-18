@@ -74,3 +74,7 @@ Se publicó la integración de suscripciones mensuales de prueba en web y Flutte
 ## Interfaz 1.1.0 — 17 de noviembre de 2026
 
 Suscripción con ventana emergente y actualización automática, condiciones mensuales claras, Tutores rediseñado, skeletons por sección, marca Aprueba en las pestañas, traducciones ampliadas y eliminación del contenido propio al borrar una cuenta conservando respuestas ajenas. El pago Sandbox aprobado por el usuario ya fue verificado contra PayPal. APK: https://aprueba.shamiiplay.com/descargas/Aprueba-1.1.0.apk. Detalle y límites en deploy/INTERFAZ_1_1_0_2026-11-17.md dentro de las evidencias de sistema.
+
+## Plan de estudio — 18 de noviembre de 2026
+
+Versión 1.1.1: objetivo de hoy destacado, configuración simplificada, tarjetas por prueba, textos completos en español/inglés y skeletons ajustados en web y Flutter. Ver deploy/PLAN_ESTUDIO_1_1_1_2026-11-18.md dentro de las evidencias de sistema. APK: https://aprueba.shamiiplay.com/descargas/Aprueba-1.1.1.apk.

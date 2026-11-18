@@ -23,6 +23,7 @@ void main() {
       'home',
       'question',
       'form',
+      'study-plan',
       'levels',
       'tutors',
       'cards',

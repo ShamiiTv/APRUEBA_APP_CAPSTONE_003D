@@ -139,7 +139,9 @@ void main() {
           ),
         );
         await tester.pumpAndSettle();
-        await tester.tap(find.text('M2'));
+        await tester.ensureVisible(find.widgetWithText(FilterChip, 'M2'));
+        await tester.pumpAndSettle();
+        await tester.tap(find.widgetWithText(FilterChip, 'M2'));
         await tester.pumpAndSettle();
         await tester.ensureVisible(find.text('Guardar plan'));
         await tester.tap(find.text('Guardar plan'));

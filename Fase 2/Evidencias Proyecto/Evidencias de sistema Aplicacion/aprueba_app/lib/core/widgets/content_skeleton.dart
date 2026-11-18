@@ -74,6 +74,18 @@ class ContentSkeleton extends StatelessWidget {
       }
       gap();
       items.add(bar(40));
+    } else if (kind == 'study-plan') {
+      items.add(bar(14, width: 150));
+      gap(12);
+      items.add(bar(20));
+      gap(22);
+      items.add(tile(340));
+      gap(22);
+      items.add(tile(460));
+      gap(26);
+      items.add(bar(24, width: 220));
+      gap(20);
+      items.add(tile(350));
     } else if (kind == 'groups') {
       if (!inline) {
         items.add(bar(40));
