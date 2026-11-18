@@ -90,8 +90,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     Text(
                       tr(
                         ctx,
-                        'Se borrarán tu cuenta, tus medallas y tu progreso. Esta acción no se puede deshacer.',
-                        'Your account, medals and progress will be deleted. This cannot be undone.',
+                        'Se borrarán tu cuenta, medallas, progreso y el contenido de tus publicaciones y comentarios. Se conservarán las respuestas de otras personas. Esta acción no se puede deshacer.',
+                        'Your account, medals, progress and the content of your posts and comments will be deleted. Replies from other people remain. This cannot be undone.',
                       ),
                     ),
                     const SizedBox(height: 14),

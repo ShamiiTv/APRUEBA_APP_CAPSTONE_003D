@@ -6,7 +6,7 @@ import { useSocialMutation } from '../hooks/useSocialMutation';
 import './Social.css';
 
 const merge = (previous, added) => [...new Map([...previous, ...added].map(row => [row.id, row])).values()];
-const date = value => value ? new Date(value).toLocaleString('es-CL', { timeZone: 'America/Santiago' }) : '';
+const date = (value,lang) => value ? new Date(value).toLocaleString(lang==='en'?'en-GB':'es-CL', { timeZone: 'America/Santiago' }) : '';
 
 function Comments({ postId, onCount }) {
   const {lang}=useTheme();const tr=(es,en)=>lang==='en'?en:es;
@@ -47,9 +47,9 @@ function Comments({ postId, onCount }) {
     {error && <p role="alert">{error}</p>}
     {mutation.error && <p role="alert">{mutation.error}</p>}
     {message && <p role="status">{message}</p>}
-    {!rows && !error && <ContentSkeleton kind="cards" />}
+    {!rows && !error && <ContentSkeleton kind="feed" />}
     {rows?.length === 0 && <p>{tr('Aún no hay comentarios.','No comments yet.')}</p>}
-    {rows?.map(row => <article key={row.id}><strong>{row.author.name}</strong><p className="social-text">{row.text}</p><time dateTime={row.createdAt}>{date(row.createdAt)}</time></article>)}
+    {rows?.map(row => <article key={row.id}><strong>{row.contentDeleted||row.author.name==='Usuario eliminado'?tr('Usuario eliminado','Deleted user'):row.author.name}</strong><p className="social-text">{row.contentDeleted?tr('Comentario eliminado','Comment deleted'):row.text}</p><time dateTime={row.createdAt}>{date(row.createdAt,lang)}</time></article>)}
     <div className="social-actions"><button disabled={loading} onClick={() => load()}>{tr('Actualizar comentarios','Refresh comments')}</button>{cursor && <button disabled={loading} onClick={() => load(cursor)}>{tr('Ver comentarios anteriores','Older comments')}</button>}</div>
     <form onSubmit={submit}>
       <label htmlFor={`comment-${postId}`}>{tr('Escribe un comentario','Write a comment')}</label>
@@ -77,8 +77,8 @@ function Post({ initial }) {
     finally { guard.current = false; setBusy(false); }
   };
   return <article className="social-post">
-    <strong>{post.author.name}</strong> <time dateTime={post.createdAt}>{date(post.createdAt)}</time>
-    <p className="social-text">{post.text}</p>
+    <strong>{post.contentDeleted||post.author.name==='Usuario eliminado'?tr('Usuario eliminado','Deleted user'):post.author.name}</strong> <time dateTime={post.createdAt}>{date(post.createdAt,lang)}</time>
+    <p className="social-text">{post.contentDeleted?tr('Publicación eliminada','Post deleted'):post.text}</p>
     {post.question && <section aria-label={tr('Pregunta compartida','Shared question')}><strong>{post.question.testId?.toUpperCase()}</strong><p className="social-text">{post.question.statement}</p><ol>{post.question.options?.map((option,index) => <li key={index}>{typeof option === 'string' ? option : option.text}</li>)}</ol><p>{tr('Pregunta compartida para conversar; no consume cuota ni entrega medallas.','Shared for discussion; it does not use your quota or award medals.')}</p></section>}
     {error && <p role="alert">{error}</p>}
     <div className="social-actions"><button aria-pressed={post.userLiked} disabled={busy} onClick={react}>{post.userLiked ? tr('Quitar Me gusta','Unlike') : tr('Me gusta','Like')} · {post.likeCount}</button><button aria-expanded={open} onClick={() => setOpen(value => !value)}>{tr('Comentarios','Comments')} · {post.commentCount}</button></div>
@@ -138,7 +138,7 @@ export default function SocialFeed({ groupId, questionId }) {
     {message && <p role="status">{message}</p>}
     <div className="social-actions"><button disabled={loading} onClick={() => load()}>{tr('Actualizar publicaciones','Refresh posts')}</button></div>
     {error && <p role="alert">{error}</p>}
-    {!rows && !error && <ContentSkeleton kind="cards" />}
+    {!rows && !error && <ContentSkeleton kind="feed" />}
     {rows?.length === 0 && <p>{tr('Aún no hay publicaciones. Comparte la primera duda o aporte.','No posts yet. Share the first question or contribution.')}</p>}
     {rows?.map(row => <Post key={`${revision}:${row.id}`} initial={row} />)}
     {cursor && <button disabled={loading} onClick={() => load(cursor)}>{tr('Ver publicaciones anteriores','Older posts')}</button>}

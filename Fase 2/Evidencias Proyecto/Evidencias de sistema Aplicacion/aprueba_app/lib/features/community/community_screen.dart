@@ -1,3 +1,4 @@
+import '../../core/l10n/system_text.dart';
 import '../../core/widgets/content_skeleton.dart';
 
 import 'package:flutter/material.dart';
@@ -307,7 +308,7 @@ class _PostCard extends StatelessWidget {
               Row(
                 children: [
                   AvatarCircle(
-                    name: p.authorName,
+                    name: systemText(context, p.authorName),
                     color: p.authorColor,
                     size: 32,
                   ),
@@ -317,7 +318,7 @@ class _PostCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          p.authorName,
+                          systemText(context, p.authorName),
                           style: GoogleFonts.inter(
                             fontSize: 12,
                             fontWeight: FontWeight.w700,
@@ -336,7 +337,12 @@ class _PostCard extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 8),
-              Text(p.text, style: GoogleFonts.inter(fontSize: 13, height: 1.4)),
+              Text(
+                p.contentDeleted
+                    ? tr(context, 'Publicación eliminada', 'Post deleted')
+                    : p.text,
+                style: GoogleFonts.inter(fontSize: 13, height: 1.4),
+              ),
               if (p.questionStatement != null) ...[
                 const SizedBox(height: 8),
                 Container(

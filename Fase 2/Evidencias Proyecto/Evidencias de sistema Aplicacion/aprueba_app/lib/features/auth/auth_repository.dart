@@ -1,3 +1,5 @@
+import '../../core/l10n/system_text.dart';
+
 import 'package:dio/dio.dart';
 
 import '../../core/widgets/medal_toast.dart';
@@ -11,7 +13,8 @@ class ApiException implements Exception {
   final String message;
   final String? code;
   final String? field;
-  ApiException(this.message, {this.code, this.field});
+  ApiException(String value, {this.code, this.field})
+    : message = translateSystemText(ApiClient.languageCode, value);
 
   @override
   String toString() => message;

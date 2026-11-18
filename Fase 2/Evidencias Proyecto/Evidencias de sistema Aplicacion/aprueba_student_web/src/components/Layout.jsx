@@ -1,4 +1,5 @@
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import {skeletonForPath} from './routeSkeleton';
+import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { Suspense, useState, useRef } from 'react';
 import ContentSkeleton from './ContentSkeleton';
 import { useAuth } from '../auth/useAuth';
@@ -7,6 +8,7 @@ import './Layout.css';
 import NotificationBell from './NotificationBell';
 
 export default function Layout() {
+  const {pathname}=useLocation();
   const { user, logout, saveProfile } = useAuth();
   const { theme, lang, t } = useTheme();
   const [appearanceSaving,setAppearanceSaving] = useState(false);
@@ -157,7 +159,7 @@ export default function Layout() {
                 overflow: 'hidden',
                 textOverflow: 'ellipsis'
               }}>
-                {user?.name || 'Estudiante'}
+                {user?.name || (lang==='en'?'Student':'Estudiante')}
               </div>
               <div style={{ fontSize: '11px', color: 'var(--side-mut)' }}>
                 {planLabel}
@@ -270,7 +272,7 @@ export default function Layout() {
         </header>
 
         <main style={{ padding: '32px', maxWidth: '1100px', width: '100%', margin: '0 auto', flex: 1 }}>
-          <Suspense fallback={<ContentSkeleton kind="cards" />}>
+          <Suspense fallback={<ContentSkeleton kind={skeletonForPath(pathname)} />}>
             <Outlet />
           </Suspense>
         </main>

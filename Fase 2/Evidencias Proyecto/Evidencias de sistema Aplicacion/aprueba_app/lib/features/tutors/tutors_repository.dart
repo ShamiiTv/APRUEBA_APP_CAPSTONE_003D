@@ -7,9 +7,14 @@ import '../../core/network/api_error.dart';
 import '../../data/social_models.dart';
 
 class TutorsRepository {
+  TutorsRepository({this.locale = "es"});
+  final String locale;
   Future<List<Tutor>> fetchTutors() async {
     try {
-      final res = await ApiClient.dio.get('/tutors');
+      final res = await ApiClient.dio.get(
+        '/tutors',
+        queryParameters: {'locale': locale},
+      );
       final list = (res.data['data'] as List?) ?? const [];
       return list
           .map((t) => Tutor.fromJson(Map<String, dynamic>.from(t as Map)))

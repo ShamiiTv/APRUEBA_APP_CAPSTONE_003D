@@ -214,6 +214,7 @@ class PostComment {
   final String authorName;
   final Color authorColor;
   final String text;
+  final bool contentDeleted;
   final DateTime? createdAt;
 
   const PostComment({
@@ -221,6 +222,7 @@ class PostComment {
     required this.authorName,
     required this.authorColor,
     required this.text,
+    this.contentDeleted = false,
     required this.createdAt,
   });
 
@@ -233,6 +235,7 @@ class PostComment {
       authorName: (a['name'] ?? 'Estudiante').toString(),
       authorColor: colorFromHex(a['avatarColor']?.toString()),
       text: (j['text'] ?? '').toString(),
+      contentDeleted: j['contentDeleted'] == true,
       createdAt: parseApiDate(j['createdAt']),
     );
   }
@@ -243,6 +246,7 @@ class Post {
   final String authorName;
   final Color authorColor;
   final String text;
+  final bool contentDeleted;
   final String? questionStatement;
   final String? questionId;
   final List<({String id, String text})> questionOptions;
@@ -257,6 +261,7 @@ class Post {
     required this.authorName,
     required this.authorColor,
     required this.text,
+    this.contentDeleted = false,
     required this.questionStatement,
     required this.likeCount,
     required this.commentCount,
@@ -277,6 +282,7 @@ class Post {
     authorName: authorName,
     authorColor: authorColor,
     text: text,
+    contentDeleted: contentDeleted,
     questionStatement: questionStatement,
     likeCount: likeCount ?? this.likeCount,
     commentCount: commentCount ?? this.commentCount,
@@ -303,6 +309,7 @@ class Post {
       authorName: (a['name'] ?? 'Estudiante').toString(),
       authorColor: colorFromHex(a['avatarColor']?.toString()),
       text: (j['text'] ?? '').toString(),
+      contentDeleted: j['contentDeleted'] == true,
       questionStatement: (statement == null || statement.isEmpty)
           ? null
           : statement,
@@ -369,7 +376,7 @@ class Tutor {
 
     final rawPrice = j['hourlyRate'] ?? j['pricePerHour'] ?? j['price'];
     final price = rawPrice is num
-        ? '${formatClp(rawPrice.toInt())} / hora'
+        ? '${formatClp(rawPrice.toInt())} / ${j['locale'] == 'en' ? 'hour' : 'hora'}'
         : s(rawPrice);
     final rawRating = j['rating'] ?? j['rate'];
     final rawCriteria = j['criteria'];

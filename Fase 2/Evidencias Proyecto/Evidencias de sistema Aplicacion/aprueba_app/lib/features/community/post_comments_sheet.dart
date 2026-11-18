@@ -1,3 +1,5 @@
+import '../../core/l10n/system_text.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/l10n.dart';
@@ -116,8 +118,16 @@ class _PostCommentsState extends State<PostCommentsSheet> {
                     ),
                   for (final row in rows)
                     ListTile(
-                      title: Text(row.authorName),
-                      subtitle: Text(row.text),
+                      title: Text(systemText(context, row.authorName)),
+                      subtitle: Text(
+                        row.contentDeleted
+                            ? tr(
+                                context,
+                                'Comentario eliminado',
+                                'Comment deleted',
+                              )
+                            : row.text,
+                      ),
                     ),
                   if (cursor != null)
                     TextButton(

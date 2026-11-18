@@ -13,6 +13,7 @@ if (-not $FlutterPath -or -not (Test-Path -LiteralPath $FlutterPath)) {
 $application = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $mobile = Join-Path $application 'aprueba_app'
 $socialSource = Join-Path $application 'aprueba_student_web/public/social-connect.js'
+Copy-Item -LiteralPath (Join-Path $application 'aprueba_student_web/public/paypal-checkout.js') -Destination (Join-Path $mobile 'web/paypal-checkout.js')
 if (Test-Path -LiteralPath $socialSource) {
   Copy-Item -LiteralPath $socialSource -Destination (Join-Path $mobile 'web/social-connect.js')
 }

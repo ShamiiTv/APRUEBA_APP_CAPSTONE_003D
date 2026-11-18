@@ -1,5 +1,7 @@
 # PayPal Sandbox: planes Aprueba
 
+> Actualización posterior: se verificó el pago aprobado por el usuario contra PayPal. La interfaz 1.1.0 reemplaza el retorno y los textos descritos en esta primera entrega; consultar INTERFAZ_1_1_0_2026-11-17.md para el estado vigente.
+
 ## Entrega y alcance
 
 Integración publicada el 17 de noviembre de 2026 en la API, React, Flutter web y APK 1.0.9+202611171. Solo existe integración con `https://api-m.sandbox.paypal.com`; no se implementó un modo de cobros reales.

@@ -52,11 +52,13 @@ export async function page(query, scope, rawCursor) {
 }
 export function postView(doc, liked = false) {
   const data = doc.data();
-  return { id: doc.id, authorUid: data.authorUid, author: { name: data.author?.name || 'Estudiante' }, text: data.text || '', question: data.question ? { id: data.question.id, testId: data.question.testId, statement: data.question.statement, options: Array.isArray(data.question.options) ? data.question.options.map(option => typeof option === 'string' ? option : { id: option.id, text: option.text }) : [] } : null, likeCount: data.likeCount || 0, commentCount: data.commentCount || 0, userLiked: liked, createdAt: dateISO(data.createdAt) };
+  const contentDeleted=data.contentDeleted===true || (data.authorUid===null && data.author?.name==='Usuario eliminado');
+  return { contentDeleted, id: doc.id, authorUid: data.authorUid, author: { name: data.author?.name || 'Estudiante' }, text: contentDeleted?'':data.text || '', question: !contentDeleted && data.question ? { id: data.question.id, testId: data.question.testId, statement: data.question.statement, options: Array.isArray(data.question.options) ? data.question.options.map(option => typeof option === 'string' ? option : { id: option.id, text: option.text }) : [] } : null, likeCount: data.likeCount || 0, commentCount: data.commentCount || 0, userLiked: liked, createdAt: dateISO(data.createdAt) };
 }
 export function commentView(doc) {
   const data = doc.data();
-  return { id: doc.id, author: { name: data.author?.name || 'Estudiante' }, text: data.text || '', createdAt: dateISO(data.createdAt) };
+  const contentDeleted=data.contentDeleted===true || (data.authorUid===null && data.author?.name==='Usuario eliminado');
+  return { contentDeleted, id: doc.id, author: { name: data.author?.name || 'Estudiante' }, text: contentDeleted?'':data.text || '', createdAt: dateISO(data.createdAt) };
 }
 export async function accessPost(tx, ref, uid) {
   const doc = await tx.get(ref);

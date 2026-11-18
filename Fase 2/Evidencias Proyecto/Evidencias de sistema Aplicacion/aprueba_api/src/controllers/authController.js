@@ -375,7 +375,7 @@ async function anonymizePosts(uid) {
   for (let i = 0; i < posts.docs.length; i += 400) {
     const batch = db.batch();
     for (const doc of posts.docs.slice(i, i + 400)) {
-      batch.update(doc.ref, { author: { name: 'Usuario eliminado' }, authorUid: null });
+      batch.update(doc.ref, { author: { name: 'Usuario eliminado' }, authorUid: null, text: '', question: null, contentDeleted: true });
     }
     await batch.commit();
   }
@@ -387,7 +387,7 @@ async function anonymizeComments(uid) {
   for (let i = 0; i < comments.docs.length; i += 400) {
     const batch = db.batch();
     for (const doc of comments.docs.slice(i, i + 400)) {
-      batch.update(doc.ref, { author: { name: 'Usuario eliminado' }, authorUid: null });
+      batch.update(doc.ref, { author: { name: 'Usuario eliminado' }, authorUid: null, text: '', question: null, contentDeleted: true });
     }
     await batch.commit();
   }

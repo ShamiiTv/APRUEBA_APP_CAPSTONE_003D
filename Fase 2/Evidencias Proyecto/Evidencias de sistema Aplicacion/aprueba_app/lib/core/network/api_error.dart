@@ -1,9 +1,13 @@
+import '../l10n/system_text.dart';
+import 'api_client.dart';
+
 import 'package:dio/dio.dart';
 
 class ApiFailure implements Exception {
   final String message;
 
-  ApiFailure(this.message);
+  ApiFailure(String value)
+    : message = translateSystemText(ApiClient.languageCode, value);
 
   @override
   String toString() => message;

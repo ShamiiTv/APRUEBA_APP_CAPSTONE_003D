@@ -2,7 +2,7 @@
 const BASE = 'https://api-m.sandbox.paypal.com';
 let cachedToken;
 export const paypalEnabled = () => process.env.PAYMENTS_MODE === 'paypal-sandbox';
-const unavailable = () => Object.assign(new Error('PayPal Sandbox no está disponible. Intenta nuevamente.'), {status:503});
+const unavailable = () => Object.assign(new Error('No se pudo conectar con PayPal. Intenta nuevamente.'), {status:503});
 
 export function sandboxApprovalUrl(value) {
   try { const url=new URL(value); return url.protocol==='https:' && url.hostname==='www.sandbox.paypal.com' && !url.username && !url.password ? url.href : null; }

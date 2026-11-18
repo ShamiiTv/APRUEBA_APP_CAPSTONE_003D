@@ -86,6 +86,10 @@ test('endpoint elimina perfil, datos y reacciones y permite registrar el mismo c
   await post.collection('likes').doc(uid).set({});await post.collection('likes').doc(other).set({});
   await ticket.set({userId:uid});await ticket.collection('messages').doc('fixture').set({body:'Prueba'});
   await correction.set({userId:uid});
+  const ownPost=db.collection('posts').doc(randomUUID());refs.push(ownPost);
+  await ownPost.set({authorUid:uid,author:{name:'Fixture'},text:'Contenido privado que debe desaparecer',question:{statement:'Pregunta propia'}});
+  await ownPost.collection('comments').doc('other').set({authorUid:other,author:{name:'Other'},text:'Respuesta de otra persona'});
+  await post.collection('comments').doc('own').set({authorUid:uid,author:{name:'Fixture'},text:'Comentario propio'});
   const app=express();app.use(express.json(),responseHandler);
   app.delete('/me',(req,res,next)=>{req.user={sub:uid};next();},deleteAccount);
   app.post('/register',register);
@@ -101,6 +105,9 @@ test('endpoint elimina perfil, datos y reacciones y permite registrar el mismo c
     assert.equal((await user.get()).exists,false);assert.equal((await user.listCollections()).length,0);
     assert.equal((await ticket.get()).exists,false);assert.equal((await ticket.listCollections()).length,0);
     assert.equal((await correction.get()).exists,false);
+    const removed=(await ownPost.get()).data();assert.equal(removed.text,'');assert.equal(removed.question,null);assert.equal(removed.authorUid,null);assert.equal(removed.contentDeleted,true);
+    assert.equal((await ownPost.collection('comments').doc('other').get()).data().text,'Respuesta de otra persona');
+    const removedComment=(await post.collection('comments').doc('own').get()).data();assert.equal(removedComment.text,'');assert.equal(removedComment.contentDeleted,true);
     assert.equal((await post.get()).data().text,'Se conserva');assert.equal((await post.get()).data().likeCount,1);
     assert.equal((await post.collection('likes').doc(other).get()).exists,true);
     assert.equal((await post.collection('likes').doc(uid).get()).exists,false);

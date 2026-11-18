@@ -1,3 +1,4 @@
+import {useTheme} from './context/useTheme';
 import {hasSession} from './api/client';
 import { lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
@@ -30,6 +31,7 @@ const Settings = lazy(() => import('./pages/Settings'));
 
 // Protege /login y /register: si ya hay sesión activa, redirige
 function PublicOnlyRoute({ children }) {
+  const {lang}=useTheme();
   const { user, loading } = useAuth();
   const hasToken = Boolean(hasSession());
 
@@ -45,7 +47,7 @@ function PublicOnlyRoute({ children }) {
         color: 'var(--gris-medio)',
         backgroundColor: 'var(--fondo)'
       }}>
-        Verificando sesión...
+        {lang==='en'?'Restoring your session…':'Restaurando tu sesión…'}
       </div>
     );
   }

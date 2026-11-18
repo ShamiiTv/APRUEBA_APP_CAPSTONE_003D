@@ -30,3 +30,13 @@ test('public projection never returns stored answer keys, explanations or privat
   assert.equal(result.createdAt,'2026-10-09T12:00:00.000Z');
   assert.equal(dateISO('invalid'),null);
 });
+
+test('deleted authors never expose legacy text or attached questions',async()=>{
+ const {postView,commentView}=await import('../src/services/social.js');
+ const legacy={authorUid:null,author:{name:'Usuario eliminado'},text:'Private legacy content',question:{statement:'Private question'}};
+ const doc={id:'fixture',data:()=>legacy};
+ assert.equal(postView(doc).contentDeleted,true);assert.equal(postView(doc).text,'');assert.equal(postView(doc).question,null);
+ assert.equal(commentView(doc).text,'');
+ const kept=postView({id:'other',data:()=>({...legacy,authorUid:'other',author:{name:'Other'},question:null})});
+ assert.equal(kept.text,'Private legacy content');assert.equal(kept.contentDeleted,false);
+});

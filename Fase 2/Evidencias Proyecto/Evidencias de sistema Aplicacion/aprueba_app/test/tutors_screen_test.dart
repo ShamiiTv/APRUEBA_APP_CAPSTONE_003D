@@ -69,7 +69,8 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
-      expect(find.textContaining('TUTORES SIMULADOS'), findsOneWidget);
+      expect(find.textContaining('Encuentra apoyo'), findsOneWidget);
+      expect(find.textContaining('TUTORES SIMULADOS'), findsNothing);
       expect(find.text('Tutor de demostración 1'), findsOneWidget);
       await tester.tap(find.text('Historia').first);
       await tester.pumpAndSettle();

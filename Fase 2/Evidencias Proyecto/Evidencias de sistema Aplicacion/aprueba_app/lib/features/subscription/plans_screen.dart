@@ -1,19 +1,25 @@
-import '../../core/widgets/content_skeleton.dart';
-import '../../data/plan_models.dart';
-import 'subscription_providers.dart';
+import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:dio/dio.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/l10n/l10n.dart';
+import '../../core/l10n/system_text.dart';
 import '../../core/network/api_client.dart';
 import '../../core/storage/pending_operation.dart';
 import '../../core/theme/wf_colors.dart';
+import '../../core/utils/format_utils.dart';
+import '../../core/widgets/content_skeleton.dart';
+import '../../core/widgets/loading_geometry.dart';
+import '../../data/plan_models.dart';
 import '../auth/auth_providers.dart';
+import 'subscription_providers.dart';
+import 'paypal_window_stub.dart'
+    if (dart.library.js_interop) 'paypal_window_web.dart'
+    as payment_window;
 
 class PlansScreen extends ConsumerStatefulWidget {
   const PlansScreen({super.key, this.limitReached = false});
@@ -24,20 +30,32 @@ class PlansScreen extends ConsumerStatefulWidget {
 
 class _PlansState extends ConsumerState<PlansScreen>
     with WidgetsBindingObserver {
-  static const _amarillo = Color(0xFFF5AF41);
-  static const _azul = Color(0xFF1A365D);
-
   String testId = 'm1';
-  bool busy = false;
+  bool busy = false, checking = false, _dialogOpen = false;
   String? message;
-
+  Map<String, dynamic>? subscription, currentUser;
+  Timer? _poll;
+  int _attempts = 0;
+  final _phase = ValueNotifier<String>('opening');
+  String? _paymentError;
   bool get sandbox =>
       ref
           .read(plansProvider)
           .value
           ?.any((p) => p.paymentMode == 'paypal-sandbox') ==
       true;
-  Map<String, dynamic>? subscription;
+  DateTime? get periodEnd => parseApiDate(currentUser?['currentPeriodEnd']);
+  bool get active =>
+      currentUser?['plan'] != 'free' &&
+      periodEnd?.isAfter(DateTime.now()) == true;
+  String get endLabel => periodEnd == null
+      ? ''
+      : MaterialLocalizations.of(context).formatFullDate(periodEnd!);
+  String planName(String id) => id == 'all'
+      ? tr(context, 'Todas las pruebas', 'All tests')
+      : id == 'uni'
+      ? tr(context, '1 prueba ilimitada', '1 unlimited test')
+      : tr(context, 'Plan gratuito', 'Free plan');
 
   @override
   void initState() {
@@ -47,153 +65,348 @@ class _PlansState extends ConsumerState<PlansScreen>
       try {
         final plans = await ref.read(plansProvider.future);
         if (mounted && plans.any((p) => p.paymentMode == 'paypal-sandbox')) {
+          final cached = ref.read(profileProvider).value;
+          if (cached != null) {
+            setState(
+              () => currentUser = {
+                'plan': cached.plan,
+                'currentPeriodEnd': cached.currentPeriodEnd?.toIso8601String(),
+              },
+            );
+          }
           await checkPayment();
         }
-      } catch (_) {
-        /* The plans provider displays loading errors. */
-      }
+      } catch (_) {}
     });
   }
 
   @override
   void dispose() {
+    _poll?.cancel();
     WidgetsBinding.instance.removeObserver(this);
+    _phase.dispose();
     super.dispose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed && sandbox && !busy) checkPayment();
+    if (state == AppLifecycleState.resumed && sandbox && !busy) {
+      checkPayment(quiet: true);
+    }
   }
 
-  Future<void> checkPayment() async {
-    if (busy || !mounted) return;
-    setState(() => busy = true);
+  Future<void> checkPayment({bool quiet = false}) async {
+    if (checking || !mounted) return;
+    setState(() => checking = true);
     try {
-      final res = await ApiClient.dio.get('/plans/paypal');
-      final data = res.data['data'] as Map;
-      await ref.read(profileProvider.notifier).refresh();
+      final response = await ApiClient.dio.get('/plans/paypal');
+      final data = response.data['data'] as Map;
+      final nextUser = Map<String, dynamic>.from(data['user'] as Map);
+      final changed =
+          currentUser?['plan'] != nextUser['plan'] ||
+          currentUser?['planStatus'] != nextUser['planStatus'];
+      if (changed) {
+        await ref.read(profileProvider.notifier).refresh();
+      }
       if (!mounted) return;
       setState(() {
         subscription = data['subscription'] == null
             ? null
             : Map<String, dynamic>.from(data['subscription'] as Map);
-        final user = data['user'] as Map;
-        message =
-            user['paymentMode'] == 'paypal-sandbox' &&
-                user['planStatus'] == 'active'
-            ? tr(
-                context,
-                'Pago de prueba confirmado. Tu plan está habilitado.',
-                'Test payment confirmed. Your plan is enabled.',
-              )
-            : tr(
-                context,
-                'Todavía no hay un pago completado confirmado.',
-                'No completed payment confirmed yet.',
-              );
+        currentUser = nextUser;
       });
+      if (_dialogOpen &&
+          nextUser['planStatus'] == 'active' &&
+          nextUser['paymentMode'] == 'paypal-sandbox' &&
+          active) {
+        _poll?.cancel();
+        payment_window.close();
+        _phase.value = 'confirmed';
+      }
     } catch (_) {
-      if (mounted) {
+      if (mounted && !quiet) {
         setState(
           () => message = tr(
             context,
-            'No se pudo comprobar el pago. Reintenta.',
-            'Could not check payment. Retry.',
+            'No se pudo actualizar la suscripción. Reintenta.',
+            'Could not refresh your subscription. Please retry.',
           ),
         );
       }
     } finally {
-      if (mounted) setState(() => busy = false);
+      if (mounted) setState(() => checking = false);
     }
   }
 
+  void startPolling() {
+    _attempts = 0;
+    _poll?.cancel();
+    _poll = Timer.periodic(const Duration(seconds: 5), (_) {
+      if (!_dialogOpen) {
+        _poll?.cancel();
+        return;
+      }
+      if (++_attempts > 18) {
+        _poll?.cancel();
+        _phase.value = 'pending';
+        return;
+      }
+      checkPayment(quiet: true);
+    });
+  }
+
+  void showProgress() {
+    _phase.value = 'opening';
+    _dialogOpen = true;
+    unawaited(
+      showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (dialogContext) => ValueListenableBuilder<String>(
+          valueListenable: _phase,
+          builder: (context, phase, _) {
+            final waiting = phase == 'opening' || phase == 'waiting';
+            return AlertDialog(
+              icon: Icon(
+                phase == 'confirmed'
+                    ? Icons.check_circle_outline
+                    : Icons.lock_outline,
+                size: 42,
+                color: phase == 'confirmed'
+                    ? Colors.green
+                    : Theme.of(context).colorScheme.primary,
+              ),
+              title: Text(
+                phase == 'confirmed'
+                    ? tr(context, 'Tu plan está listo', 'Your plan is ready')
+                    : phase == 'error'
+                    ? tr(
+                        context,
+                        'No pudimos continuar',
+                        'We could not continue',
+                      )
+                    : tr(
+                        context,
+                        'Completa tu suscripción',
+                        'Complete your subscription',
+                      ),
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    phase == 'confirmed'
+                        ? tr(
+                            context,
+                            'Pago confirmado. Ya puedes disfrutar de los beneficios de tu suscripción.',
+                            'Payment confirmed. Your subscription benefits are now available.',
+                          )
+                        : phase == 'error'
+                        ? (_paymentError == null
+                              ? tr(
+                                  context,
+                                  'Reintenta la operación.',
+                                  'Please try again.',
+                                )
+                              : systemText(context, _paymentError!))
+                        : phase == 'pending'
+                        ? tr(
+                            context,
+                            'La confirmación está tardando más de lo esperado. Puedes consultar el estado de tu plan más tarde.',
+                            'Confirmation is taking longer than expected. You can check your plan status later.',
+                          )
+                        : tr(
+                            context,
+                            'Completa el pago en PayPal. Tu plan se actualizará automáticamente.',
+                            'Complete payment in PayPal. Your plan will update automatically.',
+                          ),
+                  ),
+                  if (waiting) ...[
+                    const SizedBox(height: 20),
+                    const LinearProgressIndicator(),
+                  ],
+                  if (phase != 'opening' &&
+                      phase != 'confirmed' &&
+                      subscription?['approvalUrl'] is String) ...[
+                    const SizedBox(height: 16),
+                    OutlinedButton(
+                      onPressed: () =>
+                          openApproval(subscription!['approvalUrl'] as String),
+                      child: Text(tr(context, 'Abrir PayPal', 'Open PayPal')),
+                    ),
+                  ],
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: phase == 'opening'
+                      ? null
+                      : () => Navigator.of(dialogContext).pop(),
+                  child: Text(
+                    phase == 'confirmed'
+                        ? tr(
+                            context,
+                            'Continuar estudiando',
+                            'Continue studying',
+                          )
+                        : tr(context, 'Cerrar panel', 'Close panel'),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ).whenComplete(() {
+        _dialogOpen = false;
+        _poll?.cancel();
+        payment_window.close();
+      }),
+    );
+  }
+
   Future<void> openApproval(String value) async {
-    final url = Uri.parse(value);
-    if (url.scheme != 'https' || url.host != 'www.sandbox.paypal.com') {
-      throw StateError('Invalid sandbox URL');
+    final uri = Uri.parse(value);
+    if (uri.scheme != 'https' || uri.host != 'www.sandbox.paypal.com') {
+      throw StateError('Invalid payment URL');
     }
-    if (!await launchUrl(
-      url,
-      mode: LaunchMode.externalApplication,
-      webOnlyWindowName: '_self',
-    )) {
-      throw StateError('Could not open PayPal');
+    if (kIsWeb) {
+      if (!payment_window.navigate(value) && !payment_window.open(value)) {
+        if (mounted) {
+          setState(
+            () => message = tr(
+              context,
+              'Permite la ventana emergente para continuar con PayPal.',
+              'Allow the popup window to continue with PayPal.',
+            ),
+          );
+        }
+      }
+      return;
+    }
+    if (!await launchUrl(uri, mode: LaunchMode.inAppBrowserView)) {
+      throw StateError('Could not open payment');
     }
   }
 
   Future<void> choose(String plan) async {
     if (busy) return;
+    if (kIsWeb && sandbox) payment_window.prepare();
     setState(() => busy = true);
+    showProgress();
     try {
-      if (sandbox && plan == 'free') {
-        await ApiClient.dio.post('/plans/paypal/cancel', data: {});
-        await PendingOperation.complete('plan');
-        await ref.read(profileProvider.notifier).refresh();
-        if (mounted) {
-          setState(() {
-            subscription = null;
-            message = tr(
-              context,
-              'Renovación cancelada. Conservas el acceso hasta el fin del período confirmado.',
-              'Renewal cancelled. Access remains until the end of the confirmed period.',
-            );
-          });
-        }
-        return;
-      }
-      final signature = '$plan:$testId';
       final response = await ApiClient.dio.post(
         sandbox ? '/plans/paypal' : '/plans/subscribe',
         data: {
           'planId': plan,
           'billingCycle': 'monthly',
           if (plan == 'uni') 'testId': testId,
-          'requestId': await PendingOperation.id('plan', signature),
+          'requestId': await PendingOperation.id('plan', '$plan:$testId'),
         },
       );
       await PendingOperation.complete('plan');
+      if (!mounted) return;
       if (sandbox) {
-        final data = response.data['data']['subscription'] as Map;
-        if (mounted) {
-          setState(() => subscription = Map<String, dynamic>.from(data));
-        }
-        if (data['approvalUrl'] is String) {
-          await openApproval(data['approvalUrl'] as String);
-        }
-        if (mounted) {
-          setState(
-            () => message = tr(
-              context,
-              'Vuelve a Aprueba y comprueba el pago después de completar PayPal Sandbox.',
-              'Return to Aprueba and check payment after completing PayPal Sandbox.',
-            ),
-          );
-        }
-        return;
-      }
-      await ref.read(profileProvider.notifier).refresh();
-      if (mounted) {
         setState(
-          () => message = tr(
-            context,
-            'Plan simulado activado. No se realizó ningún cobro.',
-            'Demo plan activated. No payment was made.',
+          () => subscription = Map<String, dynamic>.from(
+            response.data['data']['subscription'] as Map,
           ),
         );
+        _phase.value = 'waiting';
+        if (subscription?['approvalUrl'] is String) {
+          await openApproval(subscription!['approvalUrl'] as String);
+          startPolling();
+        }
+        await checkPayment(quiet: true);
+      } else {
+        await ref.read(profileProvider.notifier).refresh();
+        _phase.value = 'confirmed';
       }
-    } catch (e) {
-      if (e is DioException &&
-          PendingOperation.definitiveRejection(e) &&
-          e.response?.statusCode != 409) {
+    } catch (error) {
+      if (error is DioException &&
+          PendingOperation.definitiveRejection(error) &&
+          error.response?.statusCode != 409) {
         await PendingOperation.complete('plan');
       }
       if (mounted) {
+        _paymentError = error is DioException
+            ? error.response?.data?['error']?['message']?.toString()
+            : null;
+        _phase.value = 'error';
+        payment_window.close();
+      }
+    } finally {
+      if (mounted) setState(() => busy = false);
+    }
+  }
+
+  Future<void> cancelRenewal() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(tr(context, '¿Cancelar la renovación?', 'Cancel renewal?')),
+        content: Text(
+          active
+              ? tr(
+                  context,
+                  'No habrá nuevas renovaciones. Mantendrás el acceso hasta el $endLabel.',
+                  'There will be no further renewals. You keep access until $endLabel.',
+                )
+              : tr(
+                  context,
+                  'Se cancelará tu solicitud de pago pendiente.',
+                  'Your pending payment request will be cancelled.',
+                ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(
+              tr(context, 'Mantener suscripción', 'Keep subscription'),
+            ),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(
+              tr(context, 'Confirmar cancelación', 'Confirm cancellation'),
+            ),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+    setState(() => busy = true);
+    try {
+      final result = await ApiClient.dio.post('/plans/paypal/cancel', data: {});
+      await PendingOperation.complete('plan');
+      await ref.read(profileProvider.notifier).refresh();
+      if (mounted) {
+        final data = result.data['data'] as Map;
+        setState(() {
+          subscription = data['subscription'] == null
+              ? null
+              : Map<String, dynamic>.from(data['subscription'] as Map);
+          currentUser = Map<String, dynamic>.from(data['user'] as Map);
+          message = data['abandoned'] == true
+              ? tr(
+                  context,
+                  'Solicitud pendiente cancelada.',
+                  'Pending request cancelled.',
+                )
+              : tr(
+                  context,
+                  'Renovación cancelada. Conservas el acceso hasta el vencimiento de tu período actual.',
+                  'Renewal cancelled. You keep access until your current period ends.',
+                );
+        });
+      }
+    } catch (_) {
+      if (mounted) {
         setState(
           () => message = tr(
             context,
-            'No se pudo completar la operación. Reintenta la misma selección.',
-            'Could not complete the operation. Retry the same selection.',
+            'No se pudo cancelar la renovación. Reintenta.',
+            'Could not cancel renewal. Please retry.',
           ),
         );
       }
@@ -202,173 +415,196 @@ class _PlansState extends ConsumerState<PlansScreen>
     }
   }
 
-  Widget _planCard(Plan plan) {
-    final c = WfColors.of(context);
-    final all = plan.id == 'all';
-    final available = [
-      'simulation',
-      'paypal-sandbox',
-    ].contains(plan.paymentMode);
-    final title = plan.id == 'uni'
-        ? tr(context, '1 prueba ilimitada', '1 unlimited test')
-        : tr(context, 'Todas las pruebas', 'All tests');
-    final desc = plan.id == 'uni'
-        ? tr(
-            context,
-            'Preguntas ilimitadas de 1 prueba que elijas',
-            'Unlimited questions in 1 test of your choice',
-          )
-        : tr(
-            context,
-            'Acceso ilimitado a todas las pruebas PAES, tutores y análisis de falencias',
-            'Unlimited access to all PAES tests, tutors and gap analysis',
-          );
-
+  Widget planCard(Plan plan) {
+    final c = WfColors.of(context),
+        current = plan.id == (active ? currentUser!['plan'] : 'free');
+    final locked =
+        subscription != null &&
+        (active ||
+            !['CANCELLED', 'EXPIRED'].contains(subscription?['status'])) &&
+        subscription?['approvalUrl'] == null &&
+        !current;
     return Container(
-      margin: const EdgeInsets.only(bottom: 14),
-      padding: const EdgeInsets.all(18),
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(
-        color: c.chip,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: all ? _azul : c.line, width: all ? 2 : 1),
+        color: c.bg,
+        border: Border.all(
+          color: plan.id == 'all' ? const Color(0xFFF5AF41) : c.line,
+          width: plan.id == 'all' ? 2 : 1,
+        ),
+        borderRadius: BorderRadius.circular(20),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  title,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: LoadingGeometry.planHeight(context, plan.id) - 44,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      plan.id == 'all'
+                          ? Icons.workspace_premium_outlined
+                          : plan.id == 'uni'
+                          ? Icons.track_changes
+                          : Icons.auto_awesome_outlined,
+                      color: c.brand,
+                    ),
+                    const Spacer(),
+                    if (plan.id == 'all')
+                      Text(
+                        tr(context, 'Más completo', 'Most complete'),
+                        style: TextStyle(color: c.muted, fontSize: 12),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 18),
+                Text(
+                  planName(plan.id),
+                  style: TextStyle(
+                    fontSize: 20,
                     fontWeight: FontWeight.w800,
                     color: c.ink,
                   ),
                 ),
-              ),
-              if (all)
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
+                const SizedBox(height: 16),
+                Text(
+                  '${formatClp(plan.monthly)} CLP / ${tr(context, 'mes', 'month')}',
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w800,
+                    color: c.ink,
                   ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFD1F2E6),
-                    borderRadius: BorderRadius.circular(10),
+                ),
+                if (plan.sandboxAmount != null) ...[
+                  const SizedBox(height: 8),
+                  Text(
+                    '${tr(context, 'Pago en PayPal', 'PayPal payment')}: US\$ ${plan.sandboxAmount} / ${tr(context, 'mes', 'month')}',
+                    style: TextStyle(fontSize: 12, color: c.muted),
                   ),
-                  child: Text(
-                    tr(context, 'Más elegido', 'Most popular'),
-                    style: GoogleFonts.inter(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w800,
-                      color: const Color(0xFF047857),
+                ],
+                const SizedBox(height: 20),
+                Text(
+                  plan.id == 'free'
+                      ? tr(
+                          context,
+                          'Hasta 20 preguntas al día',
+                          'Up to 20 questions a day',
+                        )
+                      : plan.id == 'uni'
+                      ? tr(
+                          context,
+                          'Práctica ilimitada en la prueba que elijas',
+                          'Unlimited practice in your chosen test',
+                        )
+                      : tr(
+                          context,
+                          'Todas las pruebas PAES, tutores y análisis de debilidades',
+                          'All PAES tests, tutors and weakness analysis',
+                        ),
+                  style: TextStyle(height: 1.7, color: c.ink),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  tr(
+                    context,
+                    'Progreso y plan de estudio',
+                    'Progress and study plan',
+                  ),
+                  style: TextStyle(height: 1.7, color: c.muted),
+                ),
+                if (plan.id == 'uni') ...[
+                  const SizedBox(height: 18),
+                  DropdownButtonFormField<String>(
+                    initialValue: testId,
+                    isExpanded: true,
+                    decoration: InputDecoration(
+                      labelText: tr(
+                        context,
+                        'Elige tu prueba',
+                        'Choose your test',
+                      ),
                     ),
+                    items: [
+                      for (final id in ['m1', 'm2', 'lectora', 'cien', 'hist'])
+                        DropdownMenuItem(
+                          value: id,
+                          child: Text(
+                            {
+                              'm1': tr(
+                                context,
+                                'Matemática M1',
+                                'Mathematics M1',
+                              ),
+                              'm2': tr(
+                                context,
+                                'Matemática M2',
+                                'Mathematics M2',
+                              ),
+                              'lectora': tr(
+                                context,
+                                'Competencia Lectora',
+                                'Reading Comprehension',
+                              ),
+                              'cien': tr(context, 'Ciencias', 'Science'),
+                              'hist': tr(context, 'Historia', 'History'),
+                            }[id]!,
+                          ),
+                        ),
+                    ],
+                    onChanged: busy || current
+                        ? null
+                        : (value) {
+                            if (value != null) setState(() => testId = value);
+                          },
                   ),
-                ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          if (plan.sandboxAmount != null)
-            Text(
-              tr(
-                context,
-                'Pago de prueba: ${plan.sandboxAmount} USD/mes',
-                'Test checkout: ${plan.sandboxAmount} USD/month',
-              ),
-            ),
-          Text.rich(
-            TextSpan(
-              text: formatClp(plan.monthly),
-              style: GoogleFonts.montserrat(
-                fontSize: 30,
-                fontWeight: FontWeight.w800,
-                color: _azul,
-              ),
-              children: [
-                TextSpan(
-                  text: tr(context, ' /mes', ' /mo'),
-                  style: GoogleFonts.inter(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    color: c.muted,
-                  ),
-                ),
+                ],
               ],
             ),
-          ),
-          const SizedBox(height: 6),
-          Text(desc, style: GoogleFonts.inter(fontSize: 13, color: c.muted)),
-          if (plan.id == 'uni') ...[
-            const SizedBox(height: 10),
-            DropdownButton<String>(
-              isExpanded: true,
-              value: testId,
-              onChanged: busy ? null : (v) => setState(() => testId = v!),
-              items: const [
-                DropdownMenuItem(value: 'm1', child: Text('Matemática M1')),
-                DropdownMenuItem(value: 'm2', child: Text('Matemática M2')),
-                DropdownMenuItem(
-                  value: 'lectora',
-                  child: Text('Competencia Lectora'),
+            Padding(
+              padding: const EdgeInsets.only(top: 22),
+              child: FilledButton(
+                onPressed:
+                    busy ||
+                        current ||
+                        plan.id == 'free' ||
+                        locked ||
+                        ![
+                          'simulation',
+                          'paypal-sandbox',
+                        ].contains(plan.paymentMode)
+                    ? null
+                    : () => choose(plan.id),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Text(
+                    current
+                        ? tr(context, 'Plan actual', 'Current plan')
+                        : locked
+                        ? tr(
+                            context,
+                            'Disponible al finalizar tu plan',
+                            'Available after your current plan',
+                          )
+                        : tr(
+                            context,
+                            'Suscribirme con PayPal',
+                            'Subscribe with PayPal',
+                          ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-                DropdownMenuItem(value: 'cien', child: Text('Ciencias')),
-                DropdownMenuItem(
-                  value: 'hist',
-                  child: Text('Historia y C. Sociales'),
-                ),
-              ],
+              ),
             ),
           ],
-          const SizedBox(height: 14),
-          SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: all
-                ? FilledButton(
-                    style: FilledButton.styleFrom(
-                      backgroundColor: _amarillo,
-                      foregroundColor: _azul,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                      textStyle: GoogleFonts.montserrat(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                    onPressed: busy || !available
-                        ? null
-                        : () => choose(plan.id),
-                    child: Text(
-                      busy
-                          ? tr(context, 'Guardando…', 'Saving…')
-                          : tr(context, 'Elegir plan', 'Choose plan'),
-                    ),
-                  )
-                : OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: _azul,
-                      side: BorderSide(color: c.line),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                      textStyle: GoogleFonts.montserrat(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                    onPressed: busy || !available
-                        ? null
-                        : () => choose(plan.id),
-                    child: Text(
-                      busy
-                          ? tr(context, 'Guardando…', 'Saving…')
-                          : tr(context, 'Elegir plan', 'Choose plan'),
-                    ),
-                  ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -377,7 +613,7 @@ class _PlansState extends ConsumerState<PlansScreen>
   Widget build(BuildContext context) {
     final c = WfColors.of(context);
     return Scaffold(
-      appBar: AppBar(title: Text(tr(context, 'Planes', 'Plans'))),
+      appBar: AppBar(title: Text(tr(context, 'Suscripción', 'Subscription'))),
       body: ref
           .watch(plansProvider)
           .when(
@@ -401,131 +637,157 @@ class _PlansState extends ConsumerState<PlansScreen>
                 ],
               ),
             ),
-            data: (plans) {
-              final paid = plans
-                  .where((p) => p.id == 'uni' || p.id == 'all')
-                  .toList();
-              return ListView(
-                padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
-                children: [
-                  Text(
-                    tr(
-                      context,
-                      'DEMOSTRACIÓN DE PAGOS · Sin cobros ni boletas reales.',
-                      'PAYMENT DEMO · No charge or real receipts.',
-                    ),
-                    style: GoogleFonts.inter(fontSize: 11, color: c.muted),
+            data: (plans) => ListView(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+              children: [
+                Text(
+                  tr(context, 'Estudia a tu ritmo', 'Study at your own pace'),
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w800,
+                    color: c.ink,
                   ),
-                  if (sandbox) ...[
-                    Text(
-                      tr(
-                        context,
-                        'PayPal Sandbox: importes ficticios en USD, no son una conversión de CLP.',
-                        'PayPal Sandbox: demo USD amounts, not a conversion from CLP.',
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  tr(
+                    context,
+                    'Elige el apoyo que necesitas para preparar la PAES.',
+                    'Choose the support you need to prepare for PAES.',
+                  ),
+                  style: TextStyle(color: c.muted, height: 1.6),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 22),
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: c.chip,
+                    border: Border.all(color: c.line),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        active
+                            ? tr(context, 'Tu plan activo', 'Your active plan')
+                            : tr(context, 'Tu plan', 'Your plan'),
+                        style: TextStyle(fontSize: 12, color: c.muted),
                       ),
-                    ),
-                    OutlinedButton(
-                      onPressed: busy ? null : checkPayment,
-                      child: Text(
+                      const SizedBox(height: 8),
+                      Text(
+                        planName(
+                          active ? currentUser!['plan'] as String : 'free',
+                        ),
+                        style: TextStyle(
+                          fontSize: 21,
+                          fontWeight: FontWeight.w800,
+                          color: c.ink,
+                        ),
+                      ),
+                      if (active) ...[
+                        const SizedBox(height: 10),
+                        Text(
+                          '${['CANCELLED', 'EXPIRED'].contains(subscription?['status']) ? tr(context, 'Acceso hasta el', 'Access until') : tr(context, 'Próxima renovación:', 'Next renewal:')} $endLabel',
+                          style: TextStyle(color: c.muted, fontSize: 12),
+                        ),
+                      ],
+                      const SizedBox(height: 14),
+                      Text(
                         tr(
                           context,
-                          'Comprobar pago de prueba',
-                          'Check test payment',
+                          'Suscripción mensual. Puedes cancelar la renovación cuando quieras y conservarás el acceso hasta el vencimiento del período pagado.',
+                          'Monthly subscription. Cancel renewal at any time and keep access until your paid period ends.',
+                        ),
+                        style: TextStyle(
+                          color: c.muted,
+                          fontSize: 12,
+                          height: 1.7,
                         ),
                       ),
-                    ),
-                    if (subscription?['approvalUrl'] is String)
-                      OutlinedButton(
-                        onPressed: busy
-                            ? null
-                            : () async {
-                                try {
-                                  await openApproval(
+                      if (checking) ...[
+                        const SizedBox(height: 12),
+                        const LinearProgressIndicator(),
+                      ],
+                      if (subscription?['approvalUrl'] is String)
+                        TextButton(
+                          onPressed: busy
+                              ? null
+                              : () {
+                                  if (kIsWeb) payment_window.prepare();
+                                  showProgress();
+                                  _phase.value = 'waiting';
+                                  openApproval(
                                     subscription!['approvalUrl'] as String,
                                   );
-                                } catch (_) {
-                                  if (mounted) {
-                                    setState(
-                                      () => message = tr(
-                                        context,
-                                        'No se pudo abrir PayPal. Reintenta.',
-                                        'Could not open PayPal. Retry.',
-                                      ),
-                                    );
-                                  }
-                                }
-                              },
-                        child: Text(
-                          tr(
-                            context,
-                            'Continuar en PayPal Sandbox',
-                            'Continue in PayPal Sandbox',
+                                  startPolling();
+                                },
+                          child: Text(
+                            tr(context, 'Continuar pago', 'Continue payment'),
                           ),
                         ),
-                      ),
-                  ],
-                  if (widget.limitReached) ...[
-                    const SizedBox(height: 10),
-                    Text(
+                      if (subscription != null &&
+                          ![
+                            'CANCELLED',
+                            'EXPIRED',
+                          ].contains(subscription?['status']))
+                        TextButton(
+                          onPressed: busy ? null : cancelRenewal,
+                          child: Text(
+                            subscription?['approvalUrl'] is String
+                                ? tr(
+                                    context,
+                                    'Cancelar solicitud',
+                                    'Cancel request',
+                                  )
+                                : tr(
+                                    context,
+                                    'Cancelar renovación',
+                                    'Cancel renewal',
+                                  ),
+                          ),
+                        ),
+                      if (sandbox)
+                        TextButton(
+                          onPressed: checking ? null : () => checkPayment(),
+                          child: Text(
+                            tr(context, 'Actualizar estado', 'Refresh status'),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                if (widget.limitReached)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: Text(
                       tr(
                         context,
                         'Agotaste tu cuota diaria gratuita.',
                         'You used your free daily quota.',
                       ),
-                      style: GoogleFonts.inter(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                        color: c.ink,
-                      ),
+                      style: TextStyle(color: c.ink),
                     ),
-                  ],
-                  if (message != null)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      child: Text(
-                        message!,
-                        style: GoogleFonts.inter(fontSize: 13, color: c.ink),
-                      ),
-                    ),
-                  const SizedBox(height: 14),
-                  if (paid.isEmpty)
-                    Text(
-                      tr(
-                        context,
-                        'No hay planes disponibles.',
-                        'No plans available.',
-                      ),
-                    ),
-                  for (final plan in paid) _planCard(plan),
-                  OutlinedButton(
-                    onPressed: busy ? null : () => choose('free'),
+                  ),
+                if (message != null)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
                     child: Text(
-                      tr(
-                        context,
-                        sandbox
-                            ? 'Cancelar renovación de prueba'
-                            : 'Volver al plan gratuito (simulado)',
-                        sandbox
-                            ? 'Cancel test renewal'
-                            : 'Return to free plan (demo)',
-                      ),
+                      message!,
+                      style: TextStyle(color: c.ink, height: 1.6),
                     ),
                   ),
-                  Center(
-                    child: TextButton(
-                      onPressed: () => context.go('/home'),
-                      child: Text(
-                        tr(context, 'Quizás más tarde', 'Maybe later'),
-                        style: GoogleFonts.montserrat(
-                          fontWeight: FontWeight.w800,
-                          color: _azul,
-                        ),
-                      ),
-                    ),
+                for (final plan in plans) planCard(plan),
+                Text(
+                  tr(
+                    context,
+                    'Facsímil · Próximamente. No está incluido en los planes disponibles.',
+                    'Mock exams · Coming soon. Not included in the available plans.',
                   ),
-                ],
-              );
-            },
+                  style: TextStyle(color: c.muted, fontSize: 12, height: 1.6),
+                ),
+              ],
+            ),
           ),
     );
   }

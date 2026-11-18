@@ -36,6 +36,7 @@ class ApruebaApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final mode = ref.watch(themeModeProvider);
     final locale = ref.watch(localeProvider);
+    ApiClient.languageCode = locale.languageCode;
 
     // Cuando carga el perfil, se aplica el idioma guardado en la base de datos.
     ref.listen(profileProvider, (prev, next) {

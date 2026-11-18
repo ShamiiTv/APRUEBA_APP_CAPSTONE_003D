@@ -41,13 +41,12 @@ class ContentSkeleton extends StatelessWidget {
     final items = <Widget>[];
     void gap([double height = 12]) => items.add(SizedBox(height: height));
     if (kind == 'plans') {
-      items.add(
-        Text(
-          en
-              ? 'PAYMENT DEMO · No charge or real receipts.'
-              : 'DEMOSTRACIÓN DE PAGOS · Sin cobros ni boletas reales.',
-        ),
-      );
+      items.add(bar(28, width: 220));
+      gap(12);
+      items.add(bar(16));
+      gap(22);
+      items.add(tile(200));
+      gap(22);
       for (final id in ['free', 'uni', 'all']) {
         items.add(
           Card(
@@ -170,7 +169,7 @@ class ContentSkeleton extends StatelessWidget {
             levels
                 ? 110
                 : kind == 'tutors'
-                ? 120
+                ? 210
                 : 220,
           ),
         );
@@ -195,4 +194,3 @@ class ContentSkeleton extends StatelessWidget {
     );
   }
 }
-

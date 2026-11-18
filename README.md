@@ -70,3 +70,7 @@ Mantenimiento Ubuntu autorizado y completado el 17 de noviembre: 178 paquetes ac
 ## PayPal Sandbox — 17 de noviembre de 2026
 
 Se publicó la integración de suscripciones mensuales de prueba en web y Flutter, con confirmación del servidor, cancelación y webhook verificado. APK 1.0.9: https://aprueba.shamiiplay.com/descargas/Aprueba-Android-pruebas-20261117-paypal.apk. Falta completar una compra aprobada con comprador Sandbox y probarla en teléfono físico; el recorrido hasta PayPal y el regreso sin pagar ya fueron comprobados. Ver deploy/PAYPAL_SANDBOX_2026-11-17.md dentro de las evidencias de sistema. Solo pagos ficticios, nunca dinero real.
+
+## Interfaz 1.1.0 — 17 de noviembre de 2026
+
+Suscripción con ventana emergente y actualización automática, condiciones mensuales claras, Tutores rediseñado, skeletons por sección, marca Aprueba en las pestañas, traducciones ampliadas y eliminación del contenido propio al borrar una cuenta conservando respuestas ajenas. El pago Sandbox aprobado por el usuario ya fue verificado contra PayPal. APK: https://aprueba.shamiiplay.com/descargas/Aprueba-1.1.0.apk. Detalle y límites en deploy/INTERFAZ_1_1_0_2026-11-17.md dentro de las evidencias de sistema.

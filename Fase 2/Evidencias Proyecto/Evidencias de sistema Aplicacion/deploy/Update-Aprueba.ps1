@@ -45,6 +45,9 @@ if ($IncludeApk) {
   try { Invoke-Checked $FlutterPath @('build','apk','--release','--dart-define=API_URL=https://aprueba.shamiiplay.com/api/v1') } finally { Pop-Location }
   New-Item -ItemType Directory -Force -Path "$staging/web/dist/descargas" | Out-Null
   Copy-Item -LiteralPath "$application/aprueba_app/build/app/outputs/flutter-apk/app-release.apk" -Destination "$staging/web/dist/descargas/Aprueba-Android-pruebas-$stamp.apk"
+  $apkVersion = [regex]::Match([System.IO.File]::ReadAllText("$application/aprueba_app/pubspec.yaml"),'(?m)^version:\s*(\d+\.\d+\.\d+)\+').Groups[1].Value
+  if (-not $apkVersion) { throw 'No se pudo leer la versión del APK.' }
+  Copy-Item -LiteralPath "$application/aprueba_app/build/app/outputs/flutter-apk/app-release.apk" -Destination "$staging/web/dist/descargas/Aprueba-$apkVersion.apk"
 }
 Copy-Item -LiteralPath "$application/database/firestore.rules","$application/database/firestore.indexes.json" -Destination "$staging/database"
 Invoke-Checked 'C:/Windows/System32/tar.exe' @('-czf',$archive,'-C',$staging,'api','web','database')

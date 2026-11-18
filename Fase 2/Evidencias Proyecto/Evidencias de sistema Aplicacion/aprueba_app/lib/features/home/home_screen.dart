@@ -334,7 +334,7 @@ class HomeScreen extends ConsumerWidget {
               (
                 Icons.school_outlined,
                 tr(context, 'Tutores', 'Tutors'),
-                tr(context, 'Catálogo de demostración', 'Demo catalog'),
+                tr(context, 'Encuentra apoyo para estudiar', 'Find study support'),
                 '/tutors',
               ),
               (

@@ -24,8 +24,8 @@ class PremiumGateScreen extends StatelessWidget {
       ),
       tr(
         context,
-        'Solicitudes de tutoría simuladas',
-        'Simulated tutoring requests',
+        'Solicitudes de tutoría',
+        'Tutoring requests',
       ),
       tr(context, 'Sin límite de preguntas diarias', 'No daily question limit'),
     ];
@@ -140,8 +140,8 @@ class PremiumGateScreen extends StatelessWidget {
                   Text(
                     tr(
                       context,
-                      'Demostración: no se realiza ningún cobro real',
-                      'Demo: no real charge is made',
+                      'Suscripción mensual. Puedes cancelar la renovación cuando quieras.',
+                      'Monthly subscription. Cancel renewal at any time.',
                     ),
                     style: GoogleFonts.inter(fontSize: 11, color: c.muted),
                   ),

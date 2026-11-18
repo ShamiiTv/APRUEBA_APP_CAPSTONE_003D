@@ -80,7 +80,9 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFF6E5),
+        color: Theme.of(context).brightness == Brightness.dark
+            ? const Color(0xFF3B3223)
+            : const Color(0xFFFFF6E5),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: _amarillo.withValues(alpha: 0.6)),
       ),
@@ -161,9 +163,9 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
       margin: const EdgeInsets.only(top: 11),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: c.chip,
+        color: c.bg,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: c.line),
+        border: Border.all(color: t.color.withValues(alpha: 0.5), width: 1.2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -294,7 +296,7 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
                 Text(tr(context, 'Tutores', 'Tutors'), style: tt.headlineSmall),
                 const Spacer(),
                 const WfTag(
-                  text: 'Demo',
+                  text: 'Premium',
                   bg: Color(0x2EF5B041),
                   fg: Color(0xFFB45309),
                 ),
@@ -333,8 +335,8 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
               child: Text(
                 tr(
                   context,
-                  'TUTORES SIMULADOS · Explora los perfiles y prueba una solicitud. Son perfiles ficticios: no se contacta a un profesor real ni se realizan cobros.',
-                  'SIMULATED TUTORS · Explore profiles and try a request. These profiles are fictional: no real teacher is contacted and no payment is made.',
+                  'Encuentra apoyo en las materias que quieres reforzar.',
+                  'Get support in the subjects you want to strengthen.',
                 ),
                 style: GoogleFonts.inter(
                   fontSize: 12,

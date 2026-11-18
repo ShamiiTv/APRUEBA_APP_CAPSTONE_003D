@@ -47,8 +47,10 @@ const CATALOG = [
   },
 ];
 
+const ENGLISH_CATALOG={"demo-m1": {"subjectLabel": "Mathematics M1–M2", "specialty": "Algebra and functions", "bio": "PAES mathematics preparation focused on algebra and functions, with step-by-step practice and timed exercises.", "mode": "Online · In person", "review": "Clear explanations helped me improve my practice results. Always on time."}, "demo-m2": {"subjectLabel": "Mathematics M2", "specialty": "Functions and probability", "bio": "Strengthen your M2 skills with progressively challenging exercises and guided solutions.", "mode": "Online", "review": "She helped me finally understand probability."}, "demo-lectora": {"subjectLabel": "Reading Comprehension", "specialty": "Text comprehension", "bio": "Inference and interpretation strategies for the PAES reading comprehension test.", "mode": "Online", "review": "I learned to read more efficiently and identify misleading alternatives."}, "demo-cien": {"subjectLabel": "Science · Biology", "specialty": "Cell biology", "bio": "Biology and core science preparation using diagrams and guided review.", "mode": "In person", "review": "The diagrams made genetics much easier to understand."}, "demo-hist": {"subjectLabel": "History and Social Sciences", "specialty": "Citizenship education", "bio": "Chilean history and citizenship education through timelines and practical cases.", "mode": "Online", "review": "The timelines really helped me prepare for the history test."}};
+
 export async function getTutors(req, res) {
-  return ok(res, CATALOG.filter(tutor => !req.query.testId || req.query.testId === 'all' || tutor.subjectTestId === req.query.testId), { simulated: true });
+  return ok(res, CATALOG.filter(tutor => !req.query.testId || req.query.testId === 'all' || tutor.subjectTestId === req.query.testId).map(tutor=>{const localized=req.query.locale==='en'?ENGLISH_CATALOG[tutor.id]:null;return {...tutor,locale:req.query.locale==='en'?'en':'es',...(localized?{subjectLabel:localized.subjectLabel,specialty:localized.specialty,bio:localized.bio,mode:localized.mode,featuredReview:{...tutor.featuredReview,text:localized.review}}:{bio:tutor.bio.replace('Perfil ficticio. ','')})};}), { simulated: true });
 }
 
 export async function requestTutorSession(req, res) {

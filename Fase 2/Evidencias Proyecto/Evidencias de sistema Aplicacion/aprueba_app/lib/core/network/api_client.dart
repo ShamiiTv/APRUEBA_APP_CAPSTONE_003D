@@ -8,6 +8,7 @@ import '../storage/token_storage.dart';
 
 class ApiClient {
   ApiClient._();
+  static String languageCode = 'es';
 
   /// Rutas que no llevan token.
   static const _publicPaths = [

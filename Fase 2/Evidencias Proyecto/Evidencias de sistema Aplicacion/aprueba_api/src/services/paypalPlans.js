@@ -9,14 +9,14 @@ const userRef=uid=>db.collection('users').doc(uid);
 const subscriptionRef=id=>db.collection('paypalSandboxSubscriptions').doc(id);
 const safeUser=snapshot=>({uid:snapshot.id,...profileView(snapshot.data()),quota:dailyQuota(snapshot.data())});
 const view=r=>r?{id:r.id,status:r.status,planId:r.planId,testId:r.testId,approvalUrl:r.status==='APPROVAL_PENDING'?r.approvalUrl:null,currency:r.currency,amount:r.amount,cancelled:r.status==='CANCELLED'}:null;
-const ensure=()=>{if(!paypalEnabled())throw problem('PayPal Sandbox no está habilitado',503);};
+const ensure=()=>{if(!paypalEnabled())throw problem('Los pagos todavía no están disponibles',503);};
 
 export async function startPaypalPlan(uid,body) {
   ensure();fields(body,['planId','testId','requestId','billingCycle']);
   const {planId,testId=null,billingCycle='monthly'}=body,id=requestId(body);
   if(!['uni','all'].includes(planId)||billingCycle!=='monthly'||(planId==='uni'&&!['m1','m2','lectora','cien','hist'].includes(testId))||(planId==='all'&&testId!==null))throw problem('Selecciona un plan mensual y su prueba',400);
   const catalog=paypalCatalog()[planId];
-  if(!catalog.providerPlanId)throw problem('El catálogo de PayPal Sandbox aún no está configurado',503);
+  if(!catalog.providerPlanId)throw problem('Los planes todavía no están disponibles',503);
   const signature=JSON.stringify([planId,testId]);
   const reservation=await db.runTransaction(async tx=>{
     const u=await tx.get(userRef(uid));if(!u.exists)throw problem('Usuario no encontrado',404);
@@ -36,9 +36,9 @@ export async function startPaypalPlan(uid,body) {
   const origin=process.env.PAYPAL_RETURN_ORIGIN||'https://aprueba.shamiiplay.com';
   const returnUrl=new URL('/paypal-return.html?result=return',origin),cancelUrl=new URL('/paypal-return.html?result=cancel',origin);
   if(returnUrl.protocol!=='https:'&&!['localhost','127.0.0.1'].includes(returnUrl.hostname))throw problem('URL de retorno no configurada',503);
-  const remote=await paypalRequest('/v1/billing/subscriptions',{method:'POST',requestId:createHash('sha256').update(`${uid}:${id}`).digest('hex').slice(0,32),body:{plan_id:catalog.providerPlanId,custom_id:uid,application_context:{brand_name:'Aprueba · Sandbox',user_action:'SUBSCRIBE_NOW',shipping_preference:'NO_SHIPPING',return_url:returnUrl.href,cancel_url:cancelUrl.href}}});
+  const remote=await paypalRequest('/v1/billing/subscriptions',{method:'POST',requestId:createHash('sha256').update(`${uid}:${id}`).digest('hex').slice(0,32),body:{plan_id:catalog.providerPlanId,custom_id:uid,application_context:{brand_name:'Aprueba',user_action:'SUBSCRIBE_NOW',shipping_preference:'NO_SHIPPING',return_url:returnUrl.href,cancel_url:cancelUrl.href}}});
   const approvalUrl=sandboxApprovalUrl(remote.links?.find(l=>l.rel==='approve')?.href);
-  if(!/^I-[A-Z0-9]+$/.test(remote.id)||!approvalUrl)throw problem('No se pudo abrir PayPal Sandbox',503);
+  if(!/^I-[A-Z0-9]+$/.test(remote.id)||!approvalUrl)throw problem('No se pudo abrir PayPal',503);
   const record={id:remote.id,uid,planId,testId,...catalog,status:remote.status,approvalUrl,createdAt:new Date()};
   await db.runTransaction(async tx=>{
     const u=await tx.get(userRef(uid));if(!u.exists)throw problem('Usuario no encontrado',404);

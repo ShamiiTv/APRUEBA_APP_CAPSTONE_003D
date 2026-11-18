@@ -1,3 +1,5 @@
+import '../../core/l10n/system_text.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -762,7 +764,7 @@ class _GroupDetailState extends ConsumerState<GroupDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          post.authorName,
+                          systemText(context, post.authorName),
                           style: GoogleFonts.inter(
                             fontSize: 12,
                             fontWeight: FontWeight.w700,
@@ -771,7 +773,13 @@ class _GroupDetailState extends ConsumerState<GroupDetailScreen> {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          post.text,
+                          post.contentDeleted
+                              ? tr(
+                                  context,
+                                  'Publicación eliminada',
+                                  'Post deleted',
+                                )
+                              : post.text,
                           style: GoogleFonts.inter(fontSize: 13, color: c.ink),
                         ),
                         if (post.questionStatement != null) ...[

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../auth/useAuth';
 import { useTheme } from '../context/useTheme';
 import './Settings.css';
+import {uiText} from '../i18n/uiText';
 import AccountSecurity from '../components/AccountSecurity';
 import { apiFetch } from '../api/client';
 
@@ -78,10 +79,10 @@ export default function Settings() {
         <p>{lang==='en'?'10 base + 5 school/age/region + 5 address · 20 free max':'10 base + 5 colegio/edad/región + 5 dirección · 20 máx gratis'}</p>
         <label>{lang==='en'?'Commune':'Comuna'}<input maxLength={200} value={values.address.commune || ''} onChange={e=>change('address',{...values.address,commune:e.target.value})} /></label>
         <label>{lang==='en'?'Street and number':'Calle y número'}<input maxLength={200} value={values.address.street || ''} onChange={e=>change('address',{...values.address,street:e.target.value})} /></label>
-        <label>{lang==='en'?'Country':'País'}<input maxLength={200} value={values.address.country || ''} onChange={e=>change('address',{...values.address,country:e.target.value})}/></label><label>{lang==='en'?'Housing type':'Tipo de vivienda'}<select value={values.address.housingType || 'casa'} onChange={e=>change('address',{...values.address,housingType:e.target.value})}>{['casa','departamento','condominio','otro'].map(v=><option key={v}>{v}</option>)}</select></label><label>{lang==='en'?'Unit (optional)':'Unidad (opcional)'}<input maxLength={200} value={values.address.unit || ''} onChange={e=>change('address',{...values.address,unit:e.target.value})}/></label><p className="settings-hint">{copy.accountHint}</p><Link to="/recuperar-contrasena">{copy.password}</Link>
+        <label>{lang==='en'?'Country':'País'}<input maxLength={200} value={values.address.country || ''} onChange={e=>change('address',{...values.address,country:e.target.value})}/></label><label>{lang==='en'?'Housing type':'Tipo de vivienda'}<select value={values.address.housingType || 'casa'} onChange={e=>change('address',{...values.address,housingType:e.target.value})}>{['casa','departamento','condominio','otro'].map(v=><option key={v} value={v}>{lang==='en'?{casa:'House',departamento:'Apartment',condominio:'Condominium',otro:'Other'}[v]:v}</option>)}</select></label><label>{lang==='en'?'Unit (optional)':'Unidad (opcional)'}<input maxLength={200} value={values.address.unit || ''} onChange={e=>change('address',{...values.address,unit:e.target.value})}/></label><p className="settings-hint">{copy.accountHint}</p><Link to="/recuperar-contrasena">{copy.password}</Link>
       </fieldset>
       <fieldset disabled={saving}><legend>{copy.practice}</legend>
-        <div role="group" aria-label={copy.tests}><p>{copy.tests}</p>{TESTS.map(([id,label]) => <label className="settings-check" key={id}><input type="checkbox" checked={values.selectedTests.includes(id)} onChange={e => change('selectedTests',e.target.checked ? [...values.selectedTests,id] : values.selectedTests.filter(test => test !== id))} />{label}</label>)}</div>
+        <div role="group" aria-label={copy.tests}><p>{copy.tests}</p>{TESTS.map(([id,label]) => <label className="settings-check" key={id}><input type="checkbox" checked={values.selectedTests.includes(id)} onChange={e => change('selectedTests',e.target.checked ? [...values.selectedTests,id] : values.selectedTests.filter(test => test !== id))} />{uiText(lang,label)}</label>)}</div>
         <div><label htmlFor="profile-difficulty">{copy.difficulty}</label><select id="profile-difficulty" value={values.difficulty} onChange={e => change('difficulty',e.target.value)}><option value="d1">{copy.basic}</option><option value="d2">{copy.medium}</option><option value="d3">{copy.advanced}</option></select></div>
         <p className="settings-hint">{copy.bankHint}</p><p className="settings-hint">{copy.planHint}</p><Link to="/plan-estudio">{copy.plan}</Link>
       </fieldset>
