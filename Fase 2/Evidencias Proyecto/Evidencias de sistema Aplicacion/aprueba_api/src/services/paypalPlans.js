@@ -40,12 +40,19 @@ export async function startPaypalPlan(uid,body) {
   const approvalUrl=sandboxApprovalUrl(remote.links?.find(l=>l.rel==='approve')?.href);
   if(!/^I-[A-Z0-9]+$/.test(remote.id)||!approvalUrl)throw problem('No se pudo abrir PayPal',503);
   const record={id:remote.id,uid,planId,testId,...catalog,status:remote.status,approvalUrl,createdAt:new Date()};
-  await db.runTransaction(async tx=>{
+  const committed=await db.runTransaction(async tx=>{
     const u=await tx.get(userRef(uid));if(!u.exists)throw problem('Usuario no encontrado',404);
+    // A concurrent retry may already have committed this provider's idempotent result.
+    // Return the stored state without overwriting a newer status or payment check.
+    if(u.data().paypalSubscriptionId===record.id){
+      const existing=(await tx.get(subscriptionRef(record.id))).data();
+      if(existing?.uid===uid && existing.planId===planId && existing.testId===testId)return existing;
+    }
     if(u.data().paypalPendingRequest?.id!==id)throw problem('La operación cambió. Reintenta.',409);
     tx.set(subscriptionRef(record.id),record);tx.update(u.ref,{paypalSubscriptionId:record.id,paypalPendingRequest:null});
+    return record;
   });
-  return {subscription:view(record),sandbox:true};
+  return {subscription:view(committed),sandbox:true};
 }
 
 export async function syncPaypalPlan(uid) {

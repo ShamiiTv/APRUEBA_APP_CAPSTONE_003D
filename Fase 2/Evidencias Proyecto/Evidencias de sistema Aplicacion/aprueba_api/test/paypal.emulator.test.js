@@ -12,7 +12,9 @@ const {paypalWebhook}=await import('../src/services/paypalPlans.js');
 const {subscribePlan}=await import('../src/controllers/plansController.js');
 const uid=`paypal-fixture-${randomUUID()}`,other=`paypal-fixture-${randomUUID()}`;
 const originalFetch=globalThis.fetch,remote=new Map();
-let paid=false,wrongAmount=false,refunded=false,sequence=0;
+let paid=false,wrongAmount=false,refunded=false,sequence=0,starts=0;
+let releaseStarts;
+const bothStarts=new Promise(resolve=>{releaseStarts=resolve;});
 globalThis.fetch=async(url,options={})=>{
  const u=new URL(url);if(u.hostname==='127.0.0.1')return originalFetch(url,options);
  assert.equal(u.origin,'https://api-m.sandbox.paypal.com');
@@ -24,6 +26,8 @@ globalThis.fetch=async(url,options={})=>{
    const key=options.headers['PayPal-Request-Id'];
    let s=[...remote.values()].find(v=>v.requestKey===key);
    if(!s){s={id:`I-FIXTURE${++sequence}`,plan_id:json.plan_id,custom_id:json.custom_id,status:'APPROVAL_PENDING',requestKey:key};remote.set(s.id,s);}
+   // Force both HTTP requests past the reservation before either can commit.
+   starts++;if(starts===2)releaseStarts();if(starts<=2)await bothStarts;
    return result({...s,links:[{rel:'approve',href:`https://www.sandbox.paypal.com/webapps/billing/subscriptions?ba_token=${s.id}`}]});
  }
  const id=u.pathname.split('/')[4],s=remote.get(id);assert.ok(s,'remote subscription must exist');
