@@ -157,7 +157,7 @@ class _PracticeExplanationScreenState
                         Text(
                           d.subject.isEmpty
                               ? tr(context, 'Paso a paso', 'Step by step')
-                              : tr(context, 'Paso a paso', 'Step by step')} · ${testName(context, d.subject, d.subject),
+                              : '${tr(context, 'Paso a paso', 'Step by step')} · ${testName(context, d.subject, d.subject)}',
                           style: GoogleFonts.inter(
                             fontSize: 11,
                             color: c.muted,

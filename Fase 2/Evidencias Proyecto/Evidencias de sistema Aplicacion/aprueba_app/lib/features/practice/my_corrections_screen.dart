@@ -35,7 +35,7 @@ class MyCorrectionsScreen extends ConsumerWidget {
         case 'confirmed':
           return WfTag(
             text:
-                tr(context, 'Confirmada', 'Confirmed')} · +${i.rewardAmount} ${tr(context,'Bronce','Bronze'),
+                '${tr(context, 'Confirmada', 'Confirmed')} · +${i.rewardAmount} ${tr(context,'Bronce','Bronze')}',
             bg: c.success.withValues(alpha: 0.15),
             fg: c.success,
           );
