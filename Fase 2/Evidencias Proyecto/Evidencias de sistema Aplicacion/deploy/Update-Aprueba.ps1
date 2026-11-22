@@ -42,7 +42,8 @@ if ($IncludeMobile) {
 }
 if ($IncludeApk) {
   Push-Location "$application/aprueba_app"
-  try { Invoke-Checked $FlutterPath @('build','apk','--release','--dart-define=API_URL=https://aprueba.shamiiplay.com/api/v1') } finally { Pop-Location }
+  $buildVersion=[regex]::Match([System.IO.File]::ReadAllText("$application/aprueba_app/pubspec.yaml"),'(?m)^version:\s*(\S+)').Groups[1].Value
+  try { Invoke-Checked $FlutterPath @('build','apk','--release','--dart-define=API_URL=https://aprueba.shamiiplay.com/api/v1',"--dart-define=APP_VERSION=$buildVersion") } finally { Pop-Location }
   New-Item -ItemType Directory -Force -Path "$staging/web/dist/descargas" | Out-Null
   Copy-Item -LiteralPath "$application/aprueba_app/build/app/outputs/flutter-apk/app-release.apk" -Destination "$staging/web/dist/descargas/Aprueba-Android-pruebas-$stamp.apk"
   $apkVersion = [regex]::Match([System.IO.File]::ReadAllText("$application/aprueba_app/pubspec.yaml"),'(?m)^version:\s*(\d+\.\d+\.\d+)\+').Groups[1].Value

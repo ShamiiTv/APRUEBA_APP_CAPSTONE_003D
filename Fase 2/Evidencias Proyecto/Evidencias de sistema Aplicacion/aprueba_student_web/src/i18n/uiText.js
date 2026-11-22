@@ -1,4 +1,13 @@
 const EN = {
+  "Facsímil requiere el plan Acceso completo vigente.": "Mock exams require an active Full access plan.",
+  "Revisa la prueba, dificultad y cantidad de preguntas.": "Check your test, difficulty and question count.",
+  "No hay suficientes preguntas disponibles para esta selección.": "Not enough questions are available for this selection.",
+  "Ya tienes un facsímil en curso. Continúalo o finalízalo antes de comenzar otro.": "You have a mock exam in progress. Resume or finish it before starting another.",
+  "No se encontró este facsímil.": "This mock exam was not found.",
+  "La pregunta ya cambió. Actualiza el facsímil para continuar.": "The question has changed. Refresh your mock exam to continue.",
+  "Esta solicitud ya corresponde a otra configuración.": "This request already belongs to another configuration.",
+  "No se pudo actualizar el facsímil. Intenta nuevamente.": "Could not update the mock exam. Please retry.",
+
   "Arena: entrada": "Arena: entry",
   "Arena: victoria": "Arena: victory",
   "Arena: devolución": "Arena: refund",
@@ -269,7 +278,10 @@ const EN = {
   "Error en la petición al servidor": "Server request failed"
 };
 export function uiText(lang, value) {
- if(lang !== 'en' || typeof value !== 'string')return value;
+ if(typeof value !== 'string')return value;
+ const reward=/^Respuesta correcta en ítem [A-Za-z0-9_-]+ \((m1|m2|lectora|cien|hist)\)$/.exec(value);
+ if(reward){const names=lang==='en'?{m1:'Mathematics M1',m2:'Mathematics M2',lectora:'Reading',cien:'Science',hist:'History'}:{m1:'Matemática M1',m2:'Matemática M2',lectora:'Competencia Lectora',cien:'Ciencias',hist:'Historia'};return `${lang==='en'?'Correct practice answer':'Respuesta correcta de práctica'} · ${names[reward[1]]}`;}
+ if(lang !== 'en')return ({pending:'Pendiente',approved:'Aprobada',rejected:'Rechazada',completed:'Completada'})[value]||value;
  if(EN[value])return EN[value];
  return value.replace(/^Inicio de sesión diario \(día (\d+) seguido\)$/,'Daily sign in ($1 consecutive days)').replace(/^Inicio de sesión diario · ¡Día (\d+) seguido!$/,'Daily sign in · Day $1 in a row!').replace(/^Respuesta correcta en ítem (.+)$/,'Correct answer to question $1');
 }

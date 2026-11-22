@@ -35,8 +35,8 @@ class WfColors extends ThemeExtension<WfColors> {
     brand: Color(0xFF1A365D),
     onBrand: Colors.white,
     chip: Color(0xFFEEF4FF),
-    success: Color(0xFF10B981),
-    danger: Color(0xFFEF4444),
+    success: Color(0xFF047857),
+    danger: Color(0xFFB91C1C),
   );
 
   static const dark = WfColors._(

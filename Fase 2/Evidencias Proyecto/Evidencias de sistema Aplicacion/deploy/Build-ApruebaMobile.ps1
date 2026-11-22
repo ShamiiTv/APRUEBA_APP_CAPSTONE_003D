@@ -17,12 +17,13 @@ Copy-Item -LiteralPath (Join-Path $application 'aprueba_student_web/public/paypa
 if (Test-Path -LiteralPath $socialSource) {
   Copy-Item -LiteralPath $socialSource -Destination (Join-Path $mobile 'web/social-connect.js')
 }
+$buildVersion=[regex]::Match([System.IO.File]::ReadAllText((Join-Path $mobile 'pubspec.yaml')),'(?m)^version:\s*(\S+)').Groups[1].Value
 Push-Location $mobile
 try {
   & $FlutterPath analyze
   if ($LASTEXITCODE -ne 0) { throw 'Falló flutter analyze' }
   & $FlutterPath test
   if ($LASTEXITCODE -ne 0) { throw 'Fallaron las pruebas Flutter' }
-  & $FlutterPath build web --release --base-href /movil/ "--dart-define=API_URL=$ApiUrl"
+  & $FlutterPath build web --release --base-href /movil/ "--dart-define=API_URL=$ApiUrl" "--dart-define=APP_VERSION=$buildVersion"
   if ($LASTEXITCODE -ne 0) { throw 'Falló la compilación móvil para navegador' }
 } finally { Pop-Location }

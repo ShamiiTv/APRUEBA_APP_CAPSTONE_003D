@@ -3,6 +3,21 @@ import 'package:flutter/widgets.dart';
 import 'l10n.dart';
 
 const _englishSystemText = <String, String>{
+  "Facsímil requiere el plan Acceso completo vigente.":
+      "Mock exams require an active Full access plan.",
+  "Revisa la prueba, dificultad y cantidad de preguntas.":
+      "Check your test, difficulty and question count.",
+  "No hay suficientes preguntas disponibles para esta selección.":
+      "Not enough questions are available for this selection.",
+  "Ya tienes un facsímil en curso. Continúalo o finalízalo antes de comenzar otro.": "You have a mock exam in progress. Resume or finish it before starting another.",
+  "No se encontró este facsímil.": "This mock exam was not found.",
+  "La pregunta ya cambió. Actualiza el facsímil para continuar.":
+      "The question has changed. Refresh your mock exam to continue.",
+  "Esta solicitud ya corresponde a otra configuración.":
+      "This request already belongs to another configuration.",
+  "No se pudo actualizar el facsímil. Intenta nuevamente.":
+      "Could not update the mock exam. Please retry.",
+
   "Arena: entrada": "Arena: entry",
   "Arena: victoria": "Arena: victory",
   "Arena: devolución": "Arena: refund",
@@ -354,7 +369,37 @@ String systemText(BuildContext context, String value) =>
     translateSystemText(isEnglish(context) ? 'en' : 'es', value);
 
 String translateSystemText(String locale, String value) {
-  if (locale != 'en') return value;
+  final reward = RegExp(
+    r'^Respuesta correcta en ítem [A-Za-z0-9_-]+ \((m1|m2|lectora|cien|hist)\)$',
+  ).firstMatch(value);
+  if (reward != null) {
+    final id = reward.group(1)!;
+    final labels = locale == 'en'
+        ? {
+            'm1': 'Mathematics M1',
+            'm2': 'Mathematics M2',
+            'lectora': 'Reading',
+            'cien': 'Science',
+            'hist': 'History',
+          }
+        : {
+            'm1': 'Matemática M1',
+            'm2': 'Matemática M2',
+            'lectora': 'Competencia Lectora',
+            'cien': 'Ciencias',
+            'hist': 'Historia',
+          };
+    return '${locale == 'en' ? 'Correct practice answer' : 'Respuesta correcta de práctica'} · ${labels[id]}';
+  }
+  if (locale != 'en') {
+    return {
+          'pending': 'Pendiente',
+          'approved': 'Aprobada',
+          'rejected': 'Rechazada',
+          'completed': 'Completada',
+        }[value] ??
+        value;
+  }
   return _englishSystemText[value] ??
       value
           .replaceAllMapped(

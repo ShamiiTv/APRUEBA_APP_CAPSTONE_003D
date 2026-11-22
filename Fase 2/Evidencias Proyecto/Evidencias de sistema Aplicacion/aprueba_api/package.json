@@ -24,7 +24,8 @@
     "test:security:emulator": "node --test test/security.emulator.test.js",
     "test:paypal:emulator": "node --test test/paypal.emulator.test.js",
     "test:quota:emulator": "node --test test/quota.emulator.test.js",
-    "test:arena:emulator": "node --test test/arena.emulator.test.js"
+    "test:arena:emulator": "node --test test/arena.emulator.test.js",
+    "test:facsimile:emulator": "node --test test/facsimile.emulator.test.js"
   },
   "keywords": [
     "paes",

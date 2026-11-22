@@ -1,3 +1,4 @@
+const Facsimile = lazy(() => import('./pages/Facsimile'));
 const Arena = lazy(() => import('./pages/Arena'));
 import {useTheme} from './context/useTheme';
 import {hasSession} from './api/client';
@@ -71,6 +72,7 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
+          <Route path="/facsimil" element={<PrivateRoute><Layout /></PrivateRoute>}><Route index element={<Facsimile />} /></Route>
           <Route path="/arena" element={<PrivateRoute><Layout /></PrivateRoute>}><Route index element={<Arena />} /></Route>
           <Route path="/invitacion" element={<GroupInvitation />} />
           <Route path="/verificar-correo" element={<PrivateRoute verification><VerifyEmail /></PrivateRoute>} />

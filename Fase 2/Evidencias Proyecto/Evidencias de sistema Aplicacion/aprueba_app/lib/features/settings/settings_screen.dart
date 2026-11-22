@@ -1,3 +1,5 @@
+import '../../core/widgets/app_version.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../core/utils/tier_names.dart';
@@ -482,6 +484,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             OutlinedButton(
               onPressed: _themeSaving ? null : () => _logout(context, ref),
               child: Text(tr(context, 'Cerrar sesión', 'Log out')),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              appVersionLabel(context),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: c.muted, fontSize: 12),
             ),
           ],
         ),

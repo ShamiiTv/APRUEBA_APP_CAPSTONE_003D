@@ -1,3 +1,5 @@
+import 'core/widgets/app_viewport.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -81,19 +83,8 @@ class ApruebaApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       routerConfig: appRouter,
-      // En pantallas anchas (Chrome) limita el ancho para que se vea como móvil.
-      builder: (context, child) {
-        return ColoredBox(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 440),
-              child: child,
-            ),
-          ),
-        );
-      },
+      builder: (context, child) =>
+          AppViewport(child: child ?? const SizedBox.shrink()),
     );
   }
 }

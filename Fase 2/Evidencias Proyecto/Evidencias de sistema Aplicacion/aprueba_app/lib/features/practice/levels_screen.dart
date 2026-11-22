@@ -7,7 +7,17 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/l10n/l10n.dart';
 import '../../core/network/api_client.dart';
-import '../auth/auth_providers.dart';
+
+class LevelsRepository {
+  Future<List<dynamic>> fetch(String test) async =>
+      (await ApiClient.dio.get(
+            '/practice/levels',
+            queryParameters: {'testId': test},
+          )).data['data']
+          as List;
+}
+
+final levelsRepositoryProvider = Provider((ref) => LevelsRepository());
 
 class LevelsScreen extends ConsumerStatefulWidget {
   const LevelsScreen({super.key, this.initialTest = 'm1'});
@@ -19,13 +29,8 @@ class LevelsScreen extends ConsumerStatefulWidget {
 class _LevelsState extends ConsumerState<LevelsScreen> {
   String test = 'm1';
   late Future<List<dynamic>> levels;
-  Future<List<dynamic>> load() async {
-    final res = await ApiClient.dio.get(
-      '/practice/levels',
-      queryParameters: {'testId': test},
-    );
-    return res.data['data'] as List;
-  }
+  Future<List<dynamic>> load() =>
+      ref.read(levelsRepositoryProvider).fetch(test);
 
   @override
   void initState() {
@@ -52,19 +57,24 @@ class _LevelsState extends ConsumerState<LevelsScreen> {
         DropdownButtonFormField<String>(
           decoration: InputDecoration(labelText: tr(context, 'Prueba', 'Test')),
           initialValue: test,
-          items: const [
+          items: [
             DropdownMenuItem(value: 'm1', child: Text('M1')),
             DropdownMenuItem(value: 'm2', child: Text('M2')),
             DropdownMenuItem(
               value: 'lectora',
-              child: Text('Lectora / Reading'),
+              child: Text(tr(context, 'Competencia Lectora', 'Reading')),
             ),
-            DropdownMenuItem(value: 'cien', child: Text('Ciencias / Science')),
-            DropdownMenuItem(value: 'hist', child: Text('Historia / History')),
+            DropdownMenuItem(
+              value: 'cien',
+              child: Text(tr(context, 'Ciencias', 'Science')),
+            ),
+            DropdownMenuItem(
+              value: 'hist',
+              child: Text(tr(context, 'Historia', 'History')),
+            ),
           ],
           onChanged: (value) => setState(() {
             test = value!;
-            test = widget.initialTest;
             levels = load();
           }),
         ),
@@ -100,8 +110,10 @@ class _LevelsState extends ConsumerState<LevelsScreen> {
                           ? const Icon(Icons.arrow_forward_rounded)
                           : null,
                       leading: Icon(
-                        level['unlocked'] == true
-                            ? Icons.lock_open
+                        (level['available'] as num) == 0
+                            ? Icons.inventory_2_outlined
+                            : level['unlocked'] == true
+                            ? Icons.play_circle_outline
                             : Icons.lock,
                       ),
                       title: Text(
@@ -114,26 +126,20 @@ class _LevelsState extends ConsumerState<LevelsScreen> {
                       subtitle: Text(
                         tr(
                           context,
-                          "${level['correct']} aciertos · ${level['available']} preguntas",
-                          "${level['correct']} correct · ${level['available']} questions",
+                          (level['available'] as num) == 0
+                              ? 'Sin preguntas disponibles'
+                              : "${level['correct']} ${level['correct'] == 1 ? 'acierto' : 'aciertos'} · ${level['available']} preguntas",
+                          (level['available'] as num) == 0
+                              ? 'No questions available'
+                              : "${level['correct']} correct · ${level['available']} questions",
                         ),
                       ),
                       onTap:
                           level['unlocked'] == true &&
                               (level['available'] as num) > 0
-                          ? () async {
-                              await ApiClient.dio.patch(
-                                '/auth/me',
-                                data: {
-                                  'selectedTests': [test],
-                                  'difficulty': level['id'],
-                                },
-                              );
-                              await ref
-                                  .read(profileProvider.notifier)
-                                  .refresh();
-                              if (context.mounted) context.go('/practice');
-                            }
+                          ? () => context.go(
+                              '/practice?testId=$test&difficulty=${level['id']}',
+                            )
                           : null,
                     ),
                   ),

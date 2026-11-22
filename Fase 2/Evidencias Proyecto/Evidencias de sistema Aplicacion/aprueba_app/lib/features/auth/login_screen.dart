@@ -1,3 +1,5 @@
+import '../../core/widgets/app_version.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/l10n.dart';
@@ -6,7 +8,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../core/theme/app_colors.dart';
 import '../../core/theme/wf_colors.dart';
 import '../practice/practice_providers.dart';
 import 'auth_providers.dart';
@@ -22,7 +23,6 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   // Amarillo del logo y un tono más oscuro para texto legible sobre fondo claro.
   static const _amarillo = Color(0xFFF5AF41);
-  static const _amarilloTexto = Color(0xFFC98A12);
 
   final _emailCtrl = TextEditingController();
   final _passCtrl = TextEditingController();
@@ -85,7 +85,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           style: GoogleFonts.montserrat(
             fontSize: 26,
             fontWeight: FontWeight.w800,
-            color: AppColors.azul,
+            color: WfColors.of(context).ink,
           ),
         ),
       ],
@@ -102,7 +102,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           style: GoogleFonts.inter(
             fontSize: 13,
             fontWeight: FontWeight.w700,
-            color: AppColors.azul,
+            color: WfColors.of(context).ink,
           ),
         ),
       ),
@@ -123,9 +123,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               child: Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: c.bg,
                   borderRadius: BorderRadius.circular(24),
-                  border: Border.all(color: const Color(0xFFE2E8F0)),
+                  border: Border.all(color: c.line),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withValues(alpha: 0.06),
@@ -138,6 +138,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _miniLogo(),
+                    const SizedBox(height: 8),
+                    Text(
+                      appVersionLabel(context),
+                      style: TextStyle(color: c.muted, fontSize: 11),
+                    ),
                     const SizedBox(height: 28),
                     Text(
                       tr(
@@ -148,7 +153,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       style: GoogleFonts.montserrat(
                         fontSize: 24,
                         fontWeight: FontWeight.w800,
-                        color: AppColors.azul,
+                        color: WfColors.of(context).ink,
                       ),
                     ),
                     const SizedBox(height: 6),
@@ -223,8 +228,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       height: 52,
                       child: FilledButton(
                         style: FilledButton.styleFrom(
-                          backgroundColor: AppColors.azul,
-                          foregroundColor: Colors.white,
+                          backgroundColor: c.brand,
+                          foregroundColor: c.onBrand,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(14),
                           ),
@@ -235,12 +240,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ),
                         onPressed: _loading ? null : _login,
                         child: _loading
-                            ? const SizedBox(
+                            ? SizedBox(
                                 height: 20,
                                 width: 20,
                                 child: CircularProgressIndicator(
                                   strokeWidth: 2,
-                                  color: Colors.white,
+                                  color: c.onBrand,
                                 ),
                               )
                             : Text(tr(context, 'Iniciar sesión', 'Log in')),
@@ -281,7 +286,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               style: GoogleFonts.inter(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w800,
-                                color: _amarilloTexto,
+                                color: c.brand,
                               ),
                             ),
                           ),

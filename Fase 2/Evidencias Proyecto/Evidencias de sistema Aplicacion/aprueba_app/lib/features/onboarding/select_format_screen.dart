@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,8 +33,6 @@ class SelectFormatScreen extends ConsumerStatefulWidget {
 
 class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
   static const _amarillo = Color(0xFFF5AF41);
-  static const _bordeSuave = Color(0xFFD5DDE8);
-  static const _fondoSuave = Color(0xFFF1F5F9);
 
   late String _format;
   bool _saving = false;
@@ -42,7 +41,7 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
   @override
   void initState() {
     super.initState();
-    // Facsímil aún no está implementado; no restaurar una selección antigua.
+    // Facsímil has its own persistent setup; onboarding keeps general practice.
     _format = 'random';
   }
 
@@ -74,55 +73,6 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
     }
   }
 
-  void _selectFormat(String value) {
-    if (value != 'random') return;
-    setState(() => _format = value);
-  }
-
-  Widget _segmented({
-    required List<MapEntry<String, String>> items,
-    required String selected,
-    required ValueChanged<String> onChanged,
-  }) {
-    final c = WfColors.of(context);
-    return Container(
-      padding: const EdgeInsets.all(3),
-      decoration: BoxDecoration(
-        color: _fondoSuave,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: _bordeSuave),
-      ),
-      child: Row(
-        children: [
-          for (final e in items)
-            Expanded(
-              child: InkWell(
-                borderRadius: BorderRadius.circular(11),
-                onTap: e.key == 'facsim' ? null : () => onChanged(e.key),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  decoration: BoxDecoration(
-                    color: selected == e.key ? c.brand : Colors.transparent,
-                    borderRadius: BorderRadius.circular(11),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    e.value,
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.montserrat(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      color: selected == e.key ? Colors.white : c.muted,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-
   Widget _infoCard({
     required String title,
     required String text,
@@ -134,10 +84,10 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: _fondoSuave,
+        color: c.soft,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: selected ? c.brand : _bordeSuave,
+          color: selected ? c.brand : c.line,
           width: selected ? 1.5 : 1,
         ),
       ),
@@ -169,10 +119,14 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.schedule, size: 14, color: _amarillo),
+                      const Icon(
+                        Icons.lock_outline,
+                        size: 14,
+                        color: _amarillo,
+                      ),
                       const SizedBox(width: 4),
                       Text(
-                        tr(context, 'Próximamente', 'Coming soon'),
+                        tr(context, 'Premium', 'Premium'),
                         style: GoogleFonts.inter(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,
@@ -225,42 +179,31 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
                   _title(
                     tr(context, 'Formato de preguntas', 'Question format'),
                   ),
-                  _segmented(
-                    items: [
-                      MapEntry('random', tr(context, 'Aleatorio', 'Random')),
-                      MapEntry(
-                        'facsim',
-                        tr(
-                          context,
-                          'Facsímil · Próximamente',
-                          'Mock exam · Coming soon',
-                        ),
-                      ),
-                    ],
-                    selected: _format,
-                    onChanged: _selectFormat,
-                  ),
-                  const SizedBox(height: 14),
-                  _infoCard(
-                    title: tr(context, 'Aleatorio', 'Random'),
-                    text: tr(
-                      context,
-                      'Preguntas mezcladas de todos los ejes.',
-                      'Questions mixed from all topics.',
-                    ),
-                    selected: _format == 'random',
-                  ),
                   const SizedBox(height: 12),
                   _infoCard(
                     title: tr(context, 'Facsímil', 'Mock exam'),
                     text: tr(
                       context,
-                      'Próximamente: ensayo con formato de examen. Todavía no está disponible en ningún plan.',
-                      'Coming soon: an exam-style practice test. Not available on any plan yet.',
+                      'Configura prueba, dificultad disponible y cantidad de preguntas desde Facsímil. Incluido en el plan Acceso completo.',
+                      'Configure a test, available difficulty and question count in Mock exams. Included in Full access.',
                     ),
                     premium: true,
                     selected: _format == 'facsim',
                   ),
+                  if (ref.watch(profileProvider).value?.onboardingCompleted ==
+                      true)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12),
+                      child: OutlinedButton.icon(
+                        onPressed: _saving
+                            ? null
+                            : () => context.push('/facsimile'),
+                        icon: const Icon(Icons.menu_book_outlined),
+                        label: Text(
+                          tr(context, 'Abrir Facsímil', 'Open mock exams'),
+                        ),
+                      ),
+                    ),
                   _title(
                     tr(context, 'Nivel de dificultad', 'Difficulty level'),
                     top: 26,
@@ -268,13 +211,13 @@ class _SelectFormatScreenState extends ConsumerState<SelectFormatScreen> {
                   _infoCard(
                     title: tr(
                       context,
-                      'Empiezas en Básico',
-                      'You start at Basic',
+                      'Un nivel adecuado para comenzar',
+                      'The right level to get started',
                     ),
                     text: tr(
                       context,
-                      'Subirás de nivel automáticamente a medida que respondas bien.',
-                      'You will level up automatically as you answer correctly.',
+                      'Comienzas en el primer nivel que tiene preguntas disponibles. Los siguientes se desbloquean al conseguir 20 aciertos en el nivel anterior.',
+                      'Start at the first level with available questions. Further levels unlock after 20 correct answers in the previous level.',
                     ),
                   ),
                   if (_error != null) ...[

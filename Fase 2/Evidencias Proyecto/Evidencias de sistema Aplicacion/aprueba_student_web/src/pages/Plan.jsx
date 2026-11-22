@@ -80,7 +80,7 @@ export default function Plan(){
      <button disabled={busy||current||plan.id==='free'||locked||!['simulation','paypal-sandbox'].includes(plan.paymentMode)} onClick={()=>choose(plan.id)}>{current?(en?'Current plan':'Plan actual'):locked?(en?'Available after your current plan':'Disponible al finalizar tu plan'):(en?'Subscribe with PayPal':'Suscribirme con PayPal')}</button>
     </section>;
    })}</div>}
-   <p className="plan-footnote">{en?'Mock exams · Coming soon. Not included in the available plans.':'Facsímil · Próximamente. No está incluido en los planes disponibles.'}</p>
+   <p className="plan-footnote">{en?'Fixed-order mock exams are included in Full access.':'Facsímil en orden fijo, incluido en Acceso completo.'}</p>
   </>}
   {checkout&&<dialog ref={dialog} className="checkout-dialog" onCancel={event=>{event.preventDefault();if(!busy)closeCheckout();}} aria-labelledby="checkout-title">
    <div className={`checkout-symbol ${checkout.phase==='confirmed'?'is-confirmed':''}`} aria-hidden="true">{checkout.phase==='confirmed'?'✓':checkout.phase==='cancel'?'↻':'↗'}</div>

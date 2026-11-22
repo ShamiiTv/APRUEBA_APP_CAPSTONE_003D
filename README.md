@@ -1,5 +1,11 @@
 # Aprueba — Proyecto Capstone
 
+## Aprueba 1.3.0 · Facsímil y experiencia móvil
+
+El plan Acceso completo permite elegir una prueba, una dificultad con preguntas disponibles y hasta 100 preguntas en orden fijo. Cada respuesta se guarda para retomar el ensayo. El resultado y las explicaciones aparecen al finalizar. Este modo lleva su propio progreso, independiente de las medallas y la cuota de práctica.
+
+En Android, la versión aparece en Acceso y Ajustes. La selección de nivel conserva las materias del perfil y el historial muestra el motivo de cada medalla en lenguaje legible.
+
 Proyecto del equipo Camilo Bernal, Javiera Villablanca y Claudio Valverde. El repositorio reúne las evidencias académicas por fase y el código de Aprueba web, la app Flutter y su API compartida.
 
 ## Estado actual — 22 de noviembre de 2026

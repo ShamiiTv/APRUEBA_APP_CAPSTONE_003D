@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../theme/app_colors.dart';
 import '../theme/wf_colors.dart';
 import '../utils/format_utils.dart';
 
@@ -21,7 +20,7 @@ class AvatarCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = WfColors.of(context);
-    final fg = color.computeLuminance() > 0.55 ? AppColors.azul : Colors.white;
+    final fg = color.computeLuminance() > 0.179 ? Colors.black : Colors.white;
 
     return Container(
       width: size,

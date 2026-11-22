@@ -1,4 +1,6 @@
+import '../auth/auth_providers.dart';
 import '../../core/widgets/content_skeleton.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../core/utils/tier_names.dart';
@@ -142,7 +144,7 @@ class _PracticeExplanationScreenState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          d.title.isEmpty
+                          (d.title.isEmpty || d.title == 'Explicación')
                               ? tr(
                                   context,
                                   'Cómo se llega a la respuesta',
@@ -208,6 +210,51 @@ class _PracticeExplanationScreenState
                 ),
               ),
               const Divider(height: 28),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(18),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        tr(
+                          context,
+                          '¿Necesitas una explicación personalizada?',
+                          'Need a personal explanation?',
+                        ),
+                        style: tt.titleMedium,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        tr(
+                          context,
+                          'La solución anterior pertenece a esta pregunta. Si necesitas apoyo adicional, explora tutores de esta materia.',
+                          'The solution above explains this question. For additional support, explore tutors for this subject.',
+                        ),
+                        style: TextStyle(color: c.muted, height: 1.5),
+                      ),
+                      const SizedBox(height: 12),
+                      FilledButton.icon(
+                        onPressed: () => context.push(
+                          ref.read(profileProvider).value?.hasTutorAccess ==
+                                  true
+                              ? '/tutors'
+                              : '/premium/tutors',
+                        ),
+                        icon: const Icon(Icons.school_outlined),
+                        label: Text(
+                          tr(
+                            context,
+                            'Buscar tutor · Acceso completo',
+                            'Find a tutor · Full access',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   foregroundColor: c.brand,

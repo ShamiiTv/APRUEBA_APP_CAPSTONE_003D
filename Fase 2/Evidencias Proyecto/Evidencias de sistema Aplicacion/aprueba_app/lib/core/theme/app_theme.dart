@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -73,6 +74,9 @@ class AppTheme {
       textTheme: textTheme,
       dividerColor: c.line,
       appBarTheme: AppBarTheme(
+        systemOverlayStyle: b == Brightness.dark
+            ? SystemUiOverlayStyle.light
+            : SystemUiOverlayStyle.dark,
         backgroundColor: pageBg,
         foregroundColor: c.brand,
         elevation: 0,
@@ -99,8 +103,8 @@ class AppTheme {
         style: FilledButton.styleFrom(
           backgroundColor: AppColors.oro,
           foregroundColor: AppColors.azul,
-          disabledBackgroundColor: AppColors.oro.withValues(alpha: 0.4),
-          disabledForegroundColor: AppColors.azul.withValues(alpha: 0.4),
+          disabledBackgroundColor: c.soft,
+          disabledForegroundColor: c.muted,
           minimumSize: const Size.fromHeight(48),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),

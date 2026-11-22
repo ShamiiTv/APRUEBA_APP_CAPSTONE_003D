@@ -1,3 +1,4 @@
+import facsimileRoutes from './routes/facsimileRoutes.js';
 import arenaRoutes from './routes/arenaRoutes.js';
 ﻿import express from 'express';
 import {paypalWebhook} from './services/paypalPlans.js';
@@ -76,6 +77,7 @@ app.get('/api/v1/progress', getProgress);
 app.use('/api/v1/study-plan', authenticateToken, requireOnboarding);
 app.get('/api/v1/study-plan', getStudyPlan);
 app.put('/api/v1/study-plan', saveStudyPlan);
+app.use('/api/v1/practice/facsimiles',facsimileRoutes);
 app.use('/api/v1/practice', practiceRoutes);
 app.use('/api/v1/medals', medalsRoutes);
 app.use('/api/v1/groups', groupsRoutes);

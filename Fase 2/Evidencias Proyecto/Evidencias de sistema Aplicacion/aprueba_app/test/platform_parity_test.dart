@@ -183,6 +183,10 @@ void main() {
       expect(find.text('Últimas respuestas'), findsOneWidget);
       expect(find.text('Correcta'), findsOneWidget);
       expect(find.textContaining('Bienvenida a Aprueba'), findsOneWidget);
+      await tester.scrollUntilVisible(
+        find.textContaining('reference-test'),
+        250,
+      );
       expect(find.textContaining('reference-test'), findsOneWidget);
       expect(tester.takeException(), isNull);
     },

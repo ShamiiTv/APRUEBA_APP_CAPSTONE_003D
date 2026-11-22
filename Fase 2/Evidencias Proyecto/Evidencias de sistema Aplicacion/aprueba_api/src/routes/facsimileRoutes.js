@@ -1,0 +1,10 @@
+import {Router} from 'express';
+import {facsimiles,FACSIMILE_ERRORS} from '../services/facsimiles.js';
+const router=Router();
+const run=fn=>async(req,res)=>{try{return res.success(await fn(req));}catch(e){return res.fail(FACSIMILE_ERRORS[e.code]||'No se pudo actualizar el facsímil. Intenta nuevamente.',{code:e.code||'FACSIMILE_UNAVAILABLE'},e.status||503);}};
+router.get('/',run(req=>facsimiles.list(req.user.sub)));
+router.post('/',run(req=>facsimiles.start(req.user.sub,req.body)));
+router.get('/:id',run(req=>facsimiles.get(req.user.sub,req.params.id)));
+router.post('/:id/answers',run(req=>facsimiles.answer(req.user.sub,req.params.id,req.body)));
+router.post('/:id/cancel',run(req=>facsimiles.cancel(req.user.sub,req.params.id)));
+export default router;

@@ -111,6 +111,21 @@ class PracticeRepository {
   };
 
   // ── Práctica ──
+  Future<NextQuestion> nextForTest(String testId, String difficulty) async {
+    try {
+      final res = await ApiClient.dio.get(
+        '/practice/next',
+        queryParameters: {'testId': testId, 'difficulty': difficulty},
+      );
+      return NextQuestion.fromResponse(
+        Map<String, dynamic>.from(res.data['data']),
+        res.data['meta'] as Map?,
+      );
+    } on DioException catch (e) {
+      throw _error(e, 'No se pudo cargar la pregunta.');
+    }
+  }
+
   Future<NextQuestion> next({String? similarTo}) async {
     try {
       if (similarTo != null) {

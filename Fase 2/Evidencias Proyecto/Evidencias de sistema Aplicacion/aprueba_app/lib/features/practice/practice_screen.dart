@@ -22,8 +22,13 @@ import 'practice_providers.dart';
 import 'practice_repository.dart';
 
 class PracticeScreen extends ConsumerStatefulWidget {
-  const PracticeScreen({super.key, this.similarTo});
-  final String? similarTo;
+  const PracticeScreen({
+    super.key,
+    this.similarTo,
+    this.initialTest,
+    this.initialDifficulty,
+  });
+  final String? similarTo, initialTest, initialDifficulty;
 
   @override
   ConsumerState<PracticeScreen> createState() => _PracticeScreenState();
@@ -132,9 +137,13 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
       try {
         await ref.read(testsProvider.future);
       } catch (_) {}
-      final next = await ref
-          .read(practiceRepositoryProvider)
-          .next(similarTo: widget.similarTo);
+      final repo = ref.read(practiceRepositoryProvider);
+      final next = widget.initialTest != null && widget.similarTo == null
+          ? await repo.nextForTest(
+              widget.initialTest!,
+              widget.initialDifficulty ?? 'd2',
+            )
+          : await repo.next(similarTo: widget.similarTo);
       final onlyEmpty = next.allCompleted
           ? await _chosenTestsAreEmpty()
           : false;
@@ -226,6 +235,11 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
       appBar: AppBar(
         title: Text(_title()),
         actions: [
+          IconButton(
+            tooltip: tr(context, 'Facsímil de práctica', 'Practice mock exam'),
+            onPressed: () => context.push('/facsimile'),
+            icon: const Icon(Icons.menu_book_outlined),
+          ),
           IconButton(
             tooltip: tr(context, 'Explorar Aprueba', 'Explore Aprueba'),
             onPressed: () => showApruebaMenu(context),

@@ -781,8 +781,8 @@ class _PlansState extends ConsumerState<PlansScreen>
                 Text(
                   tr(
                     context,
-                    'Facsímil · Próximamente. No está incluido en los planes disponibles.',
-                    'Mock exams · Coming soon. Not included in the available plans.',
+                    'Facsímil en orden fijo, incluido en Acceso completo.',
+                    'Fixed-order mock exams are included in Full access.',
                   ),
                   style: TextStyle(color: c.muted, fontSize: 12, height: 1.6),
                 ),

@@ -155,7 +155,7 @@ void main() {
   });
   for (final paid in [false, true]) {
     testWidgets(
-      'facsímil Próximamente no es seleccionable ni guardable, paid=$paid',
+      'configuración general conserva aleatorio y explica Facsímil separado, paid=$paid',
       (tester) async {
         final repo = FixturePractice();
         tester.view.physicalSize = const Size(360, 900);
@@ -193,12 +193,8 @@ void main() {
         );
         await tester.tap(find.text('Abrir'));
         await tester.pumpAndSettle();
-        final label = find.text('Facsímil · Próximamente');
-        expect(label, findsOneWidget);
-        final button = tester.widget<InkWell>(
-          find.ancestor(of: label, matching: find.byType(InkWell)).first,
-        );
-        expect(button.onTap, isNull);
+        expect(find.text('Facsímil'), findsOneWidget);
+        expect(find.textContaining('Próximamente'), findsNothing);
         await tester.tap(find.text('Continuar'));
         await tester.pumpAndSettle();
         expect(repo.saved?.format, 'random');

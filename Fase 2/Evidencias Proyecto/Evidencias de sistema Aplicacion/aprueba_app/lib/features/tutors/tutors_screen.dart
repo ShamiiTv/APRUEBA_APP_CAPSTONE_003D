@@ -66,7 +66,7 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
                 style: GoogleFonts.inter(
                   fontSize: 13,
                   fontWeight: FontWeight.w700,
-                  color: on ? Colors.white : c.ink,
+                  color: on ? c.onBrand : c.ink,
                 ),
               ),
             ],
@@ -102,7 +102,7 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
                       style: GoogleFonts.montserrat(
                         fontSize: 15,
                         fontWeight: FontWeight.w800,
-                        color: const Color(0xFF1A365D),
+                        color: c.ink,
                       ),
                     ),
                     Text(
@@ -111,10 +111,7 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
                         'Detecta tus áreas débiles desde tu práctica PAES',
                         'Find your weak areas from your PAES practice',
                       ),
-                      style: GoogleFonts.inter(
-                        fontSize: 12,
-                        color: const Color(0xFF475569),
-                      ),
+                      style: GoogleFonts.inter(fontSize: 12, color: c.muted),
                     ),
                   ],
                 ),
@@ -259,7 +256,7 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
                 style: FilledButton.styleFrom(
                   minimumSize: const Size(0, 42),
                   backgroundColor: c.brand,
-                  foregroundColor: Colors.white,
+                  foregroundColor: c.onBrand,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),

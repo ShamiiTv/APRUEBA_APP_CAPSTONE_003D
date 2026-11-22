@@ -99,15 +99,16 @@ class _VerifyEmailScreenState extends ConsumerState<VerifyEmailScreen> {
         title: Text(tr(context, 'Confirma tu correo', 'Verify your email')),
       ),
       body: SafeArea(
-        child: Center(
+        child: Align(
+          alignment: Alignment.topCenter,
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 480),
             child: ListView(
-              shrinkWrap: true,
+              shrinkWrap: false,
               padding: const EdgeInsets.all(20),
               children: [
                 Text(
-                  'Aprueba',
+                  tr(context, 'Activa tu cuenta', 'Activate your account'),
                   style: Theme.of(context).textTheme.headlineSmall
                       ?.copyWith(fontWeight: FontWeight.w800),
                 ),

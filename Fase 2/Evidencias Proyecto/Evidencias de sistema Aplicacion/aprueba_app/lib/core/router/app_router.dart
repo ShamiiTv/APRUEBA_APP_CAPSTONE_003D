@@ -1,3 +1,4 @@
+import '../../features/practice/facsimile_screen.dart';
 import '../../features/arena/arena_screen.dart';
 import '../widgets/private_beta_notice.dart';
 import '../../features/study/study_plan_screen.dart';
@@ -157,8 +158,11 @@ final appRouter = GoRouter(
     ),
     GoRoute(
       path: '/practice',
-      builder: (context, state) =>
-          PracticeScreen(similarTo: state.uri.queryParameters['similarTo']),
+      builder: (context, state) => PracticeScreen(
+        similarTo: state.uri.queryParameters['similarTo'],
+        initialTest: state.uri.queryParameters['testId'],
+        initialDifficulty: state.uri.queryParameters['difficulty'],
+      ),
     ),
     GoRoute(
       path: '/practice/explanation',
@@ -199,6 +203,10 @@ final appRouter = GoRouter(
         if (step == 'upgrade') return const PlansScreen(limitReached: true);
         return QuotaUnlockScreen(step: step);
       },
+    ),
+    GoRoute(
+      path: '/facsimile',
+      builder: (context, state) => const FacsimileScreen(),
     ),
     GoRoute(path: '/arena', builder: (context, state) => const ArenaScreen()),
     GoRoute(path: '/plans', builder: (context, state) => const PlansScreen()),

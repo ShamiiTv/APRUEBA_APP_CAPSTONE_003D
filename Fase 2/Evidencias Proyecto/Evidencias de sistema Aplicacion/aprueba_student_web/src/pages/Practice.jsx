@@ -148,11 +148,12 @@ export default function Practice() {
           <option value="cien">{t.practice.selectCiencias}</option>
           <option value="hist">{t.practice.selectHistoria}</option>
         </select>
-        <select aria-label="Dificultad" value={difficulty} disabled={submitting} onChange={e => { setDifficulty(e.target.value); fetchNextQuestion(); }} style={{ padding: '10px', borderRadius: '10px', color: 'var(--ink)', background: 'var(--panel)', border: '1px solid var(--line)' }}>
+        <select aria-label={lang==='en'?'Difficulty':'Dificultad'} value={difficulty} disabled={submitting} onChange={e => { setDifficulty(e.target.value); fetchNextQuestion(); }} style={{ padding: '10px', borderRadius: '10px', color: 'var(--ink)', background: 'var(--panel)', border: '1px solid var(--line)' }}>
           <option value="d1">{lang==='en'?'Basic':'Básica'}</option><option value="d2">{lang==='en'?'Intermediate':'Intermedia'}</option><option value="d3">{lang==='en'?'Advanced':'Avanzada'}</option>
         </select>
       </div>
 
+      <section className="facsimile-entry" style={{background:'var(--panel)',border:'1px solid var(--line)',padding:20,borderRadius:16,margin:'20px 0'}}><h2>{lang==='en'?'Prefer a mock exam?':'¿Prefieres un facsímil?'}</h2><p>{lang==='en'?'Choose a test, available difficulty and question count, in a fixed order. Included in Full access.':'Elige prueba, dificultad disponible y cantidad de preguntas en orden fijo. Incluido en Acceso completo.'}</p><button onClick={()=>navigate('/facsimil')}>{lang==='en'?'Open mock exams →':'Abrir Facsímil →'}</button></section>
       <section className="practice-levels"><h2>{lang==='en'?'Difficulty levels':'Niveles escalonados'}</h2><p>{lang==='en'?'20 correct answers in the previous level unlock the next one.':'20 aciertos en el nivel anterior desbloquean el siguiente.'}</p><div className="level-grid">{levels.map(level=><button className="level-button" aria-pressed={difficulty===level.id} key={level.id} disabled={submitting || loading || !level.unlocked || !level.available} onClick={()=>{setSimilarTo(null);setDifficulty(level.id);fetchNextQuestion();}}><strong>{level.unlocked?'🔓':'🔒'} {({d1:lang==='en'?'Basic':'Básica',d2:lang==='en'?'Intermediate':'Intermedia',d3:lang==='en'?'Advanced':'Avanzada'})[level.id] || level.id}</strong><span>{level.correct}/20 {lang==='en'?'correct':'aciertos'} · {level.available} {lang==='en'?'questions':'preguntas'}</span><progress value={Math.min(level.correct,20)} max="20"/><small>{!level.available ? (lang==='en'?'No questions yet':'Sin preguntas disponibles') : !level.unlocked ? (lang==='en'?'Locked':'Por desbloquear') : difficulty===level.id ? (lang==='en'?'Selected':'Seleccionado') : (lang==='en'?'Practice this level →':'Practicar este nivel →')}</small></button>)}</div></section>
       {error && !quotaExceeded && (
         <div style={{
@@ -165,7 +166,7 @@ export default function Practice() {
           marginBottom: '20px'
         }}>
           {error}
-          <button onClick={fetchNextQuestion} disabled={submitting} style={{ display: 'block', marginTop: '12px', padding: '8px 12px', borderRadius: '8px', cursor: 'pointer' }}>Reintentar</button>
+          <button onClick={fetchNextQuestion} disabled={submitting} style={{ display: 'block', marginTop: '12px', padding: '8px 12px', borderRadius: '8px', cursor: 'pointer' }}>{lang==='en'?'Retry':'Reintentar'}</button>
         </div>
       )}
 

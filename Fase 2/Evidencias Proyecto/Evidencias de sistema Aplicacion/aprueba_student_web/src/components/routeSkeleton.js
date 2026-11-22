@@ -1,4 +1,5 @@
 export function skeletonForPath(path){
+ if(path==='/facsimil')return 'form';
  if(path==='/arena')return 'arena';
  if(path==='/')return 'home';
  if(path.startsWith('/plan-estudio'))return 'study-plan';
