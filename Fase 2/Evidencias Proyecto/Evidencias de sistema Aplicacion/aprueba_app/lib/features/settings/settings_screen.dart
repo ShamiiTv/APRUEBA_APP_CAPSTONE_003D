@@ -331,6 +331,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             ),
             rowCard(
               child: SwitchListTile.adaptive(
+                secondary: Icon(Icons.dark_mode_outlined, color: c.brand),
                 contentPadding: EdgeInsets.zero,
                 title: Text(
                   tr(context, 'Modo oscuro', 'Dark mode'),
@@ -344,7 +345,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               child: Row(
                 children: [
                   Expanded(
-                    child: Text(tr(context, 'Idioma', 'Language'), style: bold),
+                    child: Text(tr(context, 'Idioma de la app', 'App language'), style: bold),
                   ),
                   _langChip(context, ref, 'es', 'Español'),
                   _langChip(context, ref, 'en', 'English'),

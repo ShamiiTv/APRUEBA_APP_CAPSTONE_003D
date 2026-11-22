@@ -299,7 +299,7 @@ class _PostCard extends StatelessWidget {
       padding: const EdgeInsets.only(top: 11),
       child: Card(
         child: Padding(
-          padding: const EdgeInsets.all(13),
+          padding: const EdgeInsets.all(17),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -308,7 +308,7 @@ class _PostCard extends StatelessWidget {
                   AvatarCircle(
                     name: systemText(context, p.authorName),
                     color: p.authorColor,
-                    size: 32,
+                    size: 40,
                   ),
                   const SizedBox(width: 8),
                   Expanded(
@@ -325,7 +325,7 @@ class _PostCard extends StatelessWidget {
                         Text(
                           timeAgo(p.createdAt, english: isEnglish(context)),
                           style: GoogleFonts.inter(
-                            fontSize: 10,
+                            fontSize: 12,
                             color: c.muted,
                           ),
                         ),
@@ -360,7 +360,7 @@ class _PostCard extends StatelessWidget {
                   ),
                 ),
               ],
-              const SizedBox(height: 10),
+              const Divider(height: 24),
               Row(
                 children: [
                   InkWell(

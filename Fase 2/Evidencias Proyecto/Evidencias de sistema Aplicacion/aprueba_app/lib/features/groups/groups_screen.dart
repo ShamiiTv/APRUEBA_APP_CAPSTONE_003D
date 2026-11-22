@@ -407,7 +407,7 @@ class GroupsScreen extends ConsumerWidget {
                                           extra: mine.first,
                                         )
                                       : () {},
-                                  trailing: TextButton(
+                                  trailing: OutlinedButton(style: OutlinedButton.styleFrom(minimumSize: const Size(0, 48)),
                                     onPressed: isMine
                                         ? () => context.push(
                                             '/groups/detail',

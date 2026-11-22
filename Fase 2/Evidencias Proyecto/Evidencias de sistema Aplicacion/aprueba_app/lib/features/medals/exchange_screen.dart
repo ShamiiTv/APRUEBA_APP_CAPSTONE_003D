@@ -171,7 +171,7 @@ class _ExchangeScreenState extends ConsumerState<ExchangeScreen> {
               const Spacer(),
               Text(
                 can
-                    ? tr(context, '¡Listo!', 'Ready!')
+                    ? tr(context, 'Canje disponible', 'Ready to exchange')
                     : tr(context, 'Faltan $missing', '$missing missing'),
                 style: GoogleFonts.inter(
                   fontSize: 11,
@@ -200,8 +200,8 @@ class _ExchangeScreenState extends ConsumerState<ExchangeScreen> {
                 AppColors.azul,
                 t.$3,
               ),
-              disabledBackgroundColor: t.$3.withValues(alpha: 0.35),
-              disabledForegroundColor: Colors.white.withValues(alpha: 0.9),
+              disabledBackgroundColor: c.soft,
+              disabledForegroundColor: c.muted,
               minimumSize: const Size.fromHeight(42),
             ),
             child: busy
