@@ -1,3 +1,4 @@
+import '../../core/widgets/section_header.dart';
 import '../../core/l10n/system_text.dart';
 import '../../core/widgets/content_skeleton.dart';
 
@@ -100,6 +101,7 @@ class NotificationsScreen extends ConsumerWidget {
             child: ListView(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
               children: [
+                SectionHeader(tr(context, 'Notificaciones', 'Notifications'), Icons.notifications_none_rounded, trailing: Text(tr(context, '${d.unread} sin leer', '${d.unread} unread'), style: const TextStyle(color: Colors.white))), const SizedBox(height: 14),
                 for (final n in d.items)
                   InkWell(
                     onTap: () => _open(ref, n),
@@ -150,7 +152,7 @@ class NotificationsScreen extends ConsumerWidget {
                                     english: isEnglish(context),
                                   ),
                                   style: GoogleFonts.inter(
-                                    fontSize: 10,
+                                    fontSize: 12,
                                     color: c.muted,
                                   ),
                                 ),

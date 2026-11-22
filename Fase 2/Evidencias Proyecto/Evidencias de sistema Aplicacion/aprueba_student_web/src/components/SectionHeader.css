@@ -1,0 +1,15 @@
+.section-header { --tone:#19485e; display:flex; align-items:center; flex-wrap:wrap; gap:18px; margin:0 0 22px; padding:clamp(20px,3vw,34px); border-radius:22px; color:white; background:linear-gradient(110deg,var(--tone),#213b67); }
+.section-header--medal {--tone:#664520}.section-header--group{--tone:#1c5454}.section-header--chat{--tone:#393f73}.section-header--card{--tone:#37456c}
+.section-symbol {display:grid;place-items:center;width:54px;height:54px;border-radius:17px;color:#ffcf79;background:#ffffff14;border:1px solid #ffffff30}
+.section-header>div{flex:1;min-width:min(180px,100%)}.section-header h1{margin:0;color:white;font-size:clamp(1.35rem,3vw,2rem);line-height:1.2}
+.section-header.section-header p {margin:7px 0 0;color:#e5edf6;line-height:1.55;font-size:.9rem}
+.section-detail{border-radius:999px;padding:7px 12px;color:white;background:#ffffff18}
+
+:is(.social-page,.medals-page,.settings-page):has(.section-header) :is(article,section,fieldset):not(.section-header) {border-radius:18px;}
+:is(.social-page,.medals-page,.settings-page):has(.section-header) :is(input:not([type=checkbox]):not([type=radio]),select,textarea){border-radius:11px;}
+:is(.social-page,.medals-page,.settings-page):has(.section-header) button:not(.section-symbol){border-radius:11px;min-height:38px;font-weight:650;}
+:is(.social-page,.medals-page,.settings-page):has(.section-header) button:focus-visible {outline:3px solid var(--brand-ink);outline-offset:3px;}
+.medals-page .medal-card {border-top-width:3px;padding:16px;}
+.social-page .social-text{line-height:1.65;}
+.parity-page:has(.section-header--bell) .inbox-row {gap:18px;}
+.parity-page:has(.section-header--bell) .inbox-row small {display:inline-block;padding:4px 10px;border-radius:20px;background:var(--soft);}

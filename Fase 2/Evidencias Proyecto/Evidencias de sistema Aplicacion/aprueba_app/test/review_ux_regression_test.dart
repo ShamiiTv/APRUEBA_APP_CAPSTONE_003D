@@ -246,7 +246,7 @@ void main() {
         );
         await tester.pumpAndSettle();
         await tester.scrollUntilVisible(
-          find.text('Delete account'),
+          find.text('Delete account').hitTestable(),
           350,
           scrollable: find.byType(Scrollable).first,
         );

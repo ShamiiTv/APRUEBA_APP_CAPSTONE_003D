@@ -1,3 +1,4 @@
+import SectionHeader from '../components/SectionHeader';
 import {uiText} from '../i18n/uiText';
 import ContentSkeleton from '../components/ContentSkeleton';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -121,9 +122,9 @@ export default function Groups() {
     } catch(cause){setMessage(cause.message);}
     finally{guard.current=false;setJoining(false);}
   };
-  if(selected)return <div className="social-page groups-page"><h1>{t.groups.title}</h1><GroupDetails key={selected} id={selected} questionId={questionId} onBack={()=>open(null)} onLeft={()=>{open(null);setMessage(tr('Saliste del grupo.','You left the group.'));load();}} /></div>;
+  if(selected)return <div className="social-page groups-page"><SectionHeader icon="group" title={t.groups.title}></SectionHeader><GroupDetails key={selected} id={selected} questionId={questionId} onBack={()=>open(null)} onLeft={()=>{open(null);setMessage(tr('Saliste del grupo.','You left the group.'));load();}} /></div>;
   return <div className="social-page groups-page">
-    <h1>{t.groups.title}</h1><p>{t.groups.subtitle}</p>
+    <SectionHeader icon="group" title={t.groups.title}>{t.groups.subtitle}</SectionHeader>
     {questionId && <p>{tr('Elige un grupo de la materia para compartir la pregunta de práctica con una duda o aporte.','Choose a group for this subject to share your practice question.')}</p>}
     {limit!==null && <p>{tr('Grupos','Groups')}: {groups?.length ?? 0} · {limit===0?tr('Tu plan no limita la cantidad de grupos.','Your plan has no group count limit.'):tr(`Límite de tu plan: ${limit}.`,`Your plan limit: ${limit}.`)}</p>}
     <div className="social-actions"><button disabled={create.busy || joining} onClick={()=>setPanel('create')}>＋ {tr('Crear grupo','Create group')}</button><button disabled={create.busy || joining} onClick={()=>setPanel('join')}>{tr('Unirse con código','Join with code')}</button><button disabled={create.busy || joining} onClick={load}>{tr('Actualizar grupos','Refresh groups')}</button></div>

@@ -1,3 +1,4 @@
+import '../../core/widgets/section_header.dart';
 import '../../core/l10n/system_text.dart';
 import '../../core/widgets/content_skeleton.dart';
 
@@ -154,7 +155,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
   @override
   Widget build(BuildContext context) {
     final c = WfColors.of(context);
-    final tt = Theme.of(context).textTheme;
+
 
     Widget body;
     if (_loading) {
@@ -186,10 +187,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
           children: [
-            Text(
-              tr(context, 'Comunidad Aprueba', 'Aprueba Community'),
-              style: tt.headlineSmall,
-            ),
+            SectionHeader(tr(context, 'Comunidad Aprueba', 'Aprueba Community'), Icons.forum_outlined),
             const SizedBox(height: 10),
             Card(
               child: Padding(
@@ -341,7 +339,7 @@ class _PostCard extends StatelessWidget {
                 p.contentDeleted
                     ? tr(context, 'Publicación eliminada', 'Post deleted')
                     : p.text,
-                style: GoogleFonts.inter(fontSize: 13, height: 1.4),
+                style: GoogleFonts.inter(fontSize: 15, height: 1.55),
               ),
               if (p.questionStatement != null) ...[
                 const SizedBox(height: 8),

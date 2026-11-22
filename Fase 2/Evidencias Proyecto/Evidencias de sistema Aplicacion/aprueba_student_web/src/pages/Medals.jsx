@@ -1,3 +1,4 @@
+import SectionHeader from '../components/SectionHeader';
 import {uiText} from '../i18n/uiText';
 import ContentSkeleton from '../components/ContentSkeleton';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -64,8 +65,7 @@ export default function Medals() {
     finally {guard.current=false;setBusy(false);}
   };
   return <div className="medals-page">
-    <h1>{t.medals.title}</h1>
-    <p>{tr('Obtienes una medalla de bronce por cada primera respuesta correcta. Convierte 5 medallas en 1 del siguiente nivel.','Earn one bronze medal for each first correct answer. Exchange five medals for one of the next tier.')}</p>
+    <SectionHeader icon="medal" title={t.medals.title}>{tr('Obtienes una medalla de bronce por cada primera respuesta correcta. Convierte 5 medallas en 1 del siguiente nivel.','Earn one bronze medal for each first correct answer. Exchange five medals for one of the next tier.')}</SectionHeader>
     {error && <p role="alert">{uiText(lang,error)}</p>}
     <button disabled={busy} onClick={load}>{tr('Actualizar saldos y catálogo','Refresh balances and catalog')}</button>
     {message && <p role="status">{uiText(lang,message)}</p>}

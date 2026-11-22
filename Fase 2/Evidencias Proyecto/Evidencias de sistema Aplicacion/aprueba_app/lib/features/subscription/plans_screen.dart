@@ -1,3 +1,4 @@
+import '../../core/widgets/section_header.dart';
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -640,14 +641,7 @@ class _PlansState extends ConsumerState<PlansScreen>
             data: (plans) => ListView(
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
               children: [
-                Text(
-                  tr(context, 'Estudia a tu ritmo', 'Study at your own pace'),
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w800,
-                    color: c.ink,
-                  ),
-                ),
+                SectionHeader(tr(context, 'Estudia a tu ritmo', 'Study at your own pace'), Icons.credit_card_rounded),
                 const SizedBox(height: 10),
                 Text(
                   tr(

@@ -1,3 +1,4 @@
+import '../../core/widgets/section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -299,6 +300,7 @@ class GroupsScreen extends ConsumerWidget {
             data: (groups) => ListView(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
               children: [
+                SectionHeader(tr(context, 'Grupos de estudio', 'Study groups'), Icons.groups_outlined), const SizedBox(height: 16),
                 Row(
                   children: [
                     Expanded(

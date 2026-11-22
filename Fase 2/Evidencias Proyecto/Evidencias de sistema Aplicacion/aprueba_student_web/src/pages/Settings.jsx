@@ -1,3 +1,4 @@
+import SectionHeader from '../components/SectionHeader';
 import { useEffect,useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../auth/useAuth';
@@ -57,7 +58,7 @@ export default function Settings() {
   };
 
   return <div className="settings-page">
-    <h1>{copy.title}</h1><p className="settings-hint">{copy.description}</p>
+    <SectionHeader icon="settings" title={copy.title}>{copy.description}</SectionHeader>
     {error && <p role="alert" className="settings-error">{error}</p>}
     {verificationMessage && <p role="status" className="settings-success">{verificationMessage}</p>}
     {success && <p role="status" className="settings-success">{copy.saved}</p>}

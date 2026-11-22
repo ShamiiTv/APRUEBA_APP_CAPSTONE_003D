@@ -1,3 +1,4 @@
+import '../../core/widgets/section_header.dart';
 import '../../core/widgets/content_skeleton.dart';
 
 import 'package:flutter/material.dart';
@@ -73,26 +74,13 @@ class MedalsScreen extends ConsumerWidget {
 
   Widget _content(BuildContext context, WidgetRef ref, UserProfile user) {
     final c = WfColors.of(context);
-    final tt = Theme.of(context).textTheme;
+
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
       children: [
+        SectionHeader(tr(context, 'Mis Medallas', 'My Medals'), Icons.workspace_premium_outlined, trailing: WfTag(text: daysLabel(context,user.streak))),
         TextButton(onPressed:()=>context.push('/activity'),child:Text(tr(context,'Historial de medallas','Medal history'))),
-        Row(
-          children: [
-            Text(
-              tr(context, 'Mis Medallas', 'My Medals'),
-              style: tt.headlineSmall,
-            ),
-            const Spacer(),
-            WfTag(
-              text: '🔥 ${daysLabel(context, user.streak)}',
-              bg: const Color(0x2EF5B041),
-              fg: const Color(0xFFB45309),
-            ),
-          ],
-        ),
         const SizedBox(height: 4),
         Text(
           tr(

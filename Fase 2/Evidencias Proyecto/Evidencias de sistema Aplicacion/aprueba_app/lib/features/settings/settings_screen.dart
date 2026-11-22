@@ -1,3 +1,4 @@
+import '../../core/widgets/section_header.dart';
 import '../../core/widgets/app_version.dart';
 
 import 'package:flutter/material.dart';
@@ -253,7 +254,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final c = WfColors.of(context);
-    final tt = Theme.of(context).textTheme;
+
     final profile = ref.watch(profileProvider).value;
     final mode = ref.watch(themeModeProvider);
     final tests = ref.watch(testsProvider).value ?? const [];
@@ -278,7 +279,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         child: InkWell(
           onTap: onTap,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 13),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: child,
           ),
         ),
@@ -293,7 +294,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
           children: [
-            Text(tr(context, 'Ajustes', 'Settings'), style: tt.headlineSmall),
+            SectionHeader(tr(context, 'Ajustes', 'Settings'), Icons.tune_rounded),
             const SizedBox(height: 12),
             rowCard(
               child: Row(

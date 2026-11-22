@@ -1,3 +1,4 @@
+import SectionHeader from '../components/SectionHeader';
 import ContentSkeleton from '../components/ContentSkeleton';
 import {subscriptionEnd} from '../features/access';
 import {useCallback,useEffect,useRef,useState} from 'react';
@@ -63,7 +64,7 @@ export default function Plan(){
  const resume=()=>{const url=subscription?.approvalUrl;if(url){const opened=window.apruebaCheckout?.open(url);setCheckout({phase:'waiting',approvalUrl:url,blocked:!opened});}};
  const waiting=checkout?.phase==='opening'||checkout?.phase==='waiting';
  return <div className="settings-page plan-page">
-  <header className="plan-heading"><div><span className="plan-eyebrow">{en?'STUDY AT YOUR OWN PACE':'ESTUDIA A TU RITMO'}</span><h1>{en?'Your subscription':'Tu suscripción'}</h1><p>{en?'Choose the support you need to prepare for PAES.':'Elige el apoyo que necesitas para preparar la PAES.'}</p></div><span className="plan-badge">{en?'Monthly plans':'Planes mensuales'}</span></header>
+  <SectionHeader icon="card" title={en?'Your subscription':'Tu suscripción'} detail={en?'Monthly plans':'Planes mensuales'}>{en?'Choose the support you need to prepare for PAES.':'Elige el apoyo que necesitas para preparar la PAES.'}</SectionHeader>
   {loading?<ContentSkeleton kind="plans"/>:<>
    <section className="subscription-summary" aria-busy={checking}><div><span className={`subscription-pill ${active?'is-active':''}`}>{active?(en?'Active':'Activo'):(en?'Your plan':'Tu plan')}</span><h2>{planName(active?user?.plan:'free')}</h2><p>{active?(cancelled?(en?'Access until ':'Acceso hasta el '):(en?'Next renewal: ':'Próxima renovación: '))+date:(en?'Build your daily study habit with free practice.':'Crea tu hábito de estudio con práctica diaria gratuita.')}</p><p className="subscription-terms">{en?'Monthly subscription. Cancel renewal at any time and keep access until your paid period ends.':'Suscripción mensual. Puedes cancelar la renovación cuando quieras y conservarás el acceso hasta el vencimiento del período pagado.'}</p></div>
     <div className="subscription-actions">{checking&&<span className="subscription-check" role="status">{en?'Updating subscription…':'Actualizando suscripción…'}</span>}{subscription?.approvalUrl&&<button onClick={resume} disabled={busy}>{en?'Continue payment':'Continuar pago'}</button>}{subscription&&!cancelled&&<button className="plan-secondary" disabled={busy} onClick={()=>setCheckout({phase:'cancel'})}>{subscription.approvalUrl?(en?'Cancel request':'Cancelar solicitud'):(en?'Cancel renewal':'Cancelar renovación')}</button>}<button className="plan-link" disabled={checking||busy} onClick={()=>checkPayment().catch(err=>setMessage(err.message))}>{en?'Refresh status':'Actualizar estado'}</button></div>
