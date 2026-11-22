@@ -84,7 +84,7 @@ void main() {
           ),
         );
         await tester.pumpAndSettle();
-        expect(find.text('🔥 0 días'), findsOneWidget);
+        expect(find.text('0 días'), findsOneWidget);
         expect(find.textContaining('99'), findsNothing);
         expect(find.text('5'), findsOneWidget);
         expect(find.text('60%'), findsOneWidget);

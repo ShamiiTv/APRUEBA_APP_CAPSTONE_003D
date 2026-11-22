@@ -1,3 +1,4 @@
+import ApruebaIcon from '../components/ApruebaIcon';
 import ContentSkeleton from '../components/ContentSkeleton';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -153,7 +154,7 @@ export default function Practice() {
         </select>
       </div>
 
-      <section className="facsimile-entry" style={{background:'var(--panel)',border:'1px solid var(--line)',padding:20,borderRadius:16,margin:'20px 0'}}><h2>{lang==='en'?'Prefer a mock exam?':'¿Prefieres un facsímil?'}</h2><p>{lang==='en'?'Choose a test, available difficulty and question count, in a fixed order. Included in Full access.':'Elige prueba, dificultad disponible y cantidad de preguntas en orden fijo. Incluido en Acceso completo.'}</p><button onClick={()=>navigate('/facsimil')}>{lang==='en'?'Open mock exams →':'Abrir Facsímil →'}</button></section>
+      <section className="facsimile-entry" ><ApruebaIcon name="book" size={32} /><div><h2>{lang==='en'?'Practice mock exam':'Facsímil de práctica'}</h2><p>{lang==='en'?'Choose a test, available difficulty and question count, in a fixed order. Included in Full access.':'Elige prueba, dificultad disponible y cantidad de preguntas en orden fijo. Incluido en Acceso completo.'}</p></div><button onClick={()=>navigate('/facsimil')}>{lang==='en'?'Open mock exams →':'Abrir Facsímil →'}</button></section>
       <section className="practice-levels"><h2>{lang==='en'?'Difficulty levels':'Niveles escalonados'}</h2><p>{lang==='en'?'20 correct answers in the previous level unlock the next one.':'20 aciertos en el nivel anterior desbloquean el siguiente.'}</p><div className="level-grid">{levels.map(level=><button className="level-button" aria-pressed={difficulty===level.id} key={level.id} disabled={submitting || loading || !level.unlocked || !level.available} onClick={()=>{setSimilarTo(null);setDifficulty(level.id);fetchNextQuestion();}}><strong>{level.unlocked?'🔓':'🔒'} {({d1:lang==='en'?'Basic':'Básica',d2:lang==='en'?'Intermediate':'Intermedia',d3:lang==='en'?'Advanced':'Avanzada'})[level.id] || level.id}</strong><span>{level.correct}/20 {lang==='en'?'correct':'aciertos'} · {level.available} {lang==='en'?'questions':'preguntas'}</span><progress value={Math.min(level.correct,20)} max="20"/><small>{!level.available ? (lang==='en'?'No questions yet':'Sin preguntas disponibles') : !level.unlocked ? (lang==='en'?'Locked':'Por desbloquear') : difficulty===level.id ? (lang==='en'?'Selected':'Seleccionado') : (lang==='en'?'Practice this level →':'Practicar este nivel →')}</small></button>)}</div></section>
       {error && !quotaExceeded && (
         <div style={{

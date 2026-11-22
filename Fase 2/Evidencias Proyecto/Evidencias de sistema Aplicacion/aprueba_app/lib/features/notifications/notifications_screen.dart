@@ -104,14 +104,23 @@ class NotificationsScreen extends ConsumerWidget {
                   InkWell(
                     onTap: () => _open(ref, n),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      margin: const EdgeInsets.only(bottom: 10),
+                      padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        border: Border(bottom: BorderSide(color: c.line)),
+                        color: c.bg,
+                        borderRadius: BorderRadius.circular(18),
+                        border: Border.all(color: n.read ? c.line : c.brand),
                       ),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(n.emoji, style: const TextStyle(fontSize: 22)),
+                          CircleAvatar(
+                            backgroundColor: c.soft,
+                            child: Icon(
+                              Icons.notifications_outlined,
+                              color: c.brand,
+                            ),
+                          ),
                           const SizedBox(width: 10),
                           Expanded(
                             child: Column(

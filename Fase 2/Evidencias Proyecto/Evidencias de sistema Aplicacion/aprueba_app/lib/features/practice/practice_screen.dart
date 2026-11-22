@@ -236,11 +236,6 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
         title: Text(_title()),
         actions: [
           IconButton(
-            tooltip: tr(context, 'Facsímil de práctica', 'Practice mock exam'),
-            onPressed: () => context.push('/facsimile'),
-            icon: const Icon(Icons.menu_book_outlined),
-          ),
-          IconButton(
             tooltip: tr(context, 'Explorar Aprueba', 'Explore Aprueba'),
             onPressed: () => showApruebaMenu(context),
             icon: const Icon(Icons.grid_view_rounded),
@@ -251,6 +246,22 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
             icon: const Icon(Icons.stairs),
           ),
         ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(48),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: ActionChip(
+                avatar: const Icon(Icons.menu_book_rounded, size: 18),
+                label: Text(
+                  tr(context, 'Facsímil de práctica', 'Practice mock exam'),
+                ),
+                onPressed: () => context.push('/facsimile'),
+              ),
+            ),
+          ),
+        ),
         leading: BackButton(onPressed: () => context.go('/home')),
       ),
       body: _body(context),

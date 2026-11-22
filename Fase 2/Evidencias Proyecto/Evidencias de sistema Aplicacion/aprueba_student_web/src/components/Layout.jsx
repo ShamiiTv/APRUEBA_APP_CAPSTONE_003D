@@ -1,3 +1,4 @@
+import ApruebaIcon from './ApruebaIcon';
 import {skeletonForPath} from './routeSkeleton';
 import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { Suspense, useState, useRef } from 'react';
@@ -251,7 +252,7 @@ export default function Layout({restoring=false}) {
                 fontSize: '16px'
               }}
             >
-              {theme === 'dark' ? '☀️' : '🌙'}
+              <ApruebaIcon name={theme === 'dark' ? 'sun' : 'moon'} />
             </button>
 
             <NotificationBell />
@@ -268,7 +269,7 @@ export default function Layout({restoring=false}) {
               fontSize: '13px',
               color: 'var(--ink)'
             }}>
-              🔥 {user?.streak ?? 0} {t.nav.streak}
+              <ApruebaIcon name="flame" size={17} /> {user?.streak ?? 0} {t.nav.streak}
             </span>
           </div>
           }

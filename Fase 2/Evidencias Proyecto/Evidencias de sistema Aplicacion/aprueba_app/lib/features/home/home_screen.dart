@@ -209,10 +209,11 @@ class HomeScreen extends ConsumerWidget {
               ),
             ),
             const Spacer(),
+            const _HomeSymbol(Icons.local_fire_department_outlined),
             WfTag(
               text: studyStreak == null
                   ? '—'
-                  : '🔥 ${daysLabel(context, studyStreak)}',
+                  : daysLabel(context, studyStreak),
               bg: warnBg,
               fg: warnFg,
             ),
@@ -751,7 +752,7 @@ class _BellButton extends ConsumerWidget {
       icon: Stack(
         clipBehavior: Clip.none,
         children: [
-          const Icon(Icons.notifications_outlined),
+          const _HomeSymbol(Icons.notifications_outlined),
           if (unread > 0)
             Positioned(
               right: -4,
@@ -780,4 +781,27 @@ class _BellButton extends ConsumerWidget {
       ),
     );
   }
+}
+
+class _HomeSymbol extends StatelessWidget {
+  const _HomeSymbol(this.glyph);
+  final IconData glyph;
+  @override
+  Widget build(BuildContext context) => Stack(
+    alignment: Alignment.topRight,
+    children: [
+      Icon(glyph, size: 21),
+      const Positioned(
+        right: 2,
+        top: 2,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: Color(0xffefab39),
+            shape: BoxShape.circle,
+          ),
+          child: SizedBox.square(dimension: 4),
+        ),
+      ),
+    ],
+  );
 }
