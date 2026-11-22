@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -92,9 +93,9 @@ class _QuotaUnlockScreenState extends ConsumerState<QuotaUnlockScreen> {
           padding: const EdgeInsets.fromLTRB(16, 32, 16, 24),
           children: [
             Center(
-              child: Text(
-                isSchool ? '🎉' : '🏠',
-                style: const TextStyle(fontSize: 38),
+              child: Icon(
+                isSchool ? ApruebaSymbols.spark : ApruebaSymbols.home,
+                size: 38,
               ),
             ),
             const SizedBox(height: 8),

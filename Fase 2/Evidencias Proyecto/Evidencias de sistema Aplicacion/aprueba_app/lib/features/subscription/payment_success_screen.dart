@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/l10n.dart';
@@ -34,7 +35,7 @@ class PaymentSuccessScreen extends ConsumerWidget {
           child: Column(
             children: [
               const Spacer(),
-              const Text('🎉', style: TextStyle(fontSize: 60)),
+              const Icon(ApruebaSymbols.spark, size: 60),
               const SizedBox(height: 8),
               Text(
                 tr(context, '¡Pago exitoso!', 'Payment successful!'),

@@ -1,3 +1,4 @@
+import 'aprueba_symbols.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -78,14 +79,6 @@ class MedalCoin extends StatelessWidget {
   final String tier;
   final double size;
 
-  static const _emoji = {
-    'bronze': '🥉',
-    'silver': '🥈',
-    'gold': '🥇',
-    'diamond': '💎',
-    'platinum': '⬡',
-  };
-
   static const _color = {
     'bronze': AppColors.bronze,
     'silver': AppColors.silver,
@@ -115,13 +108,7 @@ class MedalCoin extends StatelessWidget {
           ),
         ],
       ),
-      child: Text(
-        _emoji[tier] ?? '🏅',
-        style: TextStyle(
-          fontSize: size * 0.46,
-          color: tier == 'gold' ? AppColors.azul : Colors.white,
-        ),
-      ),
+      child: Icon(tier == 'diamond' || tier == 'platinum' ? ApruebaSymbols.gem : ApruebaSymbols.medal, size: size * .60, color: tier == 'gold' ? AppColors.azul : Colors.white),
     );
   }
 }

@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 
@@ -127,7 +128,7 @@ class _CorrectionScreenState extends ConsumerState<CorrectionScreen> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('📝', style: TextStyle(fontSize: 20)),
+            const Icon(ApruebaSymbols.paper, size: 20),
             const SizedBox(width: 8),
             Expanded(
               child: Column(
@@ -153,7 +154,7 @@ class _CorrectionScreenState extends ConsumerState<CorrectionScreen> {
                     const SizedBox(height: 4),
                     WfTag(
                       text:
-                          '✔ ${tr(context, 'Resp. oficial', 'Official ans')}: ${a.correctAnswer}',
+                          '${tr(context, 'Resp. oficial', 'Official ans')}: ${a.correctAnswer}',
                       bg: c.success.withValues(alpha: 0.15),
                       fg: c.success,
                     ),
@@ -339,7 +340,7 @@ class _CorrectionScreenState extends ConsumerState<CorrectionScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('⏳', style: TextStyle(fontSize: 22)),
+              const Icon(ApruebaSymbols.clock, size: 22),
               const SizedBox(width: 10),
               Expanded(
                 child: Column(
@@ -382,8 +383,8 @@ class _CorrectionScreenState extends ConsumerState<CorrectionScreen> {
             child: Text(
               tr(
                 context,
-                '🔧 Simular: confirmar error (demo)',
-                '🔧 Simulate: confirm error (demo)',
+                'Simular: confirmar error (demo)',
+                'Simulate: confirm error (demo)',
               ),
             ),
           ),
@@ -409,7 +410,7 @@ class _CorrectionScreenState extends ConsumerState<CorrectionScreen> {
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 40, 16, 20),
       children: [
-        const Center(child: Text('🎉', style: TextStyle(fontSize: 56))),
+        const Center(child: Icon(ApruebaSymbols.spark, size: 56)),
         const SizedBox(height: 8),
         Center(
           child: Text(

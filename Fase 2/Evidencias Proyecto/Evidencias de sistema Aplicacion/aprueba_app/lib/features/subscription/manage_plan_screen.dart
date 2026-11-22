@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import '../../core/widgets/content_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -200,7 +201,7 @@ class _ManagePlanScreenState extends ConsumerState<ManagePlanScreen> {
                   ),
                   child: Row(
                     children: [
-                      const Text('🚀', style: TextStyle(fontSize: 24)),
+                      const Icon(ApruebaSymbols.bolt, size: 24),
                       const SizedBox(width: 10),
                       Expanded(
                         child: Column(

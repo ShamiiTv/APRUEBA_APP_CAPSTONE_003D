@@ -356,8 +356,8 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
         Text(
           tr(
             context,
-            '🔒 Modo demostración: no se realiza ningún cobro real y los datos de la tarjeta no se envían ni se guardan.',
-            '🔒 Demo mode: no real charge is made and card details are neither sent nor stored.',
+            'Modo demostración: no se realiza ningún cobro real y los datos de la tarjeta no se envían ni se guardan.',
+            'Demo mode: no real charge is made and card details are neither sent nor stored.',
           ),
           textAlign: TextAlign.center,
           style: GoogleFonts.inter(fontSize: 11, color: c.muted, height: 1.4),

@@ -256,7 +256,7 @@ export default function Onboarding() {
                   opacity: loading ? 0.7 : 1,
                 }}
               >
-                {loading ? localize("Guardando perfil...") : localize("Comenzar a Practicar 🚀")}
+                {loading ? localize("Guardando perfil...") : localize("Comenzar a Practicar")}
               </button>
             </div>
           </div>

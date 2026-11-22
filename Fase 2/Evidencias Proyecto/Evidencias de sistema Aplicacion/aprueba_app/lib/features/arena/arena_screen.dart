@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -403,6 +404,7 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const Icon(ApruebaSymbols.duel, color: Color(0xffffca69), size: 32),
                     const Text(
                       'ARENA APRUEBA',
                       style: TextStyle(
@@ -816,6 +818,7 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen>
         }, secondary: true),
       ],
       if (phase == 'finished') ...[
+        Icon(m['winner'] == null ? ApruebaSymbols.draw : m['winner'] == me ? ApruebaSymbols.victory : ApruebaSymbols.target, size: 46),
         title(
           m['winner'] == null
               ? t('Partida cerrada', 'Match ended')

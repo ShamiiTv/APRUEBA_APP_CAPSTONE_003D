@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import '../../core/widgets/content_skeleton.dart';
 
 import 'package:flutter/material.dart';
@@ -533,7 +534,7 @@ class HomeScreen extends ConsumerWidget {
               ),
               child: Row(
                 children: [
-                  const Text('🚀', style: TextStyle(fontSize: 22)),
+                  const Icon(ApruebaSymbols.bolt, size: 22),
                   const SizedBox(width: 10),
                   Expanded(
                     child: Column(

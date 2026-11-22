@@ -155,7 +155,7 @@ export default function Practice() {
       </div>
 
       <section className="facsimile-entry" ><ApruebaIcon name="book" size={32} /><div><h2>{lang==='en'?'Practice mock exam':'Facsímil de práctica'}</h2><p>{lang==='en'?'Choose a test, available difficulty and question count, in a fixed order. Included in Full access.':'Elige prueba, dificultad disponible y cantidad de preguntas en orden fijo. Incluido en Acceso completo.'}</p></div><button onClick={()=>navigate('/facsimil')}>{lang==='en'?'Open mock exams →':'Abrir Facsímil →'}</button></section>
-      <section className="practice-levels"><h2>{lang==='en'?'Difficulty levels':'Niveles escalonados'}</h2><p>{lang==='en'?'20 correct answers in the previous level unlock the next one.':'20 aciertos en el nivel anterior desbloquean el siguiente.'}</p><div className="level-grid">{levels.map(level=><button className="level-button" aria-pressed={difficulty===level.id} key={level.id} disabled={submitting || loading || !level.unlocked || !level.available} onClick={()=>{setSimilarTo(null);setDifficulty(level.id);fetchNextQuestion();}}><strong>{level.unlocked?'🔓':'🔒'} {({d1:lang==='en'?'Basic':'Básica',d2:lang==='en'?'Intermediate':'Intermedia',d3:lang==='en'?'Advanced':'Avanzada'})[level.id] || level.id}</strong><span>{level.correct}/20 {lang==='en'?'correct':'aciertos'} · {level.available} {lang==='en'?'questions':'preguntas'}</span><progress value={Math.min(level.correct,20)} max="20"/><small>{!level.available ? (lang==='en'?'No questions yet':'Sin preguntas disponibles') : !level.unlocked ? (lang==='en'?'Locked':'Por desbloquear') : difficulty===level.id ? (lang==='en'?'Selected':'Seleccionado') : (lang==='en'?'Practice this level →':'Practicar este nivel →')}</small></button>)}</div></section>
+      <section className="practice-levels"><h2>{lang==='en'?'Difficulty levels':'Niveles escalonados'}</h2><p>{lang==='en'?'20 correct answers in the previous level unlock the next one.':'20 aciertos en el nivel anterior desbloquean el siguiente.'}</p><div className="level-grid">{levels.map(level=><button className="level-button" aria-pressed={difficulty===level.id} key={level.id} disabled={submitting || loading || !level.unlocked || !level.available} onClick={()=>{setSimilarTo(null);setDifficulty(level.id);fetchNextQuestion();}}><strong><ApruebaIcon name={level.unlocked?"openLock":"lock"} size={15} /> {({d1:lang==='en'?'Basic':'Básica',d2:lang==='en'?'Intermediate':'Intermedia',d3:lang==='en'?'Advanced':'Avanzada'})[level.id] || level.id}</strong><span>{level.correct}/20 {lang==='en'?'correct':'aciertos'} · {level.available} {lang==='en'?'questions':'preguntas'}</span><progress value={Math.min(level.correct,20)} max="20"/><small>{!level.available ? (lang==='en'?'No questions yet':'Sin preguntas disponibles') : !level.unlocked ? (lang==='en'?'Locked':'Por desbloquear') : difficulty===level.id ? (lang==='en'?'Selected':'Seleccionado') : (lang==='en'?'Practice this level →':'Practicar este nivel →')}</small></button>)}</div></section>
       {error && !quotaExceeded && (
         <div style={{
           padding: '14px 18px',
@@ -192,7 +192,7 @@ export default function Practice() {
             fontSize: '30px',
             margin: '0 auto 20px'
           }}>
-            ⚡
+            <ApruebaIcon name="bolt" />
           </div>
 
           <h2 style={{
@@ -272,7 +272,7 @@ export default function Practice() {
           border: '1px solid var(--line)',
           boxShadow: 'var(--shadow)'
         }}>
-          <div style={{ fontSize: '48px', marginBottom: '16px' }}>🏆</div>
+          <div style={{ fontSize: '48px', marginBottom: '16px' }}><ApruebaIcon name="victory" size={48} /></div>
           <h2 style={{ fontFamily: 'Montserrat', fontSize: '20px', fontWeight: 800, color: 'var(--brand-ink)', marginBottom: '8px' }}>
             {t.practice.completedTitle}
           </h2>

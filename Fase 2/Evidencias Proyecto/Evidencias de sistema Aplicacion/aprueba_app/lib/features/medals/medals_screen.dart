@@ -99,7 +99,7 @@ class MedalsScreen extends ConsumerWidget {
               child: OutlinedButton(
                 onPressed: () => context.push('/medals/exchange'),
                 child: Text(
-                  tr(context, '🔄 Canje de medallas', '🔄 Exchange medals'),
+                  tr(context, 'Canje de medallas', 'Exchange medals'),
                 ),
               ),
             ),
@@ -107,7 +107,7 @@ class MedalsScreen extends ConsumerWidget {
             Expanded(
               child: OutlinedButton(
                 onPressed: () => context.push('/medals/gifts'),
-                child: Text(tr(context, '🎁 Regalar', '🎁 Gift')),
+                child: Text(tr(context, 'Regalar', 'Gift')),
               ),
             ),
           ],
@@ -116,7 +116,7 @@ class MedalsScreen extends ConsumerWidget {
         FilledButton(
           onPressed: () => context.push('/medals/benefits'),
           child: Text(
-            tr(context, '🏷️ Beneficios de marca', '🏷️ Brand benefits'),
+            tr(context, 'Beneficios de marca', 'Brand benefits'),
           ),
         ),
       ],

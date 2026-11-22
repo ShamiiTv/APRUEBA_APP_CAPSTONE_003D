@@ -74,7 +74,7 @@ class TutorProfileScreen extends ConsumerWidget {
                         if (t.verified) ...[
                           const SizedBox(width: 6),
                           WfTag(
-                            text: tr(context, '✔ Verificado', '✔ Verified'),
+                            text: tr(context, 'Verificado', 'Verified'),
                             bg: const Color(0x2110B981),
                             fg: const Color(0xFF059669),
                           ),
@@ -137,8 +137,8 @@ class TutorProfileScreen extends ConsumerWidget {
                   WfTag(
                     text: tr(
                       context,
-                      '🎓 ${t.experienceYears} años exp.',
-                      '🎓 ${t.experienceYears} yrs exp.',
+                      '${t.experienceYears} años exp.',
+                      '${t.experienceYears} yrs exp.',
                     ),
                   ),
               ],

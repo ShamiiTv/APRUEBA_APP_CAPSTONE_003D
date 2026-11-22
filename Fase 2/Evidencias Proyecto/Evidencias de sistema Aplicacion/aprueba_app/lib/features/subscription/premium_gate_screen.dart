@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,7 +38,7 @@ class PremiumGateScreen extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(22, 0, 22, 24),
           children: [
             const SizedBox(height: 8),
-            const Center(child: Text('🔒', style: TextStyle(fontSize: 56))),
+            const Center(child: Icon(ApruebaSymbols.lock, size: 56)),
             const SizedBox(height: 14),
             Text(
               tr(context, 'Desbloquea los Tutores', 'Unlock Tutors'),

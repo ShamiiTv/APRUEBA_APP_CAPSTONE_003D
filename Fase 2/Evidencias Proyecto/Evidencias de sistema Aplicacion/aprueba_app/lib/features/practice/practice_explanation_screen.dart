@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import '../auth/auth_providers.dart';
 import '../../core/widgets/content_skeleton.dart';
 
@@ -137,7 +138,7 @@ class _PracticeExplanationScreenState
             children: [
               Row(
                 children: [
-                  const Text('📖', style: TextStyle(fontSize: 26)),
+                  const Icon(ApruebaSymbols.book, size: 26),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Column(
@@ -156,7 +157,7 @@ class _PracticeExplanationScreenState
                         Text(
                           d.subject.isEmpty
                               ? tr(context, 'Paso a paso', 'Step by step')
-                              : '${tr(context, 'Paso a paso', 'Step by step')} · ${testName(context, d.subject, d.subject)}',
+                              : tr(context, 'Paso a paso', 'Step by step')} · ${testName(context, d.subject, d.subject),
                           style: GoogleFonts.inter(
                             fontSize: 11,
                             color: c.muted,
@@ -187,7 +188,7 @@ class _PracticeExplanationScreenState
               if (d.verification.isNotEmpty)
                 _card(
                   c,
-                  '✅ ${tr(context, 'Verificación', 'Check')}',
+                  tr(context, 'Verificación', 'Check'),
                   d.verification,
                   tint: c.success.withValues(alpha: 0.08),
                   border: c.success,
@@ -195,7 +196,7 @@ class _PracticeExplanationScreenState
               if (d.keyConcept.isNotEmpty)
                 _card(
                   c,
-                  '💡 ${tr(context, 'Concepto clave', 'Key concept')}',
+                  tr(context, 'Concepto clave', 'Key concept'),
                   d.keyConcept,
                   tint: c.brand.withValues(alpha: 0.07),
                   border: c.brand,
@@ -206,7 +207,7 @@ class _PracticeExplanationScreenState
                   '/practice?similarTo=${Uri.encodeComponent(args.questionId)}',
                 ),
                 child: Text(
-                  '🎯 ${tr(context, 'Practicar similares', 'Practice similar')}',
+                  tr(context, 'Practicar similares', 'Practice similar'),
                 ),
               ),
               const Divider(height: 28),
@@ -262,7 +263,7 @@ class _PracticeExplanationScreenState
                 ),
                 onPressed: () => context.push('/practice/skill', extra: args),
                 child: Text(
-                  '🧠 ${tr(context, '¿Qué necesito saber para esto?', 'What do I need to know for this?')}',
+                  tr(context, '¿Qué necesito saber para esto?', 'What do I need to know for this?'),
                 ),
               ),
               const SizedBox(height: 8),
@@ -274,7 +275,7 @@ class _PracticeExplanationScreenState
                 onPressed: () =>
                     context.push('/practice/correction', extra: args),
                 child: Text(
-                  '⚑ ${tr(context, 'Solicitar recorrección', 'Request a correction')}',
+                  tr(context, 'Solicitar recorrección', 'Request a correction'),
                 ),
               ),
               const SizedBox(height: 8),

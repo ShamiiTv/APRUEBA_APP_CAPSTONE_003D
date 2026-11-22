@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import '../../core/widgets/content_skeleton.dart';
 import 'package:flutter/material.dart';
 
@@ -156,7 +157,7 @@ class _ExchangeScreenState extends ConsumerState<ExchangeScreen> {
                 ],
               ),
               isPlatinum
-                  ? const Text('🎁', style: TextStyle(fontSize: 26))
+                  ? const Icon(ApruebaSymbols.gift, size: 26)
                   : MedalCoin(tier: next, size: 40),
             ],
           ),

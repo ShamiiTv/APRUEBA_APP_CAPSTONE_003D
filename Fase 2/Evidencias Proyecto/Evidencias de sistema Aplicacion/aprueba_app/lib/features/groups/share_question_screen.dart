@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import '../../core/widgets/content_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -127,8 +128,8 @@ class _ShareQuestionScreenState extends ConsumerState<ShareQuestionScreen> {
                 const SizedBox(height: 8),
                 WfTag(
                   text: correct
-                      ? '✅ ${tr(context, 'Correcto en', 'Correct in')} ${_fmt(ms)}'
-                      : '❌ ${tr(context, 'Incorrecto en', 'Incorrect in')} ${_fmt(ms)}',
+                      ? '${tr(context, 'Correcto en', 'Correct in')} ${_fmt(ms)}'
+                      : '${tr(context, 'Incorrecto en', 'Incorrect in')} ${_fmt(ms)}',
                   bg: correct
                       ? const Color(0x2110B981)
                       : const Color(0x21EF4444),
@@ -220,7 +221,7 @@ class _ShareQuestionScreenState extends ConsumerState<ShareQuestionScreen> {
                                 ),
                               ),
                               if (_groupId == g.id)
-                                const Text('✅', style: TextStyle(fontSize: 18)),
+                                const Icon(ApruebaSymbols.check, size: 18),
                             ],
                           ),
                         ),

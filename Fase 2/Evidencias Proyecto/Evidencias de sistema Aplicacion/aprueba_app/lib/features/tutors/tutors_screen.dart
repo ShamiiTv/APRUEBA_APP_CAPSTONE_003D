@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -91,7 +92,7 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
         children: [
           Row(
             children: [
-              const Text('🎯', style: TextStyle(fontSize: 28)),
+              const Icon(ApruebaSymbols.target, size: 28),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -191,7 +192,7 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
                         if (t.verified) ...[
                           const SizedBox(width: 6),
                           WfTag(
-                            text: tr(context, '✔ Verificado', '✔ Verified'),
+                            text: tr(context, 'Verificado', 'Verified'),
                             bg: const Color(0x2110B981),
                             fg: const Color(0xFF059669),
                           ),
@@ -305,8 +306,8 @@ class _TutorsScreenState extends ConsumerState<TutorsScreen> {
               decoration: InputDecoration(
                 hintText: tr(
                   context,
-                  '🔍 Buscar profesor o asignatura…',
-                  '🔍 Search teacher or subject…',
+                  'Buscar profesor o asignatura…',
+                  'Search teacher or subject…',
                 ),
               ),
             ),

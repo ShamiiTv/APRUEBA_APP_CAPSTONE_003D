@@ -19,10 +19,6 @@ class Benefit {
     required this.inStock,
   });
 
-  /// Si el backend trae un emoji lo usamos; si no, un ícono genérico.
-  String get emoji =>
-      (icon.isNotEmpty && icon.runes.length <= 2) ? icon : '🏷️';
-
   factory Benefit.fromJson(Map<String, dynamic> j) => Benefit(
     id: j['id'].toString(),
     name: (j['name'] ?? '').toString(),

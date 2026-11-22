@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/utils/tier_names.dart';
@@ -56,7 +57,7 @@ class GapAnalysisScreen extends ConsumerWidget {
           const Align(
             alignment: Alignment.centerLeft,
             child: WfTag(
-              text: '⭐ Premium',
+              text: 'Premium',
               bg: Color(0x2EF5B041),
               fg: Color(0xFFB45309),
             ),
@@ -71,7 +72,7 @@ class GapAnalysisScreen extends ConsumerWidget {
             ),
             child: Row(
               children: [
-                const Text('📊', style: TextStyle(fontSize: 20)),
+                const Icon(ApruebaSymbols.chart, size: 20),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(

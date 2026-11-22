@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import '../../core/widgets/content_skeleton.dart';
 import 'package:flutter/material.dart';
 
@@ -71,10 +72,10 @@ class _SkillScreenState extends ConsumerState<SkillScreen> {
     final active = p.status == 'active';
     final tone = done ? c.success : (active ? AppColors.oro : c.muted);
     final tag = done
-        ? '✔ ${tr(context, 'Dom.', 'Done')}'
+        ? tr(context, 'Dom.', 'Done')
         : active
         ? tr(context, 'En curso', 'Active')
-        : '🔒 ${tr(context, 'Bloq.', 'Locked')}';
+        : tr(context, 'Bloq.', 'Locked');
     return Container(
       margin: const EdgeInsets.only(top: 6),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
@@ -107,7 +108,7 @@ class _SkillScreenState extends ConsumerState<SkillScreen> {
   }
 
   Widget _resource(WfColors c, SkillResource r) {
-    final icon = r.type == 'video' ? '▶️' : (r.type == 'pdf' ? '📄' : '🧩');
+    final icon = r.type == 'video' ? ApruebaSymbols.play : (r.type == 'pdf' ? ApruebaSymbols.paper : ApruebaSymbols.book);
     final meta = [
       if (r.duration != null) r.duration!,
       if (r.source != null) r.source!,
@@ -119,7 +120,7 @@ class _SkillScreenState extends ConsumerState<SkillScreen> {
           padding: const EdgeInsets.all(11),
           child: Row(
             children: [
-              Text(icon, style: const TextStyle(fontSize: 20)),
+              Icon(icon, size: 20),
               const SizedBox(width: 10),
               Expanded(
                 child: Column(
@@ -350,7 +351,7 @@ class _SkillScreenState extends ConsumerState<SkillScreen> {
                   '/practice?similarTo=${Uri.encodeComponent(widget.args.questionId)}',
                 ),
                 child: Text(
-                  '🎯 ${tr(context, 'Practicar preguntas similares', 'Practice similar questions')}',
+                  tr(context, 'Practicar preguntas similares', 'Practice similar questions'),
                 ),
               ),
               const SizedBox(height: 8),

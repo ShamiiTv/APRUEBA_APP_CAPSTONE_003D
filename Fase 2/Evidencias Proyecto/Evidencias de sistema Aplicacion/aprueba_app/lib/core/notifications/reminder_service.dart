@@ -111,8 +111,8 @@ class ReminderService {
         id: _id,
         title: 'Aprueba',
         body: en
-            ? "Time to practice for the PAES! Answer today's questions 📚"
-            : '¡Es hora de practicar para la PAES! Responde tus preguntas de hoy 📚',
+            ? "Time to practice for the PAES! Answer today's questions"
+            : '¡Es hora de practicar para la PAES! Responde tus preguntas de hoy',
         scheduledDate: when,
         notificationDetails: NotificationDetails(
           android: AndroidNotificationDetails(

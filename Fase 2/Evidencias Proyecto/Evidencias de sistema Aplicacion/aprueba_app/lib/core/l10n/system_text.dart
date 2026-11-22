@@ -264,7 +264,7 @@ const _englishSystemText = <String, String>{
       "Select the tests required for your university application.",
   "← Volver": "← Back",
   "Guardando perfil...": "Saving profile...",
-  "Comenzar a Practicar 🚀": "Start practicing 🚀",
+  "Comenzar a Practicar 🚀": "Start practicing",
   "Crea tu nueva contraseña": "Create your new password",
   "Recupera tu acceso": "Recover your account",
   "Elige una contraseña de entre 8 y 128 caracteres.":

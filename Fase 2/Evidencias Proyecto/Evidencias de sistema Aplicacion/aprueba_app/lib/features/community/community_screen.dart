@@ -372,7 +372,7 @@ class _PostCard extends StatelessWidget {
                         horizontal: 2,
                       ),
                       child: Text(
-                        '👍 ${p.likeCount}',
+                        '${tr(context,'Me gusta','Like')} · ${p.likeCount}',
                         style: GoogleFonts.inter(
                           fontSize: 12,
                           fontWeight: p.userLiked
@@ -393,7 +393,7 @@ class _PostCard extends StatelessWidget {
                         horizontal: 2,
                       ),
                       child: Text(
-                        '💬 ${p.commentCount}',
+                        '${tr(context,'Comentarios','Comments')} · ${p.commentCount}',
                         style: GoogleFonts.inter(fontSize: 12, color: c.muted),
                       ),
                     ),

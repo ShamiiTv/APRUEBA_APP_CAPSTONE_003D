@@ -35,7 +35,7 @@ class MyCorrectionsScreen extends ConsumerWidget {
         case 'confirmed':
           return WfTag(
             text:
-                '✔ ${tr(context, 'Confirmada', 'Confirmed')} · +${i.rewardAmount} 🥉',
+                tr(context, 'Confirmada', 'Confirmed')} · +${i.rewardAmount} ${tr(context,'Bronce','Bronze'),
             bg: c.success.withValues(alpha: 0.15),
             fg: c.success,
           );
@@ -48,7 +48,7 @@ class MyCorrectionsScreen extends ConsumerWidget {
         default:
           return WfTag(
             text:
-                '⏳ ${tr(context, 'En revisión (48 h)', 'Under review (48 h)')}',
+                tr(context, 'En revisión (48 h)', 'Under review (48 h)'),
           );
       }
     }

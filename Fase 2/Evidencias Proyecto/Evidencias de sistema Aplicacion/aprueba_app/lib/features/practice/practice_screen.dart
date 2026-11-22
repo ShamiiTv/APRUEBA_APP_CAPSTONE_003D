@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import '../../core/widgets/content_skeleton.dart';
 
 import 'dart:async';
@@ -369,9 +370,9 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              _onlyEmpty ? '🛠️' : '🎉',
-              style: const TextStyle(fontSize: 40),
+            Icon(
+              _onlyEmpty ? ApruebaSymbols.book : ApruebaSymbols.spark,
+              size: 40,
             ),
             const SizedBox(height: 12),
             Text(
@@ -447,7 +448,7 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
               style: GoogleFonts.inter(fontSize: 11, color: c.muted),
             ),
             const Spacer(),
-            const Text('⏱️', style: TextStyle(fontSize: 14)),
+            const Icon(ApruebaSymbols.clock, size: 14),
             const SizedBox(width: 5),
             ValueListenableBuilder<int>(
               valueListenable: _seconds,
@@ -616,7 +617,7 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 20),
       children: [
         Center(
-          child: Text(ok ? '✅' : '❌', style: const TextStyle(fontSize: 42)),
+          child: Icon(ok ? ApruebaSymbols.check : ApruebaSymbols.cross, size: 42),
         ),
         const SizedBox(height: 6),
         Center(
@@ -694,13 +695,13 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
             r.cohortPercentile == null
                 ? tr(
                     context,
-                    '⚡ Respondiste en ${_fmt((_elapsedMs / 1000).round())}',
-                    '⚡ You answered in ${_fmt((_elapsedMs / 1000).round())}',
+                    'Respondiste en ${_fmt((_elapsedMs / 1000).round())}',
+                    'You answered in ${_fmt((_elapsedMs / 1000).round())}',
                   )
                 : tr(
                     context,
-                    '⚡ Respondiste en ${_fmt((_elapsedMs / 1000).round())} · más rápido que el ${r.cohortPercentile}% de quienes ya respondieron esta pregunta.',
-                    '⚡ You answered in ${_fmt((_elapsedMs / 1000).round())} · faster than ${r.cohortPercentile}% of people who already answered this question.',
+                    'Respondiste en ${_fmt((_elapsedMs / 1000).round())} · más rápido que el ${r.cohortPercentile}% de quienes ya respondieron esta pregunta.',
+                    'You answered in ${_fmt((_elapsedMs / 1000).round())} · faster than ${r.cohortPercentile}% of people who already answered this question.',
                   ),
             style: GoogleFonts.inter(fontSize: 11, color: c.muted),
           ),
@@ -723,8 +724,8 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
           child: Text(
             tr(
               context,
-              '📖 Ver explicación detallada',
-              '📖 See detailed explanation',
+              'Ver explicación detallada',
+              'See detailed explanation',
             ),
           ),
         ),

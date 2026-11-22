@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import '../../core/widgets/content_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -265,7 +266,7 @@ class BenefitsScreen extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: c.line),
               ),
-              child: Text(b.emoji, style: const TextStyle(fontSize: 20)),
+              child: const Icon(ApruebaSymbols.tag, size: 20),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -294,15 +295,15 @@ class BenefitsScreen extends ConsumerWidget {
                       ? WfTag(
                           text: tr(
                             context,
-                            '✅ Disponible para canjear',
-                            '✅ Available to redeem',
+                            'Disponible para canjear',
+                            'Available to redeem',
                           ),
                           bg: Color(0x2110B981),
                           fg: Color(0xFF059669),
                         )
                       : WfTag(
                           text: b.inStock
-                              ? '🔒 Necesitas ${b.costPlatinum} ⬡ Platino'
+                              ? 'Necesitas ${b.costPlatinum} ⬡ Platino'
                               : tr(context,'No disponible para canjear','Not available to redeem'),
                           bg: const Color(0x24A78BFA),
                           fg: const Color(0xFF7C3AED),

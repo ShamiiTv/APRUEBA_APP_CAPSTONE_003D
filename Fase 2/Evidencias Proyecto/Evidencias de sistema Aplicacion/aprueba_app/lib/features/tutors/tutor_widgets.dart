@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
@@ -16,14 +17,7 @@ class TutorStars extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         for (var i = 1; i <= 5; i++)
-          Text(
-            '★',
-            style: TextStyle(
-              fontSize: size,
-              height: 1,
-              color: i <= rating.round() ? AppColors.oro : c.line,
-            ),
-          ),
+          Icon(ApruebaSymbols.star, size: size, color: i <= rating.round() ? AppColors.oro : c.line),
       ],
     );
   }

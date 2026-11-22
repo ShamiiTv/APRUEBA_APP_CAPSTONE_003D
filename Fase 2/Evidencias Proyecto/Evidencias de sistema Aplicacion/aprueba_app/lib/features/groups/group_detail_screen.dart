@@ -1,3 +1,4 @@
+import '../../core/widgets/aprueba_symbols.dart';
 import '../../core/l10n/system_text.dart';
 
 import 'package:flutter/material.dart';
@@ -796,7 +797,7 @@ class _GroupDetailState extends ConsumerState<GroupDetailScreen> {
                           onPressed: _liking.contains(post.id)
                               ? null
                               : () => _like(post),
-                          child: Text('👍 ${post.likeCount}'),
+                          child: Text('${tr(context,'Me gusta','Like')} · ${post.likeCount}'),
                         ),
                         const SizedBox(height: 10),
                         Align(
@@ -816,10 +817,7 @@ class _GroupDetailState extends ConsumerState<GroupDetailScreen> {
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const Text(
-                                    '💬',
-                                    style: TextStyle(fontSize: 15),
-                                  ),
+                                  const Icon(ApruebaSymbols.chat, size: 15),
                                   const SizedBox(width: 8),
                                   Text(
                                     post.commentCount > 0
