@@ -1,3 +1,4 @@
+import '../../features/arena/arena_screen.dart';
 import '../widgets/private_beta_notice.dart';
 import '../../features/study/study_plan_screen.dart';
 import '../../features/activity/activity_screen.dart';
@@ -199,6 +200,7 @@ final appRouter = GoRouter(
         return QuotaUnlockScreen(step: step);
       },
     ),
+    GoRoute(path: '/arena', builder: (context, state) => const ArenaScreen()),
     GoRoute(path: '/plans', builder: (context, state) => const PlansScreen()),
     GoRoute(
       path: '/checkout',

@@ -3,6 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'l10n.dart';
 
 const _englishSystemText = <String, String>{
+  "Arena: entrada": "Arena: entry",
+  "Arena: victoria": "Arena: victory",
+  "Arena: devolución": "Arena: refund",
   "La meta supera la cuota disponible para las pruebas seleccionadas.":
       "Your goal exceeds the available quota for the selected tests.",
   "Elige al menos una prueba y una meta de entre 1 y 100 preguntas diarias.":

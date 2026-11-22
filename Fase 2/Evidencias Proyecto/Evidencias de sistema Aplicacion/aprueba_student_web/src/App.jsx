@@ -1,3 +1,4 @@
+const Arena = lazy(() => import('./pages/Arena'));
 import {useTheme} from './context/useTheme';
 import {hasSession} from './api/client';
 import { lazy } from 'react';
@@ -70,6 +71,7 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
+          <Route path="/arena" element={<PrivateRoute><Layout /></PrivateRoute>}><Route index element={<Arena />} /></Route>
           <Route path="/invitacion" element={<GroupInvitation />} />
           <Route path="/verificar-correo" element={<PrivateRoute verification><VerifyEmail /></PrivateRoute>} />
           <Route path="/recuperar-contrasena" element={<PasswordRecovery />} />

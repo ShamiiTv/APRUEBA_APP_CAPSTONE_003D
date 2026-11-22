@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "test": "node --test test/auth.test.js test/practice.test.js test/progress.test.js test/studyPlan.test.js test/profileSettings.test.js test/social.test.js test/bankCache.test.js test/authRateLimiters.test.js test/historyCache.test.js test/accessPolicy.test.js test/similarQuestions.test.js test/security.test.js test/paypal.test.js",
+    "test": "node --test test/auth.test.js test/practice.test.js test/progress.test.js test/studyPlan.test.js test/profileSettings.test.js test/social.test.js test/bankCache.test.js test/authRateLimiters.test.js test/historyCache.test.js test/accessPolicy.test.js test/similarQuestions.test.js test/security.test.js test/paypal.test.js test/arenaEvents.test.js",
     "test:emulator": "node --test test/auth.emulator.test.js",
     "test:practice": "node --test test/practice.test.js",
     "test:practice:emulator": "node --test test/practice.emulator.test.js",
@@ -23,7 +23,8 @@
     "test:parity:emulator": "node --test test/parity.emulator.test.js",
     "test:security:emulator": "node --test test/security.emulator.test.js",
     "test:paypal:emulator": "node --test test/paypal.emulator.test.js",
-    "test:quota:emulator": "node --test test/quota.emulator.test.js"
+    "test:quota:emulator": "node --test test/quota.emulator.test.js",
+    "test:arena:emulator": "node --test test/arena.emulator.test.js"
   },
   "keywords": [
     "paes",

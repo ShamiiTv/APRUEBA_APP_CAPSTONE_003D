@@ -1,6 +1,6 @@
 # Arena Aprueba · Especificación propuesta de la primera versión
 
-Estado: diseño concreto para revisión, todavía sin implementar. El usuario eligió duelos con matchmaking y pozo de medallas. Los valores de tiempos, rangos y límites siguientes son decisiones iniciales propuestas, configurables; no son resultados de pruebas ni funciones publicadas.
+Estado: la primera entrega competitiva con entrada 1 y M1/M2 está implementada; consultar ARENA_1_2_0_2026-11-22.md para estado de publicación, alcance validado y límites. El resto de este documento conserva el diseño más amplio para futuras entregas. El usuario eligió duelos con matchmaking y pozo de medallas. Los valores de tiempos, rangos y límites siguientes son decisiones iniciales propuestas, configurables; no son resultados de pruebas ni funciones publicadas.
 
 ## Experiencia
 

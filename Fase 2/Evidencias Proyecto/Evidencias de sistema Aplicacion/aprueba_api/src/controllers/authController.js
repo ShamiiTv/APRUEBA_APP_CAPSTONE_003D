@@ -394,12 +394,18 @@ async function anonymizeComments(uid) {
 }
 
 export async function deleteAccount(req, res) {
+  let arenaDeletionToken,arenaDeletionUid,arenaService;
   try {
     const uid = req.user?.sub || req.user?.id;
     if (!uid) return res.fail('Usuario no autenticado', null, 401);
 
     // Pide la contraseña actual y verifica que sea de esta cuenta.
     await reauthenticate(req);
+
+    // Resolve a funded duel before deleting either participant's data.
+    const {arena}=await import('../services/arena.js');
+    arenaService=arena;arenaDeletionUid=uid;arenaDeletionToken=await arena.lockDeletion(uid);
+    await arena.cancel(uid);
 
     // Stop the sandbox subscription before removing its owner.
     const paypalUser=await db.collection('users').doc(uid).get();
@@ -415,6 +421,8 @@ export async function deleteAccount(req, res) {
 
     const paypalSales=await db.collection('paypalSandboxSales').where('uid','==',uid).get();
     for(const sale of paypalSales.docs)await sale.ref.delete();
+
+    await arena.removeAccount(uid);
 
     // Limpia lo que el usuario dejó en otras colecciones.
     await leaveGroupsOnDelete(uid);
@@ -434,6 +442,7 @@ export async function deleteAccount(req, res) {
 
     return res.success({ deleted: true });
   } catch (error) {
+    if(arenaService&&arenaDeletionToken)await arenaService.unlockDeletion(arenaDeletionUid,arenaDeletionToken).catch(()=>{});
     if (['INVALID_LOGIN_CREDENTIALS', 'INVALID_PASSWORD'].includes(error.code)) {
       return res.fail('Contraseña incorrecta', {code:'AUTH_INVALID_CREDENTIALS'}, 401);
     }

@@ -1,3 +1,4 @@
+import arenaRoutes from './routes/arenaRoutes.js';
 ﻿import express from 'express';
 import {paypalWebhook} from './services/paypalPlans.js';
 import {restrictedCors,privateResponses,rejectUnsupportedContent,mutationLimiter,safeError} from './middleware/security.js';
@@ -45,6 +46,8 @@ const generalLimiter = rateLimit({
     meta: null,
   },
 });
+// Arena has a verified per-account budget: classmates can share an IP.
+app.use('/api/v1/arena', rateLimit({windowMs:60000,limit:600,standardHeaders:true,legacyHeaders:false}), responseHandler, authenticateToken, requireOnboarding, arenaRoutes);
 app.use(generalLimiter);
 
 app.use(responseHandler);

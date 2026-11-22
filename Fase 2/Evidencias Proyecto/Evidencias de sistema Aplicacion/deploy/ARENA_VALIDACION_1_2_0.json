@@ -1,0 +1,79 @@
+{
+  "release": {
+    "version": "1.2.0",
+    "versionCode": 202611220,
+    "package": "com.example.aprueba_app",
+    "sameAndroidSigningCertificate": true,
+    "signingCertificateSha256": "9c3781c1a4a0273efd48117c89d6512273c5e7a43ec6ac93eba9cb173a05e6f3",
+    "sha256": {
+      "apk": "8b767a90e87cfa76b524d6f224e96f162b535142fc2b2fec35461c7310d08a60",
+      "flutterWeb": "a12ddbca69bc6f9037b2ed1cca712797bb8e5236fa1ff5f83d92e13911e446d1",
+      "webIndex": "6df62644fb2c2766785b9b14c45c56a55c09332e20e68241579a89dffef48862"
+    },
+    "bytes": {
+      "apk": 65724682,
+      "flutterWeb": 4067676,
+      "webIndex": 801
+    }
+  },
+  "checks": {
+    "apiUnit": 77,
+    "webUnit": 19,
+    "flutter": 58,
+    "previousIntegrationSuites": 57,
+    "arenaIntegration": 17,
+    "webLint": true,
+    "flutterAnalysis": true,
+    "dependencyAudits": true,
+    "productionPool": {
+      "reviewedIds": 20,
+      "eligible": {
+        "m1": 10,
+        "m2": 10
+      }
+    },
+    "browser": {
+      "screens": [
+        {
+          "locale": "es",
+          "dark": false,
+          "width": 1440,
+          "contrast": [],
+          "overflow": false
+        },
+        {
+          "locale": "es",
+          "dark": true,
+          "width": 390,
+          "contrast": [],
+          "overflow": false
+        },
+        {
+          "locale": "en",
+          "dark": true,
+          "width": 390,
+          "contrast": [],
+          "overflow": false
+        },
+        {
+          "locale": "en",
+          "dark": false,
+          "width": 1440,
+          "contrast": [],
+          "overflow": false
+        }
+      ],
+      "checks": [
+        "unauthenticated access rejected",
+        "live matchmaking event, no entry charged in ready state",
+        "five rounds played through both browsers, pot settled exactly once",
+        "localized review of five answers, dismissed result stays dismissed",
+        "navigation requires confirmation; cancelling keeps match; confirming settles opponent pot"
+      ],
+      "responses": [],
+      "pageErrors": []
+    }
+  },
+  "productionUsersChangedForTesting": false,
+  "physicalPhonesTested": false
+}

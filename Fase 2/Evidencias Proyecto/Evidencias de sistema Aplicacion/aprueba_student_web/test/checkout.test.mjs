@@ -30,7 +30,7 @@ test('return notifications require the exact parent origin and popup source',()=
  env.callback({origin:'https://aprueba.example',source:env.popup,data:{type:'aprueba:paypal-return'}});assert.equal(env.dispatched,1);
 });
 test('route skeletons match the destination instead of always showing home',()=>{
- for(const [path,kind] of [['/plan','plans'],['/comunidad','feed'],['/tutores','tutors'],['/plan-estudio','study-plan'],['/ajustes','form'],['/notificaciones','notifications']])assert.equal(skeletonForPath(path),kind);
+ for(const [path,kind] of [['/arena','arena'],['/plan','plans'],['/comunidad','feed'],['/tutores','tutors'],['/plan-estudio','study-plan'],['/ajustes','form'],['/notificaciones','notifications']])assert.equal(skeletonForPath(path),kind);
 });
 
 test('literal API validation errors have English interface translations',()=>{
