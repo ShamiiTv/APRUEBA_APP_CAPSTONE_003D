@@ -2,6 +2,17 @@
 
 Proyecto del equipo Camilo Bernal, Javiera Villablanca y Claudio Valverde. El repositorio reúne las evidencias académicas por fase y el código de Aprueba web, la app Flutter y su API compartida.
 
+## Estado actual — 22 de noviembre de 2026
+
+Arena 1.2.0 está publicada en web y Flutter: duelos 1 contra 1 con matchmaking, Matemática M1/M2, entrada de una medalla de bronce y pozo de dos, empate con devolución, rango por prueba y recuperación de desconexiones. Disponible para cuentas verificadas de cualquier plan; las medallas no se compran. Cinco partidas diarias y una misma pareja por prueba cada 24 horas.
+
+- Arena: https://aprueba.shamiiplay.com/arena
+- APK 1.2.0: https://aprueba.shamiiplay.com/descargas/Aprueba-1.2.0.apk
+- Detalle técnico y alcance: `deploy/ARENA_1_2_0_2026-11-22.md`, dentro de las evidencias de sistema.
+- Código publicado: `54edf9650f1296e6bc22d2399e0fa5a56244df82`. [Controles de GitHub aprobados](https://github.com/ShamiiTv/APRUEBA_APP_CAPSTONE_003D/actions/runs/44982905762).
+
+Validación: 77 pruebas unitarias API, 74 integraciones, 19 web y 58 Flutter; duelos completos entre dos navegadores, temas e idiomas, firma del APK y hashes del contenido servido. La prueba del equipo en dos teléfonos físicos sigue pendiente. Se conservaron datos, configuración privada, descargas anteriores y respaldos. PayPal continúa en Sandbox y Facsímil permanece Próximamente.
+
 ## Organización
 
 ```text
