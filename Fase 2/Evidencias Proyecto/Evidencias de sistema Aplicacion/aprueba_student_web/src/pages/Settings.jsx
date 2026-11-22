@@ -62,11 +62,12 @@ export default function Settings() {
     {error && <p role="alert" className="settings-error">{error}</p>}
     {verificationMessage && <p role="status" className="settings-success">{verificationMessage}</p>}
     {success && <p role="status" className="settings-success">{copy.saved}</p>}
-    <section><h2>{lang==='en'?'Verify your email':'Verifica tu correo'}</h2><p>{user?.emailVerified?(lang==='en'?'Verified':'Verificado'):(lang==='en'?'Not verified yet':'Aún sin verificar')}</p>
-      <><label>{lang==='en'?'Current password':'Contraseña actual'}<input type="password" autoComplete="current-password" value={verificationPassword} onChange={e=>setVerificationPassword(e.target.value)} /></label><button disabled={saving || socialBusy || !verificationPassword} onClick={verify}>{lang==='en'?'Send verification email':'Enviar correo de verificación'}</button></>
-      <button disabled={saving || socialBusy} onClick={refreshVerification}>{lang==='en'?'Refresh verification':'Actualizar verificación'}</button>
-      <h2>{lang==='en'?'Connect your accounts':'Conecta tus redes'}</h2>
-      <p>{lang==='en'?'Link your own account through the provider authorization window. Your Aprueba progress stays in this account.':'Vincula tu propia cuenta mediante la ventana de autorización del proveedor. Tu progreso de Aprueba se mantiene en esta cuenta.'}</p>
+    <section className="account-status"><div><h2>{lang==='en'?'Account email':'Correo de la cuenta'}</h2><p>{user?.email}</p></div><strong className="status-pill">{user?.emailVerified?(lang==='en'?'Verified':'Verificado'):(lang==='en'?'Pending verification':'Pendiente de verificación')}</strong>
+      {!user?.emailVerified && <div className="verify-controls"><label>{lang==='en'?'Current password':'Contraseña actual'}<input type="password" autoComplete="current-password" value={verificationPassword} onChange={e=>setVerificationPassword(e.target.value)} /></label><button disabled={saving || socialBusy || !verificationPassword} onClick={verify}>{lang==='en'?'Send verification email':'Enviar correo de verificación'}</button><button disabled={saving || socialBusy} onClick={refreshVerification}>{lang==='en'?'Refresh verification':'Actualizar verificación'}</button></div>}
+    </section>
+    <section className="account-links"><h2>{lang==='en'?'Sign-in accounts':'Cuentas de acceso'}</h2>
+      <p>{lang==='en'?'Link a provider to sign in to this profile.':'Vincula una cuenta para iniciar sesión con ella.'}</p>
+      {user?.emailVerified && user?.availableSocialProviders?.some(id=>!user?.linkedProviders?.includes(id)) && <label>{lang==='en'?'Current password':'Contraseña actual'}<input type="password" autoComplete="current-password" value={verificationPassword} onChange={e=>setVerificationPassword(e.target.value)} /></label>}
       {['google.com','facebook.com'].map(provider=><button key={provider} disabled={socialBusy || saving || !verificationPassword || !user?.availableSocialProviders?.includes(provider) || user?.linkedProviders?.includes(provider)} onClick={()=>connect(provider)}>{user?.linkedProviders?.includes(provider)?'✓ ':''}{provider==='google.com'?'Google':'Facebook'}{!user?.availableSocialProviders?.includes(provider) && (lang==='en'?' · pending setup':' · pendiente de configuración')}</button>)}
     </section>
     <form onSubmit={save}>

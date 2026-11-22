@@ -13,3 +13,21 @@
 .social-page .social-text{line-height:1.65;}
 .parity-page:has(.section-header--bell) .inbox-row {gap:18px;}
 .parity-page:has(.section-header--bell) .inbox-row small {display:inline-block;padding:4px 10px;border-radius:20px;background:var(--soft);}
+
+/* Keep secondary actions quiet and give transactional data its own columns. */
+.social-page .social-feed form {padding:clamp(16px,3vw,26px);display:grid;gap:10px}
+.social-page .social-feed form>button {justify-self:end}
+.social-page .social-feed form>label:first-child {font-size:1.05rem;font-weight:750}
+.social-page .social-feed form>p {margin:0;font-size:.85rem}
+.feed-tools,.post-byline,.groups-page .discover-row,.settings-page .account-status,.wallet-quota {display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.feed-tools {justify-content:space-between;margin:26px 0 12px}
+.social-page .feed-tools button,.social-post .social-actions button,.settings-page .account-links button {background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.social-page .social-post button[aria-pressed=true],.social-page .social-post button[aria-expanded=true]{color:var(--brand-ink);border-color:var(--brand-ink)}
+.author-initial,.group-initial {display:grid;place-items:center;background:#204b5a;color:white;font-weight:800;border-radius:14px;width:44px;height:44px;flex:none}
+.post-byline time {display:block;font-size:.78rem;margin-top:3px}.social-post .social-text {font-size:1rem;line-height:1.65;margin:16px 0}.social-post>.social-actions{border-top:1px solid var(--line);padding-top:12px}
+.groups-page .discover-row>div,.account-status>div:first-child{flex:1;min-width:140px}.groups-page .discover-row p {margin:3px 0}.quiet-state,.wallet-quota {padding:14px 16px;background:var(--soft);border-radius:12px}
+.wallet-ledger {margin:12px 0 0;padding:0;list-style:none}.medals-page .wallet-ledger li{display:grid;grid-template-columns:minmax(85px,auto) 1fr auto;align-items:center;gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+.wallet-ledger strong,.status-pill{border-radius:20px;padding:5px 12px;width:fit-content;font-size:.85rem}.wallet-ledger .credit,.status-pill{background:#d6f2e5;color:#124d36}.wallet-ledger .debit{background:#fae7d4;color:#68421c}.wallet-ledger time{color:var(--muted);font-size:.8rem}
+.account-links>button{margin:8px 8px 0 0}.verify-controls{flex-basis:100%}.settings-page:not(.plan-page) fieldset{padding:clamp(16px,3vw,26px)}.settings-page:not(.plan-page) legend{padding:0 8px;font-weight:750}
+:is(.medals-page,.social-page,.settings-page) button:disabled{background:var(--soft);color:var(--muted);border:1px solid var(--line);opacity:1}
+@media(max-width:620px){.medals-page .wallet-ledger li{grid-template-columns:auto 1fr}.wallet-ledger time{grid-column:2}.groups-page .discover-row>button{flex-basis:100%}}

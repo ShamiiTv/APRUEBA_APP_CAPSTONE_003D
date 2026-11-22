@@ -77,7 +77,7 @@ function Post({ initial }) {
     finally { guard.current = false; setBusy(false); }
   };
   return <article className="social-post">
-    <strong>{post.contentDeleted||post.author.name==='Usuario eliminado'?tr('Usuario eliminado','Deleted user'):post.author.name}</strong> <time dateTime={post.createdAt}>{date(post.createdAt,lang)}</time>
+    <header className="post-byline"><span className="author-initial" aria-hidden="true">{post.contentDeleted ? "·" : post.author.name?.trim().slice(0,1).toUpperCase()}</span><div><strong>{post.contentDeleted||post.author.name==='Usuario eliminado'?tr('Usuario eliminado','Deleted user'):post.author.name}</strong> <time dateTime={post.createdAt}>{date(post.createdAt,lang)}</time></div></header>
     <p className="social-text">{post.contentDeleted?tr('Publicación eliminada','Post deleted'):post.text}</p>
     {post.question && <section aria-label={tr('Pregunta compartida','Shared question')}><strong>{post.question.testId?.toUpperCase()}</strong><p className="social-text">{post.question.statement}</p><ol>{post.question.options?.map((option,index) => <li key={index}>{typeof option === 'string' ? option : option.text}</li>)}</ol><p>{tr('Pregunta compartida para conversar; no consume cuota ni entrega medallas.','Shared for discussion; it does not use your quota or award medals.')}</p></section>}
     {error && <p role="alert">{error}</p>}
@@ -136,7 +136,7 @@ export default function SocialFeed({ groupId, questionId }) {
     </form>
     {mutation.error && <p role="alert">{mutation.error}</p>}
     {message && <p role="status">{message}</p>}
-    <div className="social-actions"><button disabled={loading} onClick={() => load()}>{tr('Actualizar publicaciones','Refresh posts')}</button></div>
+    <div className="feed-tools"><h2>{tr('Publicaciones','Posts')}</h2><button disabled={loading} onClick={() => load()}>{tr('Actualizar publicaciones','Refresh posts')}</button></div>
     {error && <p role="alert">{error}</p>}
     {!rows && !error && <ContentSkeleton kind="feed" />}
     {rows?.length === 0 && <p>{tr('Aún no hay publicaciones. Comparte la primera duda o aporte.','No posts yet. Share the first question or contribution.')}</p>}

@@ -13,7 +13,7 @@ export default function MedalGifts({onSent}) {
   catch(err){setMessage(err.message);if(err.status>=400 && err.status<500)setPending(null);}finally{setBusy(false);}
  };
  return <section><h2>{en?'Gift medals':'Regalar medallas'}</h2><p>{en?'Gift up to 10 bronze medals a day to members of your groups.':'Regala hasta 10 medallas de bronce al día a integrantes de tus grupos.'}</p>
- {message && <p role="status">{message}</p>}{data && <><p>{data.daily.used}/10 · {en?'Bronze available':'Bronces disponibles'}: {data.bronzeAvailable}</p>
+ {message && <p role="status">{message}</p>}{data && <><p className="wallet-quota"><strong>{data.daily.used}/10</strong> {en?'sent today':'enviadas hoy'} · {en?'Bronze available':'Bronce disponible'}: {data.bronzeAvailable}</p>
  {data.friends.length ? <form onSubmit={send}><label>{en?'Recipient':'Destinatario'}<select required disabled={busy || !!pending} value={recipient} onChange={e=>setRecipient(e.target.value)}><option value="">{en?'Choose a member':'Elige un integrante'}</option>{data.friends.map(friend=><option key={friend.userId} value={friend.userId}>{friend.name}</option>)}</select></label><label>{en?'Bronze medals':'Medallas de bronce'}<input type="number" min="1" max={Math.min(10-data.daily.used,data.bronzeAvailable)} value={amount} disabled={busy || !!pending} onChange={e=>setAmount(e.target.value)} /></label><button disabled={busy || !recipient || data.daily.used>=10 || data.bronzeAvailable<1}>{en?'Confirm gift':'Confirmar regalo'}</button></form>:<p>{en?'Join a study group to gift medals.':'Únete a un grupo para regalar medallas.'}</p>}</>}
  </section>;
 }
