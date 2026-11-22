@@ -1,3 +1,4 @@
+import ApruebaIcon from '../components/ApruebaIcon';
 import SectionHeader from '../components/SectionHeader';
 import {uiText} from '../i18n/uiText';
 import ContentSkeleton from '../components/ContentSkeleton';
@@ -78,8 +79,8 @@ export default function Medals() {
       {pending && !busy && <button onClick={()=>submit(pending.kind,pending.key)}>{tr('Reintentar solicitud pendiente','Retry pending request')}</button>}
     </>}
     <MedalGifts onSent={load} />
-    <section><h2>{tr('Beneficios de patrocinadores','Brand benefits')}</h2><p>{tr('Los beneficios se habilitan desde 5 medallas de Platino.','Benefits become available from five platinum medals.')}</p><p>{tr('Al canjear, reservas una unidad con tus medallas. Revisa el estado de la entrega en Mis solicitudes.','Redeem medals to reserve an item. Track delivery in My requests.')}</p>
-      {benefitError ? <p role="alert">{uiText(lang,benefitError)}</p> : !benefits ? <ContentSkeleton kind="cards" /> : benefits.length===0 ? <p>{tr('No hay beneficios activos en este momento.','There are no active benefits right now.')}</p> : benefits.map(b=><article key={b.id}>
+    <section className="wallet-module wallet-benefits"><h2><ApruebaIcon name="tag" />{tr('Beneficios de patrocinadores','Brand benefits')}</h2><p>{tr('Los beneficios se habilitan desde 5 medallas de Platino.','Benefits become available from five platinum medals.')}</p><p>{tr('Cada canje reserva una unidad. Sigue la entrega en Mis solicitudes.','Redeem medals to reserve an item. Track delivery in My requests.')}</p>
+      {benefitError ? <p role="alert">{uiText(lang,benefitError)}</p> : !benefits ? <ContentSkeleton kind="cards" /> : benefits.length===0 ? <p className="wallet-empty">{tr('No hay beneficios activos en este momento.','There are no active benefits right now.')}</p> : benefits.map(b=><article key={b.id}>
         <h3>{uiText(lang,b.name)}</h3><p>{b.sponsorName}</p><p>{uiText(lang,b.description)}</p>
         <p>{b.costPlatinum===null ? tr('Costo no definido','Cost not set') : `${b.costPlatinum} ${tr('medallas de Platino','platinum medals')}`} · {b.stock===null ? tr('Disponibilidad no definida','Availability not set') : `${b.stock} ${tr('disponibles','available')}`}</p>
         <button disabled={busy || !!pending || !!error || !summary || !b.canRedeem || summary.medals.platinum<b.costPlatinum} onClick={()=>setConfirmation(b)}>{tr('Solicitar','Request')} {uiText(lang,b.name)}</button>
@@ -87,7 +88,7 @@ export default function Medals() {
       {confirmation && <div role="group" aria-label={tr('Confirmar canje de beneficio','Confirm benefit redemption')}><p>{tr(`¿Solicitar ${uiText(lang,confirmation.name)} por ${confirmation.costPlatinum} medallas de Platino? La entrega estará pendiente.`,`Request ${uiText(lang,confirmation.name)} for ${confirmation.costPlatinum} platinum medals? Fulfillment will be pending.`)}</p><button disabled={busy} onClick={()=>submit('benefit',confirmation.id)}>{tr('Confirmar solicitud','Confirm request')}</button><button disabled={busy} onClick={()=>setConfirmation(null)}>{tr('Cancelar','Cancel')}</button></div>}
     </section>
     {summary && <>
-      <section><h2>{tr('Mis solicitudes de beneficios','My benefit requests')}</h2><p>{tr('Hasta 50 solicitudes recientes.','Latest 50 requests.')}</p>{summary.redemptions?.length ? summary.redemptions.map(r=><article key={r.id}><strong>{uiText(lang,r.name)}</strong><p>{tr('Referencia','Reference')}: {r.id}</p><p>{r.status==='pending' ? tr('Entrega pendiente','Fulfillment pending') : r.status} · {r.costPlatinum} {tr('Platino','Platinum')}</p></article>) : <p>{tr('Aún no has solicitado beneficios.','No benefit requests yet.')}</p>}</section>
+      <section className="wallet-module wallet-requests"><h2><ApruebaIcon name="paper" />{tr('Mis solicitudes de beneficios','My benefit requests')}</h2><p>{tr('Hasta 50 solicitudes recientes.','Latest 50 requests.')}</p>{summary.redemptions?.length ? summary.redemptions.map(r=><article key={r.id}><strong>{uiText(lang,r.name)}</strong><p>{tr('Referencia','Reference')}: {r.id}</p><p>{r.status==='pending' ? tr('Entrega pendiente','Fulfillment pending') : r.status} · {r.costPlatinum} {tr('Platino','Platinum')}</p></article>) : <p className="wallet-empty">{tr('Aún no has solicitado beneficios.','No benefit requests yet.')}</p>}</section>
       <section><h2>{tr('Historial de medallas','Medal history')}</h2><p>{tr('Últimos 50 movimientos.','Latest 50 transactions.')}</p>{summary.history.length ? <ul className="wallet-ledger">{summary.history.map(h=><li key={h.id}><strong className={h.amount>0?"credit":"debit"}>{h.amount>0 ? '+' : ''}{h.amount} {label(h.tier)}</strong><span>{uiText(lang,h.reason)}</span>{h.createdAt && <time dateTime={h.createdAt}>{new Date(h.createdAt).toLocaleString(lang==='en'?'en-US':'es-CL',{timeZone:'America/Santiago'})}</time>}</li>)}</ul> : <p>{tr('Aún no tienes movimientos.','No transactions yet.')}</p>}</section>
     </>}
   </div>;

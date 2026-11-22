@@ -1,3 +1,4 @@
+import ApruebaIcon from '../components/ApruebaIcon';
 import SectionHeader from '../components/SectionHeader';
 import { useEffect,useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -71,7 +72,7 @@ export default function Settings() {
       {['google.com','facebook.com'].map(provider=><button key={provider} disabled={socialBusy || saving || !verificationPassword || !user?.availableSocialProviders?.includes(provider) || user?.linkedProviders?.includes(provider)} onClick={()=>connect(provider)}>{user?.linkedProviders?.includes(provider)?'✓ ':''}{provider==='google.com'?'Google':'Facebook'}{!user?.availableSocialProviders?.includes(provider) && (lang==='en'?' · pending setup':' · pendiente de configuración')}</button>)}
     </section>
     <form onSubmit={save}>
-      <fieldset disabled={saving}><legend>{copy.profile}</legend>
+      <fieldset className="pref-card pref-profile" disabled={saving}><legend><ApruebaIcon name="group" size={21} />{copy.profile}</legend>
         <label>{copy.name}<input autoComplete="name" required maxLength={120} value={values.name} onChange={e => change('name',e.target.value)} /></label>
         <label>{copy.email}<input type="email" readOnly value={user?.email || ''} /></label>
         <label>{copy.school}<input maxLength={200} value={values.school} onChange={e => change('school',e.target.value)} /></label>
@@ -81,14 +82,14 @@ export default function Settings() {
         <p>{lang==='en'?'10 base + 5 school/age/region + 5 address · 20 free max':'10 base + 5 colegio/edad/región + 5 dirección · 20 máx gratis'}</p>
         <label>{lang==='en'?'Commune':'Comuna'}<input maxLength={200} value={values.address.commune || ''} onChange={e=>change('address',{...values.address,commune:e.target.value})} /></label>
         <label>{lang==='en'?'Street and number':'Calle y número'}<input maxLength={200} value={values.address.street || ''} onChange={e=>change('address',{...values.address,street:e.target.value})} /></label>
-        <label>{lang==='en'?'Country':'País'}<input maxLength={200} value={values.address.country || ''} onChange={e=>change('address',{...values.address,country:e.target.value})}/></label><label>{lang==='en'?'Housing type':'Tipo de vivienda'}<select value={values.address.housingType || 'casa'} onChange={e=>change('address',{...values.address,housingType:e.target.value})}>{['casa','departamento','condominio','otro'].map(v=><option key={v} value={v}>{lang==='en'?{casa:'House',departamento:'Apartment',condominio:'Condominium',otro:'Other'}[v]:v}</option>)}</select></label><label>{lang==='en'?'Unit (optional)':'Unidad (opcional)'}<input maxLength={200} value={values.address.unit || ''} onChange={e=>change('address',{...values.address,unit:e.target.value})}/></label><p className="settings-hint">{copy.accountHint}</p><Link to="/recuperar-contrasena">{copy.password}</Link>
+        <label>{lang==='en'?'Country':'País'}<input maxLength={200} value={values.address.country || ''} onChange={e=>change('address',{...values.address,country:e.target.value})}/></label><label>{lang==='en'?'Housing type':'Tipo de vivienda'}<select value={values.address.housingType || 'casa'} onChange={e=>change('address',{...values.address,housingType:e.target.value})}>{['casa','departamento','condominio','otro'].map(v=><option key={v} value={v}>{lang==='en'?{casa:'House',departamento:'Apartment',condominio:'Condominium',otro:'Other'}[v]:v}</option>)}</select></label><label>{lang==='en'?'Unit (optional)':'Unidad (opcional)'}<input maxLength={200} value={values.address.unit || ''} onChange={e=>change('address',{...values.address,unit:e.target.value})}/></label><p className="settings-hint">{copy.accountHint}</p><Link className="settings-shortcut" to="/recuperar-contrasena"><ApruebaIcon name="lock" size={16} />{copy.password}</Link>
       </fieldset>
-      <fieldset disabled={saving}><legend>{copy.practice}</legend>
-        <div role="group" aria-label={copy.tests}><p>{copy.tests}</p>{TESTS.map(([id,label]) => <label className="settings-check" key={id}><input type="checkbox" checked={values.selectedTests.includes(id)} onChange={e => change('selectedTests',e.target.checked ? [...values.selectedTests,id] : values.selectedTests.filter(test => test !== id))} />{uiText(lang,label)}</label>)}</div>
+      <fieldset className="pref-card pref-practice" disabled={saving}><legend><ApruebaIcon name="target" size={21} />{copy.practice}</legend>
+        <div className="subject-picker" role="group" aria-label={copy.tests}><p>{copy.tests}</p>{TESTS.map(([id,label]) => <label className="settings-check" key={id}><input type="checkbox" checked={values.selectedTests.includes(id)} onChange={e => change('selectedTests',e.target.checked ? [...values.selectedTests,id] : values.selectedTests.filter(test => test !== id))} />{uiText(lang,label)}</label>)}</div>
         <div><label htmlFor="profile-difficulty">{copy.difficulty}</label><select id="profile-difficulty" value={values.difficulty} onChange={e => change('difficulty',e.target.value)}><option value="d1">{copy.basic}</option><option value="d2">{copy.medium}</option><option value="d3">{copy.advanced}</option></select></div>
-        <p className="settings-hint">{copy.bankHint}</p><p className="settings-hint">{copy.planHint}</p><Link to="/plan-estudio">{copy.plan}</Link>
+        <p className="settings-hint">{lang==='en'?'Current question bank: intermediate difficulty.':'Banco actual: dificultad intermedia.'}</p><p className="settings-hint">{lang==='en'?'These choices apply to practice and new plans. Your saved plan keeps its subjects.':'Esta selección se usa al practicar y al crear un plan. Tu plan guardado conserva sus materias.'}</p><Link className="settings-shortcut" to="/plan-estudio"><ApruebaIcon name="book" size={16} />{copy.plan}</Link>
       </fieldset>
-      <fieldset disabled={saving}><legend>{copy.appearance}</legend>
+      <fieldset className="pref-card pref-appearance" disabled={saving}><legend><ApruebaIcon name="sun" size={21} />{copy.appearance}</legend>
         <div><label htmlFor="profile-theme">{copy.theme}</label><select id="profile-theme" value={values.theme} onChange={e => change('theme',e.target.value)}><option value="light">{copy.light}</option><option value="dark">{copy.dark}</option></select></div>
         <div><label htmlFor="profile-language">{copy.language}</label><select id="profile-language" value={values.locale} onChange={e => change('locale',e.target.value)}><option value="es">Español</option><option value="en">English</option></select></div>
         <p className="settings-hint">{copy.applyHint}</p>

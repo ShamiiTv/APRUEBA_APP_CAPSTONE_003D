@@ -106,7 +106,7 @@ export default function Practice() {
   };
 
   return (
-    <div style={{ maxWidth: '820px', margin: '0 auto', position: 'relative' }}>
+    <div className="training-page" style={{ maxWidth: '820px', margin: '0 auto', position: 'relative' }}>
       {similarTo && <section role="status"><p>{lang==='en'?'Similar questions: same test, difficulty and topic.':'Preguntas similares: misma prueba, dificultad y eje temático.'}</p><button onClick={()=>{setSimilarTo(null);fetchNextQuestion();}}>{lang==='en'?'Return to general practice':'Volver a práctica general'}</button></section>}
       {/* Cabecera del Módulo */}
       <div style={{
@@ -411,7 +411,7 @@ export default function Practice() {
             </div>
           )}
 
-          {result && <button disabled={submitting} onClick={()=>{setSimilarTo(question.id);fetchNextQuestion();}}>{lang==='en'?'Practice similar questions':'Practicar similares'}</button>}
+          {result && <button className="similar-action" disabled={submitting} onClick={()=>{setSimilarTo(question.id);fetchNextQuestion();}}><ApruebaIcon name="target" size={19} />{lang==='en'?'Practice similar questions':'Practicar similares'}</button>}
           {/* Acciones */}
           <div style={{ display: 'flex', justifyContent: 'flex-end', flexWrap: 'wrap', gap: '12px' }}>
             {result && <div className="practice-share-actions"><button className="practice-share-button" onClick={() => navigate(`/grupos?questionId=${encodeURIComponent(question.id)}&testId=${encodeURIComponent(testId)}`)}><span className="practice-share-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5v1"/></svg></span>{lang==='en'?'Share with group':'Compartir al grupo'}<svg className="practice-share-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><button className="practice-share-button practice-share-button--community" onClick={() => navigate(`/comunidad?questionId=${encodeURIComponent(question.id)}`)}><span className="practice-share-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H5l-3 2V11.5a9.5 9.5 0 0 1 19 0Z"/><path d="M7 11h10m-10 4h6"/></svg></span>{lang==='en'?'Share with community':'Compartir a la comunidad'}<svg className="practice-share-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>}

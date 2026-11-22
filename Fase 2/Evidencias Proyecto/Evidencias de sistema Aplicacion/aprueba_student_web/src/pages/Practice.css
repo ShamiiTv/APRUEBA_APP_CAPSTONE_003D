@@ -11,3 +11,7 @@
 .facsimile-entry h2 { margin:0 0 5px; font-size:1.2rem; color:white; }
 .facsimile-entry p { margin:0; line-height:1.5; color:#e1edf5; }
 .facsimile-entry button { background:#ffc45c; color:#162840; border:0; border-radius:12px; padding:12px 16px; font:inherit; font-weight:700; cursor:pointer; }
+
+.training-page button:not([class]):not([style]),.training-page .similar-action{display:inline-flex;align-items:center;gap:9px;min-height:42px;border:1px solid var(--line);border-radius:12px;padding:9px 15px;background:var(--soft);color:var(--ink);font:inherit;font-weight:650;cursor:pointer}
+.training-page .similar-action{margin:0 0 12px;border-color:color-mix(in srgb,#8760cd 48%,var(--line));background:color-mix(in srgb,#8760cd 12%,var(--panel))}
+.training-page .similar-action:hover{border-color:#8760cd}.training-page button:focus-visible{outline:3px solid var(--brand-ink);outline-offset:3px}

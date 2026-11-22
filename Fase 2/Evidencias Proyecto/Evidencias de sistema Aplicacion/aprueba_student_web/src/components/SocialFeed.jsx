@@ -1,3 +1,4 @@
+import ApruebaIcon from './ApruebaIcon';
 import ContentSkeleton from './ContentSkeleton';
 import { useTheme } from '../context/useTheme';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -81,7 +82,7 @@ function Post({ initial }) {
     <p className="social-text">{post.contentDeleted?tr('Publicación eliminada','Post deleted'):post.text}</p>
     {post.question && <section aria-label={tr('Pregunta compartida','Shared question')}><strong>{post.question.testId?.toUpperCase()}</strong><p className="social-text">{post.question.statement}</p><ol>{post.question.options?.map((option,index) => <li key={index}>{typeof option === 'string' ? option : option.text}</li>)}</ol><p>{tr('Pregunta compartida para conversar; no consume cuota ni entrega medallas.','Shared for discussion; it does not use your quota or award medals.')}</p></section>}
     {error && <p role="alert">{error}</p>}
-    <div className="social-actions"><button aria-pressed={post.userLiked} disabled={busy} onClick={react}>{post.userLiked ? tr('Quitar Me gusta','Unlike') : tr('Me gusta','Like')} · {post.likeCount}</button><button aria-expanded={open} onClick={() => setOpen(value => !value)}>{tr('Comentarios','Comments')} · {post.commentCount}</button></div>
+    <div className="social-actions"><button aria-pressed={post.userLiked} disabled={busy} onClick={react}><ApruebaIcon name="spark" size={16} />{post.userLiked ? tr('Quitar Me gusta','Unlike') : tr('Me gusta','Like')} · {post.likeCount}</button><button aria-expanded={open} onClick={() => setOpen(value => !value)}><ApruebaIcon name="chat" size={16} />{tr('Comentarios','Comments')} · {post.commentCount}</button></div>
     {open && <Comments postId={post.id} onCount={count => setPost(previous => ({ ...previous, commentCount: count }))} />}
   </article>;
 }
@@ -127,8 +128,8 @@ export default function SocialFeed({ groupId, questionId }) {
     setDraft(''); setAttach(false); setMessage(tr('Publicación registrada.','Post saved.'));
   };
   return <div className="social-feed">
-    <form onSubmit={submit}>
-      <label htmlFor={groupId ? `post-${groupId}` : 'post-public'}>{groupId ? tr('Comparte una pregunta o duda con tu grupo','Share a question or doubt with your group') : tr('Comparte una pregunta o duda con la comunidad','Share a question or doubt with the community')}</label>
+    <form className="community-composer" onSubmit={submit}>
+      <label htmlFor={groupId ? `post-${groupId}` : 'post-public'}><ApruebaIcon name="chat" size={21} />{groupId ? tr('Comparte una pregunta o duda con tu grupo','Share a question or doubt with your group') : tr('Comparte una pregunta o duda con la comunidad','Share a question or doubt with the community')}</label>
       <textarea id={groupId ? `post-${groupId}` : 'post-public'} rows={3} maxLength={3000} disabled={mutation.busy || !!mutation.pending} value={mutation.pending?.text ?? draft} onChange={event => setDraft(event.target.value)} />
       {questionId && <label className="social-check"><input type="checkbox" checked={mutation.pending ? !!mutation.pending.questionId : attach} disabled={mutation.busy || !!mutation.pending} onChange={event => setAttach(event.target.checked)} />{tr('Adjuntar la pregunta de práctica','Attach the practice question')}</label>}
       <p>{groupId ? tr('Solo los miembros de este grupo pueden ver esta publicación.','Only members of this group can see this post.') : tr('Tu nombre y publicación serán visibles para la comunidad de Aprueba.','Your name and post will be visible to the Aprueba community.')}</p>

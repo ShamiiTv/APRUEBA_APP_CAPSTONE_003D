@@ -31,3 +31,14 @@
 .account-links>button{margin:8px 8px 0 0}.verify-controls{flex-basis:100%}.settings-page:not(.plan-page) fieldset{padding:clamp(16px,3vw,26px)}.settings-page:not(.plan-page) legend{padding:0 8px;font-weight:750}
 :is(.medals-page,.social-page,.settings-page) button:disabled{background:var(--soft);color:var(--muted);border:1px solid var(--line);opacity:1}
 @media(max-width:620px){.medals-page .wallet-ledger li{grid-template-columns:auto 1fr}.wallet-ledger time{grid-column:2}.groups-page .discover-row>button{flex-basis:100%}}
+
+.pref-profile,.wallet-gift{--section-accent:#179c88}.pref-practice,.wallet-benefits{--section-accent:#8762d3}.pref-appearance,.wallet-requests{--section-accent:#cf8830}
+.settings-page .pref-card,.medals-page .wallet-module{background:linear-gradient(120deg,color-mix(in srgb,var(--section-accent) 9%,var(--panel)),var(--panel) 70%);border-top:3px solid var(--section-accent)}
+.settings-page .pref-card legend,.wallet-module h2,.settings-page a.settings-shortcut,.community-composer>label:first-child,.social-post>.social-actions button{display:inline-flex;align-items:center;gap:9px}
+.settings-page .pref-card legend{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 12px;font-size:1.05rem}.pref-card legend svg,.wallet-module h2 svg{color:var(--section-accent)}
+.subject-picker{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,175px),1fr));gap:8px}.subject-picker>p{grid-column:1/-1;font-weight:700}.settings-page .subject-picker label{margin:0;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--panel);cursor:pointer}
+.settings-page .subject-picker label:has(:checked){background:color-mix(in srgb,#8762d3 15%,var(--panel));border-color:#8762d3;font-weight:700}.subject-picker input{accent-color:#7046a5}
+.settings-page a.settings-shortcut{border:1px solid var(--line);background:var(--panel);padding:9px 13px;border-radius:11px;text-decoration:none;font-weight:700}
+.social-page .community-composer{border-top:3px solid #8267ba;background:linear-gradient(130deg,color-mix(in srgb,#8267ba 10%,var(--panel)),var(--panel) 68%)}.community-composer>label svg{color:#9777cc}.social-post .author-initial{background:linear-gradient(135deg,#236d70,#344a7d)}
+.social-post>.social-actions button[aria-pressed]{background:color-mix(in srgb,#b55179 10%,var(--panel))}.social-post>.social-actions button[aria-expanded]{background:color-mix(in srgb,#447ac3 12%,var(--panel))}
+.medals-page .wallet-module{padding:clamp(18px,3vw,28px)}.wallet-module h2{margin:0 0 10px}.wallet-module>p{margin:7px 0;line-height:1.6}.wallet-quota progress{accent-color:#188676;max-width:100%;height:8px}.wallet-empty{padding:10px 14px;border-inline-start:3px solid var(--section-accent);background:var(--soft);border-radius:6px}
