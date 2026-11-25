@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente fragmento: 'El jardín parecía un trozo de cielo caído en la tierra.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Metáfora",
@@ -24,6 +25,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Estudió mucho; por consiguiente, aprobó el examen', el conector 'por consiguiente' expresa:",
     "alternativas": [
       "Consecuencia",
@@ -46,6 +48,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción que presenta un error de acentuación en una palabra grave.",
     "alternativas": [
       "Césped",
@@ -68,6 +71,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El agua moja, el fuego quema, el aire no se ve. La tierra pesa, pero el amor todo lo puede.' ¿Qué recurso literario se emplea en la última parte?",
     "alternativas": [
       "Hipérbole",
@@ -89,6 +93,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué tipo de texto es un contrato legal?",
     "alternativas": [
       "Instructivo",
@@ -111,6 +116,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Se vende casa', el 'se' es parte de una construcción:",
     "alternativas": [
       "Pasiva refleja",
@@ -133,6 +139,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'No salió porque estaba lloviendo. Sin embargo, su amigo sí fue al cine.' La palabra 'sin embargo' expresa:",
     "alternativas": [
       "Contraste",
@@ -154,6 +161,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se usa correctamente el verbo 'haber' en sentido existencial.",
     "alternativas": [
       "Habían muchas personas.",
@@ -176,6 +184,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el significado de 'conciso' en la frase 'El informe debe ser conciso y claro'?",
     "alternativas": [
       "Breve y preciso",
@@ -197,6 +206,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'El niño, que estaba asustado, llamó a su madre', la proposición 'que estaba asustado' es una subordinada adjetiva:",
     "alternativas": [
       "Explicativa",
@@ -219,6 +229,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Lee el siguiente texto: 'El tiempo es un río que todo lo arrastra. No te aferres a orillas que ya no existen.' ¿Qué concepto filosófico subyace?",
     "alternativas": [
       "El cambio constante",
@@ -240,6 +251,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción que contiene una palabra aguda con tilde por terminar en N.",
     "alternativas": [
       "Jabón",
@@ -262,6 +274,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función del lenguaje predomina en un eslogan publicitario como 'Disfruta la vida, toma Coca-Cola'?",
     "alternativas": [
       "Apelativa",
@@ -284,6 +297,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Les presté dinero a mis amigos', el pronombre 'les' es redundante porque ya está 'a mis amigos'. Este uso es:",
     "alternativas": [
       "Obligatorio",
@@ -306,6 +320,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente fragmento: 'La noche era tan negra que parecía un pozo sin fondo.' ¿Qué recurso se utiliza en 'tan negra que parecía'?",
     "alternativas": [
       "Comparación",
@@ -327,6 +342,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se usa incorrectamente el modo subjuntivo después de 'para que'.",
     "alternativas": [
       "Estudia para que apruebes.",
@@ -349,6 +365,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes palabras es un sustantivo concreto?",
     "alternativas": [
       "Esperanza",
@@ -371,6 +388,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El sol brillaba con fuerza; sin embargo, el frío era intenso.' ¿Qué relación expresan los dos primeros elementos?",
     "alternativas": [
       "Contraste",
@@ -392,6 +410,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Si el complemento directo es 'la carta', ¿qué oración usa incorrectamente el pronombre que lo sustituye?",
     "alternativas": [
       "La leí ayer.",
@@ -414,6 +433,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué vicio de lenguaje se comete al decir 'me se cayó el vaso'?",
     "alternativas": [
       "Solecismo",
@@ -436,6 +456,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El viento aullaba como un lobo herido. Las ramas golpeaban las ventanas pidiendo auxilio.' ¿Qué recursos se combinan?",
     "alternativas": [
       "Símil y personificación",
@@ -457,6 +478,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la palabra 'quizá' está correctamente escrita y usada.",
     "alternativas": [
       "Quizás venga mañana.",
@@ -479,6 +501,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes es una oración exclamativa indirecta?",
     "alternativas": [
       "¡Qué lástima!",
@@ -501,6 +524,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El libro estaba en la mesa, pero no lo vi.' ¿Qué función cumple 'pero'?",
     "alternativas": [
       "Adversativa",
@@ -522,6 +546,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción donde se produce un hiato (vocales en sílabas distintas).",
     "alternativas": [
       "Causa",
@@ -544,6 +569,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee este ejemplo ficticio: 'Según la encuesta del curso, el 80% de los estudiantes prefiere leer en papel'. ¿Qué información predomina?",
     "alternativas": [
       "Un resultado estadístico atribuido a una encuesta",
@@ -565,6 +591,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Mi hermano se queja de que todo le sale mal', el 'se' es parte de un verbo:",
     "alternativas": [
       "Pronominal (quejarse)",
@@ -587,6 +614,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El amor es un espejismo: crees ver agua en el desierto, pero al llegar solo encuentras arena.' ¿Qué recurso se utiliza en la comparación?",
     "alternativas": [
       "Analogía",
@@ -611,6 +639,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción que presenta un error por falta de tilde en la palabra 'energía' en una frase.",
     "alternativas": [
       "Tiene mucha energía.",
@@ -633,6 +662,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de estas opciones presenta la estructura disyuntiva correlativa 'o... o...' completa?",
     "alternativas": [
       "Quieres té o café?",
@@ -655,6 +685,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El dictador habló durante horas, pero nadie lo escuchaba. Su poder era solo aparente.' ¿Qué idea se destaca?",
     "alternativas": [
       "El poder sin legitimidad",

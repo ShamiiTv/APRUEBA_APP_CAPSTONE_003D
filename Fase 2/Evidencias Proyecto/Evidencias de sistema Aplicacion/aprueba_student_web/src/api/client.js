@@ -32,6 +32,6 @@ export async function apiFetch(endpoint,options={},retry=true){
   if(retry){await renew();return apiFetch(endpoint,options,false);}
   clearSession();window.dispatchEvent(new Event('aprueba:session-ended'));
  }
- if(!res.ok||json.error){const message=json.error?.message||json.error||'Error en la petición al servidor';throw Object.assign(new Error(uiText(localStorage.getItem('lang'),message)),{status:res.status,code:json.error?.code||json.error?.details?.code});}
+ if(!res.ok||json.error){const message=json.error?.message||json.error||'Error en la petición al servidor';throw Object.assign(new Error(uiText(localStorage.getItem('lang'),message)),{status:res.status,nextStep:json.error?.nextStep || json.error?.details?.[0]?.nextStep,code:json.error?.code||json.error?.details?.code});}
  return json;
 }

@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente fragmento: 'El viento jugaba con las hojas secas, haciéndolas bailar en el aire.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Personificación",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Llegamos tarde porque el tráfico estaba terrible', la palabra 'porque' expresa:",
     "alternativas": [
       "Causa",
@@ -43,6 +45,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción donde la palabra 'tú' (pronombre personal) lleva tilde correctamente.",
     "alternativas": [
       "Tu eres mi amigo.",
@@ -65,6 +68,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'Sus ojos brillaban como dos luceros en la noche.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Símil",
@@ -86,6 +90,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de los siguientes conectores indica una consecuencia?",
     "alternativas": [
       "Porque",
@@ -108,6 +113,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción donde se produce un hiato (vocales en sílabas distintas).",
     "alternativas": [
       "Causa",
@@ -130,6 +136,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Los estudiantes, que estudiaron mucho, aprobaron', la proposición 'que estudiaron mucho' es una subordinada adjetiva:",
     "alternativas": [
       "Explicativa",
@@ -152,6 +159,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La tristeza es una sombra que nos sigue a todas partes.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Metáfora",
@@ -173,6 +181,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué tipo de texto es un manual de convivencia escolar?",
     "alternativas": [
       "Instructivo",
@@ -195,6 +204,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la coma está correctamente usada para separar un vocativo.",
     "alternativas": [
       "Juan, ven aquí.",
@@ -220,6 +230,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el significado de 'excepcional' en la frase 'Fue un alumno excepcional'?",
     "alternativas": [
       "Sobresaliente",
@@ -241,6 +252,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Se miraron a los ojos y se sonrieron', el 'se' es:",
     "alternativas": [
       "Recíproco",
@@ -263,6 +275,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El tiempo vuela cuando te diviertes.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Personificación",
@@ -284,6 +297,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde el verbo 'haber' está conjugado correctamente en impersonal.",
     "alternativas": [
       "Habrá una reunión mañana.",
@@ -306,6 +320,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes palabras es un adverbio de modo?",
     "alternativas": [
       "Lentamente",
@@ -328,6 +343,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La ciudad dormía bajo el manto de la noche.' ¿Qué figura retórica predomina en 'manto de la noche'?",
     "alternativas": [
       "Metáfora",
@@ -349,6 +365,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se usa correctamente 'aunque' como concesiva.",
     "alternativas": [
       "Aunque estudia, no aprueba.",
@@ -374,6 +391,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función del lenguaje predomina en un semáforo con luz roja?",
     "alternativas": [
       "Apelativa",
@@ -396,6 +414,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Esa es la casa donde nací', la palabra 'donde' es un:",
     "alternativas": [
       "Adverbio relativo",
@@ -418,6 +437,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El silencio era tan pesado que podía palparse.' ¿Qué recurso predomina?",
     "alternativas": [
       "Sinestesia",
@@ -439,6 +459,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la escritura correcta del verbo que significa emitir un sufragio?",
     "alternativas": [
       "Botar",
@@ -461,6 +482,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes opciones es una oración interrogativa indirecta?",
     "alternativas": [
       "¿Qué hora es?",
@@ -486,6 +508,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Me encanta que me escuchen', el verbo 'escuchen' está en modo subjuntivo porque:",
     "alternativas": [
       "Expresa un deseo o emoción",
@@ -508,6 +531,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El mar estaba en calma, como un lago de aceite.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Símil",
@@ -529,6 +553,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la palabra 'conque' está correctamente usada como conjunción consecutiva.",
     "alternativas": [
       "Conque estudias, apruebas.",
@@ -554,6 +579,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué tipo de texto es una entrada de diccionario?",
     "alternativas": [
       "Expositivo",
@@ -576,6 +602,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'El informe fue entregado por la secretaria', la frase 'por la secretaria' es:",
     "alternativas": [
       "Complemento agente",
@@ -598,6 +625,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La niebla se arremolinaba en las calles como un fantasma que busca algo.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Símil",
@@ -619,6 +647,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se usa correctamente la preposición 'según'.",
     "alternativas": [
       "Según mi opinión, es tarde.",
@@ -644,6 +673,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes palabras es un adjetivo posesivo?",
     "alternativas": [
       "Mi",
@@ -666,6 +696,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'No sé si vendrá', la conjunción 'si' introduce una:",
     "alternativas": [
       "Interrogativa indirecta",
@@ -688,6 +719,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El miedo es una sombra que crece cuando apagas la luz.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Metáfora",
@@ -709,6 +741,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la palabra 'sino' (adversativo) está correctamente usada.",
     "alternativas": [
       "No quiero café, sino té.",
@@ -734,6 +767,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes opciones es un texto discontinuo?",
     "alternativas": [
       "Un formulario de inscripción",
@@ -756,6 +790,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Espero que todo salga bien', el verbo 'salga' está en modo:",
     "alternativas": [
       "Subjuntivo",
@@ -778,6 +813,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La primavera vestía de colores el campo desnudo.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Personificación",
@@ -799,6 +835,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde el verbo 'ir' está en futuro de subjuntivo (forma casi en desuso, pero aún correcta en documentos legales).",
     "alternativas": [
       "Fuere",
@@ -821,6 +858,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes palabras es un sinónimo de 'lacerante'?",
     "alternativas": [
       "Doloroso",
@@ -843,6 +881,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "En la oración 'Necesito papel y lápiz', el nexo 'y' es una conjunción:",
     "alternativas": [
       "Copulativa",
@@ -865,6 +904,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El tiempo es un río que todo lo arrastra.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Metáfora",
@@ -886,6 +926,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la coma está correctamente utilizada en una enumeración compleja.",
     "alternativas": [
       "Visitamos Madrid, España; París, Francia; y Londres, Inglaterra.",
@@ -911,6 +952,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función cumple el lenguaje en la frase 'El agua hierve a 100 grados Celsius a nivel del mar'?",
     "alternativas": [
       "Referencial",
@@ -933,6 +975,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Compré el libro que me recomendaste', el pronombre 'que' es un:",
     "alternativas": [
       "Pronombre relativo",
@@ -955,6 +998,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La oscuridad era tan densa que parecía sólida.' ¿Qué recurso predomina?",
     "alternativas": [
       "Sinestesia",
@@ -976,6 +1020,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se usa incorrectamente el gerundio (gerundio de posterioridad).",
     "alternativas": [
       "Salió corriendo.",
@@ -998,6 +1043,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes palabras es un sustantivo concreto?",
     "alternativas": [
       "Belleza",
@@ -1020,6 +1066,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La vida es un pálpito constante entre la alegría y el dolor.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Metáfora",
@@ -1041,6 +1088,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción donde la palabra 'de' (preposición) está correctamente usada sin tilde.",
     "alternativas": [
       "Déme el libro.",
@@ -1063,6 +1111,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué tipo de texto es una ley?",
     "alternativas": [
       "Instructivo",
@@ -1085,6 +1134,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Los niños jugaban felices', la palabra 'felices' es:",
     "alternativas": [
       "Predicativo subjetivo obligatorio",
@@ -1110,6 +1160,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El poeta miraba la luna y no veía un satélite, sino el rostro de una amada ausente.' ¿Qué recurso predomina en 'rostro de una amada ausente'?",
     "alternativas": [
       "Metáfora",
@@ -1131,6 +1182,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se produce una cacofonía.",
     "alternativas": [
       "La alta ala del ala.",
@@ -1153,6 +1205,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes palabras es un adverbio de afirmación?",
     "alternativas": [
       "Ciertamente",
@@ -1175,6 +1228,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Me duele la cabeza', el verbo 'duele' está en tercera persona del singular porque:",
     "alternativas": [
       "Concuerda con 'cabeza'",
@@ -1197,6 +1251,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El amor es un fuego que se aviva con el viento de la distancia.' ¿Qué recurso predomina en 'fuego'?",
     "alternativas": [
       "Metáfora",
@@ -1218,6 +1273,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la palabra 'más' (adverbio de cantidad) está correctamente acentuada.",
     "alternativas": [
       "Mas no lo sé.",
@@ -1240,6 +1296,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes opciones es una oración simple?",
     "alternativas": [
       "Cantó y bailó.",

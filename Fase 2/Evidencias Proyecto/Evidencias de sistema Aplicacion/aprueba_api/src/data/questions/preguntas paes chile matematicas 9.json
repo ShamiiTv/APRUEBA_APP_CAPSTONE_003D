@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación lineal: 7(x - 2) = 3(x + 4).",
     "alternativas": [
       "6,5",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un número disminuido en 5 es igual al doble del número aumentado en 3. ¿Cuál es el número?",
     "alternativas": [
       "-11",
@@ -42,6 +44,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la distancia entre los puntos (2, -1, 3) y (-1, 2, 0).",
     "alternativas": [
       "√27",
@@ -64,6 +67,7 @@
     "motivo_alcance": "Contenido de cálculo, complejos, matrices, geometría analítica de cónicas, trigonometría inversa o vectores avanzados fuera del temario M1/M2 consultado."
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la derivada de f(x) = (2x+1)⁵.",
     "alternativas": [
       "10(2x+1)⁴",
@@ -85,6 +89,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la integral indefinida ∫ (4x³ - 6x) dx.",
     "alternativas": [
       "x⁴ - 3x² + C",
@@ -106,6 +111,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Se extraen dos cartas de una baraja de 52 con reposición. ¿Probabilidad de que ambas sean ases?",
     "alternativas": [
       "1/169",
@@ -127,6 +133,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "En una progresión aritmética, el primer término es 10 y la diferencia común es -3. ¿Cuál es el sexto término?",
     "alternativas": [
       "-5",
@@ -148,6 +155,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la ecuación de la parábola con vértice en (2, -1) y foco en (2, 1)?",
     "alternativas": [
       "(x-2)² = 8(y+1)",
@@ -170,6 +178,7 @@
     "motivo_alcance": "Contenido de cálculo, complejos, matrices, geometría analítica de cónicas, trigonometría inversa o vectores avanzados fuera del temario M1/M2 consultado."
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la desigualdad: 3 - 2x < 5x + 10.",
     "alternativas": [
       "x > -1",
@@ -191,6 +200,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Calcula el valor de sen(π/4) + cos(π/4).",
     "alternativas": [
       "√2",
@@ -212,6 +222,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un cilindro tiene volumen 500π cm³ y altura 20 cm. ¿Cuál es su radio?",
     "alternativas": [
       "5 cm",
@@ -233,6 +244,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = e^{2x}·cos x.",
     "alternativas": [
       "e^{2x}(2cos x - sen x)",
@@ -255,6 +267,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un estudiante obtuvo notas 4,5; 5,0; 6,5; 7,0 en cuatro pruebas. ¿Qué nota necesita en la quinta para promediar 6,0?",
     "alternativas": [
       "7,0",
@@ -276,6 +289,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación: log₅(2x+3) = 2.",
     "alternativas": [
       "11",
@@ -297,6 +311,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál es la pendiente de la recta que pasa por (3, -2) y (5, 4)?",
     "alternativas": [
       "3",
@@ -318,6 +333,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Una persona invierte $10.000 al 6% anual compuesto anual. ¿Cuánto tendrá después de 3 años?",
     "alternativas": [
       "$11.910,16",
@@ -339,6 +355,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Simplifica la expresión: √(48) + √(12) - √(27).",
     "alternativas": [
       "3√3",
@@ -360,6 +377,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Resuelve la ecuación cuadrática: 2x² - 7x + 3 = 0.",
     "alternativas": [
       "x=3, x=1/2",
@@ -381,6 +399,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En una función cuadrática, el vértice es (1, -4) y pasa por (0, -3). Halla la ecuación.",
     "alternativas": [
       "f(x)= (x-1)²-4",
@@ -402,6 +421,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Se lanzan dos dados. ¿Cuál es la probabilidad de que el producto de los resultados sea par?",
     "alternativas": [
       "3/4",
@@ -423,6 +443,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Halla la derivada de f(x) = ln(1 + e^{2x}).",
     "alternativas": [
       "2e^{2x}/(1+e^{2x})",
@@ -444,6 +465,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la integral ∫ x·e^{x²} dx.",
     "alternativas": [
       "(1/2) e^{x²} + C",
@@ -465,6 +487,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la inecuación: x² - 9 ≤ 0.",
     "alternativas": [
       "[-3, 3]",
@@ -485,6 +508,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un auto parte del reposo y acelera uniformemente hasta alcanzar 20 m/s en 5 segundos. ¿Qué distancia recorrió?",
     "alternativas": [
       "50 m",
@@ -506,6 +530,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el valor de la expresión (2+3i)(2-3i)?",
     "alternativas": [
       "13",
@@ -527,6 +552,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla el valor de x en la proporción: (x+3)/(x-2) = 4/3.",
     "alternativas": [
       "17",
@@ -548,6 +574,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la derivada de f(x) = sen²(2x).",
     "alternativas": [
       "4 sen(2x) cos(2x)",
@@ -569,6 +596,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la integral indefinida ∫ (6x-5)³ dx.",
     "alternativas": [
       "(6x-5)⁴/24 + C",
@@ -591,6 +619,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Una caja tiene 10 bolas numeradas del 1 al 10. Se extrae una bola al azar. ¿Cuál es la probabilidad de que sea un número primo o impar?",
     "alternativas": [
       "7/10",
@@ -612,6 +641,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En una progresión geométrica, a₁=3 y a₄=24. Halla la razón.",
     "alternativas": [
       "2",
@@ -634,6 +664,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el dominio de f(x) = √(x² - 9)?",
     "alternativas": [
       "(-∞, -3] ∪ [3, ∞)",
@@ -655,6 +686,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = x√(x+1).",
     "alternativas": [
       "√(x+1) + x/(2√(x+1))",
@@ -676,6 +708,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la integral ∫_{-1}^{1} (x⁵ + 2x³ + x) dx.",
     "alternativas": [
       "0",
@@ -698,6 +731,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación: 2^{x+2} = 32^{x-1}.",
     "alternativas": [
       "2",
@@ -719,6 +753,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un rectángulo tiene área 48 cm² y su largo es 4 cm más que el ancho. Halla el perímetro.",
     "alternativas": [
       "28 cm",
@@ -740,6 +775,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula el límite: lim_{x→0} (sen 2x)/(tan x).",
     "alternativas": [
       "2",
@@ -762,6 +798,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál es el valor de tan(210°)?",
     "alternativas": [
       "√3/3",
@@ -783,6 +820,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = arccos(2x).",
     "alternativas": [
       "-2/√(1-4x²)",
@@ -804,6 +842,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula la integral ∫ x² ln x dx.",
     "alternativas": [
       "(x³/3) ln x - x³/9 + C",
@@ -826,6 +865,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Se lanzan dos dados. ¿Cuál es la probabilidad de que la suma sea un número primo?",
     "alternativas": [
       "5/12",
@@ -847,6 +887,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la desigualdad: (x-2)/(x+3) ≤ 0.",
     "alternativas": [
       "(-3, 2]",
@@ -868,6 +909,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la ecuación de la recta tangente a f(x)= x²-3x en x=2.",
     "alternativas": [
       "y = x - 6",
@@ -890,6 +932,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un número complejo z = 3(cos 120° + i sen 120°). ¿Cuál es su forma binómica?",
     "alternativas": [
       "-1,5 + 2,598i",
@@ -912,6 +955,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación: log₂(x+5) - log₂(x-1) = 2.",
     "alternativas": [
       "7/3",
@@ -933,6 +977,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la derivada de f(x) = tan³(2x).",
     "alternativas": [
       "6 tan²(2x) sec²(2x)",
@@ -954,6 +999,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula la integral definida ∫₀^{π/2} cos 2x dx.",
     "alternativas": [
       "0",
@@ -976,6 +1022,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "En una urna hay 5 bolas blancas y 7 negras. Se extraen dos bolas sin reposición. ¿Probabilidad de que la primera sea blanca y la segunda negra?",
     "alternativas": [
       "35/132",
@@ -997,6 +1044,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla el valor de la expresión: log₃ 81 - log₃ 9.",
     "alternativas": [
       "2",
@@ -1018,6 +1066,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un objeto cae desde una altura de 45 m. ¿Cuánto tiempo tarda en llegar al suelo? (g=10 m/s²)",
     "alternativas": [
       "3 s",
@@ -1039,6 +1088,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la inecuación: |x+2| ≥ 5.",
     "alternativas": [
       "x ≤ -7 o x ≥ 3",
@@ -1060,6 +1110,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Simplifica: (x⁶ - y⁶)/(x³ - y³).",
     "alternativas": [
       "x³+y³",
@@ -1080,6 +1131,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = (x²+1)³.",
     "alternativas": [
       "6x(x²+1)²",
@@ -1101,6 +1153,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula la integral ∫ (2x+1)/(x²+x) dx.",
     "alternativas": [
       "ln|x²+x| + C",
@@ -1122,6 +1175,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Se extraen 3 cartas de una baraja de 52 sin reposición. ¿Probabilidad de que las tres sean del mismo palo?",
     "alternativas": [
       "(4×C(13,3))/C(52,3)",
@@ -1143,6 +1197,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación exponencial: e^{2x} - 3e^{x} + 2 = 0.",
     "alternativas": [
       "x=0, x=ln2",
@@ -1164,6 +1219,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la amplitud de la función f(x) = 4 sen(2x - π/2)?",
     "alternativas": [
       "4",
@@ -1185,6 +1241,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un rectángulo tiene perímetro 30 cm y su ancho es la mitad del largo. Halla el área.",
     "alternativas": [
       "50 cm²",
@@ -1206,6 +1263,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = √(1 + sen² x).",
     "alternativas": [
       "(sen x cos x)/√(1+sen² x)",
@@ -1227,6 +1285,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula la integral definida ∫₀^{π/6} sec² 2x dx.",
     "alternativas": [
       "√3/2",

@@ -9,7 +9,7 @@
 .settings-page .settings-check { display: flex; align-items: center; gap: 10px; font-weight: 400; }
 .settings-check input { width: 18px; height: 18px; accent-color: var(--brand); }
 .settings-hint { color: var(--muted); line-height: 1.6; font-size: 13px; margin: 10px 0; }
-.settings-page a { color: var(--brand-ink); text-decoration: underline; }
+.settings-page a { color: var(--brand-ink); font-weight: 650; }
 .settings-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .settings-page .settings-actions button { padding: 12px 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--brand); color: white; cursor: pointer; font-weight: 700; }
 .settings-page .settings-actions button:disabled { opacity: .55; cursor: default; }

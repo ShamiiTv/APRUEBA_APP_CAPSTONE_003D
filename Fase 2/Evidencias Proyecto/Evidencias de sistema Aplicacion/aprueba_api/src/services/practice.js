@@ -9,8 +9,8 @@ export function practiceDate(now = new Date()) {
 export function dailyQuota(user, now = new Date(), testId = null) {
   const date = practiceDate(now);
   const old = user.quota || {};
-  const bonusSchool = typeof user.school === 'string' && user.school.trim() && Number.isInteger(user.age) && user.age >= 10 && user.age <= 99 && typeof user.region === 'string' && user.region.trim() ? 5 : 0;
-  const bonusAddress = bonusSchool && typeof user.address?.commune === 'string' && user.address.commune.trim() && typeof user.address?.street === 'string' && user.address.street.trim() ? 5 : 0;
+  const bonusSchool = typeof user.school === 'string' && user.school.trim() && Number.isInteger(user.age) && user.age >= 10 && user.age <= 99 ? 5 : 0;
+  const bonusAddress = bonusSchool && typeof user.region === 'string' && user.region.trim() && typeof user.address?.commune === 'string' && user.address.commune.trim() && typeof user.address?.street === 'string' && user.address.street.trim() ? 5 : 0;
   const end = user.currentPeriodEnd?.toDate?.() || new Date(user.currentPeriodEnd || 0);
   const active = (user.planStatus === 'active' || (user.planStatus === 'simulated' && ['simulation','paypal-sandbox'].includes(process.env.PAYMENTS_MODE))) && end > now;
   const unlimited = active && (user.plan === 'all' || (user.plan === 'uni' && testId && user.subscriptionTestId === testId));

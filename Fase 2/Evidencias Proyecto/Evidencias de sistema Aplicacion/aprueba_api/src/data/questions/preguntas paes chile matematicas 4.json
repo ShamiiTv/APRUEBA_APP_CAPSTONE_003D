@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación: 4(2x - 3) = 3(2x + 5).",
     "alternativas": [
       "13,5",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un triángulo tiene lados 5 cm, 12 cm y 13 cm. ¿Qué tipo de triángulo es?",
     "alternativas": [
       "Rectángulo",
@@ -42,6 +44,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la derivada de f(x) = x³ ln x.",
     "alternativas": [
       "x²(3 ln x + 1)",
@@ -63,6 +66,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Halla la integral definida ∫₀^{π/2} cos x dx.",
     "alternativas": [
       "1",
@@ -85,6 +89,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la probabilidad de que al lanzar un dado justo se obtenga un número primo?",
     "alternativas": [
       "1/2",
@@ -106,6 +111,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Si log₂(3x - 1) = 4, halla x.",
     "alternativas": [
       "17/3",
@@ -127,6 +133,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un rectángulo tiene perímetro 40 cm y largo 12 cm. ¿Cuál es su área?",
     "alternativas": [
       "96 cm²",
@@ -148,6 +155,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la desigualdad: 3(2x - 1) ≤ 2(x + 4).",
     "alternativas": [
       "x ≤ 11/4",
@@ -169,6 +177,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula el valor de sen(75°) usando suma de ángulos.",
     "alternativas": [
       "(√6+√2)/4",
@@ -190,6 +199,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la ecuación de la recta tangente a f(x)= x² en el punto x=3.",
     "alternativas": [
       "y = 6x - 9",
@@ -212,6 +222,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Una persona recorre 120 km en 2 horas. ¿Cuál es su velocidad media en m/s?",
     "alternativas": [
       "16,67 m/s",
@@ -233,6 +244,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve el sistema: x - y = 3, x² + y² = 25.",
     "alternativas": [
       "((3+√41)/2, (−3+√41)/2) y ((3−√41)/2, (−3−√41)/2)",
@@ -254,6 +266,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Si f(x) = 2x + 1, ¿cuál es f⁻¹(5)?",
     "alternativas": [
       "2",
@@ -275,6 +288,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la suma de los primeros 8 términos de la progresión aritmética: 2, 5, 8, ...?",
     "alternativas": [
       "100",
@@ -296,6 +310,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula el módulo del vector v = (3, -4, 5).",
     "alternativas": [
       "√50",
@@ -318,6 +333,7 @@
     "motivo_alcance": "Contenido de cálculo, complejos, matrices, geometría analítica de cónicas, trigonometría inversa o vectores avanzados fuera del temario M1/M2 consultado."
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación: 4^{x-1} = 8.",
     "alternativas": [
       "2,5",
@@ -339,6 +355,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Una caja contiene 8 bolas rojas y 4 azules. Se extraen dos bolas con reposición. ¿Probabilidad de que ambas sean rojas?",
     "alternativas": [
       "4/9",
@@ -360,6 +377,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla el vértice de la parábola f(x) = -2x² + 8x - 5.",
     "alternativas": [
       "(2,3)",
@@ -381,6 +399,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la derivada de f(x) = cos²(x)?",
     "alternativas": [
       "-2 cos x sen x",
@@ -403,6 +422,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula la integral ∫ (3/x) dx.",
     "alternativas": [
       "3 ln|x| + C",
@@ -424,6 +444,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un número multiplicado por 3 y luego sumado 5 da 20. ¿Cuál es el número?",
     "alternativas": [
       "5",
@@ -445,6 +466,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Halla la ecuación de la recta que pasa por (-1,2) y tiene pendiente -2.",
     "alternativas": [
       "y = -2x",
@@ -466,6 +488,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Resuelve la ecuación cuadrática completando cuadrados: x² - 6x - 7 = 0.",
     "alternativas": [
       "x = 7, x = -1",
@@ -487,6 +510,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál es la razón de la progresión geométrica 3, 12, 48, ...?",
     "alternativas": [
       "4",
@@ -508,6 +532,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula el determinante de la matriz B = [[2, -1], [3, 4]].",
     "alternativas": [
       "11",
@@ -530,6 +555,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Un móvil parte del reposo con aceleración constante de 2 m/s². ¿Qué velocidad alcanza en 10 segundos?",
     "alternativas": [
       "20 m/s",
@@ -551,6 +577,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la inecuación: |x - 4| < 3.",
     "alternativas": [
       "1 < x < 7",
@@ -572,6 +599,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla el área de un círculo inscrito en un cuadrado de lado 10 cm.",
     "alternativas": [
       "25π cm²",
@@ -593,6 +621,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Si sen θ = 0.8 y θ es agudo, calcula cos θ.",
     "alternativas": [
       "0,6",
@@ -614,6 +643,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un capital de $2000 se invierte al 5% simple anual. ¿Cuánto interés genera en 3 años?",
     "alternativas": [
       "$300",
@@ -636,6 +666,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la raíz cúbica de -8?",
     "alternativas": [
       "-2",
@@ -657,6 +688,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación: √(3x+1) = 4.",
     "alternativas": [
       "5",
@@ -678,6 +710,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = e^{4x}·sen x.",
     "alternativas": [
       "e^{4x}(4 sen x + cos x)",
@@ -700,6 +733,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la integral ∫ (x²+3x+2) dx de 0 a 2.",
     "alternativas": [
       "38/3",
@@ -722,6 +756,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Se lanzan dos monedas. ¿Cuál es la probabilidad de obtener exactamente una cara?",
     "alternativas": [
       "1/2",
@@ -743,6 +778,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la pendiente de la recta que pasa por (0,5) y (2,1)?",
     "alternativas": [
       "-2",
@@ -764,6 +800,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un tren viaja a 72 km/h. ¿Cuántos metros recorre en 15 segundos?",
     "alternativas": [
       "300 m",
@@ -785,6 +822,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación logarítmica: ln(x) + ln(2) = ln(10).",
     "alternativas": [
       "5",
@@ -806,6 +844,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Simplifica: (2x²y³)⁴ / (4x⁵y²)².",
     "alternativas": [
       "x^{-2}y^{8}",
@@ -827,6 +866,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el valor de la expresión (√3 + 1)(√3 - 1)?",
     "alternativas": [
       "2",
@@ -848,6 +888,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la distancia entre los puntos A(-1, 3) y B(2, -1).",
     "alternativas": [
       "5",
@@ -869,6 +910,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un agricultor tiene 120 metros de malla para cercar un terreno rectangular. Si el largo es el doble del ancho, ¿cuál es el área máxima?",
     "alternativas": [
       "800 m²",
@@ -890,6 +932,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Resuelve la ecuación trigonométrica: 2 cos² x - 3 cos x + 1 = 0 para x en [0, 2π).",
     "alternativas": [
       "0, π/3, 5π/3",
@@ -910,6 +953,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Si f(x)= √(x+3), ¿cuál es el dominio de f?",
     "alternativas": [
       "[-3, ∞)",
@@ -931,6 +975,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la suma de los primeros 5 términos de la PG: 2, -4, 8, -16, ...",
     "alternativas": [
       "22",
@@ -952,6 +997,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = tan⁻¹(3x).",
     "alternativas": [
       "3/(1+9x²)",
@@ -973,6 +1019,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la integral ∫₀¹ x e^{x²} dx.",
     "alternativas": [
       "(e-1)/2",
@@ -995,6 +1042,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la probabilidad de que al extraer una carta de una baraja de 52 sea un corazón o un rey?",
     "alternativas": [
       "4/13",
@@ -1016,6 +1064,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación: 3x² - 4x = 0.",
     "alternativas": [
       "x=0, x=4/3",
@@ -1037,6 +1086,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un objeto se lanza hacia arriba con velocidad inicial 30 m/s. ¿Cuánto tarda en alcanzar la altura máxima? (g=10 m/s²)",
     "alternativas": [
       "3 s",
@@ -1058,6 +1108,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Si el punto (2, k) pertenece a la recta 3x - y = 5, halla k.",
     "alternativas": [
       "1",
@@ -1079,6 +1130,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula el valor de (2i)³.",
     "alternativas": [
       "-8i",
@@ -1101,6 +1153,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la ecuación de la asíntota vertical de f(x)= (x+1)/(x-2).",
     "alternativas": [
       "x=2",
@@ -1122,6 +1175,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un número más su triple es igual a 40. ¿Cuál es el número?",
     "alternativas": [
       "10",

@@ -33,6 +33,11 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+  <main id="startup" style="position:fixed;inset:0;z-index:10;display:grid;place-content:center;padding:24px;text-align:center;background:#122440;color:#fff;font:16px/1.5 system-ui,sans-serif">
+    <h1>Aprueba</h1><p role="status" id="startup-message">Abriendo la aplicación…</p>
+    <a href="/" style="color:#ffca69">Abrir Aprueba web</a>
+  </main>
+  <script src="startup-v1.js"></script>
   <!--
     You can customize the "flutter_bootstrap.js" script.
     This is useful to provide a custom configuration to the Flutter loader
@@ -41,7 +46,7 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
-  <script src="flutter_bootstrap.js" async></script>
+  <script src="flutter_bootstrap.js?v=135-local" async></script>
   <script src="social-connect.js"></script>
   <script src="paypal-checkout.js"></script>
 </body>

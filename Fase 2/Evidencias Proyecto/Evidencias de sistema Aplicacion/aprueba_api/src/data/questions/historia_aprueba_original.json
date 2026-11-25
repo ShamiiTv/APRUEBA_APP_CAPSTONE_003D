@@ -1,0 +1,173 @@
+[
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué fuente serviría como testimonio directo de un viaje ferroviario realizado en Chile en 1890?",
+    "alternativas": [
+      "Un diario escrito por una pasajera durante el viaje",
+      "Una novela contemporánea ambientada en 1890",
+      "Una infografía escolar de 2020",
+      "Una síntesis histórica publicada un siglo después"
+    ],
+    "respuesta_correcta": "A",
+    "explicacion_respuesta": "El diario fue producido por una participante durante el acontecimiento. Las demás opciones son reconstrucciones posteriores.",
+    "habilidad_requerida": "Reconocer una fuente primaria",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "dificultad": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué expresa un censo de población cuando informa el número de habitantes de una comuna en una fecha determinada?",
+    "alternativas": [
+      "El ingreso mensual de cada hogar",
+      "El tamaño de la población en ese momento",
+      "El número de nacimientos futuros",
+      "La intención de voto de sus habitantes"
+    ],
+    "respuesta_correcta": "B",
+    "explicacion_respuesta": "El recuento describe la población en la fecha de referencia. Para conocer cambios se necesitan observaciones de otros momentos.",
+    "habilidad_requerida": "Identificar el alcance de un dato demográfico",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "dificultad": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué término describe el traslado de personas desde zonas rurales hacia ciudades dentro de un mismo país?",
+    "alternativas": [
+      "Inmigración internacional",
+      "Emigración internacional",
+      "Migración rural-urbana",
+      "Transición energética"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "El desplazamiento es interno y sus puntos de origen y destino son el campo y la ciudad.",
+    "habilidad_requerida": "Reconocer un concepto geográfico",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "dificultad": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "Una localidad creció de 10.000 a 12.000 habitantes mientras su superficie urbana pasó de 5 a 8 km². Si toda esa población vive en el área urbana, ¿cómo cambió su densidad?",
+    "alternativas": [
+      "Subió porque aumentó la población",
+      "Permaneció en 2.000 habitantes por km²",
+      "Subió de 1.500 a 2.000 habitantes por km²",
+      "Bajó de 2.000 a 1.500 habitantes por km²"
+    ],
+    "respuesta_correcta": "D",
+    "explicacion_respuesta": "La densidad inicial es 10.000/5 y la final es 12.000/8. El crecimiento de la superficie superó al de la población.",
+    "habilidad_requerida": "Relacionar población y territorio",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "dificultad": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "Una fábrica incorporó maquinaria y concentró a sus trabajadores en un mismo recinto con turnos fijos. ¿Qué transformación permite identificar este cambio?",
+    "alternativas": [
+      "La desaparición del trabajo asalariado",
+      "Una organización del trabajo sujeta a horarios de producción",
+      "El regreso a la producción doméstica independiente",
+      "La sustitución de las ciudades por asentamientos rurales"
+    ],
+    "respuesta_correcta": "B",
+    "explicacion_respuesta": "Los turnos y la concentración de trabajadores describen la organización fabril del trabajo.",
+    "habilidad_requerida": "Interpretar un cambio en las relaciones laborales",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "dificultad": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "Dos comunas tienen el mismo número de consultorios, pero una tiene el doble de habitantes. ¿Qué dato mejora la comparación inicial de cobertura?",
+    "alternativas": [
+      "El nombre de cada consultorio",
+      "La fecha del último censo nacional por sí sola",
+      "El número de consultorios por cada diez mil habitantes",
+      "La superficie del edificio municipal"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "Usar el mismo denominador permite comparar poblaciones distintas. Es un indicador inicial que puede complementarse con dotación y tiempos de viaje.",
+    "habilidad_requerida": "Comparar indicadores territoriales",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "dificultad": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Una serie de avisos de prensa muestra más ofertas de empleo industrial en 1920 que en 1900. En ese período el periódico duplicó sus páginas. ¿Qué procedimiento fortalece la conclusión de que aumentó la demanda de trabajo industrial?",
+    "alternativas": [
+      "Comparar avisos por página y contrastar la tendencia con registros de contratación",
+      "Suponer que cada aviso representa una contratación efectiva",
+      "Descartar las ediciones con pocos avisos",
+      "Contar todos los avisos de 1920 como empleos nuevos"
+    ],
+    "respuesta_correcta": "A",
+    "explicacion_respuesta": "La comparación ajustada reduce el efecto del cambio editorial y los registros independientes permiten evaluar si el aumento también aparece en la contratación.",
+    "habilidad_requerida": "Evaluar una inferencia con fuentes independientes",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "dificultad": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Dos mapas de pobreza de una ciudad muestran cambios entre décadas. En la segunda medición se modificaron los límites de los barrios y el umbral de pobreza. ¿Qué se necesita antes de atribuir el cambio a una política pública?",
+    "alternativas": [
+      "Elegir el mapa de mayor resolución",
+      "Promediar los porcentajes de todos los barrios sin ponderar",
+      "Comparar únicamente los nombres de los barrios",
+      "Reconstruir unidades y umbrales comparables y examinar otras causas posibles"
+    ],
+    "respuesta_correcta": "D",
+    "explicacion_respuesta": "Las diferencias metodológicas pueden producir cambios aparentes. Una comparación homogénea es necesaria y la atribución causal requiere evidencia adicional.",
+    "habilidad_requerida": "Evaluar comparabilidad y causalidad",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "dificultad": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Un historiador sostiene que una nueva estación impulsó el comercio de una localidad porque las ventas crecieron tras su apertura. ¿Qué evidencia permitiría evaluar mejor esa hipótesis?",
+    "alternativas": [
+      "Una fotografía de la ceremonia inaugural",
+      "Series de ventas anteriores y posteriores en la localidad y en localidades similares sin estación",
+      "Una lista de nombres de las locomotoras",
+      "Un testimonio que solo describa el edificio"
+    ],
+    "respuesta_correcta": "B",
+    "explicacion_respuesta": "Las series permiten estudiar tendencias previas y contrastarlas con localidades comparables para valorar otras explicaciones del crecimiento.",
+    "habilidad_requerida": "Contrastar una hipótesis histórica",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "dificultad": "Estimación editorial inicial"
+    }
+  }
+]

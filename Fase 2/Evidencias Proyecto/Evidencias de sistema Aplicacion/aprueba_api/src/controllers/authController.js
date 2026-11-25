@@ -241,12 +241,12 @@ export async function completeOnboarding(req, res) {
       return res.fail('Usuario no autenticado', null, 401);
     }
 
-    const { school, region, selectedTests, practiceFormat, difficulty } = req.body || {};
+    const { school, age, region, selectedTests, practiceFormat, difficulty } = req.body || {};
 
     if (!Array.isArray(selectedTests) || selectedTests.length === 0 || selectedTests.length > 5 || selectedTests.some(id => !['lectora', 'm1', 'm2', 'cien', 'hist'].includes(id))) {
       return res.fail('Debes seleccionar al menos una prueba PAES', null, 400);
     }
-    if ((school !== undefined && (typeof school !== 'string' || school.length > 200)) ||
+    if ((age !== undefined && (!Number.isInteger(age) || age < 10 || age > 99)) || (school !== undefined && (typeof school !== 'string' || school.length > 200)) ||
         (region !== undefined && (typeof region !== 'string' || !region.trim() || region.length > 100)) ||
         (practiceFormat !== undefined && !['random', 'axis'].includes(practiceFormat)) ||
         (difficulty !== undefined && !['d1', 'd2', 'd3'].includes(difficulty))) {
@@ -260,6 +260,7 @@ export async function completeOnboarding(req, res) {
     }
 
     const updatePayload = {
+      ...(age !== undefined ? {age} : {}),
       school: school !== undefined ? school.trim() : doc.data().school || '',
       region: region !== undefined ? region.trim() : doc.data().region || '',
       selectedTests: [...new Set(selectedTests)],

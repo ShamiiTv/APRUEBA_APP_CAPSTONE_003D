@@ -24,7 +24,7 @@ export default function Onboarding() {
   const [skipNotice, setSkipNotice] = useState(false);
   const [skipContext, setSkipContext] = useState(false);
   const [school, setSchool] = useState(user?.school || '');
-  const [region, setRegion] = useState(user?.region || 'Metropolitana de Santiago');
+  const [age,setAge]=useState(user?.age ?? '');
   const [selectedTests, setSelectedTests] = useState(user?.selectedTests || ['lectora', 'm1']);
   const difficulty = 'd2';
   const practiceFormat = 'random';
@@ -49,7 +49,7 @@ export default function Onboarding() {
       const res = await apiFetch('/auth/onboarding', {
         method: 'POST',
         body: JSON.stringify({
-          ...(!skipContext ? { school, region } : {}),
+          ...(!skipContext ? { school, age:Number(age) } : {}),
           selectedTests,
           difficulty,
           practiceFormat,
@@ -82,8 +82,8 @@ export default function Onboarding() {
         border: '1px solid var(--line)',
         boxShadow: '0 8px 30px rgba(26,54,93,0.06)',
       }}>
-        {skipNotice && <div className="ui-dialog-backdrop"><section className="ui-dialog" role="alertdialog" aria-modal="true" aria-labelledby="skip-title" aria-describedby="skip-description"><h2 id="skip-title"> {localize("¿Omitir estos datos?")} </h2><p id="skip-description"> {localize("Tendrás tus 10 preguntas diarias base. No se desbloquearán las 10 preguntas extra hasta completar colegio, edad y región (+5) y dirección (+5). Puedes hacerlo después en tu perfil.")} </p><div className="ui-actions"><button autoFocus className="ui-button" onClick={()=>setSkipNotice(false)}> {localize("Completar mis datos")} </button><button className="ui-button secondary" onClick={()=>{setSkipContext(true);setSkipNotice(false);setStep(2);}}> {localize("Sí, omitir por ahora")} </button></div></section></div>}
-                  <p role="note"> {localize("Facsímil · Próximamente. Por ahora practicarás en formato aleatorio.")} </p>
+        {skipNotice && <div className="ui-dialog-backdrop"><section className="ui-dialog" role="alertdialog" aria-modal="true" aria-labelledby="skip-title" aria-describedby="skip-description"><h2 id="skip-title"> {localize("¿Omitir estos datos?")} </h2><p id="skip-description"> {localize("Tendrás tus 10 preguntas diarias base. No se desbloquearán las 10 preguntas extra hasta completar colegio y edad (+5) y después región, comuna y dirección (+5). Puedes hacerlo después en tu perfil.")} </p><div className="ui-actions"><button autoFocus className="ui-button" onClick={()=>setSkipNotice(false)}> {localize("Completar mis datos")} </button><button className="ui-button secondary" onClick={()=>{setSkipContext(true);setSkipNotice(false);setStep(2);}}> {localize("Sí, omitir por ahora")} </button></div></section></div>}
+                  <p role="note"> {localize("En el plan gratuito practicas con dificultad aleatoria.")} </p>
           {/* Barra de progreso */}
         <div style={{ display: 'flex', gap: '8px', marginBottom: '28px' }}>
           {[1, 2].map((s) => (
@@ -118,7 +118,7 @@ export default function Onboarding() {
           <div>
             <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--oro)', textTransform: 'uppercase', letterSpacing: '0.05em' }}> {localize("Paso 1 de 2")} </span>
             <h1 style={{ fontFamily: 'Montserrat', fontSize: '22px', fontWeight: 800, color: 'var(--ink)', marginTop: '4px' }}> {localize("Tu contexto académico")} </h1>
-            <p style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '4px' }}> {localize("Personalizamos los ensayos y cuotas según tu institución educativa.")} </p>
+            <p style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '4px' }}> {(lang==='en'?'Add your school and age for 5 more daily questions.':'Completa colegio y edad para sumar 5 preguntas diarias.')} </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '24px' }}>
               <div>
@@ -133,29 +133,7 @@ export default function Onboarding() {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '6px' }}> {localize("Región")} </label>
-                <select
-                  value={region}
-                  onChange={(e) => setRegion(e.target.value)}
-                  style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', border: '1px solid var(--line)', color: 'var(--ink)', background: 'var(--soft)', fontSize: '13px' }}
-                >
-                  <option value="Arica y Parinacota">Arica y Parinacota</option>
-                  <option value="Tarapacá">Tarapacá</option>
-                  <option value="Antofagasta">Antofagasta</option>
-                  <option value="Atacama">Atacama</option>
-                  <option value="Coquimbo">Coquimbo</option>
-                  <option value="Valparaíso">Valparaíso</option>
-                  <option value="Metropolitana de Santiago">Metropolitana de Santiago</option>
-                  <option value="O'Higgins">O'Higgins</option>
-                  <option value="Maule">Maule</option>
-                  <option value="Ñuble">Ñuble</option>
-                  <option value="Biobío">Biobío</option>
-                  <option value="Araucanía">Araucanía</option>
-                  <option value="Los Ríos">Los Ríos</option>
-                  <option value="Los Lagos">Los Lagos</option>
-                  <option value="Aysén">Aysén</option>
-                  <option value="Magallanes">Magallanes</option>
-                </select>
+                <label>{lang==='en'?'Age':'Edad'}<input type="number" min="10" max="99" value={age} onChange={e=>setAge(e.target.value)} /></label>
               </div>
             </div>
 
@@ -163,10 +141,10 @@ export default function Onboarding() {
               <button className="ui-button secondary" onClick={()=>setSkipNotice(true)}> {localize("Omitir por ahora")} </button>
               <button
                 type="button"
-                onClick={() => {setSkipContext(false);setStep(2);}}
+                disabled={!school.trim() || !Number.isInteger(Number(age)) || age<10 || age>99} onClick={() => {setSkipContext(false);setStep(2);}}
                 style={{
                   backgroundColor: 'var(--cta)',
-                  color: 'var(--panel)',
+                  color: 'var(--cta-ink)',
                   border: 'none',
                   borderRadius: '10px',
                   padding: '12px 24px',
@@ -212,7 +190,7 @@ export default function Onboarding() {
                       borderRadius: '6px',
                       border: `1.5px solid ${isSelected ? 'var(--brand)' : '#CBD5E1'}`,
                       backgroundColor: isSelected ? 'var(--brand)' : 'transparent',
-                      color: 'var(--panel)',
+                      color: 'var(--cta-ink)',
                       display: 'grid',
                       placeItems: 'center',
                       fontSize: '11px',

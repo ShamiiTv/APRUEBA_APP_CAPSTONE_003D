@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación: 4(2x - 3) + 5 = 3(3x + 2) - 8.",
     "alternativas": [
       "−5",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un ángulo mide la mitad de su suplemento. ¿Cuánto mide el ángulo?",
     "alternativas": [
       "60°",
@@ -42,6 +44,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla el vértice de la parábola f(x) = -x² + 4x - 1.",
     "alternativas": [
       "(2, 3)",
@@ -63,6 +66,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula el límite: lim_{x→1} (x² - 1)/(x - 1).",
     "alternativas": [
       "2",
@@ -85,6 +89,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un cilindro tiene radio 4 cm y altura 10 cm. ¿Cuál es su área lateral? (π=3,14)",
     "alternativas": [
       "251,2 cm²",
@@ -106,6 +111,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Se lanza un dado. ¿Cuál es la probabilidad de obtener un número mayor que 2?",
     "alternativas": [
       "2/3",
@@ -127,6 +133,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Resuelve la ecuación cuadrática: x² + 5x + 6 = 0.",
     "alternativas": [
       "x = -2, x = -3",
@@ -148,6 +155,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = ln(x² + 1).",
     "alternativas": [
       "2x/(x²+1)",
@@ -169,6 +177,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la integral ∫ (3x² - 2) dx.",
     "alternativas": [
       "x³ - 2x + C",
@@ -191,6 +200,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En una progresión aritmética, a₃ = 11 y a₇ = 23. Halla la diferencia común.",
     "alternativas": [
       "3",
@@ -212,6 +222,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál es la pendiente de la recta perpendicular a y = -2x + 5?",
     "alternativas": [
       "1/2",
@@ -233,6 +244,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Simplifica: (3x²y)³ / (9xy²)².",
     "alternativas": [
       "x⁴/(3y)",
@@ -253,6 +265,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un capital de $5000 produce $1000 de interés simple en 5 años. ¿Cuál es la tasa anual?",
     "alternativas": [
       "4%",
@@ -275,6 +288,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación: 3^{2x-1} = 9^{x+2}.",
     "alternativas": [
       "No tiene solución real",
@@ -296,6 +310,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la distancia del punto (2, -1) a la recta 4x - 3y + 5 = 0.",
     "alternativas": [
       "16/5",
@@ -317,6 +332,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un móvil viaja a 72 km/h. ¿Cuántos metros recorre en 1 minuto?",
     "alternativas": [
       "1200 m",
@@ -338,6 +354,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la inecuación: 2x² - 5x - 3 ≤ 0.",
     "alternativas": [
       "[-1/2, 3]",
@@ -359,6 +376,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la derivada de f(x) = sec(3x).",
     "alternativas": [
       "3 sec(3x) tan(3x)",
@@ -380,6 +398,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula la integral definida ∫₁² (1/x²) dx.",
     "alternativas": [
       "1/2",
@@ -402,6 +421,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Se extraen dos bolas sin reposición de una urna con 6 rojas y 4 azules. ¿Probabilidad de que sean del mismo color?",
     "alternativas": [
       "7/15",
@@ -423,6 +443,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación trigonométrica: 2 cos x - √3 = 0 para x en [0, 2π).",
     "alternativas": [
       "π/6, 11π/6",
@@ -444,6 +465,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la ecuación de la recta que pasa por (-2, 5) y es paralela a la recta que pasa por (1,3) y (4,9).",
     "alternativas": [
       "y = 2x + 9",
@@ -465,6 +487,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Simplifica: √(72) - √(18) + √(8).",
     "alternativas": [
       "5√2",
@@ -486,6 +509,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el valor de cos(75°) usando suma de ángulos?",
     "alternativas": [
       "(√6-√2)/4",
@@ -507,6 +531,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un triángulo tiene lados 7, 24 y 25. ¿Qué tipo de triángulo es?",
     "alternativas": [
       "Rectángulo",
@@ -528,6 +553,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Resuelve la ecuación: log₂(x+1) + log₂(x-1) = 3.",
     "alternativas": [
       "3",
@@ -549,6 +575,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = e^{x²}·ln x.",
     "alternativas": [
       "e^(x²)(2x ln(x)+1/x)",
@@ -570,6 +597,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la integral ∫ (x+1)² dx.",
     "alternativas": [
       "(x+1)³/3 + C",
@@ -591,6 +619,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Se lanzan dos dados. ¿Cuál es la probabilidad de que la suma sea múltiplo de 3?",
     "alternativas": [
       "1/3",
@@ -612,6 +641,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la desigualdad: |3x - 2| > 4.",
     "alternativas": [
       "x < -2/3 o x > 2",
@@ -633,6 +663,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla el punto medio del segmento con extremos A(-3, 2) y B(5, -4).",
     "alternativas": [
       "(1, -1)",
@@ -654,6 +685,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Para z=−2−2i, ¿cuál es su argumento en el intervalo [0°,360°)?",
     "alternativas": [
       "225°",
@@ -674,6 +706,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la derivada de f(x) = arcsen(x²).",
     "alternativas": [
       "2x/√(1-x⁴)",
@@ -695,6 +728,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la integral ∫₁² (2x - 1) dx.",
     "alternativas": [
       "2",
@@ -717,6 +751,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Una caja contiene 8 focos, de los cuales 3 están defectuosos. Se extraen dos sin reposición. ¿Probabilidad de que al menos uno esté defectuoso?",
     "alternativas": [
       "9/14",
@@ -738,6 +773,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En una progresión geométrica, a₂ = 6 y a₄ = 24. Halla el primer término (r>0).",
     "alternativas": [
       "3",
@@ -759,6 +795,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Resuelve la ecuación cuadrática completando cuadrados: x² + 8x + 15 = 0.",
     "alternativas": [
       "x = -3, x = -5",
@@ -780,6 +817,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la ecuación de la hipérbola con focos en (±5,0) y asíntotas y = ±(3/4)x.",
     "alternativas": [
       "x²/16 - y²/9 = 1",
@@ -802,6 +840,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula el límite: lim_{x→0} (tan x - sen x)/x³.",
     "alternativas": [
       "1/2",
@@ -824,6 +863,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un capital de $2000 se invierte al 8% anual compuesto trimestralmente. ¿Cuál es el monto después de 2 años?",
     "alternativas": [
       "$2343,32",
@@ -845,6 +885,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación: 5^{x-2} = 1/25.",
     "alternativas": [
       "0",
@@ -866,6 +907,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la ecuación de la recta tangente a la curva y = x² + 2x en el punto donde x=1?",
     "alternativas": [
       "y = 4x - 1",
@@ -888,6 +930,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Simplifica la expresión: (cos x)/(1 - sen x) + (cos x)/(1 + sen x).",
     "alternativas": [
       "2/cos x",
@@ -909,6 +952,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = cos(x² - 3x).",
     "alternativas": [
       "- (2x-3) sen(x²-3x)",
@@ -930,6 +974,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula la integral ∫ x/(x²+4) dx.",
     "alternativas": [
       "(1/2) ln(x²+4) + C",
@@ -951,6 +996,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Se lanza una moneda 4 veces. ¿Cuál es la probabilidad de obtener exactamente 3 caras?",
     "alternativas": [
       "1/4",
@@ -972,6 +1018,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la inecuación: x² - 4x + 4 > 0.",
     "alternativas": [
       "x ≠ 2",
@@ -993,6 +1040,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un automóvil viaja a 25 m/s. Frena y se detiene en 5 segundos. ¿Cuál es la aceleración (desaceleración)?",
     "alternativas": [
       "-5 m/s²",
@@ -1014,6 +1062,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla el valor de la expresión: log₇ 49 - log₂ 8.",
     "alternativas": [
       "-1",
@@ -1035,6 +1084,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la distancia focal de la elipse x²/25 + y²/9 = 1?",
     "alternativas": [
       "8",
@@ -1057,6 +1107,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación: sen x = -√3/2 para x en [0, 2π).",
     "alternativas": [
       "4π/3, 5π/3",
@@ -1078,6 +1129,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = ln(cos x).",
     "alternativas": [
       "-tan x",
@@ -1099,6 +1151,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula la integral definida ∫₀^{π/2} (sen x + cos x) dx.",
     "alternativas": [
       "2",
@@ -1121,6 +1174,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Se extraen 5 cartas de una baraja de 52. ¿Cuántas formas hay de obtener 3 ases y 2 reyes?",
     "alternativas": [
       "C(4,3)×C(4,2)",

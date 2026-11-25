@@ -26,6 +26,7 @@ export function canPractice(question) {
 
 export function mapFileMetadata(filename) {
   const lower = filename.toLowerCase();
+  if (lower.startsWith('historia_')) return { testId: 'hist', axis: 'Historia y Ciencias Sociales' };
   if (lower.includes('biologia')) return { testId: 'cien', axis: 'Biología' };
   if (lower.includes('matematica')) return { testId: 'm1', axis: 'Matemática' };
   if (lower.includes('verbal')) return { testId: 'lectora', axis: 'Competencia Lectora' };

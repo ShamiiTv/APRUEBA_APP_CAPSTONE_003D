@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente fragmento: 'Las hojas caían lentamente, como si el otoño llorara su despedida.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Personificación",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'No solo es inteligente, sino también amable', el conector 'sino también' expresa:",
     "alternativas": [
       "Adición enfática",
@@ -43,6 +45,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción que presenta un error de tildación en la palabra 'caracter'.",
     "alternativas": [
       "Carácter",
@@ -68,6 +71,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La esperanza es un sueño despierto.' ¿Qué recurso literario se utiliza?",
     "alternativas": [
       "Metáfora",
@@ -92,6 +96,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de los siguientes conectores indica una relación de consecuencia?",
     "alternativas": [
       "A causa de",
@@ -114,6 +119,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué palabra designa un recipiente para beber y se escribe con 'v'?",
     "alternativas": [
       "Vaso",
@@ -136,6 +142,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'El médico le recetó un antibiótico', el pronombre 'le' es un:",
     "alternativas": [
       "Complemento indirecto",
@@ -158,6 +165,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El cielo estaba despejado, como si alguien hubiera limpiado las estrellas.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Símil",
@@ -179,6 +187,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué tipo de texto es una carta formal de reclamo?",
     "alternativas": [
       "Argumentativo",
@@ -201,6 +210,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la coma se usa para separar un vocativo.",
     "alternativas": [
       "Ven, Juan.",
@@ -223,6 +233,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el significado de 'intrínseco' en la frase 'El valor intrínseco de las personas no depende de su riqueza'?",
     "alternativas": [
       "Propio y esencial",
@@ -244,6 +255,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Los niños se abrazaron después del partido', el 'se' es:",
     "alternativas": [
       "Recíproco",
@@ -266,6 +278,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El viento silbaba una canción antigua mientras las hojas danzaban en el aire.' ¿Qué recurso predomina?",
     "alternativas": [
       "Personificación",
@@ -287,6 +300,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción donde se produce un diptongo (no hiato).",
     "alternativas": [
       "País",
@@ -309,6 +323,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes palabras es un adverbio de modo?",
     "alternativas": [
       "Bien",
@@ -331,6 +346,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El teléfono no dejaba de sonar, pero ella no contestaba. Estaba esperando una llamada que nunca llegaba.' ¿Qué sentimiento sugiere?",
     "alternativas": [
       "Angustia",
@@ -352,6 +368,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción que presenta un error de uso de la preposición 'de' (dequeísmo o queísmo).",
     "alternativas": [
       "Me alegro de que vengas.",
@@ -374,6 +391,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función del lenguaje predomina en 'Tus ojos son dos luceros que alumbran mi camino'?",
     "alternativas": [
       "Poética",
@@ -396,6 +414,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'El coche, el cual estaba averiado, fue reparado', la proposición 'el cual estaba averiado' es una subordinada adjetiva:",
     "alternativas": [
       "Explicativa",
@@ -418,6 +437,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La memoria es como un palacio: cada recuerdo ocupa una habitación.' ¿Qué recurso se emplea?",
     "alternativas": [
       "Analogía",
@@ -442,6 +462,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se usa incorrectamente 'a ver' en lugar de 'haber' o viceversa.",
     "alternativas": [
       "Voy a ver qué pasa.",
@@ -464,6 +485,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes opciones es un texto continuo?",
     "alternativas": [
       "Un mapa",
@@ -486,6 +508,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Ella es más alta que su hermana', la palabra 'más' es un adverbio de:",
     "alternativas": [
       "Afirmación",
@@ -508,6 +531,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El niño cerró los ojos con fuerza y pidió un deseo. Al abrirlos, la estrella fugaz ya no estaba.' ¿Qué tema sugiere?",
     "alternativas": [
       "La fugacidad de los momentos",
@@ -529,6 +553,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde el verbo está en primera persona del singular del presente de subjuntivo.",
     "alternativas": [
       "Cante",
@@ -551,6 +576,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes palabras es un sinónimo de 'veraz'?",
     "alternativas": [
       "Mentiroso",
@@ -573,6 +599,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Después de la tormenta, vino la calma', la palabra 'después' es un:",
     "alternativas": [
       "Adverbio de tiempo",
@@ -595,6 +622,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La risa es una medicina que no necesita receta.' ¿Qué recurso predomina?",
     "alternativas": [
       "Metáfora",
@@ -616,6 +644,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción que presenta un error de acentuación en la palabra 'está' (verbo).",
     "alternativas": [
       "Él está aquí.",
@@ -638,6 +667,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función cumple el lenguaje en un texto científico como 'El agua hierve a 100°C'?",
     "alternativas": [
       "Referencial",
@@ -660,6 +690,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Se alquila departamento amoblado', el verbo 'alquila' concuerda con el sujeto 'departamento' en:",
     "alternativas": [
       "Número y persona",

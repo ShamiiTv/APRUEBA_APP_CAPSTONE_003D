@@ -42,7 +42,7 @@ class _LevelsState extends ConsumerState<LevelsScreen> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      title: Text(tr(context, 'Niveles escalonados', 'Difficulty levels')),
+      title: Text(tr(context, 'Dificultad de práctica', 'Difficulty levels')),
     ),
     body: ListView(
       padding: const EdgeInsets.all(16),
@@ -50,8 +50,8 @@ class _LevelsState extends ConsumerState<LevelsScreen> {
         Text(
           tr(
             context,
-            'Consigue 20 aciertos por materia en el nivel anterior. Si no hay preguntas básicas, comienzas en el primer nivel con contenido.',
-            'Get 20 correct answers per subject in the previous level. If basic questions are unavailable, start at the first level with content.',
+            'Tu plan permite elegir el nivel en las pruebas con acceso ilimitado. En las demás se combinan los tres niveles.',
+            'Choose a level for subjects with unlimited access. Other subjects mix all three levels.',
           ),
         ),
         DropdownButtonFormField<String>(

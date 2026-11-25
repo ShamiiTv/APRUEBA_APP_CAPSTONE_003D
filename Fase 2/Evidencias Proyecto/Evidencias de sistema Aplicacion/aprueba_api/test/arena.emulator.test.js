@@ -85,8 +85,8 @@ after(async () => {
   for (const uid of users) await db.recursiveDelete(db.collection('users').doc(uid));
   for (const c of ['arenaSeats', 'arenaQueues', 'arenaMatches', 'arenaPairs']) await db.recursiveDelete(db.collection(c));
 });
-test('curated pool contains twenty published intermediate questions and balanced valid explanations', () => {
-  assert.equal(ARENA_REVIEWED.length, 20);
+test('curated pool contains fifty published intermediate questions and balanced valid explanations', () => {
+  assert.equal(ARENA_REVIEWED.length, 50);
   for (const id of ARENA_REVIEWED) {
     const q = bank.find(q => q.id === id)?.question;
     assert.ok(q, id);

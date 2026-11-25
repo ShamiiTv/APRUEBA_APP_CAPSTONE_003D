@@ -15,3 +15,5 @@
 .training-page button:not([class]):not([style]),.training-page .similar-action{display:inline-flex;align-items:center;gap:9px;min-height:42px;border:1px solid var(--line);border-radius:12px;padding:9px 15px;background:var(--soft);color:var(--ink);font:inherit;font-weight:650;cursor:pointer}
 .training-page .similar-action{margin:0 0 12px;border-color:color-mix(in srgb,#8760cd 48%,var(--line));background:color-mix(in srgb,#8760cd 12%,var(--panel))}
 .training-page .similar-action:hover{border-color:#8760cd}.training-page button:focus-visible{outline:3px solid var(--brand-ink);outline-offset:3px}
+
+.practice-tier,.practice-reward{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .75rem;border-radius:1rem;font-weight:700}.practice-tier.d1{background:#d1fae5;color:#065f46}.practice-tier.d2{background:#fef3c7;color:#78350f}.practice-tier.d3{background:#fee2e2;color:#991b1b}.practice-reward{background:#ffedd5;color:#7c2d12;margin:.4rem}

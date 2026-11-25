@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de los siguientes organelos es el encargado de la respiración celular y de generar la mayor parte de la energía (ATP) en una célula eucarionte?",
     "alternativas": [
       "Ribosoma",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Durante la etapa S del ciclo celular, ¿cuál es el proceso más relevante que ocurre?",
     "alternativas": [
       "División del núcleo (mitosis)",
@@ -42,6 +44,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes moléculas pequeñas y apolares atraviesa con facilidad la bicapa lipídica por difusión simple, sin proteínas transportadoras?",
     "alternativas": [
       "Glucosa",
@@ -63,6 +66,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "La teoría celular es un pilar de la biología. ¿Cuál de los siguientes enunciados NO es parte de la teoría celular moderna?",
     "alternativas": [
       "Todos los seres vivos están formados por una o más células.",
@@ -84,6 +88,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En un experimento, un biólogo coloca células vegetales en una solución con alta concentración de sales. Al microscopio, observa que el volumen celular disminuye y la membrana plasmática se separa de la pared celular. Este fenómeno se denomina:",
     "alternativas": [
       "Turgencia",
@@ -105,6 +110,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de los siguientes alimentos es principalmente rico en carbohidratos (glúcidos), los cuales cumplen una función energética fundamental para el organismo?",
     "alternativas": [
       "Arroz",
@@ -126,6 +132,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Las proteínas son macromoléculas formadas por la unión de aminoácidos mediante un tipo de enlace específico. ¿Cómo se denomina este enlace?",
     "alternativas": [
       "Puente de hidrógeno",
@@ -147,6 +154,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un equipo de investigadores quiere purificar una proteína específica de una muestra biológica. Para ello, deben romper la célula y separar sus componentes. ¿Qué organelo, conocido como el 'centro de reciclaje' de la célula, deberían romper con cuidado para evitar la degradación de todas las proteínas de la muestra?",
     "alternativas": [
       "Núcleo",
@@ -168,6 +176,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Durante la anafase de la mitosis, ¿qué evento esencial ocurre para garantizar que las células hijas reciban la misma información genética?",
     "alternativas": [
       "Los cromosomas se condensan y se hacen visibles",
@@ -189,6 +198,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "La glucólisis es la primera etapa de la respiración celular. ¿Dónde ocurre este proceso en la célula y cuáles son sus productos netos por cada molécula de glucosa?",
     "alternativas": [
       "En la mitocondria: 2 piruvato, 2 ATP y 2 NADH",
@@ -210,6 +220,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Al comparar una célula animal típica con una célula de una planta con flores, ¿qué estructura suele encontrarse en la primera y estar ausente en la segunda?",
     "alternativas": [
       "Pared celular de celulosa",
@@ -231,6 +242,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Durante la interfase del ciclo celular, la célula pasa por tres etapas. ¿En cuál de ellas ocurre la replicación del ADN?",
     "alternativas": [
       "G1 (Gap 1)",
@@ -252,6 +264,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes opciones describe correctamente la función del complejo de Golgi en la célula?",
     "alternativas": [
       "Llevar a cabo la respiración celular para producir energía",
@@ -273,6 +286,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué nombre recibe el proceso mediante el cual las células envuelven grandes partículas o microorganismos del medio externo, formando una vesícula para ingresarlos a su interior?",
     "alternativas": [
       "Exocitosis",
@@ -294,6 +308,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "En la replicación del ADN, una enzima tiene la función de desenrollar la doble hélice para que pueda ser copiada. ¿Cuál es el nombre de esta enzima?",
     "alternativas": [
       "ADN polimerasa",
@@ -315,6 +330,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Las hormonas son mensajeros químicos que regulan diversas funciones corporales. ¿Cuál de las siguientes es una característica correcta del sistema endocrino?",
     "alternativas": [
       "Su acción es extremadamente rápida, durando milisegundos.",
@@ -336,6 +352,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Al comparar ribosomas citosólicos bacterianos con ribosomas citosólicos de células animales y vegetales, ¿en qué grupo se encuentran los ribosomas 70S?",
     "alternativas": [
       "En células animales, pero no en vegetales",
@@ -357,6 +374,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de estos procesos utiliza energía luminosa para sintetizar materia orgánica a partir de CO₂ y agua, liberando oxígeno?",
     "alternativas": [
       "Respiración celular",
@@ -378,6 +396,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Una molécula de ADN bicatenario contiene 30% de adenina. ¿Qué porcentaje de sus bases corresponde a citosina?",
     "alternativas": [
       "20%",
@@ -399,6 +418,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes opciones es un ejemplo de un factor abiótico que afecta significativamente a un ecosistema?",
     "alternativas": [
       "La presencia de un depredador tope",
@@ -420,6 +440,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la cadena de transporte de electrones de la respiración celular, ¿cuál es la molécula que actúa como el principal aceptor final de electrones?",
     "alternativas": [
       "Agua (H2O)",
@@ -441,6 +462,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de los siguientes apareamientos de bases de ADN es correcto según la complementariedad de las bases nitrogenadas?",
     "alternativas": [
       "Adenina (A) se empareja con Guanina (G)",
@@ -462,6 +484,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué ocurre generalmente con una célula animal sin pared celular al colocarla en un medio hipotónico?",
     "alternativas": [
       "La célula se arruga o encoge.",
@@ -483,6 +506,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Los ribosomas, los orgánulos responsables de la síntesis de proteínas, están formados principalmente por:",
     "alternativas": [
       "ADN y proteínas",
@@ -504,6 +528,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál es la principal función de la vesícula biliar en el proceso de la digestión en humanos?",
     "alternativas": [
       "Producir enzimas que digieren proteínas.",
@@ -525,6 +550,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En el clásico experimento de la mancha de grasa, un grupo de estudiantes utilizó agua, detergente y aceite de cocina para modelar la digestión de lípidos. En este modelo, ¿qué representa la acción del detergente?",
     "alternativas": [
       "La acción del jugo gástrico",

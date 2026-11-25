@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación: 5 - 2(3x - 1) = 4x + 7.",
     "alternativas": [
       "0",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un ángulo mide 30° más que el triple de su complemento. ¿Cuánto mide el ángulo?",
     "alternativas": [
       "75°",
@@ -42,6 +44,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla el valor de x en la proporción: (x+1)/(x-1) = 3/2.",
     "alternativas": [
       "5",
@@ -63,6 +66,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la distancia entre los puntos (a, 2a) y (2a, a).",
     "alternativas": [
       "|a|√2",
@@ -84,6 +88,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "La suma de dos números es 15 y su diferencia es 3. ¿Cuál es el producto?",
     "alternativas": [
       "54",
@@ -105,6 +110,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la desigualdad: (2x-1)/3 ≤ (x+4)/2.",
     "alternativas": [
       "x ≤ 14",
@@ -126,6 +132,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Si el área de un cuadrado es 64 cm², ¿cuál es su diagonal?",
     "alternativas": [
       "8√2 cm",
@@ -147,6 +154,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = x·ln x - x.",
     "alternativas": [
       "ln x",
@@ -169,6 +177,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula la integral ∫ (cos 2x) dx.",
     "alternativas": [
       "(1/2) sen 2x + C",
@@ -190,6 +199,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Se lanza un dado dos veces. ¿Cuál es la probabilidad de que la suma sea 9?",
     "alternativas": [
       "1/9",
@@ -211,6 +221,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve: 2^{x+3} = 16^{x-1}.",
     "alternativas": [
       "7/3",
@@ -232,6 +243,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un capital de $3000 se invierte al 4% anual compuesto semestralmente. ¿Cuál es el monto después de 2 años?",
     "alternativas": [
       "$3247,30",
@@ -253,6 +265,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la ecuación de la recta que pasa por (2, -1) y es perpendicular a x + 2y = 3?",
     "alternativas": [
       "y = 2x - 5",
@@ -274,6 +287,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Simplifica: (3x²y⁻¹)⁻².",
     "alternativas": [
       "x^{-4}y^{2}/9",
@@ -295,6 +309,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un triángulo tiene lados 6, 8 y 10. ¿Cuál es su área?",
     "alternativas": [
       "24",
@@ -316,6 +331,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Resuelve la ecuación cuadrática: 2x² - 5x - 3 = 0.",
     "alternativas": [
       "x=3, x=-1/2",
@@ -337,6 +353,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la media geométrica de 4 y 9.",
     "alternativas": [
       "6",
@@ -358,6 +375,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Si 5x - 2y = 7 y 3x + y = 2, halla 2x - y.",
     "alternativas": [
       "1",
@@ -379,6 +397,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = √(1 - x²).",
     "alternativas": [
       "-x/√(1-x²)",
@@ -400,6 +419,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la integral ∫_{-1}^{1} (x³ + x) dx.",
     "alternativas": [
       "0",
@@ -422,6 +442,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "En una caja hay 5 bolas numeradas del 1 al 5. Se extraen dos sin reposición. ¿Probabilidad de que ambas sean pares?",
     "alternativas": [
       "1/10",
@@ -443,6 +464,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la forma polar de z = -1 + i?",
     "alternativas": [
       "√2 cis 135°",
@@ -465,6 +487,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la inecuación: x² - 4x - 5 < 0.",
     "alternativas": [
       "-1 < x < 5",
@@ -485,6 +508,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la ecuación de la recta tangente a f(x)= x³ en x=1.",
     "alternativas": [
       "y = 3x - 2",
@@ -507,6 +531,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un auto recorre 240 km en 3 horas. Si su velocidad aumenta en 20 km/h, ¿cuánto tiempo tardará en recorrer la misma distancia?",
     "alternativas": [
       "2 h",
@@ -528,6 +553,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la derivada de f(x) = cot(2x)?",
     "alternativas": [
       "-2 csc²(2x)",
@@ -549,6 +575,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula la integral ∫_{0}^{π/2} sen 2x dx.",
     "alternativas": [
       "1",
@@ -571,6 +598,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla el valor de x tal que log₅(x-2) + log₅ 2 = 1.",
     "alternativas": [
       "4,5",
@@ -592,6 +620,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un cilindro circular recto tiene altura 12 cm y radio 5 cm. ¿Cuál es su área total?",
     "alternativas": [
       "170π cm²",
@@ -613,6 +642,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve el sistema: x² + y² = 25, y = x - 1.",
     "alternativas": [
       "(4,3) y (-3,-4)",
@@ -634,6 +664,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula el límite: lim_{x→0} (tan 3x)/(x).",
     "alternativas": [
       "3",
@@ -656,6 +687,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la suma de los ángulos exteriores de un polígono convexo de 15 lados?",
     "alternativas": [
       "360°",
@@ -677,6 +709,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Simplifica: (x² - 4x + 4)/(x² - 4).",
     "alternativas": [
       "(x-2)/(x+2)",
@@ -697,6 +730,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un número complejo z tiene argumento 60° y módulo 4. ¿Cuál es su forma binómica?",
     "alternativas": [
       "2 + 2√3 i",
@@ -719,6 +753,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = ln(1 + e^x).",
     "alternativas": [
       "e^x/(1+e^x)",
@@ -740,6 +775,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la integral ∫₀¹ (x + 1)² dx.",
     "alternativas": [
       "7/3",
@@ -762,6 +798,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Se extraen dos cartas de una baraja sin reposición. ¿Probabilidad de que ambas sean del mismo palo?",
     "alternativas": [
       "13/51",
@@ -783,6 +820,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla el valor de la expresión: cos²30° + sen²30°.",
     "alternativas": [
       "1",
@@ -804,6 +842,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un depósito contiene 300 litros de agua. Se abre una llave que vierte 15 L/min. ¿Cuánto tiempo tarda en llenarse si el depósito tiene capacidad de 750 L?",
     "alternativas": [
       "30 min",
@@ -825,6 +864,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la ecuación de la parábola con vértice en (0,0) y directriz y = -4?",
     "alternativas": [
       "x² = 16y",
@@ -846,6 +886,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En un triángulo ABC, a=7, b=8, C=60°. Halla c (ley del coseno).",
     "alternativas": [
       "√(113-56)",
@@ -868,6 +909,7 @@
     "motivo_alcance": "Contenido de cálculo, complejos, matrices, geometría analítica de cónicas, trigonometría inversa o vectores avanzados fuera del temario M1/M2 consultado."
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = x·arcsen x.",
     "alternativas": [
       "arcsen x + x/√(1-x²)",
@@ -890,6 +932,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula la integral indefinida ∫ x/(x²+1) dx.",
     "alternativas": [
       "(1/2) ln(x²+1) + C",
@@ -912,6 +955,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la inecuación: 2x³ - 8x > 0.",
     "alternativas": [
       "(-2,0) ∪ (2,∞)",
@@ -933,6 +977,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un móvil parte del reposo y acelera a 4 m/s² durante 5 segundos. ¿Qué distancia recorre?",
     "alternativas": [
       "50 m",
@@ -954,6 +999,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el valor de cos(180° - θ)?",
     "alternativas": [
       "-cos θ",
@@ -975,6 +1021,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Simplifica: (a^{2/3} b^{1/2})^6.",
     "alternativas": [
       "a⁴ b³",
@@ -996,6 +1043,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Se tienen los números 2, 4, 6, 8, 10. ¿Cuál es la desviación media respecto a la mediana?",
     "alternativas": [
       "2,4",
@@ -1017,6 +1065,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un capital de $4000 produce $600 de interés simple en 3 años. ¿Cuál es la tasa anual?",
     "alternativas": [
       "5%",
@@ -1039,6 +1088,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación: 3^{x-1} + 3^{x} = 12.",
     "alternativas": [
       "2",
@@ -1060,6 +1110,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la distancia desde el origen a la recta 3x + 4y = 15?",
     "alternativas": [
       "3",

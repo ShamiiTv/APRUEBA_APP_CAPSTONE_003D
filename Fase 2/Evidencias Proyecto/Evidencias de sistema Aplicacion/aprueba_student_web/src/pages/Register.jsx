@@ -1,3 +1,4 @@
+import PasswordField from '../components/PasswordField';
 import {useTheme} from '../context/useTheme';
 import {uiText} from '../i18n/uiText';
 import { useState } from 'react';
@@ -140,8 +141,7 @@ export default function Register() {
 
           <div>
             <label htmlFor="register-password" style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Contraseña")} </label>
-            <input id="register-password"
-              type="password"
+            <PasswordField id="register-password"
               required
               minLength={8}
               maxLength={128}
@@ -164,7 +164,7 @@ export default function Register() {
 
           <div>
             <label htmlFor="register-confirmation" style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '6px' }}> {localize("Repite tu contraseña")} </label>
-            <input id="register-confirmation" type="password" required minLength={8} maxLength={128} autoComplete="new-password" value={confirmation} onChange={e => setConfirmation(e.target.value)} style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', border: '1px solid var(--line)', backgroundColor: 'var(--soft)', color: 'var(--ink)', fontSize: '13px' }} />
+            <PasswordField id="register-confirmation" required minLength={8} maxLength={128} autoComplete="new-password" value={confirmation} onChange={e => setConfirmation(e.target.value)} style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', border: '1px solid var(--line)', backgroundColor: 'var(--soft)', color: 'var(--ink)', fontSize: '13px' }} />
           </div>
           <button
             type="submit"

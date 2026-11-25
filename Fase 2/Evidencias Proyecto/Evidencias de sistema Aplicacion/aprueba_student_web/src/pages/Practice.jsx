@@ -32,15 +32,23 @@ export default function Practice() {
   const [submitting, setSubmitting] = useState(false);
   const [allCompleted, setAllCompleted] = useState(false);
   const [noQuestions, setNoQuestions] = useState(false);
+  const [exhaustedMax,setExhaustedMax]=useState(null);
+  const limit=exhaustedMax ?? user?.quota?.max ?? 10;
   const [quotaExceeded, setQuotaExceeded] = useState(false);
   const [error, setError] = useState(null);
-  const [levels,setLevels]=useState([]);
-  useEffect(()=>{const controller=new AbortController();apiFetch(`/practice/levels?testId=${testId}`,{signal:controller.signal}).then(res=>setLevels(res.data)).catch(()=>{});return()=>controller.abort();},[testId,reload]);
+  const [canChoose,setCanChoose] = useState(false);
+  const [earned,setEarned] = useState(0);
+  useEffect(() => {
+    if (!earned) return;
+    const timer = setTimeout(() => setEarned(0), 2200);
+    return () => clearTimeout(timer);
+  }, [earned]);
 
   const fetchNextQuestion = () => {
     setLoading(true);
     setError(null);
     setResult(null);
+    setEarned(0);
     setSelectedOption(null);
     setAllCompleted(false);
     setNoQuestions(false);
@@ -56,13 +64,14 @@ export default function Practice() {
         if (controller.signal.aborted) return;
         setAllCompleted(res.data?.allCompleted === true);
         setNoQuestions(res.data?.noQuestions === true);
+        setCanChoose(Boolean(res.data?.user?.quota?.unlimited));
         setQuestion(res.data?.question || null);
         if(similarTo && res.meta?.similarity){setTestId(res.meta.testId);setDifficulty(res.meta.difficulty);}
         if (res.data?.user) updateUserState(res.data.user);
         startedAt.current = Date.now();
       }).catch(err => {
         if (controller.signal.aborted) return;
-        if (err.code === 'QUOTA_EXCEEDED') setQuotaExceeded(true);
+        if (err.code === 'QUOTA_EXCEEDED') {setExhaustedMax(({school:10,address:15,upgrade:20})[err.nextStep]);setQuotaExceeded(true);}
         else setError(err.message);
       }).finally(() => { if (!controller.signal.aborted) setLoading(false); });
     return () => controller.abort();
@@ -85,16 +94,19 @@ export default function Practice() {
       });
 
       setResult(res.data);
+      setEarned(res.data.bronzeEarned || 0);
       setSelectedOption(res.data.selectedOption);
       if (res.data?.user) {
         updateUserState(res.data.user);
         const curQuota = res.data.user.quota;
         if (!curQuota?.unlimited && curQuota?.used >= curQuota?.max) {
+          setExhaustedMax(curQuota.max);
           setQuotaExceeded(true);
         }
       }
     } catch (err) {
       if (err.code === 'QUOTA_EXCEEDED') {
+        setExhaustedMax(({school:10,address:15,upgrade:20})[err.nextStep]);
         setQuotaExceeded(true);
       } else {
         setError(err.message);
@@ -122,7 +134,7 @@ export default function Practice() {
             {t.practice.title}
           </h1>
           <p style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '4px' }}>
-            {t.practice.subtitle} · {lang==='en'?'10 base + 5 school + 5 address · 20 free max':'10 base + 5 colegio + 5 dirección · 20 máx gratis'}
+            {t.practice.subtitle} · {lang==='en'?'10 base + 5 for school and age + 5 for region, commune and street address · 20 free max':'10 base + 5 por colegio y edad + 5 por región, comuna y dirección · 20 máx gratis'}
           </p>
         </div>
 
@@ -149,13 +161,13 @@ export default function Practice() {
           <option value="cien">{t.practice.selectCiencias}</option>
           <option value="hist">{t.practice.selectHistoria}</option>
         </select>
-        <select aria-label={lang==='en'?'Difficulty':'Dificultad'} value={difficulty} disabled={submitting} onChange={e => { setDifficulty(e.target.value); fetchNextQuestion(); }} style={{ padding: '10px', borderRadius: '10px', color: 'var(--ink)', background: 'var(--panel)', border: '1px solid var(--line)' }}>
-          <option value="d1">{lang==='en'?'Basic':'Básica'}</option><option value="d2">{lang==='en'?'Intermediate':'Intermedia'}</option><option value="d3">{lang==='en'?'Advanced':'Avanzada'}</option>
+        <select aria-label={lang==='en'?'Difficulty':'Dificultad'} value={canChoose ? difficulty : 'mixed'} disabled={submitting || !canChoose} onChange={e => { setDifficulty(e.target.value); fetchNextQuestion(); }} style={{ padding: '10px', borderRadius: '10px', color: 'var(--ink)', background: 'var(--panel)', border: '1px solid var(--line)' }}>
+          {!canChoose && <option value='mixed'>{lang==='en'?'Mixed difficulty':'Dificultad aleatoria'}</option>}<option value="d1">{lang==='en'?'Basic':'Básica'}</option><option value="d2">{lang==='en'?'Intermediate':'Intermedia'}</option><option value="d3">{lang==='en'?'Advanced':'Avanzada'}</option>
         </select>
       </div>
 
       <section className="facsimile-entry" ><ApruebaIcon name="book" size={32} /><div><h2>{lang==='en'?'Practice mock exam':'Facsímil de práctica'}</h2><p>{lang==='en'?'Choose a test, available difficulty and question count, in a fixed order. Included in Full access.':'Elige prueba, dificultad disponible y cantidad de preguntas en orden fijo. Incluido en Acceso completo.'}</p></div><button onClick={()=>navigate('/facsimil')}>{lang==='en'?'Open mock exams →':'Abrir Facsímil →'}</button></section>
-      <section className="practice-levels"><h2>{lang==='en'?'Difficulty levels':'Niveles escalonados'}</h2><p>{lang==='en'?'20 correct answers in the previous level unlock the next one.':'20 aciertos en el nivel anterior desbloquean el siguiente.'}</p><div className="level-grid">{levels.map(level=><button className="level-button" aria-pressed={difficulty===level.id} key={level.id} disabled={submitting || loading || !level.unlocked || !level.available} onClick={()=>{setSimilarTo(null);setDifficulty(level.id);fetchNextQuestion();}}><strong><ApruebaIcon name={level.unlocked?"openLock":"lock"} size={15} /> {({d1:lang==='en'?'Basic':'Básica',d2:lang==='en'?'Intermediate':'Intermedia',d3:lang==='en'?'Advanced':'Avanzada'})[level.id] || level.id}</strong><span>{level.correct}/20 {lang==='en'?'correct':'aciertos'} · {level.available} {lang==='en'?'questions':'preguntas'}</span><progress value={Math.min(level.correct,20)} max="20"/><small>{!level.available ? (lang==='en'?'No questions yet':'Sin preguntas disponibles') : !level.unlocked ? (lang==='en'?'Locked':'Por desbloquear') : difficulty===level.id ? (lang==='en'?'Selected':'Seleccionado') : (lang==='en'?'Practice this level →':'Practicar este nivel →')}</small></button>)}</div></section>
+
       {error && !quotaExceeded && (
         <div style={{
           padding: '14px 18px',
@@ -172,7 +184,6 @@ export default function Practice() {
       )}
 
       {/* Modal de Cuota Agotada */}
-      {quotaExceeded && <p><button onClick={()=>navigate('/ajustes')}>{lang==='en'?'Complete school / address (+5 each)':'Completar colegio / dirección (+5 cada uno)'}</button> <button onClick={()=>navigate('/plan')}>{lang==='en'?'View monthly plans':'Ver planes mensuales'}</button></p>}
       {quotaExceeded && !result ? (
         <div style={{
           backgroundColor: 'var(--panel)',
@@ -202,7 +213,7 @@ export default function Practice() {
             color: 'var(--brand-ink)',
             marginBottom: '10px'
           }}>
-            {t.practice.quotaTitle}
+            {lang==='en' ? `You used your ${limit} daily questions` : `Alcanzaste tu cuota de ${limit} preguntas por hoy`}
           </h2>
 
           <p style={{
@@ -212,28 +223,9 @@ export default function Practice() {
             margin: '0 auto 28px',
             lineHeight: 1.6
           }}>
-            {t.practice.quotaSubtitle}
+            {limit===10 ? (lang==='en'?'Add your school and age to unlock 5 more questions today.':'Agrega tu colegio y edad para responder 5 preguntas más hoy.') : limit===15 ? (lang==='en'?'Add your region, commune and street address for 5 more questions.':'Agrega región, comuna y calle con número para responder 5 preguntas más hoy.') : (lang==='en'?'Your daily quota renews at midnight in Chile.':'Tu cuota se renueva a medianoche, hora de Chile.')}
           </p>
-
-          <div style={{
-            backgroundColor: 'var(--soft)',
-            padding: '20px',
-            borderRadius: '14px',
-            maxWidth: '460px',
-            margin: '0 auto 28px',
-            textAlign: 'left',
-            border: '1px solid var(--line)'
-          }}>
-            <div style={{ fontWeight: 800, fontSize: '13px', color: 'var(--brand-ink)', marginBottom: '8px' }}>
-              {t.practice.proBenefits}
-            </div>
-            <ul style={{ margin: 0, paddingLeft: '18px', fontSize: '13px', color: 'var(--ink)', lineHeight: 1.6 }}>
-              <li><strong>{t.practice.proB1.split(' ')[0]} {t.practice.proB1.split(' ')[1]}</strong> {t.practice.proB1.slice(t.practice.proB1.indexOf(' ', t.practice.proB1.indexOf(' ') + 1))}</li>
-              <li>{t.practice.proB2}</li>
-              <li>{t.practice.proB3}</li>
-            </ul>
-          </div>
-
+          {limit<20 && <button className="ui-button" onClick={()=>navigate('/ajustes#'+(limit===10?'school':'address'))}>{lang==='en'?'Complete my details':'Completar mis datos'}</button>}
           <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
             <button
               onClick={() => navigate('/plan')}
@@ -307,6 +299,8 @@ export default function Practice() {
           </div>
 
           {/* Enunciado */}
+          <span className={'practice-tier '+question.difficulty}>{({d1:lang==='en'?'Basic question':'Pregunta básica',d2:lang==='en'?'Intermediate question':'Pregunta intermedia',d3:lang==='en'?'Advanced question':'Pregunta avanzada'})[question.difficulty]}</span>
+          {earned > 0 && <span className="practice-reward" role="status"><ApruebaIcon name="medal" /> +{earned} {lang==='en'?'bronze medal':'medalla de bronce'}</span>}
           <div className="question-statement-space" style={{
             fontSize: '16px',
             lineHeight: 1.6,

@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la siguiente ecuación con valor absoluto: |3x - 2| = 8.",
     "alternativas": [
       "x = 10/3 o x = -2",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un cono tiene radio de base 4 cm y altura 9 cm. ¿Cuál es su volumen? (Usa π ≈ 3,14)",
     "alternativas": [
       "150,72 cm³",
@@ -42,6 +44,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Simplifica la expresión: (x^{1/2} · x^{1/3})^{6}.",
     "alternativas": [
       "x⁵",
@@ -63,6 +66,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En una circunferencia de radio 10 cm, un arco mide 30°. ¿Cuál es la longitud del arco? (Usa π=3,14)",
     "alternativas": [
       "5,233 cm",
@@ -84,6 +88,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la derivada de f(x) = ln(cos x).",
     "alternativas": [
       "-tan x",
@@ -106,6 +111,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la integral ∫ (3x² - 4x + 1) dx desde x=0 hasta x=2.",
     "alternativas": [
       "6",
@@ -128,6 +134,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Se lanzan dos dados justos. ¿Cuál es la probabilidad de que la suma sea 7?",
     "alternativas": [
       "1/6",
@@ -149,6 +156,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve el sistema de ecuaciones: x + y + z = 6, 2x - y + z = 3, x + 2y - z = 3. Halla x.",
     "alternativas": [
       "9/7",
@@ -170,6 +178,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "¿Cuál es la ecuación de la hipérbola con focos en (±5,0) y vértices en (±3,0)?",
     "alternativas": [
       "x²/9 - y²/16 = 1",
@@ -192,6 +201,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "En una progresión aritmética, la suma de los primeros 5 términos es 35 y el quinto término es 11. Halla la diferencia común.",
     "alternativas": [
       "2",
@@ -213,6 +223,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula el límite: lim_{x→1} (x³ - 1)/(x - 1).",
     "alternativas": [
       "3",
@@ -235,6 +246,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la distancia focal de una elipse con ecuación x²/25 + y²/9 = 1?",
     "alternativas": [
       "8",
@@ -257,6 +269,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación exponencial: 9^{x} = 27^{x-1}.",
     "alternativas": [
       "3",
@@ -278,6 +291,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Una escalera de 5 m está apoyada contra una pared. Su base está a 3 m de la pared. ¿Qué altura alcanza la escalera?",
     "alternativas": [
       "4 m",
@@ -299,6 +313,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Si f(x) = x² + 1 y g(x) = 3x - 2, ¿cuál es (g∘f)(2)?",
     "alternativas": [
       "13",
@@ -320,6 +335,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la inversa de f(x) = (2x-1)/(x+3), con x ≠ -3?",
     "alternativas": [
       "f⁻¹(x) = (-3x-1)/(x-2)",
@@ -341,6 +357,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En un triángulo ABC, a=8 cm, b=7 cm, C=60°. ¿Cuál es la longitud del lado c? (Ley del coseno)",
     "alternativas": [
       "√(113-56)",
@@ -363,6 +380,7 @@
     "motivo_alcance": "Contenido de cálculo, complejos, matrices, geometría analítica de cónicas, trigonometría inversa o vectores avanzados fuera del temario M1/M2 consultado."
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la derivada de f(x) = x·e^{2x}.",
     "alternativas": [
       "e^{2x}(1+2x)",
@@ -385,6 +403,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Halla la integral ∫ (x² + 2x) / x dx.",
     "alternativas": [
       "x²/2 + 2x + C",
@@ -407,6 +426,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Se elige al azar una carta de una baraja de 52. ¿Cuál es la probabilidad de que sea una figura (J, Q, K) o un as?",
     "alternativas": [
       "4/13",
@@ -428,6 +448,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la inecuación: (x-1)(x+2) ≥ 0.",
     "alternativas": [
       "(-∞, -2] ∪ [1, ∞)",
@@ -449,6 +470,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En una función cuadrática, el vértice es (2, -3) y pasa por (0,5). ¿Cuál es la ecuación?",
     "alternativas": [
       "f(x)=2(x-2)²-3",
@@ -470,6 +492,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la suma de los primeros 6 términos de la progresión geométrica: 3, 6, 12, ...?",
     "alternativas": [
       "189",
@@ -491,6 +514,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Halla la derivada de f(x)= arctan(√x).",
     "alternativas": [
       "1/(2√x(1+x))",
@@ -512,6 +536,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Resuelve la ecuación trigonométrica: 2 cos x - 1 = 0 para x en [0, 2π).",
     "alternativas": [
       "π/3, 5π/3",
@@ -533,6 +558,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Una esfera tiene área superficial 144π cm². ¿Cuál es su radio?",
     "alternativas": [
       "6 cm",
@@ -554,6 +580,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula el módulo del número complejo z = (3+4i)/(1-2i).",
     "alternativas": [
       "√5",
@@ -576,6 +603,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Si logₐ 2 = 0.5, ¿cuál es el valor de a?",
     "alternativas": [
       "4",
@@ -597,6 +625,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve el sistema de inecuaciones: 2x - 3 > 1 y x + 1 ≤ 5.",
     "alternativas": [
       "2 < x ≤ 4",
@@ -618,6 +647,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el valor de la integral ∫_{-1}^{1} (x³ + 2x) dx?",
     "alternativas": [
       "0",
@@ -640,6 +670,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un dado se lanza dos veces. ¿Cuál es la probabilidad de obtener dos números pares?",
     "alternativas": [
       "1/4",
@@ -661,6 +692,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Encuentra el dominio de la función f(x) = √(x² - 4).",
     "alternativas": [
       "(-∞, -2] ∪ [2, ∞)",
@@ -682,6 +714,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Si un rectángulo tiene perímetro 30 cm y área 50 cm², ¿cuáles son sus dimensiones?",
     "alternativas": [
       "5 y 10",
@@ -703,6 +736,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la ecuación de la recta que pasa por (1,2) y tiene pendiente −3.",
     "alternativas": [
       "y = -3x + 5",
@@ -724,6 +758,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Resuelve la ecuación cuadrática usando fórmula general: 2x² - 3x - 2 = 0.",
     "alternativas": [
       "x = 2, x = -1/2",
@@ -745,6 +780,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la transformación que lleva la gráfica de f(x)=x² a g(x)= (x-2)² + 3?",
     "alternativas": [
       "Desplazar 2 unidades derecha y 3 arriba",
@@ -766,6 +802,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula el valor de sen(π/6) + cos(π/3).",
     "alternativas": [
       "1",
@@ -787,6 +824,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Una población crece según P(t)=1000·e^{0.05t} (t en años). ¿Cuántos años tarda en duplicarse?",
     "alternativas": [
       "13.86",
@@ -808,6 +846,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la distancia entre los puntos (-2, 1) y (4, -3) en el plano.",
     "alternativas": [
       "√52",
@@ -829,6 +868,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Simplifica la expresión: (x³y^{-2})⁻² / (x⁻¹y²)³.",
     "alternativas": [
       "x⁻³y^{-2}",
@@ -850,6 +890,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En una encuesta, el 60% prefiere té, el 40% prefiere café, y el 20% ambos. ¿Cuál es la probabilidad de que una persona elegida al azar prefiera té o café?",
     "alternativas": [
       "80%",
@@ -871,6 +912,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Deriva f(x) = (x²+1)³.",
     "alternativas": [
       "6x(x²+1)²",
@@ -893,6 +935,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la integral ∫ 2x e^{x²} dx.",
     "alternativas": [
       "e^{x²} + C",
@@ -915,6 +958,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la amplitud y período de la función f(x)= 4 sen(3x)?",
     "alternativas": [
       "Amplitud 4, período 2π/3",
@@ -936,6 +980,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación: √(2x+1) = x-1.",
     "alternativas": [
       "x=4",
@@ -957,6 +1002,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla el producto escalar de u=(1,-2,3) y v=(4,5,-2).",
     "alternativas": [
       "4-10-6=-12",
@@ -978,6 +1024,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el valor de la expresión (1 + i)² / (1 - i)?",
     "alternativas": [
       "-1 + i",
@@ -1000,6 +1047,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un fabricante produce diariamente x unidades a un costo C(x)= 500 + 20x + 0.1x². ¿Cuál es el costo marginal cuando x=100?",
     "alternativas": [
       "40",

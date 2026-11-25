@@ -1,0 +1,992 @@
+[
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué actividad generaba ingresos fiscales ligados al salitre en el Chile de fines del siglo XIX?",
+    "alternativas": [
+      "La acuñación de fichas privadas",
+      "La exportación del mineral",
+      "La venta municipal de viviendas",
+      "La importación de automóviles"
+    ],
+    "respuesta_correcta": "B",
+    "explicacion_respuesta": "El Estado recaudaba impuestos vinculados a los embarques de salitre al exterior.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-3309.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "¿Por qué un ferrocarril entre una oficina salitrera y un puerto era importante para la economía exportadora?",
+    "alternativas": [
+      "Reducía el costo de llevar grandes cargas hasta los barcos",
+      "Permitía procesar el mineral sin trabajadores",
+      "Fijaba los precios internacionales del producto",
+      "Convertía al puerto en un centro agrícola"
+    ],
+    "respuesta_correcta": "A",
+    "explicacion_respuesta": "La conexión resolvía el traslado terrestre entre el lugar de extracción y el punto de embarque.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-3309.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Un informe atribuye toda la urbanización del norte a un nuevo ferrocarril. ¿Qué comparación permite separar el efecto del transporte del auge simultáneo del salitre?",
+    "alternativas": [
+      "Contar solo las viviendas actuales cercanas a la vía",
+      "Comparar localidades salitreras semejantes conectadas en fechas distintas",
+      "Contrastar una fotografía antigua con una reciente de la estación",
+      "Comparar puertos mineros con capitales europeas sin minería"
+    ],
+    "respuesta_correcta": "B",
+    "explicacion_respuesta": "La conexión escalonada entre localidades comparables permite examinar cambios relativos durante un mismo ciclo económico.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-3309.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué expresión usaron contemporáneos para reunir los problemas laborales, sanitarios y de vivienda de sectores populares chilenos a fines del siglo XIX?",
+    "alternativas": [
+      "Transición demográfica",
+      "Integración aduanera",
+      "Cuestión social",
+      "Sustitución de importaciones"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "La cuestión social agrupó debates sobre condiciones de trabajo y de vida.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-94295.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "¿Qué ventaja ofrecía una sociedad de socorros mutuos a un trabajador ante una enfermedad?",
+    "alternativas": [
+      "Permitía fijar el precio internacional del mineral",
+      "Reemplazaba las elecciones sindicales por sorteos",
+      "Distribuía el riesgo entre socios que aportaban a un fondo",
+      "Garantizaba el empleo de por vida mediante un decreto"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "Las contribuciones de los socios financiaban ayuda cuando alguno la necesitaba.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-94295.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Una memoria empresarial celebra nuevas viviendas obreras. Cartas de familias describen hacinamiento en el mismo pueblo y año. ¿Cómo investigar esa diferencia?",
+    "alternativas": [
+      "Descartar las cartas por tratar experiencias personales",
+      "Aceptar la memoria porque fue impresa oficialmente",
+      "Identificar qué hogares recibieron viviendas y cuáles describen las cartas",
+      "Sumar las dos fuentes como si fueran encuestas equivalentes"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "Las fuentes pueden describir sectores distintos del pueblo; conocer cobertura y autores ayuda a conciliarlas.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-94295.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "En Chile, ¿en cuál de estos ámbitos se aprobó primero el sufragio femenino durante la década de 1930?",
+    "alternativas": [
+      "Elecciones parlamentarias nacionales",
+      "Elecciones municipales",
+      "Elecciones presidenciales",
+      "Plebiscitos constitucionales nacionales"
+    ],
+    "respuesta_correcta": "B",
+    "explicacion_respuesta": "La reforma de 1934 habilitó la participación electoral municipal femenina.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-93508.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "¿Qué cambió para una mujer que ya podía votar en elecciones municipales cuando se aprobó la reforma electoral de 1949 en Chile?",
+    "alternativas": [
+      "Debió renunciar a su voto municipal para votar por presidente",
+      "Su voto dejó de ser individual y pasó a ser familiar",
+      "Pudo participar también en la elección de autoridades nacionales",
+      "Pasó a votar exclusivamente por candidatas mujeres"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "La ampliación incorporó las elecciones presidenciales y parlamentarias.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-93508.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Un investigador atribuye el aumento del padrón exclusivamente a una reforma de sufragio. En el mismo período creció la población adulta. ¿Qué cálculo ayuda a distinguir ambos fenómenos?",
+    "alternativas": [
+      "Sumar votos válidos y nulos de una sola elección",
+      "Usar el número de candidatos como indicador de población",
+      "Comparar inscritos como proporción de población adulta por grupos antes y después",
+      "Comparar únicamente el total de habitantes del último año"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "Separar grupos y usar denominadores comparables permite examinar incorporación electoral y crecimiento demográfico.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-93508.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué institución surgida en Chile en 1939 impulsó proyectos de fomento productivo?",
+    "alternativas": [
+      "Servicio Electoral",
+      "Tribunal Constitucional",
+      "CORFO",
+      "Biblioteca Nacional"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "La Corporación de Fomento de la Producción promovió inversión y desarrollo productivo.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-644254.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "¿Cuál medida es característica de una estrategia de sustitución de importaciones?",
+    "alternativas": [
+      "Fomentar la fabricación interna de bienes adquiridos antes al exterior",
+      "Especializar toda la producción en una sola materia prima exportada",
+      "Eliminar la industria local para abaratar el transporte",
+      "Financiar exclusivamente distribuidores de productos importados"
+    ],
+    "respuesta_correcta": "A",
+    "explicacion_respuesta": "La estrategia busca satisfacer parte de la demanda interna mediante producción nacional.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-644254.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Un país produce más textiles tras elevar sus aranceles. También instaló máquinas más eficientes y creció la población. ¿Qué evidencia evalúa mejor el aporte de la protección comercial?",
+    "alternativas": [
+      "Comparar sectores similares con aumentos arancelarios distintos y registrar sus cambios tecnológicos",
+      "Usar el volumen textil posterior como única observación",
+      "Comparar únicamente los precios de dos prendas del mismo año",
+      "Suponer constante la demanda porque los aranceles cambiaron"
+    ],
+    "respuesta_correcta": "A",
+    "explicacion_respuesta": "Las diferencias entre sectores y el control de otras variaciones permiten contrastar explicaciones rivales.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-644254.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué recurso quedó en el centro de la nacionalización de la gran minería chilena en 1971?",
+    "alternativas": [
+      "Hierro",
+      "Carbón",
+      "Litio",
+      "Cobre"
+    ],
+    "respuesta_correcta": "D",
+    "explicacion_respuesta": "La reforma de 1971 se asocia a la nacionalización de la gran minería del cobre.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-92400.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "Una economía depende mucho de la venta externa de un solo mineral. Si su precio cae y el volumen permanece estable, ¿qué efecto directo cabe esperar?",
+    "alternativas": [
+      "Una mejora automática en los salarios reales",
+      "Una caída equivalente en toda la producción física",
+      "Menor ingreso por exportar ese mineral",
+      "Mayor ingreso por cada tonelada vendida"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "El ingreso por ventas es precio por cantidad; con la misma cantidad, un menor precio reduce la recaudación comercial.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-92400.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Una serie indica que la participación del salitre en el valor exportado cayó. ¿Qué dato permite saber si disminuyó su volumen físico?",
+    "alternativas": [
+      "El número de páginas del anuario aduanero",
+      "La proporción de la población que reside en puertos",
+      "La cantidad de países del continente",
+      "Las toneladas embarcadas en ambos períodos"
+    ],
+    "respuesta_correcta": "D",
+    "explicacion_respuesta": "La participación en valor también cambia con los precios y con las exportaciones de otros bienes.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-92400.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué principio expresa la idea de que quienes gobiernan están sometidos a leyes públicas?",
+    "alternativas": [
+      "Soberanía dinástica",
+      "Concentración de poderes",
+      "Estado de derecho",
+      "Gobierno hereditario"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "El Estado de derecho somete la actuación de las autoridades al ordenamiento jurídico.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "Un tribunal puede revisar la legalidad de un acto del Ejecutivo. ¿Qué finalidad democrática cumple esa facultad?",
+    "alternativas": [
+      "Transferir al tribunal la elaboración de todo el presupuesto",
+      "Limitar el ejercicio del poder mediante controles institucionales",
+      "Suprimir el derecho ciudadano a reclamar",
+      "Transformar al juez en delegado del Ejecutivo"
+    ],
+    "respuesta_correcta": "B",
+    "explicacion_respuesta": "La revisión permite controlar actos de autoridad desde una institución distinta.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Dos países celebran elecciones periódicas. En uno, la oposición carece de acceso a medios y sus candidatos son excluidos arbitrariamente. ¿Qué conclusión se sostiene?",
+    "alternativas": [
+      "Ambos tienen idéntica competencia porque votan en fechas regulares",
+      "La periodicidad por sí sola es insuficiente para establecer competencia democrática efectiva",
+      "La exclusión de candidatos prueba una mayor participación",
+      "La cantidad de urnas determina por sí sola el pluralismo"
+    ],
+    "respuesta_correcta": "B",
+    "explicacion_respuesta": "Evaluar la competencia requiere observar también las condiciones para postularse e informar al electorado.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué protege el carácter secreto del voto?",
+    "alternativas": [
+      "La prohibición de observar el escrutinio",
+      "El anonimato de los candidatos",
+      "La posibilidad de elegir sin revelar la preferencia personal",
+      "La reserva absoluta del resultado final"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "El secreto protege la elección individual frente a presiones o represalias.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "¿Qué relación existe entre libertad de asociación y participación ciudadana?",
+    "alternativas": [
+      "Reemplaza los procedimientos de elección de autoridades",
+      "Reserva la deliberación a funcionarios públicos",
+      "Facilita la organización de personas para defender intereses comunes",
+      "Obliga a todos a participar en una sola agrupación"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "Asociarse permite formular demandas y actuar colectivamente.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Un sondeo en una red social afirma representar a toda una comuna. Solo respondió quien seguía la cuenta y quiso participar. ¿Cuál es la principal limitación?",
+    "alternativas": [
+      "Los porcentajes carecen de significado si hay más de dos alternativas",
+      "La edad promedio basta para corregir cualquier sesgo",
+      "La autoselección puede sobrerrepresentar a quienes ya comparten intereses",
+      "Toda encuesta digital cuenta automáticamente dos veces a cada persona"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "El acceso y la voluntad de participar influyen en quién responde, aun si hay muchas respuestas.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué caracteriza al sufragio censitario en su sentido histórico?",
+    "alternativas": [
+      "Exigir residencia en la capital",
+      "Exigir condiciones de patrimonio o renta para votar",
+      "Contar los votos mediante un censo de población",
+      "Elegir autoridades mediante sorteo anual"
+    ],
+    "respuesta_correcta": "B",
+    "explicacion_respuesta": "El criterio censitario restringe el electorado mediante requisitos económicos.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-3382.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "¿Cómo se relaciona la creación de un registro civil con la secularización del Estado chileno?",
+    "alternativas": [
+      "Los municipios dejan de reconocer vínculos familiares",
+      "Funciones de registro de la población pasan a una institución civil",
+      "La inscripción de nacimientos se convierte en acto exclusivamente religioso",
+      "El Congreso asume todas las funciones judiciales"
+    ],
+    "respuesta_correcta": "B",
+    "explicacion_respuesta": "El cambio distingue las funciones públicas de registro de las instituciones eclesiásticas.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-3382.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Una ley ordena registrar nacimientos en oficinas civiles. ¿Qué permitiría investigar si se aplicó por igual en áreas rurales y urbanas?",
+    "alternativas": [
+      "Usar el texto legal como prueba suficiente de cobertura uniforme",
+      "Comparar exclusivamente las firmas de los legisladores",
+      "Contar periódicos de la capital sin examinar su contenido",
+      "Contrastar registros locales, población estimada y cobertura de oficinas en ambos espacios"
+    ],
+    "respuesta_correcta": "D",
+    "explicacion_respuesta": "La norma indica la obligación; la comparación territorial permite investigar su cumplimiento.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.memoriachilena.gob.cl/602/w3-article-3382.html"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué expresión designa el aumento general y sostenido de los precios?",
+    "alternativas": [
+      "Productividad",
+      "Deflación",
+      "Inflación",
+      "Superávit"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "La inflación se refiere al nivel general de precios durante un período.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "Si un salario permanece fijo mientras aumenta el precio de la misma canasta familiar, ¿qué ocurre con su poder adquisitivo?",
+    "alternativas": [
+      "Disminuye porque permite adquirir una fracción menor de la canasta",
+      "Permanece constante mientras no cambien las horas de trabajo",
+      "Se duplica cuando la canasta tiene más de un producto",
+      "Aumenta porque se mantiene el salario nominal"
+    ],
+    "respuesta_correcta": "A",
+    "explicacion_respuesta": "El poder adquisitivo depende de la relación entre ingreso nominal y precios.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Un gráfico muestra que el ingreso medio de una localidad subió tras la llegada de tres hogares de ingresos muy altos. ¿Qué comparación permite evaluar si mejoró el hogar típico?",
+    "alternativas": [
+      "Multiplicar el promedio por el número de calles",
+      "Contar solo a los hogares recién llegados",
+      "Comparar únicamente los tres ingresos máximos",
+      "Comparar la mediana antes y después y revisar la distribución por tramos"
+    ],
+    "respuesta_correcta": "D",
+    "explicacion_respuesta": "La mediana y los tramos permiten estudiar si el cambio alcanza a la zona central de la distribución.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué indica la escala de un mapa?",
+    "alternativas": [
+      "La riqueza de las regiones representadas",
+      "El orden en que se fundaron las localidades",
+      "La altura máxima de cada cordillera",
+      "La relación entre distancia representada y distancia real"
+    ],
+    "respuesta_correcta": "D",
+    "explicacion_respuesta": "La escala permite convertir distancias del mapa en distancias del territorio.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "En un mapa a escala 1:100.000, dos localidades están separadas por 3 cm en línea recta. ¿A qué distancia real corresponde?",
+    "alternativas": [
+      "30 km",
+      "300 m",
+      "300 km",
+      "3 km"
+    ],
+    "respuesta_correcta": "D",
+    "explicacion_respuesta": "Cada centímetro representa 100.000 cm, equivalentes a un kilómetro.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Dos comunas tienen igual densidad promedio. Una concentra a sus habitantes en una única localidad y la otra en aldeas dispersas. ¿Qué indicador ayuda a planificar un centro de salud?",
+    "alternativas": [
+      "Extensión total de ambas comunas sumadas",
+      "Número de límites dibujados en el mapa",
+      "Tiempo de viaje desde los asentamientos, ponderado por su población",
+      "Promedio de los dos nombres comunales"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "La accesibilidad depende de dónde viven las personas y de cómo se desplazan.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué proceso describe el reemplazo creciente de producción manual por producción mecanizada en fábricas?",
+    "alternativas": [
+      "Industrialización",
+      "Desurbanización",
+      "Aislamiento comercial",
+      "Feudalización"
+    ],
+    "respuesta_correcta": "A",
+    "explicacion_respuesta": "La industrialización modifica las técnicas y la organización espacial del trabajo.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "Una ciudad industrial recibe trabajadores más rápido de lo que se construyen viviendas. ¿Qué problema puede intensificarse?",
+    "alternativas": [
+      "Hacinamiento en los barrios con vivienda asequible",
+      "Reducción automática del suelo ocupado",
+      "Disminución inmediata de todos los arriendos",
+      "Desaparición de la demanda por transporte"
+    ],
+    "respuesta_correcta": "A",
+    "explicacion_respuesta": "La demanda de alojamiento supera la oferta disponible para parte de la población.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Los registros de una fábrica muestran menos accidentes por año tras reducir a la mitad las horas trabajadas. ¿Qué medida permite evaluar mejor el riesgo durante el trabajo?",
+    "alternativas": [
+      "Número de años transcurridos desde la fundación",
+      "Precio de venta del producto fabricado",
+      "Número total de accidentes sin ajustar exposición",
+      "Accidentes por una misma cantidad de horas trabajadas, con criterios de registro comparables"
+    ],
+    "respuesta_correcta": "D",
+    "explicacion_respuesta": "Normalizar por exposición distingue la disminución del trabajo de un cambio en el riesgo por hora.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué elemento distingue una monarquía hereditaria?",
+    "alternativas": [
+      "El gobernante debe pertenecer al partido mayoritario",
+      "Todos los cargos se eligen por sorteo",
+      "El parlamento carece siempre de atribuciones",
+      "La sucesión de la jefatura del Estado sigue reglas dinásticas"
+    ],
+    "respuesta_correcta": "D",
+    "explicacion_respuesta": "El rasgo definitorio es la sucesión dinástica; las atribuciones varían entre monarquías.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.curriculumnacional.cl/614/articles-18973_programa.pdf"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "Un texto político del siglo XIX propone limitar las facultades del Ejecutivo y proteger libertades individuales. ¿Con qué corriente guarda mayor afinidad?",
+    "alternativas": [
+      "Defensa del derecho divino sin contrapesos",
+      "Liberalismo constitucional",
+      "Restauración de privilegios estamentales",
+      "Absolutismo monárquico"
+    ],
+    "respuesta_correcta": "B",
+    "explicacion_respuesta": "El límite constitucional al poder y las libertades individuales son rasgos del ideario liberal.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.curriculumnacional.cl/614/articles-18973_programa.pdf"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Una constitución reconoce libertad de prensa, pero expedientes de la misma época registran cierres de periódicos opositores. ¿Qué pregunta de investigación articula ambas fuentes?",
+    "alternativas": [
+      "¿En qué circunstancias se restringió en la práctica la libertad reconocida por la norma?",
+      "¿Cuántas palabras tienen ambos documentos en conjunto?",
+      "¿Puede fecharse toda la prensa mundial con un solo expediente?",
+      "¿Cuál fuente debe eliminarse por contradecir a la otra?"
+    ],
+    "respuesta_correcta": "A",
+    "explicacion_respuesta": "La tensión permite investigar la distancia entre reconocimiento jurídico y ejercicio efectivo.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial",
+      "referencia_tematica": "https://www.curriculumnacional.cl/614/articles-18973_programa.pdf"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué propósito caracteriza una reforma agraria que redistribuye grandes propiedades?",
+    "alternativas": [
+      "Modificar la estructura de tenencia de la tierra",
+      "Reemplazar el cultivo por extracción minera",
+      "Trasladar todas las explotaciones a las ciudades",
+      "Eliminar todo intercambio entre campo y ciudad"
+    ],
+    "respuesta_correcta": "A",
+    "explicacion_respuesta": "La redistribución modifica quién posee o controla el suelo agrícola.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "Una familia rural deja de producir solo para autoconsumo y vende regularmente parte de su cosecha. ¿Qué cambio se observa?",
+    "alternativas": [
+      "Mayor vinculación de su producción con el mercado",
+      "Fin de todo consumo de alimentos propios",
+      "Reducción necesaria de la productividad",
+      "Desaparición de la agricultura familiar"
+    ],
+    "respuesta_correcta": "A",
+    "explicacion_respuesta": "Una parte de la producción se destina al intercambio, aunque persista el autoconsumo.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Tras una reforma agraria aumentó la cosecha total y también la superficie sembrada. ¿Qué dato falta para saber si mejoró el rendimiento del suelo?",
+    "alternativas": [
+      "Tamaño del distrito electoral más cercano",
+      "Cantidad de discursos sobre la reforma",
+      "Producción por hectárea comparable antes y después",
+      "Número de años de mandato del presidente"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "La cosecha puede subir por expansión de la superficie, sin mayor rendimiento por hectárea.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué hecho inició la dictadura militar chilena en 1973?",
+    "alternativas": [
+      "El plebiscito del 5 de octubre de 1988",
+      "El golpe de Estado del 11 de septiembre",
+      "La asunción presidencial de 1990",
+      "La reforma electoral de 1949"
+    ],
+    "respuesta_correcta": "B",
+    "explicacion_respuesta": "El golpe de septiembre de 1973 quebró el orden democrático e inició la dictadura.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "¿Qué secuencia ordena correctamente hitos de la transición democrática chilena?",
+    "alternativas": [
+      "Plebiscito de 1988, elección presidencial de 1989, cambio de gobierno en 1990",
+      "Plebiscito de 1988, cambio de gobierno en 1990, elección presidencial de 1989",
+      "Elección presidencial de 1989, cambio de gobierno en 1990, plebiscito de 1988",
+      "Cambio de gobierno en 1990, plebiscito de 1988, elección presidencial de 1989"
+    ],
+    "respuesta_correcta": "A",
+    "explicacion_respuesta": "El plebiscito precedió a las elecciones y a la transmisión del mando.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Una historiadora compara testimonios recogidos poco después de un acontecimiento con entrevistas realizadas treinta años más tarde. ¿Qué criterio mejora su análisis?",
+    "alternativas": [
+      "Usar solamente el relato más extenso como versión definitiva",
+      "Estudiar el contexto de cada relato y contrastar coincidencias y cambios con otras fuentes",
+      "Descartar automáticamente los testimonios contemporáneos",
+      "Suponer que todo recuerdo tardío es necesariamente falso"
+    ],
+    "respuesta_correcta": "B",
+    "explicacion_respuesta": "La memoria y las condiciones de producción influyen en los testimonios sin anular su valor documental.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué término describe la rivalidad internacional entre Estados Unidos y la Unión Soviética después de la Segunda Guerra Mundial?",
+    "alternativas": [
+      "Restauración europea de 1815",
+      "Guerra Fría",
+      "Expansión ultramarina del siglo XV",
+      "Primera Revolución Industrial"
+    ],
+    "respuesta_correcta": "B",
+    "explicacion_respuesta": "Guerra Fría denomina la confrontación política, ideológica y estratégica entre ambas potencias.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "¿Por qué la expresión Guerra Fría es compatible con la existencia de conflictos armados regionales?",
+    "alternativas": [
+      "Porque la rivalidad incluyó apoyo a bandos locales sin una guerra general directa entre ambas superpotencias",
+      "Porque las dos superpotencias carecían de fuerzas armadas",
+      "Porque las guerras regionales terminaron después de 1945",
+      "Porque todos los combates ocurrieron en regiones polares"
+    ],
+    "respuesta_correcta": "A",
+    "explicacion_respuesta": "La denominación describe la relación entre las potencias y no la ausencia mundial de guerras.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Dos periódicos de bloques distintos describen la misma intervención militar como liberación y ocupación. ¿Qué procedimiento permite estudiar su encuadre ideológico?",
+    "alternativas": [
+      "Considerar equivalentes todas sus afirmaciones por referirse al mismo hecho",
+      "Promediar los adjetivos para decidir la fecha de la intervención",
+      "Escoger el diario de mayor tirada como única voz válida",
+      "Examinar autores, públicos y términos elegidos, y contrastar la cronología con fuentes independientes"
+    ],
+    "respuesta_correcta": "D",
+    "explicacion_respuesta": "El contexto editorial ayuda a explicar la selección de palabras; el contraste documental distingue interpretación y secuencia factual.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Cuál es un ejemplo de patrimonio histórico material?",
+    "alternativas": [
+      "La técnica tradicional de tejido",
+      "El relato oral de una leyenda",
+      "La melodía de una canción transmitida oralmente",
+      "Una estación ferroviaria conservada"
+    ],
+    "respuesta_correcta": "D",
+    "explicacion_respuesta": "La estación es un bien tangible; prácticas, saberes y expresiones pueden integrar el patrimonio inmaterial.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "Un archivo digitaliza cartas y conserva la información sobre autor, fecha y destinatario. ¿Para qué sirven esos metadatos?",
+    "alternativas": [
+      "Para situar e interpretar cada documento en su contexto",
+      "Para convertir la carta en una fuente estadística representativa",
+      "Para demostrar que toda afirmación de la carta es verdadera",
+      "Para reemplazar la lectura del texto completo"
+    ],
+    "respuesta_correcta": "A",
+    "explicacion_respuesta": "La procedencia y el contexto orientan la interpretación y permiten relacionar documentos.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Una colección de cartas conservadas pertenece solo a comerciantes alfabetizados de un puerto. ¿Qué conclusión puede defenderse sin ampliar las fuentes?",
+    "alternativas": [
+      "La ausencia de cartas obreras demuestra que no había trabajadores",
+      "La colección representa en igual medida a todas las familias del país",
+      "La frecuencia de un tema equivale a su prevalencia nacional",
+      "La colección permite estudiar preocupaciones expresadas por esos remitentes"
+    ],
+    "respuesta_correcta": "D",
+    "explicacion_respuesta": "La selección social y territorial de la colección limita el alcance de las inferencias.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d1",
+    "pregunta": "¿Qué significa costo de oportunidad al elegir entre dos usos de recursos escasos?",
+    "alternativas": [
+      "El valor de la mejor opción a la que se renuncia",
+      "El impuesto aplicado a cada transacción",
+      "La ganancia garantizada de cualquier inversión",
+      "La suma de todos los gastos pasados"
+    ],
+    "respuesta_correcta": "A",
+    "explicacion_respuesta": "El concepto compara la elección realizada con la mejor alternativa disponible descartada.",
+    "habilidad_requerida": "Reconocer conceptos y hechos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d2",
+    "pregunta": "Una municipalidad debe elegir entre reparar un puente o renovar una plaza con el mismo fondo. Si elige el puente, ¿qué representa el costo de oportunidad?",
+    "alternativas": [
+      "La suma de ambos presupuestos duplicada",
+      "El gasto ya realizado en la construcción original del puente",
+      "El beneficio de la renovación de la plaza que se posterga",
+      "El total de impuestos recaudados en la región"
+    ],
+    "respuesta_correcta": "C",
+    "explicacion_respuesta": "Al dedicar el fondo al puente se renuncia al beneficio de su mejor uso alternativo.",
+    "habilidad_requerida": "Interpretar relaciones y aplicar conceptos",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  },
+  {
+    "prueba": "hist",
+    "dificultad": "d3",
+    "pregunta": "Dos políticas de transporte cuestan lo mismo. Una reduce mucho el tiempo de viaje de pocas personas y la otra lo reduce menos para muchas. ¿Qué información permite evaluar eficiencia y equidad a la vez?",
+    "alternativas": [
+      "Únicamente la duración del viaje más largo",
+      "Solo la fecha de anuncio de cada política",
+      "Solo el color de los vehículos",
+      "Minutos totales ahorrados y distribución del beneficio por grupos de usuarios"
+    ],
+    "respuesta_correcta": "D",
+    "explicacion_respuesta": "El ahorro agregado permite comparar beneficios totales; su distribución muestra quién recibe las mejoras.",
+    "habilidad_requerida": "Evaluar evidencia y explicaciones",
+    "estado_revision": "lista",
+    "revision_contenido": {
+      "origen": "Original Aprueba",
+      "nivel": "Estimación editorial inicial"
+    }
+  }
+]

@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente fragmento: 'El anciano caminaba con paso cansino, arrastrando los pies como si cada paso fuera una despedida.' ¿Qué recurso literario predomina?",
     "alternativas": [
       "Símil",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'El fenómeno ocurrió debido a que la presión aumentó', el conector 'debido a que' expresa:",
     "alternativas": [
       "Causa",
@@ -43,6 +45,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción que presenta una palabra que debe llevar tilde por ser aguda terminada en N.",
     "alternativas": [
       "Camino",
@@ -65,6 +68,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La falta de sueño afecta la memoria, la concentración y el estado de ánimo. En consecuencia, los estudiantes deberían dormir al menos ocho horas.' ¿Qué tipo de relación establece 'en consecuencia'?",
     "alternativas": [
       "Consecuencia",
@@ -86,6 +90,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes palabras está escrita correctamente?",
     "alternativas": [
       "Exsamen",
@@ -111,6 +116,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Llegaré aunque llueva', la conjunción 'aunque' expresa:",
     "alternativas": [
       "Concesión",
@@ -133,6 +139,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el texto: 'En 2020, la pandemia aceleró la digitalización. Las empresas que no se adaptaron desaparecieron. Hoy, el comercio electrónico es indispensable.' ¿Cuál es la relación entre la primera y la segunda oración?",
     "alternativas": [
       "Causa-efecto",
@@ -154,6 +161,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se usa correctamente el imperativo (modo para dar órdenes).",
     "alternativas": [
       "Ven acá.",
@@ -179,6 +187,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el significado de la palabra 'acérrimo' en la frase 'Es un acérrimo defensor de los derechos humanos'?",
     "alternativas": [
       "Firme y decidido",
@@ -200,6 +209,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Los estudiantes, quienes terminaron temprano, salieron a recreo', la proposición 'quienes terminaron temprano' es una subordinada adjetiva:",
     "alternativas": [
       "Explicativa",
@@ -222,6 +232,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El libro aborda temas como la identidad, la memoria y el exilio. Su narrativa es compleja, pero cautivadora. Por eso, es una lectura recomendada para adultos.' ¿Qué función cumple 'por eso'?",
     "alternativas": [
       "Conclusión",
@@ -243,6 +254,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción que presenta una palabra aguda con tilde por terminar en vocal.",
     "alternativas": [
       "Café",
@@ -265,6 +277,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué tipo de texto es una novela?",
     "alternativas": [
       "Narrativo",
@@ -287,6 +300,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Se alquilan habitaciones', ¿cuál es la función de 'se'?",
     "alternativas": [
       "Pasiva refleja",
@@ -309,6 +323,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente fragmento: 'Era un hombre de pocas palabras. Las justas para no caer en el silencio.' ¿Qué figura retórica se emplea?",
     "alternativas": [
       "Paradoja",
@@ -333,6 +348,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción que presenta una incorrecta concordancia de género con el sustantivo 'agua'.",
     "alternativas": [
       "El agua está fría.",
@@ -355,6 +371,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la frase 'No sé si iré o me quedaré', las conjunciones 'si' y 'o' expresan respectivamente:",
     "alternativas": [
       "Interrogativa indirecta / Disyunción",
@@ -377,6 +394,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el texto: 'Los jóvenes de hoy prefieren las redes sociales a la televisión. Esto ha llevado a una disminución de la audiencia juvenil en la TV abierta. Por lo tanto, las cadenas han creado contenido digital.' ¿Cuál es la idea principal?",
     "alternativas": [
       "Los jóvenes prefieren redes sociales.",
@@ -401,6 +419,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes palabras es un extranjerismo adaptado (aceptado por la RAE) que no necesita cursiva?",
     "alternativas": [
       "Campus",
@@ -423,6 +442,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Después de comer, lavé los platos', la palabra 'después' es:",
     "alternativas": [
       "Adverbio de tiempo",
@@ -445,6 +465,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La literatura fantástica nos transporta a mundos imposibles. Es un escape de la realidad, pero también una manera de cuestionarla.' ¿Qué postura adopta el autor?",
     "alternativas": [
       "Valora la literatura fantástica como escape y reflexión.",
@@ -466,6 +487,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se usa incorrectamente 'sino' (debe ser 'si no').",
     "alternativas": [
       "No vino a la fiesta, sino al cine.",
@@ -488,6 +510,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función del lenguaje predomina en una ley de tránsito que dice 'Prohibido estacionar en esta esquina'?",
     "alternativas": [
       "Apelativa",
@@ -510,6 +533,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'La noticia, la cual fue difundida por todos los medios, causó conmoción', la proposición 'la cual fue difundida por todos los medios' es:",
     "alternativas": [
       "Subordinada adjetiva explicativa",
@@ -532,6 +556,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto argumentativo: 'El voto debería ser obligatorio en Chile. La abstención refleja desinterés, no desacuerdo. Además, la participación ciudadana fortalece la democracia.' ¿Cuál es la tesis que defiende el texto?",
     "alternativas": [
       "La abstención refleja desinterés.",
@@ -553,6 +578,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción que presenta un verbo en pretérito imperfecto de subjuntivo.",
     "alternativas": [
       "Cantara",
@@ -575,6 +601,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el significado de 'obsoleto' en la frase 'Muchas tecnologías quedan obsoletas en pocos años'?",
     "alternativas": [
       "Anticuado, fuera de uso",
@@ -596,6 +623,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Ese es el hombre a quien le presté el libro', el pronombre 'le' es redundante pero aceptado. ¿Cómo se llama este fenómeno?",
     "alternativas": [
       "Reduplicación del complemento indirecto",
@@ -618,6 +646,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente microcuento: 'El espejo siempre decía la verdad. Hasta que la princesa le preguntó si era la más bella. El espejo, por primera vez, mintió.' ¿Qué tema aborda?",
     "alternativas": [
       "La vanidad y la mentira piadosa",
@@ -639,6 +668,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde el verbo está en voz pasiva perifrástica.",
     "alternativas": [
       "El libro fue leído por Juan.",
@@ -661,6 +691,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes palabras es un cultismo (palabra de origen latino no evolucionada fonéticamente)?",
     "alternativas": [
       "Cuerpo",

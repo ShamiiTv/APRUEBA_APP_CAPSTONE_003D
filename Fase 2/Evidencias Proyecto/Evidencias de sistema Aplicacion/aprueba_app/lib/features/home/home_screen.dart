@@ -508,8 +508,8 @@ class HomeScreen extends ConsumerWidget {
                   Text(
                     tr(
                       context,
-                      '10 base + 5 colegio + 5 dirección · 20 máx gratis.',
-                      '10 base + 5 school + 5 address · 20 free max.',
+                      '10 base + 5 por colegio y edad + 5 por región, comuna y dirección · 20 máx gratis.',
+                      '10 base + 5 for school and age + 5 for region, commune and street address · 20 free max.',
                     ),
                     style: GoogleFonts.inter(fontSize: 11, color: c.muted),
                   ),

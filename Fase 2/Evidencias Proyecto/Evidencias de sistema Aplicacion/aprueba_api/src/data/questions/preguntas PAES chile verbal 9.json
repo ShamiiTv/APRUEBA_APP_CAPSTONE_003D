@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La luna se asomaba entre las nubes como una cómplice que guarda secretos.' ¿Qué figura retórica se emplea en 'cómplice que guarda secretos'?",
     "alternativas": [
       "Personificación",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Es necesario que estudies para el examen', el verbo 'estudies' está en modo:",
     "alternativas": [
       "Subjuntivo",
@@ -43,6 +45,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la palabra 'también' está correctamente tildada.",
     "alternativas": [
       "Yo tambien quiero ir.",
@@ -65,6 +68,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el texto: 'La casa parecía dormida. Las ventanas, ojos cerrados; las puertas, bocas mudas.' ¿Qué recurso predomina en la descripción de ventanas y puertas?",
     "alternativas": [
       "Personificación",
@@ -86,6 +90,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de los siguientes es un conector de causa?",
     "alternativas": [
       "Por lo tanto",
@@ -108,6 +113,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción que presenta un error de concordancia de género entre artículo y sustantivo.",
     "alternativas": [
       "El agua fría",
@@ -130,6 +136,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto argumentativo: 'La educación sexual en las escuelas es fundamental para prevenir embarazos adolescentes. Además, reduce la transmisión de enfermedades y promueve relaciones saludables. Por lo tanto, debería ser obligatoria.' ¿Cuál es la conclusión?",
     "alternativas": [
       "La educación sexual previene embarazos adolescentes.",
@@ -151,6 +158,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Los alumnos terminaron el proyecto en equipo', la palabra 'en equipo' cumple la función de:",
     "alternativas": [
       "Complemento circunstancial de modo",
@@ -173,6 +181,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes palabras es un adverbio de lugar?",
     "alternativas": [
       "Cerca",
@@ -195,6 +204,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el fragmento: 'La música clásica es como el buen vino: mejora con el tiempo.' ¿Qué recurso retórico se emplea?",
     "alternativas": [
       "Analogía",
@@ -219,6 +229,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción que presenta una palabra con hiato acentual.",
     "alternativas": [
       "Causa",
@@ -241,6 +252,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función del lenguaje predomina en la frase 'El agua hierve a 100 grados Celsius'?",
     "alternativas": [
       "Referencial",
@@ -263,6 +275,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'De haberlo sabido, habría ido', la forma 'habría ido' es un:",
     "alternativas": [
       "Condicional compuesto",
@@ -285,6 +298,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El niño miraba el cielo, buscando una estrella fugaz. Su madre le dijo: 'Los deseos no se cumplen mirando, sino actuando'.' ¿Qué mensaje transmite la madre?",
     "alternativas": [
       "La pasividad no logra objetivos",
@@ -306,6 +320,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción que contiene una palabra que debe escribirse con 'c' (no con 's').",
     "alternativas": [
       "Presio",
@@ -331,6 +346,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes opciones es una oración unimembre?",
     "alternativas": [
       "Llueve mucho.",
@@ -356,6 +372,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El ruido de las olas le recordaba su infancia en la playa. Cada sonido era un latido del pasado.' ¿Qué recurso predomina en 'latido del pasado'?",
     "alternativas": [
       "Metáfora",
@@ -377,6 +394,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Me gusta que me escuchen', el verbo 'escuchen' está en subjuntivo porque:",
     "alternativas": [
       "Expresa un deseo",
@@ -399,6 +417,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción que presenta un barbarismo por uso incorrecto del gerundio.",
     "alternativas": [
       "Salió corriendo.",
@@ -421,6 +440,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el significado de 'litigio' en la frase 'El litigio entre las empresas duró cinco años'?",
     "alternativas": [
       "Conflicto judicial",
@@ -442,6 +462,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el texto: 'El artista no pinta lo que ve, sino lo que siente. Por eso sus cuadros son tan expresivos.' ¿Qué tipo de razonamiento emplea el autor?",
     "alternativas": [
       "Argumento de causa-efecto",
@@ -463,6 +484,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de estas oraciones contiene correctamente la correlación aditiva 'no solo... sino que...'?",
     "alternativas": [
       "No comió, sino durmió.",
@@ -485,6 +507,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Compré un regalo para mi mamá', la preposición 'para' expresa:",
     "alternativas": [
       "Finalidad",
@@ -507,6 +530,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué tipo de texto es un manual de usuario de un celular?",
     "alternativas": [
       "Instructivo",
@@ -529,6 +553,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'No porque tengas dinero eres feliz; la felicidad no se compra.' ¿Qué significa la primera parte?",
     "alternativas": [
       "Tener dinero no garantiza la felicidad",
@@ -550,6 +575,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de estas palabras está correctamente formada con el prefijo 'ante-'?",
     "alternativas": [
       "Preveer",
@@ -572,6 +598,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes opciones presenta un error de puntuación en el uso de los dos puntos?",
     "alternativas": [
       "Tres cosas me preocupan: el clima, la economía y la salud.",
@@ -594,6 +621,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Ese es el chico cuyo hermano conocí ayer', el pronombre 'cuyo' introduce una relación de:",
     "alternativas": [
       "Posesión",
@@ -616,6 +644,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El árbol era tan viejo que sus raíces parecían las venas de la tierra.' ¿Qué figura retórica se emplea?",
     "alternativas": [
       "Símil",
@@ -637,6 +666,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción que contiene una palabra grave sin tilde que debería llevarla.",
     "alternativas": [
       "Carcel",
@@ -659,6 +689,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función cumple la coma en la oración 'Si estudias, aprobarás'?",
     "alternativas": [
       "Separar oraciones condicionales",

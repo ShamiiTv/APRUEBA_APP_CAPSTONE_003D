@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La noche envolvía la ciudad como un manto de terciopelo negro. Las estrellas, diamantes distantes, titilaban con timidez.' ¿Qué recurso predomina en 'diamantes distantes'?",
     "alternativas": [
       "Metáfora",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'No solo llegó tarde, sino que además olvidó los regalos', el conector 'sino que además' expresa:",
     "alternativas": [
       "Adición enfática",
@@ -43,6 +45,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción que presenta una palabra esdrújula correctamente acentuada.",
     "alternativas": [
       "Cantabamos",
@@ -65,6 +68,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el texto: 'La inteligencia artificial no reemplazará a los médicos, pero sí mejorará sus diagnósticos.' ¿Qué función cumple 'pero'?",
     "alternativas": [
       "Adversativa",
@@ -86,6 +90,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes opciones presenta un error de concordancia de número entre sujeto y verbo?",
     "alternativas": [
       "La mayoría de los estudiantes llegaron temprano.",
@@ -108,6 +113,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente microcuento: 'Era tan alto que cuando se acostaba, se dormía antes de que sus pies tocaran la cama.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Hipérbole",
@@ -129,6 +135,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Mis padres, los cuales viven en el sur, me visitarán pronto', la proposición 'los cuales viven en el sur' es una subordinada adjetiva:",
     "alternativas": [
       "Explicativa",
@@ -151,6 +158,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se usa correctamente 'ahí', 'hay' o 'ay'.",
     "alternativas": [
       "Hay un libro ahí.",
@@ -173,6 +181,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué tipo de texto es un discurso político en una campaña electoral?",
     "alternativas": [
       "Argumentativo",
@@ -195,6 +204,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Los niños se peinaron antes de salir', el 'se' es:",
     "alternativas": [
       "Reflexivo",
@@ -217,6 +227,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'Aunque la tarea era difícil, la terminé a tiempo. Fue un gran esfuerzo, pero valió la pena.' ¿Qué función cumple 'aunque'?",
     "alternativas": [
       "Concesiva",
@@ -238,6 +249,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción que contiene un error de uso de la coma en una enumeración.",
     "alternativas": [
       "Compré pan, leche, y huevos.",
@@ -260,6 +272,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el significado de la palabra 'efímero' en la frase 'La fama puede ser efímera'?",
     "alternativas": [
       "De corta duración",
@@ -281,6 +294,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Ojalá que hubiera estudiado más', el verbo 'hubiera estudiado' está en:",
     "alternativas": [
       "Pretérito pluscuamperfecto de subjuntivo",
@@ -303,6 +317,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el texto: 'El gobierno anunció un aumento en el presupuesto educativo. Sin embargo, los gremios docentes calificaron la medida como insuficiente.' ¿Qué relación establece 'sin embargo'?",
     "alternativas": [
       "Contraste",
@@ -324,6 +339,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de estas formas verbales presenta un error de tildación?",
     "alternativas": [
       "Fue",
@@ -346,6 +362,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué vicio del lenguaje se comete al decir 'Lo vi volando en el parque' (sin contexto)?",
     "alternativas": [
       "Anfibología",
@@ -368,6 +385,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El pintor mezclaba colores en su paleta. El rojo era pasión, el azul, melancolía, y el verde, esperanza.' ¿Qué figura retórica se utiliza para asociar colores con emociones?",
     "alternativas": [
       "Metáfora",
@@ -389,6 +407,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de estas oraciones usa correctamente 'haber' con sentido existencial en un tiempo compuesto?",
     "alternativas": [
       "Han habido problemas.",
@@ -411,6 +430,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Le compré un regalo a mi hermana', el pronombre 'le' es redundante, pero su uso es:",
     "alternativas": [
       "Obligatorio en español",
@@ -433,6 +453,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'Subió la montaña sin equipo, confiando solo en su fe. Alcanzó la cima, pero no encontró ningún templo.' ¿Qué tema principal sugiere el texto?",
     "alternativas": [
       "La fe no siempre es recompensada como se espera",
@@ -454,6 +475,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de estas oraciones omite incorrectamente la preposición 'a' ante una persona identificada?",
     "alternativas": [
       "Voy a visitar a mi abuela.",
@@ -476,6 +498,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes palabras es un homófono (suena igual pero se escribe diferente) de 'abría'?",
     "alternativas": [
       "Abría (verbo abrir)",
@@ -498,6 +521,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'Era un hombre de acción, no de palabras. Sus decisiones eran tajantes, como un machete en la selva.' ¿Qué recurso predomina en la comparación con el machete?",
     "alternativas": [
       "Símil",
@@ -519,6 +543,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción que presenta un error en la concordancia de género con el sustantivo 'color'.",
     "alternativas": [
       "El color rojo",
@@ -541,6 +566,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función del lenguaje predomina en la frase '¡Qué hermosa tarde!'?",
     "alternativas": [
       "Expresiva",
@@ -563,6 +589,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'El coche, cuyo dueño es mi vecino, está averiado', el pronombre 'cuyo' expresa:",
     "alternativas": [
       "Posesión",
@@ -585,6 +612,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El río corría manso, casi dormido. De repente, una tormenta despertó su furia.' ¿Qué figura retórica se aplica al río?",
     "alternativas": [
       "Personificación",
@@ -606,6 +634,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde el verbo 'estar' se usa incorrectamente.",
     "alternativas": [
       "Estoy contento.",
@@ -628,6 +657,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes palabras es un conectores de orden?",
     "alternativas": [
       "En primer lugar",
@@ -650,6 +680,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'No es rico ni pobre, sino que vive en el justo medio.' La palabra 'sino' expresa:",
     "alternativas": [
       "Corrección o contraposición",
@@ -671,6 +702,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción que contiene una perífrasis verbal de posibilidad.",
     "alternativas": [
       "Debe de llegar pronto.",
@@ -693,6 +725,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál es el antónimo de 'cándido'?",
     "alternativas": [
       "Ingenuo",

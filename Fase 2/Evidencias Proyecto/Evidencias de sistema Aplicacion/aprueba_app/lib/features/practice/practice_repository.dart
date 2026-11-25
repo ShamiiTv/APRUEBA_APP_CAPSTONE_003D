@@ -226,22 +226,22 @@ class PracticeRepository {
   }
 
   // ── Desbloqueo de cuota ──
-  Future<void> unlockSchool(String school, int age, String region) async {
+  Future<void> unlockSchool(String school, int age) async {
     try {
       await ApiClient.dio.patch(
         '/auth/me',
-        data: {'school': school, 'age': age, 'region': region},
+        data: {'school': school, 'age': age},
       );
     } on DioException catch (e) {
       throw _error(e, 'No se pudo desbloquear.');
     }
   }
 
-  Future<void> unlockAddress(Address address) async {
+  Future<void> unlockAddress(Address address,String region) async {
     try {
       await ApiClient.dio.patch(
         '/auth/me',
-        data: {'address': address.toJson()},
+        data: {'address': address.toJson(),'region':region},
       );
     } on DioException catch (e) {
       throw _error(e, 'No se pudo desbloquear.');

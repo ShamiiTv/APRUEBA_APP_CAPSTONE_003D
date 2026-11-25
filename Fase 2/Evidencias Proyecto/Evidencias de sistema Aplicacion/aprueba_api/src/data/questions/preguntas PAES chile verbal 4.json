@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El ruido de la ciudad era una sinfonía desafinada: bocinas que gritaban, taladros que perforaban el silencio, y el murmullo constante de la multitud.' ¿Qué figura retórica predomina en la caracterización del ruido?",
     "alternativas": [
       "Sinestesia",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'El examen fue más fácil que el anterior', la palabra 'más' es un adverbio de:",
     "alternativas": [
       "Cantidad",
@@ -43,6 +45,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción que presenta un error de uso de 'a ver' o 'haber'.",
     "alternativas": [
       "Voy a ver qué pasa.",
@@ -65,6 +68,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente fragmento: 'El presidente, junto con sus ministros, visitaron la zona afectada.' ¿Qué error de concordancia se comete?",
     "alternativas": [
       "El verbo debería estar en singular (visitó)",
@@ -87,6 +91,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué tipo de texto predomina en un artículo de divulgación científica que explica el cambio climático?",
     "alternativas": [
       "Expositivo",
@@ -109,6 +114,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la frase 'Le regalé un reloj a mi papá', el pronombre 'le' es:",
     "alternativas": [
       "Complemento indirecto",
@@ -131,6 +137,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'Si bien la tecnología ha conectado al mundo, también ha generado brechas digitales. Por tanto, es necesario implementar políticas de inclusión.' ¿Qué función cumple 'si bien'?",
     "alternativas": [
       "Introducir una concesión",
@@ -152,6 +159,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál es el antónimo de 'prolijo'?",
     "alternativas": [
       "Detallado",
@@ -174,6 +182,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción que presenta una palabra grave que debe llevar tilde.",
     "alternativas": [
       "Carcel",
@@ -196,6 +205,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Me alegra que hayas venido', la proposición 'que hayas venido' cumple la función de:",
     "alternativas": [
       "Sujeto",
@@ -218,6 +228,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto argumentativo: 'Los plásticos de un solo uso deberían prohibirse. Contaminan océanos, afectan la fauna y tardan siglos en degradarse. Además, existen alternativas biodegradables.' ¿Cuál es la tesis?",
     "alternativas": [
       "Contaminan océanos.",
@@ -239,6 +250,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué vicio de redacción se presenta en 'El niño se cayó al suelo y se golpeó en el piso'?",
     "alternativas": [
       "Redundancia",
@@ -261,6 +273,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Los libros, que estaban en la mesa, son míos', la proposición 'que estaban en la mesa' es una subordinada adjetiva:",
     "alternativas": [
       "Explicativa",
@@ -283,6 +296,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Selecciona la opción donde se usa correctamente 'porque' (causal).",
     "alternativas": [
       "No sé porqué razón lo hizo.",
@@ -305,6 +319,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'Amanecía. El rocío cubría el pasto y un rayo de sol se filtraba entre las hojas. El mundo despertaba en silencio.' ¿Qué atmósfera se describe?",
     "alternativas": [
       "Paz y serenidad",
@@ -326,6 +341,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes es una oración compuesta por yuxtaposición?",
     "alternativas": [
       "Llegué, vi, vencí.",
@@ -348,6 +364,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la frase 'Se alquila departamento', el verbo 'alquila' está en voz activa o pasiva refleja?",
     "alternativas": [
       "Pasiva refleja",
@@ -370,6 +387,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué recurso literario se emplea en 'Tus ojos son dos luceros'?",
     "alternativas": [
       "Metáfora",
@@ -392,6 +410,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La globalización ha traído beneficios económicos, pero ha incrementado la desigualdad. Aun así, la mayoría de los países la promueven.' ¿Qué conector indica concesión?",
     "alternativas": [
       "Ha traído",
@@ -413,6 +432,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción que presenta un correcto uso del punto final en una abreviatura.",
     "alternativas": [
       "Dr. Pérez",
@@ -435,6 +455,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Tengo que terminar esto', el verbo 'tengo que terminar' es una perífrasis:",
     "alternativas": [
       "Obligación",
@@ -457,6 +478,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes palabras es un adverbio de duda?",
     "alternativas": [
       "Quizás",
@@ -479,6 +501,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee: 'Después de la tormenta, el campo olía a tierra mojada y a hierba recién cortada. Todo era calma'. ¿Qué atmósfera construye el fragmento?",
     "alternativas": [
       "Calma posterior a la tormenta",
@@ -501,6 +524,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la alternativa que presenta una palabra esdrújula sin tilde (error).",
     "alternativas": [
       "Difícil",
@@ -523,6 +547,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Los alumnos que estudian mucho obtienen buenas notas', la proposición 'que estudian mucho' es:",
     "alternativas": [
       "Adjetiva especificativa",
@@ -545,6 +570,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué tipo de argumento se usa en 'He probado tres marcas de té y la mejor es la de hojas verdes'?",
     "alternativas": [
       "Argumento basado en experiencia personal",
@@ -567,6 +593,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El bosque parecía un templo verde, con columnas de troncos centenarios y un techo de copas que filtraba la luz.' La comparación del bosque con un templo es una:",
     "alternativas": [
       "Metáfora",
@@ -588,6 +615,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes oraciones tiene error de puntuación?",
     "alternativas": [
       "Llegó tarde, así que no lo dejaron entrar.",
@@ -610,6 +638,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el significado de la palabra 'eximir' en la frase 'El examen final exime a los estudiantes que tuvieron buen promedio'?",
     "alternativas": [
       "Liberar de una obligación",

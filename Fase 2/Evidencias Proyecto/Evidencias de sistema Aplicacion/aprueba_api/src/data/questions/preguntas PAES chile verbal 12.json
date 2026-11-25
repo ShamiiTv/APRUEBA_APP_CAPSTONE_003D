@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente fragmento: 'La noticia corrió como pólvora por todo el pueblo.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Símil",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Terminó el trabajo, aunque con dificultad', la palabra 'aunque' es una conjunción:",
     "alternativas": [
       "Concesiva",
@@ -43,6 +45,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la palabra 'sé' (verbo saber o ser) está correctamente tildada.",
     "alternativas": [
       "Se que llegaré tarde.",
@@ -65,6 +68,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el texto: 'El silencio era tan profundo que podía oírse el latido de su propio corazón.' ¿Qué sensación predomina?",
     "alternativas": [
       "Solemnidad e introspección",
@@ -86,6 +90,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes opciones es un conector de explicación?",
     "alternativas": [
       "Es decir",
@@ -108,6 +113,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la escritura correcta de la palabra que designa el residuo de una combustión?",
     "alternativas": [
       "Ceniza",
@@ -130,6 +136,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Mi hermana, que es doctora, me ayudó', la proposición 'que es doctora' es una subordinada adjetiva:",
     "alternativas": [
       "Explicativa",
@@ -152,6 +159,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Lee el siguiente texto: 'El emperador vestía sus mejores galas, pero nadie lo miraba. Todos contemplaban el vacío.' ¿Qué crítica subyace?",
     "alternativas": [
       "La vanidad y la apariencia",
@@ -176,6 +184,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se usa correctamente 'si no' (condicional).",
     "alternativas": [
       "Sino estudias, reprobarás.",
@@ -198,6 +207,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes palabras es un extranjerismo adaptado al español?",
     "alternativas": [
       "Cóctel",
@@ -220,6 +230,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "En la oración 'El libro fue leído por Juan', la voz verbal es:",
     "alternativas": [
       "Pasiva perifrástica",
@@ -242,6 +253,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La luna llena observaba el valle, cómplice de los enamorados.' ¿Qué figura retórica se emplea?",
     "alternativas": [
       "Personificación",
@@ -263,6 +275,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción que presenta un error de uso del modo subjuntivo.",
     "alternativas": [
       "Espero que vengas.",
@@ -285,6 +298,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función del lenguaje predomina en la interjección '¡Ay!'?",
     "alternativas": [
       "Expresiva",
@@ -307,6 +321,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Había muchas personas en la plaza', el verbo 'había' es impersonal porque:",
     "alternativas": [
       "No tiene sujeto",
@@ -329,6 +344,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El espejo le devolvió una imagen que no reconocía. El tiempo había pasado sin permiso.' ¿Qué tema se aborda?",
     "alternativas": [
       "El envejecimiento",
@@ -353,6 +369,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se utiliza correctamente el punto y coma en una oración compuesta.",
     "alternativas": [
       "Llegó tarde; por lo tanto, no lo dejaron entrar.",
@@ -378,6 +395,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes palabras es un antónimo de 'frágil'?",
     "alternativas": [
       "Débil",
@@ -400,6 +418,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Le dije la verdad a Juan', el pronombre 'le' es:",
     "alternativas": [
       "Complemento indirecto",
@@ -422,6 +441,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La torre inclinada de Pisa parece desafiar la gravedad.' ¿Qué figura retórica se emplea?",
     "alternativas": [
       "Personificación",
@@ -443,6 +463,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción que presenta una palabra que debe llevar tilde por ser esdrújula.",
     "alternativas": [
       "Arbol",
@@ -465,6 +486,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué tipo de texto es un aviso 'Se busca personal' en un periódico?",
     "alternativas": [
       "Instructivo",
@@ -490,6 +512,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Al llegar, nos recibieron con aplausos', la palabra 'al' (contracción de 'a' + 'el') introduce una:",
     "alternativas": [
       "Subordinada adverbial de tiempo",
@@ -512,6 +535,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La noche era una boca negra que amenazaba con tragárselo.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Metáfora",
@@ -533,6 +557,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Si 'le' se refiere a María, ¿qué oración lo usa incorrectamente para sustituir un complemento directo femenino?",
     "alternativas": [
       "Le dije la verdad.",
@@ -555,6 +580,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes opciones es un texto argumentativo?",
     "alternativas": [
       "Una receta de cocina",
@@ -577,6 +603,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Necesito que me ayudes', el verbo 'ayudes' está en modo:",
     "alternativas": [
       "Subjuntivo",
@@ -599,6 +626,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'Era tan pobre que solo tenía lo que llevaba puesto.' ¿Qué figura retórica se emplea?",
     "alternativas": [
       "Hipérbole",
@@ -623,6 +651,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la palabra 'porque' está correctamente usada como conjunción causal.",
     "alternativas": [
       "No fui porque estaba enfermo.",
@@ -645,6 +674,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el significado de 'omiso' en la frase 'El gobierno fue omiso ante la crisis'?",
     "alternativas": [
       "Negligente",
@@ -666,6 +696,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Corrió tanto que se cansó', la palabra 'tanto' es un adverbio de:",
     "alternativas": [
       "Cantidad",

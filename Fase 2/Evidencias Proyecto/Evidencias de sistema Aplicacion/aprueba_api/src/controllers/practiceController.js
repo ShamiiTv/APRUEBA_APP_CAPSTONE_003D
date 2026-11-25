@@ -16,8 +16,9 @@ export async function getLevels(req,res) {
   const testId=req.query.testId || 'm1';
   if(!TESTS.includes(testId))return fail(res,'Prueba inválida','BAD_REQUEST',400);
   try {
-    const [history,bank]=await Promise.all([loadAnswerHistory(req.user.sub),loadSharedBank()]);
-    return res.json({data:difficultyLevels(testId,history,bank),error:null,meta:null});
+    const [history,bank,profile]=await Promise.all([loadAnswerHistory(req.user.sub),loadSharedBank(),db.collection("users").doc(req.user.sub).get()]);
+    const selectable=dailyQuota(profile.data() || {},new Date(),testId).unlimited;
+    return res.json({data:difficultyLevels(testId,history,bank).map(level=>({...level,unlocked:selectable && level.available>0})),error:null,meta:null});
   } catch {return fail(res,'No se pudieron cargar los niveles','LEVELS_UNAVAILABLE',503);}
 }
 
@@ -54,14 +55,15 @@ export async function getNextQuestion(req, res) {
     const fullHistory = await loadAnswerHistory(uid);
     const bank=relatedBank || await loadSharedBank();
     const levels=difficultyLevels(testId,fullHistory,bank);
-    if (levels.find(level=>level.id===difficulty)?.available>0 && !levels.find(level=>level.id===difficulty)?.unlocked) return fail(res,'Consigue 20 respuestas correctas en el nivel anterior para desbloquear este nivel','DIFFICULTY_LOCKED',403);
+    // Server selects across all available levels for uncovered tests.
+    const mixed = !source && !state.quota.unlimited;
     const history = { docs: fullHistory.docs.filter(doc => doc.data().testId === testId) };
     const answered = await answeredContents(history, ids => legacyQuestions(ids));
     const seen = new Set();
     let chosen, total = 0, unanswered = 0;
     for (const entry of bank) {
       const question = entry.question;
-      if (question.testId !== testId || !canPractice(question) || question.difficulty !== difficulty) continue;
+      if (question.testId !== testId || !canPractice(question) || (!mixed && question.difficulty !== difficulty)) continue;
       if(source && !isSimilarQuestion(source.question,question)) continue;
       const identity = contentId(question);
       if (seen.has(identity)) continue;
@@ -71,7 +73,7 @@ export async function getNextQuestion(req, res) {
       if (Math.random() < 1 / unanswered) chosen = { doc: { id: entry.id }, question };
     }
     const publicQuestion = chosen ? {
-      id: chosen.doc.id, testId, difficulty, axis: chosen.question.axis,
+      id: chosen.doc.id, testId, difficulty: chosen.question.difficulty, axis: chosen.question.axis,
       statement: chosen.question.statement, options: optionsOf(chosen.question),
     } : null;
     return res.json({
@@ -92,7 +94,6 @@ export async function submitAnswer(req, res) {
   try {
     const userRef = db.collection('users').doc(uid);
     const qRef = db.collection('questions').doc(questionId);
-    const bank=await loadSharedBank();
     const result = await db.runTransaction(async transaction => {
       const [userDoc, qDoc] = await transaction.getAll(userRef, qRef);
       if (!userDoc.exists) throw problem('Estudiante no encontrado', 'USER_NOT_FOUND', 404);
@@ -114,7 +115,6 @@ export async function submitAnswer(req, res) {
         const selected = previous.selectedText ? optionsOf(q).find(option => normalize(option.text) === normalize(previous.selectedText))?.id : previous.selectedOption;
         return { ...feedback, isCorrect: previous.isCorrect, selectedOption: selected, bronzeEarned: 0, alreadyAnswered: true, user: { uid, ...user, quota } };
       }
-      if (!difficultyLevels(q.testId,history,bank).find(level=>level.id===q.difficulty)?.unlocked) throw problem('Completa el nivel anterior antes de responder esta dificultad','DIFFICULTY_LOCKED',403);
       if (!quota.unlimited && remaining(quota) === 0) throw problem('Cuota diaria agotada', 'QUOTA_EXCEEDED', 403);
       const isCorrect = selectedOption === correctAnswer;
       if (!quota.unlimited) quota.used++;

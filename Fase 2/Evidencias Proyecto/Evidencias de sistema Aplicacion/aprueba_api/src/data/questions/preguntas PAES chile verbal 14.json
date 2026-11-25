@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente fragmento: 'El sol se asomaba por las montañas como un niño curioso.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Símil",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'No salió a pasear porque estaba lloviendo', la palabra 'porque' expresa:",
     "alternativas": [
       "Causa",
@@ -43,6 +45,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción donde la palabra 'mí' (pronombre personal) lleva tilde correctamente.",
     "alternativas": [
       "El regalo es para mi.",
@@ -68,6 +71,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el texto: 'La noticia corrió como reguero de pólvora por toda la oficina.' ¿Qué recurso predomina?",
     "alternativas": [
       "Símil",
@@ -89,6 +93,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de los siguientes conectores indica una condición?",
     "alternativas": [
       "Porque",
@@ -111,6 +116,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la palabra 'había' está usada correctamente como impersonal.",
     "alternativas": [
       "Habían muchos niños.",
@@ -133,6 +139,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'El profesor, al que respeto mucho, me felicitó', la proposición 'al que respeto mucho' es una subordinada adjetiva:",
     "alternativas": [
       "Explicativa",
@@ -155,6 +162,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La luna llena era un espejo de plata en el cielo negro.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Metáfora",
@@ -176,6 +184,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué tipo de texto es un instructivo para armar un mueble?",
     "alternativas": [
       "Instructivo",
@@ -198,6 +207,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la coma está correctamente utilizada en una oración condicional.",
     "alternativas": [
       "Si estudias, apruebas.",
@@ -220,6 +230,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el significado de 'ponderar' en la frase 'Hay que ponderar los pros y los contras'?",
     "alternativas": [
       "Evaluar",
@@ -241,6 +252,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Ellos se saludan cada mañana', el 'se' es:",
     "alternativas": [
       "Recíproco",
@@ -263,6 +275,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El tiempo se detuvo un segundo, como si el universo contuviera la respiración.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Personificación",
@@ -284,6 +297,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde el verbo 'tener' forma una perífrasis de obligación.",
     "alternativas": [
       "Tengo que estudiar.",
@@ -306,6 +320,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes palabras es un adverbio de afirmación?",
     "alternativas": [
       "Sí",
@@ -328,6 +343,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La casa parecía dormida, con las ventanas cerradas como párpados cansados.' ¿Qué recurso predomina en 'párpados cansados'?",
     "alternativas": [
       "Personificación",
@@ -352,6 +368,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se usa incorrectamente el adverbio 'adonde'.",
     "alternativas": [
       "El lugar adonde voy.",
@@ -374,6 +391,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función del lenguaje predomina en la canción infantil 'Pin Pon es un muñeco'?",
     "alternativas": [
       "Poética",
@@ -396,6 +414,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración '¿Viste la película que ganó el Oscar?', la palabra 'que' es un:",
     "alternativas": [
       "Pronombre relativo",
@@ -418,6 +437,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El viento silbaba una melodía triste entre los árboles desnudos.' ¿Qué recurso predomina?",
     "alternativas": [
       "Personificación",
@@ -439,6 +459,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde el verbo 'haber' está usado como auxiliar en un tiempo compuesto de la voz activa.",
     "alternativas": [
       "Ha sido premiado.",
@@ -461,6 +482,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes opciones es una oración exclamativa?",
     "alternativas": [
       "¿Cómo estás?",
@@ -483,6 +505,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Esa es la razón por la cual no vine', el pronombre 'la cual' se refiere a:",
     "alternativas": [
       "La razón",
@@ -505,6 +528,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La lluvia tamborileaba sobre el tejado como dedos impacientes.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Símil",
@@ -526,6 +550,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se usa correctamente el nexo 'sino' en lugar de 'si no'.",
     "alternativas": [
       "No quiero ir, sino quedarme.",
@@ -551,6 +576,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué tipo de texto es una crítica de cine?",
     "alternativas": [
       "Argumentativo",
@@ -573,6 +599,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'El partido fue suspendido debido a la lluvia', la frase 'debido a la lluvia' es un:",
     "alternativas": [
       "Complemento circunstancial de causa",
@@ -595,6 +622,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La tristeza se instaló en su mirada como un huésped no deseado.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Símil",
@@ -616,6 +644,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la palabra 'aún' (todavía) está correctamente tildada.",
     "alternativas": [
       "Aun no ha llegado.",
@@ -638,6 +667,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes palabras es un sustantivo colectivo?",
     "alternativas": [
       "Alameda",
@@ -660,6 +690,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Prefiero el té al café', la preposición 'a' forma parte de:",
     "alternativas": [
       "Un complemento de comparación",
@@ -682,6 +713,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El ruido de las olas era un susurro constante que adormecía a los pescadores.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Metáfora",
@@ -703,6 +735,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se usa correctamente el verbo 'haber' en tiempo compuesto del subjuntivo.",
     "alternativas": [
       "Espero que haya llegado.",
@@ -725,6 +758,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes opciones es un texto discontinuo?",
     "alternativas": [
       "Un gráfico de líneas",
@@ -747,6 +781,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Es necesario que estudies más', el verbo 'estudies' está en modo:",
     "alternativas": [
       "Subjuntivo",
@@ -769,6 +804,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La ciudad dormitaba bajo el sol de la siesta. Solo algún perro rompía el silencio.' ¿Qué recurso predomina en 'dormitaba' aplicado a la ciudad?",
     "alternativas": [
       "Personificación",
@@ -790,6 +826,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la palabra 'conque' está correctamente usada como conjunción consecutiva.",
     "alternativas": [
       "Conque llegaste tarde, no te esperé.",
@@ -815,6 +852,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes palabras es un antónimo de 'efímero'?",
     "alternativas": [
       "Duradero",
@@ -837,6 +875,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Le dieron un premio al mejor estudiante', la frase 'al mejor estudiante' es:",
     "alternativas": [
       "Complemento indirecto",
@@ -859,6 +898,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La noche extendía su manto estrellado sobre el valle dormido.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Personificación",
@@ -880,6 +920,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde el verbo 'estar' se usa para indicar un estado temporal.",
     "alternativas": [
       "Soy feliz.",
@@ -902,6 +943,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función cumple la coma en la oración 'Afortunadamente, no hubo heridos'?",
     "alternativas": [
       "Separar un adverbio de la oración",
@@ -924,6 +966,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La vida es como una bicicleta: para mantener el equilibrio, hay que seguir adelante.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Analogía",
@@ -948,6 +991,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala la opción donde se produce una falta de concordancia de número entre artículo y sustantivo.",
     "alternativas": [
       "El agua está fría.",
@@ -973,6 +1017,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El amor es un fuego que todo lo consume, pero también una brisa que refresca.' ¿Qué recurso se emplea en la oposición 'fuego' y 'brisa'?",
     "alternativas": [
       "Antítesis",
@@ -994,6 +1039,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se usa correctamente el punto final después de una abreviatura.",
     "alternativas": [
       "Sr. Pérez",
@@ -1016,6 +1062,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes palabras es un verbo en infinitivo?",
     "alternativas": [
       "Cantar",
@@ -1038,6 +1085,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El ruido del tráfico era un muro infranqueable para la conversación.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Metáfora",
@@ -1059,6 +1107,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la palabra 'porque' se usa correctamente al inicio de una respuesta en un diálogo.",
     "alternativas": [
       "¿Por qué no viniste? - Porque estaba enfermo.",
@@ -1081,6 +1130,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función del lenguaje predomina en la expresión 'Te quiero' dicha en una carta de amor?",
     "alternativas": [
       "Expresiva",
@@ -1103,6 +1153,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'El niño, que estaba asustado, se escondió', la proposición 'que estaba asustado' es una subordinada adjetiva explicativa porque:",
     "alternativas": [
       "Va entre comas",
@@ -1125,6 +1176,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La esperanza es un soplo de aire fresco en medio de la tormenta.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Metáfora",

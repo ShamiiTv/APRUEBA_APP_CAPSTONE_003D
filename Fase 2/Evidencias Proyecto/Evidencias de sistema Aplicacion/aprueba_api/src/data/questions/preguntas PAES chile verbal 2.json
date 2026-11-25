@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Lee el fragmento: 'El poeta miraba la luna y no veía el satélite, sino el rostro de una amada ausente.' ¿Qué tipo de lenguaje predomina?",
     "alternativas": [
       "Lenguaje denotativo",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué vicio de redacción ocurre en 'Tiene una actitud hostil y enemiga'?",
     "alternativas": [
       "Redundancia",
@@ -43,6 +45,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Si tú vienes, yo también iré', la conjunción 'si' introduce una:",
     "alternativas": [
       "Condición",
@@ -65,6 +68,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción que usa correctamente el pronombre 'le' (como complemento indirecto).",
     "alternativas": [
       "Le vi ayer en el parque.",
@@ -90,6 +94,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Lee el siguiente texto argumentativo: 'Vivir en ciudades pequeñas reduce el estrés, mejora la calidad del aire y fomenta la comunidad. Sin embargo, ofrece menos oportunidades laborales. Por lo tanto, la elección depende de las prioridades personales.' ¿Cuál es la tesis?",
     "alternativas": [
       "Vivir en ciudades pequeñas reduce el estrés.",
@@ -111,6 +116,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué figura retórica está presente en 'Sus dientes son perlas'?",
     "alternativas": [
       "Metáfora",
@@ -133,6 +139,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Ojalá llueva mañana', el verbo 'llueva' está en modo:",
     "alternativas": [
       "Subjuntivo",
@@ -155,6 +162,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes palabras es un adverbio de tiempo?",
     "alternativas": [
       "Bien",
@@ -177,6 +185,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el texto: 'La tecnología ha acortado distancias, pero paradójicamente ha aumentado la soledad.' La palabra 'paradójicamente' expresa:",
     "alternativas": [
       "Contradicción aparente",
@@ -198,6 +207,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué error ortográfico se comete en 'El exito de la obra fue indiscutible'?",
     "alternativas": [
       "Falta tilde en 'exito'",
@@ -220,6 +230,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la frase 'Le regalé un libro a mi madre', el pronombre 'le' cumple la función de:",
     "alternativas": [
       "Complemento indirecto",
@@ -242,6 +253,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Selecciona la opción que presenta correctamente el uso de 'porqué' (sustantivo).",
     "alternativas": [
       "No entiendo el porqué de tu actitud.",
@@ -264,6 +276,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente enunciado: 'El viento susurraba entre las hojas como un viejo que cuenta secretos.' ¿Qué recurso predomina?",
     "alternativas": [
       "Personificación",
@@ -285,6 +298,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál es el antónimo de 'opulencia'?",
     "alternativas": [
       "Riqueza",
@@ -307,6 +321,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En el texto 'El cuadro, que fue pintado por un famoso artista, se exhibirá en el museo', la proposición 'que fue pintado por un famoso artista' es:",
     "alternativas": [
       "Adjetiva explicativa",
@@ -329,6 +344,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué tipo de texto es una reseña crítica?",
     "alternativas": [
       "Textos expositivos",
@@ -351,6 +367,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Todo el día estuvo lloviendo', el verbo 'estuvo lloviendo' es una perífrasis:",
     "alternativas": [
       "Durativa",
@@ -373,6 +390,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'A pesar de los esfuerzos, los resultados fueron malos. No obstante, el equipo aprendió de sus errores.' La palabra 'no obstante' expresa:",
     "alternativas": [
       "Contraste",
@@ -394,6 +412,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de los siguientes es un texto discontinuo?",
     "alternativas": [
       "Una novela",
@@ -416,6 +435,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Selecciona la opción que presenta un uso correcto del punto y coma.",
     "alternativas": [
       "Llegamos tarde; pero nos dejaron entrar.",
@@ -438,6 +458,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En el fragmento 'Los viejos caminos, aquellos que antes estaban llenos de viajeros, hoy son solo polvo en el olvido', la expresión 'polvo en el olvido' es una:",
     "alternativas": [
       "Metáfora",
@@ -460,6 +481,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué significado tiene la palabra 'elocuente' en la frase 'Fue un discurso elocuente, capaz de conmover a todos'?",
     "alternativas": [
       "Aburrido",
@@ -481,6 +503,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'La película que vimos anoche me pareció aburrida', el nexo 'que' introduce:",
     "alternativas": [
       "Una proposición adjetiva",
@@ -503,6 +526,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la alternativa que presenta una cacofonía.",
     "alternativas": [
       "La casa es enorme.",
@@ -525,6 +549,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En 'Si hubiera estudiado más, habría aprobado', ¿qué tiempo verbal corresponde exclusivamente a 'hubiera estudiado'?",
     "alternativas": [
       "Futuro perfecto de indicativo",
@@ -547,6 +572,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes palabras es un barbarismo?",
     "alternativas": [
       "Adecuado",
@@ -569,6 +595,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En el texto 'El profesor, a quien respeto mucho, me felicitó', la expresión 'a quien' es un:",
     "alternativas": [
       "Pronombre relativo",
@@ -591,6 +618,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función cumple el lenguaje en un cartel que dice 'Cuidado con el perro'?",
     "alternativas": [
       "Apelativa",
@@ -613,6 +641,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Selecciona la opción que presenta un error de concordancia de género.",
     "alternativas": [
       "El agua está fría.",
@@ -635,6 +664,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'En un lugar de la Mancha, de cuyo nombre no quiero acordarme...' ¿Quién es el autor?",
     "alternativas": [
       "Miguel de Cervantes",

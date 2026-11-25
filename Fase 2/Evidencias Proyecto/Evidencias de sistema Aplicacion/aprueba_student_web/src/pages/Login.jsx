@@ -1,3 +1,4 @@
+import PasswordField from '../components/PasswordField';
 import {useTheme} from '../context/useTheme';
 import {uiText} from '../i18n/uiText';
 import { useState } from 'react';
@@ -113,8 +114,7 @@ export default function Login() {
 
           <div>
             <label htmlFor="login-password" style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}> {localize("Contraseña")} </label>
-            <input id="login-password"
-              type="password"
+            <PasswordField id="login-password"
               required
               maxLength={128}
               autoComplete="current-password"

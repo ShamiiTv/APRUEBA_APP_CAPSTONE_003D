@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente fragmento: 'El tiempo se detuvo un instante. El reloj de la torre enmudeció. El viento contuvo el aliento.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Personificación",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Terminé el trabajo, aunque estaba muy cansado', la conjunción 'aunque' expresa:",
     "alternativas": [
       "Concesión",
@@ -43,6 +45,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde la palabra 'más' (adverbio de cantidad) está correctamente acentuada.",
     "alternativas": [
       "Quiero más tiempo.",
@@ -65,6 +68,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee: 'El tren partió con retraso. Los pasajeros, impacientes, miraban el reloj. Finalmente, el silbato anunció la salida'. ¿Qué anunció la salida?",
     "alternativas": [
       "El reloj",
@@ -87,6 +91,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes opciones es un conector de orden?",
     "alternativas": [
       "En consecuencia",
@@ -109,6 +114,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se produce una cacofonía.",
     "alternativas": [
       "El ala del ala se alzó.",
@@ -131,6 +137,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'El libro, cuyo autor es chileno, ganó un premio', el pronombre 'cuyo' se refiere a:",
     "alternativas": [
       "El libro",
@@ -153,6 +160,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto argumentativo: 'El reciclaje debería ser obligatorio en todos los hogares. Reduce la contaminación, ahorra recursos naturales y genera empleos. En conclusión, es una medida necesaria.' ¿Qué función cumple 'en conclusión'?",
     "alternativas": [
       "Introducir el cierre del argumento",
@@ -174,6 +182,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción que presenta un error de uso del gerundio (gerundio de posterioridad).",
     "alternativas": [
       "Salió de casa, llevando su paraguas.",
@@ -199,6 +208,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el significado de la palabra 'lúgubre' en la frase 'Un silencio lúgubre invadió el velorio'?",
     "alternativas": [
       "Sombrío y triste",
@@ -220,6 +230,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Se espera que los resultados mejoren', la proposición 'que los resultados mejoren' es una subordinada sustantiva que funciona como:",
     "alternativas": [
       "Sujeto",
@@ -242,6 +253,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El ruido de los motores, las risas de los niños, el ladrido de un perro. Todo se mezclaba en la tarde.' ¿Qué recurso se utiliza en la enumeración inicial?",
     "alternativas": [
       "Asíndeton",
@@ -263,6 +275,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde el verbo 'haber' está usado como auxiliar en voz pasiva.",
     "alternativas": [
       "Ha sido premiado.",
@@ -285,6 +298,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "En la pronunciación seseante habitual en Chile, ¿qué palabra distinta de 'casa' es homófona de ella?",
     "alternativas": [
       "Caza",
@@ -307,6 +321,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Lee el siguiente texto: 'El zorro astuto engañó al cuervo vanidoso. La moraleja: no todo lo que brilla es oro.' ¿Qué tipo de texto es?",
     "alternativas": [
       "Fábula",
@@ -328,6 +343,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Dudo que él venga a la fiesta', el verbo 'venga' está en subjuntivo porque:",
     "alternativas": [
       "Expresa duda",
@@ -350,6 +366,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde se usa correctamente el punto y coma en una enumeración compleja.",
     "alternativas": [
       "Las ciudades visitadas fueron: Madrid, España; París, Francia; Roma, Italia.",
@@ -372,6 +389,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué vicio de redacción se comete en 'Repite el ejercicio de nuevo'?",
     "alternativas": [
       "Redundancia",
@@ -394,6 +412,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El anciano miraba el mar cada mañana. No esperaba nada, solo miraba. Quizás buscaba algo que perdió hace años.' ¿Qué sentimiento sugiere?",
     "alternativas": [
       "Melancolía",
@@ -415,6 +434,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Dónde aparece 'sí' correctamente tildado como adverbio de afirmación?",
     "alternativas": [
       "Si no estudias, reprobarás.",
@@ -437,6 +457,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Hace calor', la palabra 'hace' es un verbo:",
     "alternativas": [
       "Impersonal meteorológico",
@@ -459,6 +480,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'La luna llena parecía un faro en el cielo nocturno.' ¿Qué figura retórica predomina?",
     "alternativas": [
       "Símil",
@@ -480,6 +502,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción que presenta una coma explicativa correcta.",
     "alternativas": [
       "Los estudiantes que estudian, aprueban.",
@@ -502,6 +525,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes palabras es un sustantivo abstracto?",
     "alternativas": [
       "Libertad",
@@ -524,6 +548,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El ruido de las olas era un eco lejano, el viento una caricia fría, la arena un susurro bajo los pies.' ¿Qué recurso predomina en la estructura?",
     "alternativas": [
       "Asíndeton",
@@ -545,6 +570,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Le compré un regalo a mi hermana', el pronombre 'le' y la frase 'a mi hermana' constituyen una:",
     "alternativas": [
       "Duplicación del complemento indirecto",
@@ -567,6 +593,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción donde el verbo 'ir' está usado como auxiliar de perífrasis (ir a + infinitivo).",
     "alternativas": [
       "Voy a estudiar.",
@@ -589,6 +616,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes opciones es un texto discontinuo?",
     "alternativas": [
       "Una novela",
@@ -611,6 +639,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El miedo es una cadena que nos ata al pasado.' ¿Qué figura retórica se emplea?",
     "alternativas": [
       "Metáfora",
@@ -632,6 +661,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Señala la opción que presenta un error de acentuación en la palabra 'fue'.",
     "alternativas": [
       "Él fué el ganador.",
@@ -654,6 +684,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función cumple el lenguaje en la expresión '¡Ay, qué dolor!'?",
     "alternativas": [
       "Expresiva",
@@ -676,6 +707,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'El proyecto fue realizado por los estudiantes', la frase 'por los estudiantes' es:",
     "alternativas": [
       "Complemento agente",

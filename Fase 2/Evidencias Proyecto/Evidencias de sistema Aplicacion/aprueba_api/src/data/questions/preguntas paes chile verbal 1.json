@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente fragmento: 'La niebla cubría cada rincón del valle, y el silencio era tan denso que parecía tener peso.' ¿Qué recurso literario predomina en el fragmento?",
     "alternativas": [
       "Metáfora",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "En el texto 'El amor es más poderoso que la muerte, pero más frágil que un suspiro', se utiliza principalmente la antítesis. ¿Por qué?",
     "alternativas": [
       "Porque enfrenta ideas opuestas (poderoso/frágil) en una misma estructura.",
@@ -43,6 +45,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué función del lenguaje predomina en un aviso publicitario que dice: 'Compra el nuevo Smartphone X, la mejor relación calidad-precio'?",
     "alternativas": [
       "Referencial",
@@ -65,6 +68,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "En el siguiente texto, ¿cuál es la tesis del autor? 'Si bien el teletrabajo ofrece flexibilidad, no es adecuado para todos. Las personas con dificultades de autogestión o con espacios reducidos sufren una baja productividad. Por tanto, las empresas no deberían imponerlo de forma general.'",
     "alternativas": [
       "El teletrabajo es negativo porque baja la productividad.",
@@ -87,6 +91,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto: 'El ruido de las olas rompía contra la orilla, mientras el viento silbaba entre los pinos. El sol se ocultaba tras el horizonte como un disco de cobre fundido.' ¿Qué sensación predomina?",
     "alternativas": [
       "Tranquilidad y melancolía",
@@ -108,6 +113,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes opciones es un sinónimo contextual de 'abnegado' en la frase: 'Fue un trabajador abnegado, siempre dispuesto a sacrificar su descanso por la empresa'?",
     "alternativas": [
       "Dedicado",
@@ -129,6 +135,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Señala el antónimo de 'efímero' en la frase: 'La fama de algunos artistas es efímera, dura solo un verano.'",
     "alternativas": [
       "Perecedero",
@@ -150,6 +157,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En el texto: 'Los estudiantes que estudiaron con anticipación aprobaron el examen; en cambio, aquellos que dejaron todo para última hora reprobaron.' ¿Qué tipo de relación establece el conector 'en cambio'?",
     "alternativas": [
       "Causa-efecto",
@@ -171,6 +179,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Lee el siguiente enunciado y elige su interpretación correcta: 'No porque ganes mucho dinero eres feliz.'",
     "alternativas": [
       "Ganar mucho dinero no garantiza la felicidad.",
@@ -192,6 +201,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué vicio de redacción se comete en: 'El niño tenía una sonrisa alegre, feliz y contenta'?",
     "alternativas": [
       "Redundancia",
@@ -214,6 +224,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la idea principal del siguiente párrafo? 'Aunque la inteligencia artificial puede automatizar muchas tareas, aún depende de la supervisión humana para evitar sesgos. Los algoritmos aprenden de datos históricos, que pueden contener discriminación. Por lo tanto, los equipos humanos deben revisar periódicamente los resultados.'",
     "alternativas": [
       "La inteligencia artificial es mejor que los humanos.",
@@ -236,6 +247,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'La casa, que está al final de la calle, es muy antigua', la cláusula 'que está al final de la calle' es una:",
     "alternativas": [
       "Proposición subordinada adjetiva explicativa",
@@ -258,6 +270,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Selecciona la opción que presenta un error de tildación.",
     "alternativas": [
       "Él compró un té para mí.",
@@ -280,6 +293,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente texto y determina la función del conector 'por consiguiente': 'El aumento del paro reduce el consumo. Por consiguiente, la economía se contrae.'",
     "alternativas": [
       "Causa",
@@ -301,6 +315,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué recurso argumentativo se usa en la frase: 'Si todos saltaran de un puente, ¿tú también lo harías?'?",
     "alternativas": [
       "Argumento de autoridad",
@@ -322,6 +337,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En el texto: 'El escritor chileno Roberto Bolaño es conocido por sus novelas 'Los detectives salvajes' y '2666'. En ellas, mezcla realidad y ficción, y crea personajes complejos.' ¿Qué tipo de información predomina?",
     "alternativas": [
       "Datos de nacimiento y familia",
@@ -343,6 +359,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Selecciona la opción que presenta correctamente el uso de 'sino' (no confundir con 'si no').",
     "alternativas": [
       "No quiero ir al cine, sino que prefiero quedarme en casa.",
@@ -368,6 +385,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de los siguientes textos corresponde a una narración?",
     "alternativas": [
       "Instrucciones para armar un mueble.",
@@ -390,6 +408,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente enunciado: 'La luz de la luna se derramaba sobre el lago como un velo de plata.' ¿Qué figura retórica es?",
     "alternativas": [
       "Símil",
@@ -411,6 +430,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Terminaré el trabajo aunque esté cansado', la conjunción 'aunque' expresa:",
     "alternativas": [
       "Concesión",
@@ -433,6 +453,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el significado de la palabra 'recóndito' en la frase: 'Guardó sus sentimientos en un lugar recóndito del alma'?",
     "alternativas": [
       "Profundo y oculto",
@@ -454,6 +475,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "El siguiente texto es parte de un artículo: 'Según la OMS, el consumo excesivo de azúcar se relaciona con la obesidad. Por ende, se recomienda reducir su ingesta.' ¿Qué tipo de argumento se emplea?",
     "alternativas": [
       "Argumento de autoridad",
@@ -476,6 +498,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la oración 'Es muy tarde, salgamos ya', el verbo 'salgamos' está en modo:",
     "alternativas": [
       "Subjuntivo",
@@ -501,6 +524,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué vicio de lenguaje se manifiesta en la frase 'Lo vi volando por el parque' (sin contexto adicional)?",
     "alternativas": [
       "Anfibología",
@@ -523,6 +547,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Lee el siguiente microcuento: 'Despertó, el monstruo todavía estaba allí. Pero esta vez él también era un monstruo.' ¿Qué recurso narrativo se destaca?",
     "alternativas": [
       "Final sorprendente",
@@ -544,6 +569,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué tipo de texto es el siguiente? 'Para preparar un té, hierve agua, vierte sobre una bolsita, deja reposar tres minutos y retira la bolsita.'",
     "alternativas": [
       "Texto instructivo",
@@ -566,6 +592,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la frase 'El ruido de la calle era una sinfonía caótica', predomina la función poética porque:",
     "alternativas": [
       "Busca embellecer el lenguaje con imágenes.",
@@ -588,6 +615,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Identifica la opción que presenta un error de concordancia sujeto-verbo.",
     "alternativas": [
       "Habían muchas personas en la plaza.",
@@ -610,6 +638,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En 'No es que no quiera ayudarte, es que no puedo', ¿qué expresa la primera parte, 'No es que no quiera ayudarte'?",
     "alternativas": [
       "Negación de una causa",
@@ -632,6 +661,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de estas palabras está escrita correctamente según la RAE?",
     "alternativas": [
       "Exámen",

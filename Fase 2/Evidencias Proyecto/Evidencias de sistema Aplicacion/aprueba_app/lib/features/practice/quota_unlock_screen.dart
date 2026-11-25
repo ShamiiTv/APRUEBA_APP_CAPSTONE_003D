@@ -30,7 +30,7 @@ class _QuotaUnlockScreenState extends ConsumerState<QuotaUnlockScreen> {
   final _schoolKey = GlobalKey<FormState>();
   final _school = TextEditingController();
   final _age = TextEditingController();
-  final _region = TextEditingController();
+
   final _addr = AddressFormController();
   bool _loading = false;
   String? _error;
@@ -39,7 +39,7 @@ class _QuotaUnlockScreenState extends ConsumerState<QuotaUnlockScreen> {
   void dispose() {
     _school.dispose();
     _age.dispose();
-    _region.dispose();
+
     _addr.dispose();
     super.dispose();
   }
@@ -63,10 +63,10 @@ class _QuotaUnlockScreenState extends ConsumerState<QuotaUnlockScreen> {
         await repo.unlockSchool(
           _school.text.trim(),
           int.parse(_age.text.trim()),
-          _region.text.trim(),
+
         );
       } else {
-        await repo.unlockAddress(_addr.build());
+        await repo.unlockAddress(_addr.build(),_addr.region.text);
       }
       await ref.read(profileProvider.notifier).refresh();
       if (mounted) context.go('/practice');
@@ -175,20 +175,6 @@ class _QuotaUnlockScreenState extends ConsumerState<QuotaUnlockScreen> {
                     ),
                     const SizedBox(height: 10),
                     TextFormField(
-                      controller: _region,
-                      decoration: InputDecoration(
-                        labelText: tr(context, 'Región', 'Region'),
-                      ),
-                      validator: (value) => (value?.trim().isEmpty ?? true)
-                          ? tr(
-                              context,
-                              'Ingresa tu región',
-                              'Enter your region',
-                            )
-                          : null,
-                    ),
-                    const SizedBox(height: 10),
-                    TextFormField(
                       controller: _age,
                       keyboardType: TextInputType.number,
                       inputFormatters: [
@@ -244,10 +230,10 @@ class _QuotaUnlockScreenState extends ConsumerState<QuotaUnlockScreen> {
                               tr(
                                 context,
                                 isSchool
-                                    ? 'Conservas tus 10 preguntas diarias base. Puedes sumar 5 al completar colegio, edad y región, y otras 5 con tu dirección. Puedes hacerlo después desde tu perfil.'
+                                    ? 'Conservas tus 10 preguntas diarias base. Puedes sumar 5 al completar colegio y edad, y otras 5 con región, comuna y dirección. Puedes hacerlo después desde tu perfil.'
                                     : 'Conservas tus 15 preguntas diarias. Puedes sumar las últimas 5 al completar tu dirección, ahora o después desde tu perfil.',
                                 isSchool
-                                    ? 'You keep your 10 base daily questions. Add 5 with school, age and region, and another 5 with your address. You can do this later in your profile.'
+                                    ? 'You keep your 10 base daily questions. Add 5 with school and age, and another 5 with region, commune and street address. You can do this later in your profile.'
                                     : 'You keep your 15 daily questions. Add the final 5 by completing your address, now or later in your profile.',
                               ),
                             ),

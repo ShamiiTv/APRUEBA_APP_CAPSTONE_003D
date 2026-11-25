@@ -470,15 +470,15 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
-              color: c.chip,
+              color: switch(q.difficulty) { 'd1' => const Color(0xffd1fae5), 'd3' => const Color(0xfffee2e2), _ => const Color(0xfffef3c7) },
               borderRadius: BorderRadius.circular(6),
             ),
             child: Text(
               tag,
               style: GoogleFonts.inter(
-                fontSize: 10,
+                fontSize: 11,
                 fontWeight: FontWeight.w700,
-                color: c.muted,
+                color: const Color(0xff302725),
               ),
             ),
           ),

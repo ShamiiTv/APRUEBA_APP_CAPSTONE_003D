@@ -240,7 +240,7 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen>
 
   String name(String id) => id == 'm1'
       ? t('Matemática M1', 'Mathematics M1')
-      : t('Matemática M2', 'Mathematics M2');
+      : switch (id) { 'm2' => t('Matemática M2', 'Mathematics M2'), 'lectora' => t('Competencia Lectora','Reading'), 'cien' => t('Ciencias','Science'), 'hist' => t('Historia','History'), _ => id };
   String rank(num rating, num games) {
     if (games < 5) return t('En clasificación', 'Provisional');
     return rating < 1100
@@ -585,7 +585,7 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen>
                     paragraph(
                       t(
                         'Otras pruebas y entradas mayores estarán disponibles después de validar su banco y disponibilidad de rivales.',
-                        'Other tests and higher entries will open after validating their question pools and opponent availability.',
+                        'Your opponent will be playing the same subject.',
                       ),
                     ),
                   ]),

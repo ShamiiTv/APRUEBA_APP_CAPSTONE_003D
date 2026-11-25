@@ -618,6 +618,12 @@ class _FacsimileState extends ConsumerState<FacsimileScreen> {
         ),
         text(t('respuestas correctas', 'correct answers')),
         text(
+          s['answered'] > 0
+              ? "${(100 * s['correct'] / s['answered']).round()}${t(' % de aciertos sobre lo respondido', '% accuracy on answered questions')}"
+              : t('Sin respuestas para calcular el porcentaje',
+                  'Answer a question to calculate accuracy'),
+        ),
+        text(
           '${t('Preguntas completadas', 'Questions completed')}: ${s['answered']} / ${s['total']}. ${t('No es puntaje PAES.', 'This is not a PAES score.')}',
         ),
         for (final item in s['review'])

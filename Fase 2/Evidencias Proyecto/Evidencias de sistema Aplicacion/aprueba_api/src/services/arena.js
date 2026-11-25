@@ -303,7 +303,7 @@ export function createArenaService({
   async function search(uid, testId, {
     rematch = false
   } = {}) {
-    if (!['m1', 'm2'].includes(testId)) fail('ARENA_NO_QUESTIONS', 409);
+    if (!['m1', 'm2', 'lectora', 'cien', 'hist'].includes(testId)) fail('ARENA_NO_QUESTIONS', 409);
     const bank = await loadBank(),
       pool = poolFor(bank, testId);
     if (pool.length < 5) fail('ARENA_NO_QUESTIONS');
@@ -481,7 +481,7 @@ export function createArenaService({
       dailyUsed: day.data()?.count || 0,
       seat: seat || null,
       match,
-      tests: ['m1', 'm2'].map(testId => ({
+      tests: ['m1', 'm2', 'lectora', 'cien', 'hist'].map(testId => ({
         id: testId,
         available: poolFor(bank, testId).length >= 5,
         ...rating(ratings.docs.find(d => d.id === testId)?.data())
@@ -507,7 +507,7 @@ export function createArenaService({
         console.error('Arena match recovery failed', e.code || 'unavailable');
       }
     }
-    const queues = await Promise.all(['m1', 'm2'].map(id => ref('arenaQueues', id).get()));
+    const queues = await Promise.all(['m1', 'm2', 'lectora', 'cien', 'hist'].map(id => ref('arenaQueues', id).get()));
     let waiting = false;
     for (const q of queues) {
       const fresh = (q.data()?.queue || []).filter(p => now() - p.lastSeen < 30000);

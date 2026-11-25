@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "La siguiente reacción química es fundamental para la vida: 6 CO₂ + 6 H₂O → C₆H₁₂O₆ + 6 O₂. ¿En cuál de los siguientes organelos celulares ocurre este proceso?",
     "alternativas": [
       "Mitocondria",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "La glucólisis es una ruta metabólica que ocurre en el citoplasma de todas las células. ¿Cuál de las siguientes moléculas es el producto final de esta ruta?",
     "alternativas": [
       "Glucosa",
@@ -42,6 +44,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "En una célula eucariota, ¿dónde se sintetiza el ARNm de un gen localizado en el ADN nuclear?",
     "alternativas": [
       "Citoplasma",
@@ -63,6 +66,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En un experimento, se colocan células de sangre humana en una solución salina con una concentración de sales del 0.9%, que es isotónica. ¿Qué se espera que ocurra con el volumen de los glóbulos rojos?",
     "alternativas": [
       "Disminuyen de tamaño porque pierden agua",
@@ -84,6 +88,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "La membrana plasmática está formada principalmente por una bicapa de fosfolípidos. ¿Cuál de las siguientes moléculas puede atravesar esta bicapa con mayor facilidad sin necesidad de un transportador?",
     "alternativas": [
       "Ion sodio (Na+)",
@@ -105,6 +110,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué nombre recibe el proceso por el cual las células tragan partículas sólidas grandes, como bacterias o restos celulares, envolviéndolas con su membrana?",
     "alternativas": [
       "Pinocitosis",
@@ -126,6 +132,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Los cloroplastos son organelos exclusivos de células vegetales y algas. ¿Cuál de las siguientes afirmaciones describe correctamente una de las funciones de los tilacoides, una estructura interna de este organelo?",
     "alternativas": [
       "Contener el ADN y ribosomas propios del cloroplasto",
@@ -147,6 +154,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Un grupo de estudiantes analiza diferentes muestras al microscopio. En una de ellas observan células con pared celular, cloroplastos y una gran vacuola central. ¿Qué tipo de células están observando?",
     "alternativas": [
       "Células animales",
@@ -168,6 +176,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "En la fase de la mitosis conocida como metafase, ¿qué estructura es responsable de alinear los cromosomas en el plano ecuatorial de la célula?",
     "alternativas": [
       "Centríolos",
@@ -189,6 +198,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "La comunicación entre neuronas ocurre en estructuras especializadas llamadas sinapsis. ¿Qué tipo de señal química se libera en la sinapsis para transmitir el impulso a la neurona siguiente?",
     "alternativas": [
       "Hormona",
@@ -210,6 +220,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes opciones describe correctamente la función del retículo endoplasmático rugoso (RER) en una célula eucariota?",
     "alternativas": [
       "Síntesis de lípidos y detoxificación de sustancias",
@@ -231,6 +242,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Las hormonas tiroideas (T3 y T4) son esenciales para regular el metabolismo basal. ¿Cuál de las siguientes glándulas produce estas hormonas?",
     "alternativas": [
       "Hipófisis",
@@ -252,6 +264,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de los siguientes eventos ocurre durante la telofase de la mitosis?",
     "alternativas": [
       "Los cromosomas se condensan y se hacen visibles",
@@ -273,6 +286,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "La diabetes mellitus tipo 1 es una enfermedad autoinmune en la que el sistema inmunitario destruye las células del páncreas que producen insulina. ¿Qué células son las afectadas?",
     "alternativas": [
       "Células alfa de los islotes de Langerhans",
@@ -294,6 +308,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué tipo de unión química es la principal responsable de mantener la estructura secundaria de una proteína (por ejemplo, la formación de hélices alfa)?",
     "alternativas": [
       "Enlace peptídico",
@@ -315,6 +330,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En el proceso de la fotosíntesis, los electrones excitados por la luz solar son transportados a través de una cadena de transportadores. ¿Cuál es el aceptor final de estos electrones en la fase lumínica?",
     "alternativas": [
       "Agua (H₂O)",
@@ -336,6 +352,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Un estudiante diseña un experimento para medir la tasa de fermentación de levaduras en diferentes temperaturas. ¿Cuál de los siguientes productos sería más adecuado para medir indirectamente la tasa de fermentación?",
     "alternativas": [
       "Glucosa consumida",
@@ -357,6 +374,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes afirmaciones describe mejor la función de los lisosomas?",
     "alternativas": [
       "Sintetizar lípidos y proteínas para la membrana celular",
@@ -378,6 +396,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "La calmodulina es una proteína celular que se une a iones de calcio (Ca²⁺) y actúa como un interruptor molecular, activando varias enzimas. ¿Qué tipo de estructura proteica (nivel de organización) se vería directamente afectado si se rompieran los puentes de hidrógeno que estabilizan su estructura secundaria?",
     "alternativas": [
       "Estructura primaria",
@@ -399,6 +418,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un niño con dolor de garganta recibe una receta de antibiótico. Al cabo de unos días mejora. ¿Cuál es el mecanismo de acción de la mayoría de los antibióticos que actúan sobre bacterias?",
     "alternativas": [
       "Destruir la pared celular de las bacterias o inhibir su síntesis de proteínas",
@@ -420,6 +440,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "En el ciclo celular, la etapa G1 (Gap 1) es crucial para la célula. ¿Cuál de los siguientes eventos ocurre típicamente durante G1?",
     "alternativas": [
       "Duplicación del ADN",
@@ -441,6 +462,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Los pliegues internos de la mitocondria, llamados crestas, tienen una función crucial en la respiración celular. ¿Cuál es esta función?",
     "alternativas": [
       "Almacenar calcio para la contracción muscular",
@@ -462,6 +484,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "La insulina y el glucagón son dos hormonas pancreáticas que regulan la concentración de glucosa en sangre. ¿Cuál de las siguientes situaciones estimularía la liberación de glucagón?",
     "alternativas": [
       "Aumento de la glucosa en sangre después de una comida rica en carbohidratos",
@@ -483,6 +506,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de los siguientes orgánulos posee una envoltura de dos membranas que separa el nucleoplasma del citoplasma?",
     "alternativas": [
       "Complejo de Golgi",
@@ -504,6 +528,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "La miocarditis es una inflamación del músculo cardíaco. ¿Qué tipo de tejido muscular es el que se ve afectado en esta condición?",
     "alternativas": [
       "Tejido muscular liso",
@@ -525,6 +550,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "En la replicación del ADN, las nuevas hebras se sintetizan en dirección 5' → 3'. ¿Cuál de las siguientes enzimas es responsable de añadir los nucleótidos a la nueva cadena en crecimiento?",
     "alternativas": [
       "Helicasa",
@@ -546,6 +572,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de los siguientes procesos ocurre durante la fase de la citocinesis en una célula animal?",
     "alternativas": [
       "Replicación del ADN",
@@ -567,6 +594,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "La capa más externa de la membrana plasmática presenta carbohidratos unidos a proteínas (glucoproteínas) o a lípidos (glucolípidos). Esta capa se denomina glicocálix. ¿Cuál de las siguientes NO es una función del glicocálix?",
     "alternativas": [
       "Protección de la membrana celular",
@@ -588,6 +616,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Un estudiante realiza un montaje de microscopio para observar células vegetales en diferentes soluciones. Al agregar una solución concentrada de sal (hipertónica), observa que la membrana celular se separa de la pared. ¿Cómo se denomina este fenómeno?",
     "alternativas": [
       "Turgencia",
@@ -609,6 +638,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Durante la digestión de las proteínas, estas se descomponen en aminoácidos, que luego son absorbidos por el intestino delgado. ¿Cuál es el órgano que produce la mayoría de las enzimas proteasas que actúan en el duodeno?",
     "alternativas": [
       "Hígado",
@@ -630,6 +660,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes afirmaciones es correcta acerca del proceso de traducción?",
     "alternativas": [
       "Ocurre en el núcleo de la célula eucariota",
@@ -651,6 +682,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En una célula eucariota, ¿dónde se localizan los genes que codifican para las proteínas de la cadena de transporte de electrones que actúan en la respiración celular?",
     "alternativas": [
       "Exclusivamente en el ADN nuclear",
@@ -672,6 +704,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de los siguientes procesos biológicos se ve favorecido por la alta temperatura del cuerpo de las aves y mamíferos (homeotermos) en comparación con los reptiles (ectotermos)?",
     "alternativas": [
       "La velocidad de las reacciones metabólicas enzimáticas",
@@ -693,6 +726,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "La hemoglobina es una proteína con estructura cuaternaria formada por cuatro subunidades polipeptídicas. ¿Cuál es el grupo prostético que contiene hierro y es responsable de la unión del oxígeno?",
     "alternativas": [
       "Hemo",
@@ -714,6 +748,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué lípido de membrana presenta típicamente una cabeza polar con fosfato y dos colas de ácidos grasos, y forma la bicapa lipídica?",
     "alternativas": [
       "Triglicéridos",
@@ -735,6 +770,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Un laboratorio recibe una muestra de tejido humano y solicita identificar si las células están vivas o muertas. ¿Cuál de los siguientes métodos o principios sería más adecuado para determinar la viabilidad celular?",
     "alternativas": [
       "Observar la presencia de núcleo al microscopio",
@@ -756,6 +792,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué teoría explica el origen bacteriano de mitocondrias y cloroplastos, apoyado por su ADN propio y por similitudes de sus ribosomas con los bacterianos?",
     "alternativas": [
       "Teoría de la evolución de las especies",
@@ -777,6 +814,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué polisacárido estructural forma parte de la pared celular de los hongos y del exoesqueleto de los artrópodos?",
     "alternativas": [
       "Almidón",
@@ -798,6 +836,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "El colesterol es una molécula esencial en las membranas celulares de los animales. ¿Cuál de las siguientes funciones cumple el colesterol en la bicapa lipídica?",
     "alternativas": [
       "Formar la bicapa por sí mismo",
@@ -819,6 +858,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de los siguientes eventos ocurre primero durante la contracción del músculo esquelético?",
     "alternativas": [
       "Liberación de calcio del retículo sarcoplasmático",
@@ -840,6 +880,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Para observar orgánulos en movimiento dentro de células vivas sin marcadores fluorescentes, ¿qué tipo de microscopio, equipado con contraste de fases, es adecuado?",
     "alternativas": [
       "Microscopio electrónico de transmisión",
@@ -861,6 +902,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes opciones describe mejor el proceso de ósmosis?",
     "alternativas": [
       "El movimiento de solutos a través de una membrana desde una zona de mayor concentración a una de menor concentración",
@@ -882,6 +924,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes hormonas es producida por la glándula hipófisis y tiene como órgano blanco la glándula tiroides, estimulando la producción de hormonas tiroideas?",
     "alternativas": [
       "Adrenocorticotropina (ACTH)",
@@ -903,6 +946,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Mitocondrias aisladas reciben ADP, fosfato inorgánico, oxígeno y un sustrato respiratorio. ¿Qué molécula se forma al fosforilar el ADP?",
     "alternativas": [
       "Glucosa",
@@ -924,6 +968,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cómo se llaman las moléculas de ADN extracromosómico, frecuentemente circulares, que pueden encontrarse en bacterias y portar genes de resistencia?",
     "alternativas": [
       "Membrana plasmática",
@@ -945,6 +990,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "En un modelo simplificado hipotético, la glucólisis aporta 2 ATP netos y 2 NADH, y se asignan 3 ATP a cada NADH. ¿Cuál es el total de ATP de esos aportes, sin considerar lanzaderas?",
     "alternativas": [
       "2 ATP (solo los de la glucólisis)",
@@ -966,6 +1012,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "La deficiencia de vitamina D en niños puede producir raquitismo, una enfermedad que afecta la mineralización ósea. ¿Cuál de las siguientes funciones de la vitamina D explica por qué su deficiencia causa este problema?",
     "alternativas": [
       "Interviene en la coagulación sanguínea",

@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la siguiente ecuación lineal con fracciones: (x/3) + (x/2) = 10. ¿Cuál es el valor de x?",
     "alternativas": [
       "8",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Si el área de un rectángulo es 56 m² y su largo es 4 metros mayor que su ancho, ¿cuánto mide el ancho?",
     "alternativas": [
       "(2√15 − 2) m",
@@ -42,6 +44,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Encuentra el valor de x en la ecuación exponencial: 4^{x+1} = 8^{x-2}.",
     "alternativas": [
       "5",
@@ -63,6 +66,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un ciclista recorre 60 km en 3 horas. Si aumenta su velocidad en 5 km/h, ¿cuánto tiempo tardará en recorrer la misma distancia?",
     "alternativas": [
       "2,0 h",
@@ -84,6 +88,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la desigualdad cuadrática: x² - 5x + 6 ≤ 0. ¿Cuál es el conjunto solución?",
     "alternativas": [
       "[2, 3]",
@@ -105,6 +110,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el valor del determinante de la matriz A = [[3, 2], [1, 4]]?",
     "alternativas": [
       "10",
@@ -127,6 +133,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Una caja contiene 5 bolas rojas, 3 azules y 2 verdes. Si se extrae una bola al azar, ¿cuál es la probabilidad de que NO sea azul?",
     "alternativas": [
       "0,7",
@@ -148,6 +155,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula la derivada de f(x)= ln(5x² + 3).",
     "alternativas": [
       "(10x)/(5x²+3)",
@@ -170,6 +178,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la integral definida ∫_0^1 (2x + 1) dx.",
     "alternativas": [
       "2",
@@ -192,6 +201,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un capital de $5000 se deposita al 6% anual compuesto mensualmente. ¿Cuál es el monto después de 1 año?",
     "alternativas": [
       "$5308,39",
@@ -213,6 +223,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En un triángulo rectángulo, los catetos miden 9 cm y 12 cm. ¿Cuál es el seno del ángulo menor?",
     "alternativas": [
       "0,6",
@@ -234,6 +245,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Resuelve el sistema de ecuaciones logarítmicas: log(x) + log(y) = 1, x - y = 3. (log base 10).",
     "alternativas": [
       "x=5, y=2",
@@ -255,6 +267,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el valor de la expresión trigonométrica: sen(120°) · cos(60°)?",
     "alternativas": [
       "√3/4",
@@ -276,6 +289,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En una escala de calificaciones de 0 a 10, un estudiante obtuvo 5, 6, 7, 8 y 9 en cinco pruebas. ¿Qué calificación necesita en la sexta para promediar 7,5?",
     "alternativas": [
       "8",
@@ -297,6 +311,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuántos números de 4 cifras diferentes se pueden formar con los dígitos 1, 2, 3, 4, 5, 6 sin repetición?",
     "alternativas": [
       "360",
@@ -318,6 +333,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Dada la función f(x)= x² - 4x + 7, ¿cuál es el valor mínimo de f?",
     "alternativas": [
       "3",
@@ -339,6 +355,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Resuelve la ecuación trigonométrica: 2 cos²(x) - 1 = 0 para x ∈ [0, 2π).",
     "alternativas": [
       "π/4, 3π/4, 5π/4, 7π/4",
@@ -360,6 +377,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la ecuación de la recta que pasa por el punto (2, -3) y es perpendicular a la recta y = 2x + 1?",
     "alternativas": [
       "y = -½x - 2",
@@ -381,6 +399,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula el límite: lim_{x→0} (sen(3x))/(x).",
     "alternativas": [
       "3",
@@ -403,6 +422,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla la ecuación de la asíntota horizontal de la función racional f(x) = (3x² - 2x + 1)/(x² + 4).",
     "alternativas": [
       "y = 3",
@@ -424,6 +444,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "En una caja hay 10 focos, de los cuales 3 están defectuosos. Se extraen dos focos sin reposición. ¿Cuál es la probabilidad de que ambos estén buenos?",
     "alternativas": [
       "7/15",
@@ -445,6 +466,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación en números complejos: z² = -9. ¿Cuál es la solución?",
     "alternativas": [
       "z = ±3i",
@@ -467,6 +489,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el radio de convergencia de la serie de potencias ∑_{n=0}^∞ (x^n)/(n+1)?",
     "alternativas": [
       "1",
@@ -489,6 +512,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Dados los vectores u = (2, -1, 3) y v = (1, 4, -2), calcula el producto cruz u × v.",
     "alternativas": [
       "(-10, 7, 9)",
@@ -511,6 +535,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la inecuación |2x - 1| > 5.",
     "alternativas": [
       "x < -2 o x > 3",
@@ -532,6 +557,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Simplifica la expresión: (x^{-2} y^3 z^0)^{-1}.",
     "alternativas": [
       "x² y^{-3}",
@@ -553,6 +579,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En un polígono regular de 12 lados, ¿cuánto mide cada ángulo interior?",
     "alternativas": [
       "150°",
@@ -574,6 +601,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el valor de la derivada de f(x) = arctan(2x) en x=0?",
     "alternativas": [
       "2",
@@ -596,6 +624,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Calcula la integral ∫_0^π sen(x) dx.",
     "alternativas": [
       "2",
@@ -618,6 +647,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un dado se lanza 3 veces. ¿Cuál es la probabilidad de obtener al menos un 6?",
     "alternativas": [
       "91/216",
@@ -639,6 +669,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Resuelve la ecuación logarítmica: ln(x-1) + ln(x+1) = ln 3.",
     "alternativas": [
       "x = 2",
@@ -660,6 +691,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la distancia entre los puntos P(1, -2, 3) y Q(4, 2, -1)?",
     "alternativas": [
       "√41",
@@ -682,6 +714,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Simplifica la expresión: (sen²x + cos²x) / (csc²x - cot²x).",
     "alternativas": [
       "1",
@@ -703,6 +736,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Encuentra el volumen del sólido generado al rotar la región bajo y = x² desde x=0 hasta x=2 alrededor del eje x.",
     "alternativas": [
       "32π/5",
@@ -725,6 +759,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la ecuación de la recta tangente a la curva f(x)= x³ - 3x en el punto x=2?",
     "alternativas": [
       "y = 9x - 16",
@@ -747,6 +782,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la suma de los primeros 10 términos de la progresión aritmética: 5, 9, 13, ...?",
     "alternativas": [
       "230",
@@ -768,6 +804,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Calcula el valor de x que satisface: 5^{x-2} = 125.",
     "alternativas": [
       "5",
@@ -789,6 +826,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un cilindro tiene radio de base 3 cm y altura 10 cm. ¿Cuál es su área lateral?",
     "alternativas": [
       "60π cm²",
@@ -810,6 +848,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Resuelve la ecuación cuadrática completando cuadrados: x² - 6x + 5 = 0.",
     "alternativas": [
       "x=1, x=5",
@@ -831,6 +870,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla el punto medio del segmento con extremos A(-2, 5) y B(4, -3).",
     "alternativas": [
       "(1, 1)",
@@ -852,6 +892,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es la derivada de f(x)= e^{sen x}?",
     "alternativas": [
       "e^{sen x} · cos x",
@@ -874,6 +915,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "¿Cuál es el valor de la integral indefinida ∫ (x² + 1) / x dx?",
     "alternativas": [
       "(x²/2) + ln|x| + C",
@@ -896,6 +938,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un avión vuela a 500 km/h con viento a favor de 40 km/h. ¿Cuánto tiempo tarda en recorrer 1080 km?",
     "alternativas": [
       "2 h",
@@ -917,6 +960,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál es el valor de sen(arcsen(0.6) + arccos(0.8))?",
     "alternativas": [
       "0,96",
@@ -939,6 +983,7 @@
     "motivo_alcance": "Contenido de cálculo, complejos, matrices, geometría analítica de cónicas, trigonometría inversa o vectores avanzados fuera del temario M1/M2 consultado."
   },
   {
+    "dificultad": "d2",
     "pregunta": "Halla el área de la región acotada por y = x² y y = 4.",
     "alternativas": [
       "32/3",
@@ -961,6 +1006,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Resuelve: 2 sen²x - sen x - 1 = 0 para x en [0, 2π).",
     "alternativas": [
       "π/2, 7π/6, 11π/6",

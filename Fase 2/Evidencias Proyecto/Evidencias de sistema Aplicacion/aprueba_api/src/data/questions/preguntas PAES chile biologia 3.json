@@ -1,5 +1,6 @@
 [
   {
+    "dificultad": "d2",
     "pregunta": "La teoría del endosimbionte seriado explica el origen de algunos orgánulos eucariotas. ¿Cuál de los siguientes pares de orgánulos y células progenitoras es correcto según esta teoría?",
     "alternativas": [
       "Mitocondria - bacteria aeróbica",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de los siguientes organismos NO realiza fotosíntesis oxigénica?",
     "alternativas": [
       "Cianobacteria",
@@ -42,6 +44,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Durante la trascripción, la enzima ARN polimerasa sintetiza una hebra de ARN a partir de una plantilla de ADN. ¿Cuál de las siguientes afirmaciones es correcta?",
     "alternativas": [
       "Se sintetiza ARN en dirección 3’ → 5’ complementario al ADN",
@@ -63,6 +66,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "En un experimento de fotosíntesis, se midió la producción de oxígeno de una planta expuesta a diferentes longitudes de onda. ¿En qué color de luz se espera la menor producción de O2?",
     "alternativas": [
       "Rojo",
@@ -84,6 +88,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes opciones describe correctamente un ejemplo de mecanismo de retroalimentación negativa en el cuerpo humano?",
     "alternativas": [
       "La oxitocina estimula las contracciones uterinas, que a su vez aumentan la liberación de oxitocina",
@@ -105,6 +110,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué proceso distingue la profase I de la meiosis de la profase de la mitosis?",
     "alternativas": [
       "Separación de las cromátidas hermanas",
@@ -126,6 +132,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Un ecosistema puede ser definido como:",
     "alternativas": [
       "El conjunto de todos los organismos de una misma especie en un área",
@@ -147,6 +154,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la fotosíntesis, el agua se oxida y libera electrones. ¿Qué molécula acepta esos electrones en el fotosistema II?",
     "alternativas": [
       "NADP+",
@@ -168,6 +176,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "Un hombre con sangre tipo A (genotipo IAi) se casa con una mujer con sangre tipo B (genotipo IBi). ¿Cuál es la probabilidad de que su hijo tenga sangre tipo AB?",
     "alternativas": [
       "0%",
@@ -189,6 +198,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes afirmaciones describe mejor la función de los ribosomas?",
     "alternativas": [
       "Llevan a cabo la respiración celular",
@@ -210,6 +220,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "El antígeno y el anticuerpo son conceptos clave en inmunología. ¿Cuál de las siguientes afirmaciones es correcta?",
     "alternativas": [
       "Un anticuerpo es una molécula extraña que desencadena una respuesta inmune",
@@ -231,6 +242,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué proceso elimina intrones y une exones durante la maduración del pre-ARNm nuclear de muchos genes eucariotas?",
     "alternativas": [
       "Replicación del ADN",
@@ -252,6 +264,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la cadena de transporte de electrones de la fotosíntesis (vía no cíclica), el último aceptor de electrones es:",
     "alternativas": [
       "NADP+",
@@ -273,6 +286,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un agricultor quiere mejorar la fijación de nitrógeno en el suelo para sus cultivos de legumbres. ¿Qué práctica sería más efectiva?",
     "alternativas": [
       "Inocular las semillas con bacterias del género Rhizobium",
@@ -294,6 +308,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "El proceso por el cual las células convierten la glucosa en energía utilizable en ausencia de oxígeno se denomina:",
     "alternativas": [
       "Respiración aeróbica",
@@ -315,6 +330,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué estructura actúa como principal centro organizador de microtúbulos y participa en la organización del huso mitótico de una célula animal típica?",
     "alternativas": [
       "Centrómero",
@@ -336,6 +352,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué papel mecánico cumple la presión de turgencia en el sostén de los tejidos herbáceos de una planta?",
     "alternativas": [
       "Permite el intercambio de gases",
@@ -357,6 +374,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "¿Qué unidad expresa directamente la energía almacenada en la biomasa por unidad de superficie de un ecosistema?",
     "alternativas": [
       "Gramos de carbono por metro cuadrado (g C/m²)",
@@ -378,6 +396,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes opciones corresponde a un carbohidrato de reserva en animales?",
     "alternativas": [
       "Almidón",
@@ -399,6 +418,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de los siguientes factores NO afecta la velocidad de una reacción enzimática?",
     "alternativas": [
       "Temperatura",
@@ -420,6 +440,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Durante la fecundación en humanos, el espermatozoide y el óvulo se fusionan para formar un cigoto. ¿Cuál es el número de cromosomas en el cigoto humano normal?",
     "alternativas": [
       "23",
@@ -441,6 +462,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué glándulas producen la hormona paratiroidea (PTH), que participa en la regulación del calcio sanguíneo?",
     "alternativas": [
       "Hipotálamo",
@@ -462,6 +484,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿En qué fase de la mitosis comienzan a condensarse los cromosomas y a hacerse visibles como estructuras individualizadas?",
     "alternativas": [
       "Interfase",
@@ -483,6 +506,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "La vasopresina (hormona antidiurética) es secretada por:",
     "alternativas": [
       "Hipófisis posterior (neurohipófisis)",
@@ -504,6 +528,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué ciclo fija CO₂ en el estroma del cloroplasto usando ATP y NADPH de la fase lumínica?",
     "alternativas": [
       "Fase lumínica (fotosíntesis)",
@@ -525,6 +550,7 @@
     }
   },
   {
+    "dificultad": "d3",
     "pregunta": "En la herencia ligada al sexo (cromosoma X), un hombre con daltonismo (recesivo) se casa con una mujer portadora (heterocigota normal). ¿Cuál es la probabilidad de que un hijo varón sea daltónico?",
     "alternativas": [
       "0%",
@@ -546,6 +572,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué tipo de defensa inmunitaria está mediada por anticuerpos producidos por linfocitos B?",
     "alternativas": [
       "Inmunidad celular",
@@ -567,6 +594,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un ecosistema terrestre con baja precipitación (<250 mm anuales), plantas xerófitas y alta amplitud térmica se clasifica como:",
     "alternativas": [
       "Selva tropical",
@@ -588,6 +616,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes moléculas es un ejemplo de un lípido saponificable?",
     "alternativas": [
       "Colesterol",
@@ -609,6 +638,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "En el proceso de traducción, los aminoácidos son transportados al ribosoma por moléculas de:",
     "alternativas": [
       "ARNm",
@@ -630,6 +660,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de las siguientes opciones describe un efecto directo de la hormona insulina?",
     "alternativas": [
       "Aumento de la glucemia (glucosa en sangre)",
@@ -651,6 +682,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En una célula eucariota, la síntesis de proteínas destinadas a la secreción ocurre en:",
     "alternativas": [
       "Ribosomas libres en el citosol",
@@ -672,6 +704,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Tras la fijación biológica del nitrógeno, ¿cuál es la forma protonada del amoníaco, predominante en solución acuosa cercana a pH neutro?",
     "alternativas": [
       "Nitrato (NO3-)",
@@ -693,6 +726,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de estas estructuras NO se encuentra en una neurona humana ni está asociada a ella?",
     "alternativas": [
       "Axón",
@@ -714,6 +748,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "En la síntesis de proteínas, la adición de un grupo fosfato a una enzima puede activarla o desactivarla. Este proceso se denomina:",
     "alternativas": [
       "Fosforilación",
@@ -735,6 +770,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Una planta con flores rojas (genotipo RR) se cruza con una de flores blancas (genotipo rr). En la F1, todas las flores son rosadas. Este patrón de herencia se denomina:",
     "alternativas": [
       "Dominancia completa",
@@ -756,6 +792,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes es una función del sistema tegumentario (piel)?",
     "alternativas": [
       "Producir vitamina B12",
@@ -777,6 +814,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "El tejido que recubre el interior del corazón se denomina:",
     "alternativas": [
       "Miocardio",
@@ -798,6 +836,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En la cadena trófica: pasto → conejo → zorro → puma. ¿Cuál es el nivel trófico del zorro?",
     "alternativas": [
       "Productor",
@@ -819,6 +858,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Cuál de los siguientes orgánulos tiene su propio ADN y ribosomas, lo que apoya la teoría endosimbiótica?",
     "alternativas": [
       "Núcleo",
@@ -840,6 +880,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "Un paciente tiene dificultad para regular su temperatura corporal y su sudoración. ¿Qué glándula del sistema endocrino podría estar afectada?",
     "alternativas": [
       "Tiroides",
@@ -861,6 +902,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de los siguientes microorganismos es responsable de la fermentación que produce etanol en la industria cervecera?",
     "alternativas": [
       "Saccharomyces cerevisiae (levadura)",
@@ -882,6 +924,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "¿Qué estructura se forma en la profase I de la meiosis y es visible al microscopio como un par de cromosomas homólogos apareados?",
     "alternativas": [
       "Cromátida",
@@ -903,6 +946,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "Un ecosistema con alta biodiversidad tiende a ser más resiliente. ¿Qué significa resiliencia ecológica?",
     "alternativas": [
       "La capacidad de un ecosistema para producir biomasa",
@@ -924,6 +968,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes vitaminas es liposoluble?",
     "alternativas": [
       "Vitamina C (ácido ascórbico)",
@@ -945,6 +990,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "La contracción muscular se produce por el deslizamiento de los filamentos de actina y miosina. ¿Qué ion es fundamental para desencadenar este proceso?",
     "alternativas": [
       "Sodio (Na+)",
@@ -966,6 +1012,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En una célula eucariota, la degradación de proteínas marcadas con ubiquitina ocurre en:",
     "alternativas": [
       "Lisosoma",
@@ -987,6 +1034,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Cuál de las siguientes opciones es una función de los riñones en el sistema excretor humano?",
     "alternativas": [
       "Producir urea",
@@ -1008,6 +1056,7 @@
     }
   },
   {
+    "dificultad": "d2",
     "pregunta": "En una cadena alimentaria, la cantidad de energía disponible disminuye en cada nivel trófico. ¿A qué se debe principalmente esta pérdida?",
     "alternativas": [
       "A la acumulación de materia orgánica no consumida",
@@ -1029,6 +1078,7 @@
     }
   },
   {
+    "dificultad": "d1",
     "pregunta": "¿Qué molécula es la responsable del transporte de oxígeno en la sangre de los vertebrados?",
     "alternativas": [
       "Hemoglobina",

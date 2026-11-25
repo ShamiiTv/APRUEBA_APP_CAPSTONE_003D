@@ -35,7 +35,7 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
   final _phone = TextEditingController();
   final _age = TextEditingController();
   final _school = TextEditingController();
-  final _region = TextEditingController();
+
   final _cur = TextEditingController();
   final _new = TextEditingController();
   final _confirm = TextEditingController();
@@ -61,7 +61,7 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
         _phone.text = u.phone ?? '';
         _age.text = u.age?.toString() ?? '';
         _school.text = u.school ?? '';
-        _region.text = u.region;
+        _addr.region.text = u.region;
         _addr.load(u.address);
         _loaded = true;
       });
@@ -77,7 +77,7 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
       _phone,
       _age,
       _school,
-      _region,
+
       _cur,
       _new,
       _confirm,
@@ -100,7 +100,7 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
       final data = <String, dynamic>{
         'name': _name.text.trim(),
         'phone': _phone.text.trim(),
-        'region': _region.text.trim(),
+
       };
       data['age'] = _age.text.trim().isEmpty
           ? null
@@ -124,6 +124,7 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
     try {
       await ref.read(authRepositoryProvider).updateProfile({
         'address': _addr.build().toJson(),
+        'region':_addr.region.text,
       });
       await ref.read(profileProvider.notifier).refresh();
       if (!mounted) return;
@@ -494,12 +495,6 @@ class _MyDataScreenState extends ConsumerState<MyDataScreen> {
                 validator: (v) => vSchool(context, v, required: false),
               ),
               const SizedBox(height: 14),
-              TextFormField(
-                controller: _region,
-                decoration: InputDecoration(
-                  labelText: tr(context, 'Región', 'Region'),
-                ),
-              ),
               _saveButton(
                 busy: _savingPersonal,
                 onTap: _savePersonal,

@@ -12,7 +12,7 @@ test('free quota requires complete school data before address bonus and ignores 
  assert.equal(dailyQuota(school,now).max,15);
  const full={...school,address:{commune:'Concepción',street:'Calle 123'}};
  assert.equal(dailyQuota(full,now).max,20);assert.equal(dailyQuota(full,now).used,9);
- assert.equal(dailyQuota({...full,region:''},now).max,10);
+ assert.equal(dailyQuota({...full,region:''},now).max,15);
  assert.equal(dailyQuota(full,new Date('2026-10-22T18:00:00Z')).used,0);
 });
 test('single-test entitlement is scoped, expires and cannot be forged through the profile',()=>{

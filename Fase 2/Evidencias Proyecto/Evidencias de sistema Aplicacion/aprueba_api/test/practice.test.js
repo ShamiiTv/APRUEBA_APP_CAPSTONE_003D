@@ -8,8 +8,8 @@ const q = { testId: 'm1', statement: '¿Cuánto es 1 + 1?', options: ['1', '2', 
 
 test('the complete local bank publishes only valid unique content and keeps ambiguous questions pending', () => {
   const bank = readBank();
-  assert.equal(bank.size, 1419);
-  assert.equal([...bank.values()].filter(canPractice).length, 1360);
+  assert.equal(bank.size, 1479);
+  assert.equal([...bank.values()].filter(canPractice).length, 1420);
   assert.equal([...bank.values()].filter(q => canPractice(q) && q.pedagogicalUse === 'complementario').length, 591);
   assert.equal([...bank.values()].filter(q => q.status === 'pending_review').length, 59);
   for (const [id, q] of bank) {
